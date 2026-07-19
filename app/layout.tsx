@@ -27,8 +27,9 @@ const mono = IBM_Plex_Mono({
   preload: false,
 });
 
-const title = `${profile.name} — ${profile.role}`;
-const description = profile.tagline;
+const title = `${profile.name} — Dissenyador i Desenvolupador full-stack`;
+const description =
+  "20+ anys construint producte digital de principi a fi: del briefing i el disseny al codi, la infraestructura i el SEO. Autodidacta, polivalent i orientat a resoldre. 422 projectes · 200+ clients.";
 const siteUrl = "https://serverscel.com";
 
 export const metadata: Metadata = {
@@ -40,7 +41,7 @@ export const metadata: Metadata = {
   description,
   keywords: [
     "Celestí Ticó Petit",
-    "desarrollador web",
+    "desenvolupador web",
     "full-stack",
     "React",
     "Next.js",
@@ -48,14 +49,16 @@ export const metadata: Metadata = {
     "Chakra UI",
     "Balaguer",
     "Lleida",
-    "diseñador web",
+    "dissenyador web",
+    "currículum",
     "CV",
   ],
   authors: [{ name: profile.name, url: siteUrl }],
   creator: profile.name,
   openGraph: {
     type: "profile",
-    locale: "es_ES",
+    locale: "ca_ES",
+    alternateLocale: ["es_ES", "en_US"],
     url: siteUrl,
     title,
     description,
@@ -75,7 +78,7 @@ const jsonLd = {
   "@type": "Person",
   name: profile.name,
   alternateName: profile.nick,
-  jobTitle: profile.role,
+  jobTitle: "Dissenyador i Desenvolupador full-stack",
   email: `mailto:${profile.email}`,
   telephone: profile.phone,
   url: siteUrl,
