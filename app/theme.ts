@@ -54,6 +54,10 @@ const theme = extendTheme({
         "0%, 100%": { transform: "translate(0, 0) scale(1)", opacity: 0.12 },
         "50%": { transform: "translate(-4%, -3%) scale(1.1)", opacity: 0.18 },
       },
+      "@keyframes lhDraw": {
+        from: { strokeDashoffset: 264 },
+        to: { strokeDashoffset: 0 },
+      },
       "@media (prefers-reduced-motion: reduce)": {
         "*": { animationDuration: "0.001ms !important", animationIterationCount: "1 !important" },
       },

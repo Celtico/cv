@@ -4,6 +4,7 @@ import { Hero } from "./components/Hero";
 import { Stats } from "./components/Stats";
 import { About } from "./components/About";
 import { Skills } from "./components/Skills";
+import { Lighthouse } from "./components/Lighthouse";
 import { Featured } from "./components/Featured";
 import { Projects } from "./components/Projects";
 import { Gallery } from "./components/Gallery";
@@ -22,6 +23,7 @@ export default function Home() {
         <Stats />
         <Reveal><About /></Reveal>
         <Reveal><Skills /></Reveal>
+        <Reveal><Lighthouse /></Reveal>
         <Reveal><Featured /></Reveal>
         <Reveal><Projects /></Reveal>
         <Reveal><Gallery /></Reveal>
