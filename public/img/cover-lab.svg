@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450" role="img" aria-label="Laboratorio de experimentos">
+  <defs>
+    <linearGradient id="bgL" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0d0a1a"/>
+      <stop offset="1" stop-color="#0a0f1a"/>
+    </linearGradient>
+    <linearGradient id="wave" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#a78bfa"/>
+      <stop offset="1" stop-color="#33ccff"/>
+    </linearGradient>
+    <radialGradient id="glowL" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#a78bfa" stop-opacity="0.8"/>
+      <stop offset="1" stop-color="#a78bfa" stop-opacity="0"/>
+    </radialGradient>
+    <style>
+      @keyframes lbreathe { 0%,100%{opacity:.14} 50%{opacity:.24} }
+      @keyframes lwave { to { stroke-dashoffset:-40 } }
+      @keyframes lring { 0%{opacity:.9;r:6} 70%{opacity:0;r:58} 100%{opacity:0;r:58} }
+      .lglow{animation:lbreathe 8s ease-in-out infinite}
+      .lwave{stroke-dasharray:10 8;animation:lwave 2.6s linear infinite}
+      .lring{animation:lring 4s ease-out infinite}
+      @media (prefers-reduced-motion: reduce){*{animation:none!important}}
+    </style>
+  </defs>
+
+  <rect width="800" height="450" fill="url(#bgL)"/>
+  <circle class="lglow" cx="560" cy="150" r="240" fill="url(#glowL)" opacity="0.16"/>
+
+  <!-- grid -->
+  <g stroke="#ffffff" stroke-opacity="0.05" stroke-width="1">
+    <path d="M0,150 H800"/><path d="M0,300 H800"/>
+    <path d="M200,0 V450"/><path d="M400,0 V450"/><path d="M600,0 V450"/>
+  </g>
+
+  <!-- RTL-SDR radio waves -->
+  <g fill="none" stroke="#33ccff" stroke-width="2" opacity="0.35">
+    <path d="M120,225 q30,-60 60,0 t60,0 t60,0 t60,0"/>
+  </g>
+  <g fill="none" stroke="url(#wave)" stroke-width="3">
+    <path class="lwave" d="M120,225 q30,-95 60,0 t60,0 t60,0 t60,0 t60,0"/>
+  </g>
+
+  <!-- concentric radio broadcast (top-right) -->
+  <g fill="none" stroke="#a78bfa" stroke-width="2">
+    <circle cx="640" cy="120" r="18" opacity="0.9"/>
+    <circle cx="640" cy="120" r="38" opacity="0.5"/>
+    <circle cx="640" cy="120" r="58" opacity="0.25"/>
+    <circle class="lring" cx="640" cy="120" r="6"/>
+    <circle cx="640" cy="120" r="6" fill="#a78bfa"/>
+  </g>
+
+  <!-- WASM hexagon chip -->
+  <g transform="translate(560,330)">
+    <polygon points="0,-34 30,-17 30,17 0,34 -30,17 -30,-17" fill="#12172a" stroke="#33ccff" stroke-width="2.5"/>
+    <text x="0" y="6" fill="#8ce6ff" font-family="ui-monospace, monospace" font-size="15" text-anchor="middle" font-weight="700">WASM</text>
+  </g>
+
+  <!-- code brackets -->
+  <text x="60" y="90" fill="#a78bfa" font-family="ui-monospace, monospace" font-size="40" opacity="0.85">&lt;/&gt;</text>
+  <text x="60" y="410" fill="#5eead4" font-family="ui-monospace, monospace" font-size="16" opacity="0.9">WebRTC · PHP-Wasm · RTL-SDR · Live Editor</text>
+  <text x="740" y="60" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="15" text-anchor="end" letter-spacing="2">I + D</text>
+</svg>

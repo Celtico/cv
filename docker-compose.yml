@@ -1,0 +1,19 @@
+services:
+  cv:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: cv-celesti-tico
+    container_name: cv-celesti-tico
+    restart: unless-stopped
+    ports:
+      - "3592:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3000"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 15s

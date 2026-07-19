@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450" role="img" aria-label="Red neuronal">
+  <defs>
+    <linearGradient id="bgN" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b1220"/>
+      <stop offset="1" stop-color="#0a0f1a"/>
+    </linearGradient>
+    <linearGradient id="edge" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#33ccff"/>
+      <stop offset="1" stop-color="#a78bfa"/>
+    </linearGradient>
+    <radialGradient id="glowN" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#33ccff" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#33ccff" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="soft"><feGaussianBlur stdDeviation="2.2"/></filter>
+    <style>
+      @keyframes nbreathe { 0%,100%{opacity:.12} 50%{opacity:.2} }
+      @keyframes nflow { to { stroke-dashoffset:-36 } }
+      @keyframes nout { 0%,100%{opacity:.4;r:24} 50%{opacity:0;r:36} }
+      .nglow{animation:nbreathe 8s ease-in-out infinite}
+      .nactive{stroke-dasharray:5 9;animation:nflow 2.4s linear infinite}
+      .nout{animation:nout 3.6s ease-out infinite}
+      @media (prefers-reduced-motion: reduce){*{animation:none!important}}
+    </style>
+  </defs>
+
+  <rect width="800" height="450" fill="url(#bgN)"/>
+  <circle class="nglow" cx="400" cy="225" r="260" fill="url(#glowN)" opacity="0.14"/>
+
+  <!-- edges -->
+  <g stroke="url(#edge)" stroke-width="1.1" opacity="0.5" fill="none">
+    <!-- layer 1 (x=150) to layer 2 (x=330) -->
+    <path d="M150,110 L330,90"/><path d="M150,110 L330,190"/><path d="M150,110 L330,290"/>
+    <path d="M150,225 L330,90"/><path d="M150,225 L330,190"/><path d="M150,225 L330,290"/><path d="M150,225 L330,360"/>
+    <path d="M150,340 L330,190"/><path d="M150,340 L330,290"/><path d="M150,340 L330,360"/>
+    <!-- layer 2 (x=330) to layer 3 (x=500) -->
+    <path d="M330,90 L500,150"/><path d="M330,90 L500,300"/>
+    <path d="M330,190 L500,150"/><path d="M330,190 L500,300"/>
+    <path d="M330,290 L500,150"/><path d="M330,290 L500,300"/>
+    <path d="M330,360 L500,150"/><path d="M330,360 L500,300"/>
+    <!-- layer 3 (x=500) to output (x=650) -->
+    <path d="M500,150 L650,225"/><path d="M500,300 L650,225"/>
+  </g>
+
+  <!-- highlighted active path -->
+  <g class="nactive" stroke="#33ccff" stroke-width="2.4" fill="none" opacity="0.95" filter="url(#soft)">
+    <path d="M150,225 L330,190"/><path d="M330,190 L500,150"/><path d="M500,150 L650,225"/>
+  </g>
+  <circle class="nout" cx="650" cy="225" r="24" fill="none" stroke="#33ccff" stroke-width="2"/>
+
+  <!-- nodes -->
+  <g>
+    <!-- input -->
+    <circle cx="150" cy="110" r="12" fill="#111827" stroke="#33ccff" stroke-width="2"/>
+    <circle cx="150" cy="225" r="14" fill="#0b2a3a" stroke="#33ccff" stroke-width="2.5"/>
+    <circle cx="150" cy="340" r="12" fill="#111827" stroke="#33ccff" stroke-width="2"/>
+    <!-- hidden 1 -->
+    <circle cx="330" cy="90"  r="12" fill="#111827" stroke="#6ea8fe" stroke-width="2"/>
+    <circle cx="330" cy="190" r="14" fill="#1a1030" stroke="#a78bfa" stroke-width="2.5"/>
+    <circle cx="330" cy="290" r="12" fill="#111827" stroke="#6ea8fe" stroke-width="2"/>
+    <circle cx="330" cy="360" r="12" fill="#111827" stroke="#6ea8fe" stroke-width="2"/>
+    <!-- hidden 2 -->
+    <circle cx="500" cy="150" r="14" fill="#1a1030" stroke="#a78bfa" stroke-width="2.5"/>
+    <circle cx="500" cy="300" r="12" fill="#111827" stroke="#a78bfa" stroke-width="2"/>
+    <!-- output -->
+    <circle cx="650" cy="225" r="16" fill="#0b2a3a" stroke="#33ccff" stroke-width="3"/>
+  </g>
+
+  <text x="48" y="410" fill="#5eead4" font-family="ui-monospace, monospace" font-size="17" opacity="0.9">activity = model.predict(sensors)</text>
+  <text x="620" y="60" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="15" text-anchor="end" letter-spacing="2">MACHINE&#160;LEARNING</text>
+</svg>
