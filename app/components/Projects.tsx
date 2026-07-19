@@ -1,77 +1,49 @@
 "use client";
 
-import {
-  AspectRatio,
-  Box,
-  Image,
-  Link,
-  SimpleGrid,
-  Tag,
-  Text,
-  VStack,
-  Wrap,
-  WrapItem,
-  Icon,
-  HStack,
-} from "@chakra-ui/react";
-import { FiExternalLink } from "react-icons/fi";
+import { AspectRatio, Box, Image, SimpleGrid, Text, VStack, Wrap, WrapItem } from "@chakra-ui/react";
 import { Section } from "./Section";
 import { projects } from "../data";
+import { useT } from "../i18n";
 
 export function Projects() {
+  const t = useT();
   return (
-    <Section
-      id="proyectos"
-      kicker="I+D y experimentos"
-      title="Otros proyectos propios"
-      subtitle="Investigación y experimentos técnicos fuera del trabajo de cliente."
-    >
+    <Section id="proyectos" kicker={t.projects.kicker} title={t.projects.title} subtitle={t.projects.subtitle} bg="canvasAlt">
       <SimpleGrid columns={{ base: 1, md: 2 }} spacing={8}>
-        {projects.map((p) => (
-          <Box
-            key={p.title}
-            bg="ink.700"
-            border="1px solid"
-            borderColor="whiteAlpha.100"
-            borderRadius="2xl"
-            overflow="hidden"
-            transition="all .25s"
-            _hover={{ borderColor: "brand.500", transform: "translateY(-6px)", boxShadow: "0 20px 60px -20px rgba(25,179,230,.35)" }}
-          >
-            <AspectRatio ratio={16 / 9}>
-              <Image
-                src={p.img}
-                alt={p.title}
-                objectFit="cover"
-                objectPosition="top"
-                loading="lazy"
-              />
-            </AspectRatio>
+        {projects.map((p, i) => (
+          <Box key={p.title} border="1px solid" borderColor="lineStrong" borderRadius="2px" overflow="hidden" bg="surface">
+            <Box borderBottom="1px solid" borderColor="line">
+              <AspectRatio ratio={16 / 9}>
+                <Image src={p.img} alt={p.title} objectFit="cover" loading="lazy" />
+              </AspectRatio>
+            </Box>
             <VStack align="start" spacing={4} p={{ base: 5, md: 7 }}>
               <Box>
-                <HStack>
-                  <Text fontSize="2xl" fontWeight="extrabold">
-                    {p.title}
-                  </Text>
-                  {p.url && (
-                    <Link href={p.url} isExternal color="brand.300">
-                      <Icon as={FiExternalLink} />
-                    </Link>
-                  )}
-                </HStack>
-                <Text color="brand.300" fontWeight="medium">
-                  {p.subtitle}
+                <Text className="tnum" fontSize="xs" color="accent" letterSpacing="0.16em" textTransform="uppercase" mb={2}>
+                  {String(i + 1).padStart(2, "0")} · {t.projects.items[i]?.subtitle ?? p.subtitle}
+                </Text>
+                <Text fontFamily="heading" fontSize="1.9rem" lineHeight="1.1" color="fg">
+                  {p.title}
                 </Text>
               </Box>
-              <Text color="gray.400" lineHeight="1.7">
-                {p.desc}
+              <Text color="fgMuted" lineHeight="1.7">
+                {t.projects.items[i]?.desc ?? p.desc}
               </Text>
               <Wrap spacing={2}>
                 {p.stack.map((s) => (
                   <WrapItem key={s}>
-                    <Tag size="sm" bg="whiteAlpha.100" color="gray.300" borderRadius="md">
+                    <Text
+                      className="tnum"
+                      fontSize="0.72rem"
+                      color="fgMuted"
+                      px={2}
+                      py={1}
+                      border="1px solid"
+                      borderColor="line"
+                      borderRadius="2px"
+                    >
                       {s}
-                    </Tag>
+                    </Text>
                   </WrapItem>
                 ))}
               </Wrap>

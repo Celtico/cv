@@ -1,178 +1,128 @@
 "use client";
 
-import {
-  Badge,
-  Box,
-  Button,
-  Container,
-  Flex,
-  HStack,
-  Heading,
-  Icon,
-  Link,
-  Text,
-  VStack,
-} from "@chakra-ui/react";
-import { FiArrowRight, FiMail, FiMapPin, FiPhone } from "react-icons/fi";
+import { Box, Button, Container, Flex, HStack, Heading, Link, Text } from "@chakra-ui/react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { profile } from "../data";
+import { useT } from "../i18n";
 
 const MotionBox = motion(Box);
 
 export function Hero() {
-  // Parallax muy suave: los halos se desplazan con el scroll.
+  const t = useT();
   const { scrollY } = useScroll();
-  const yA = useTransform(scrollY, [0, 900], [0, 120]);
-  const yB = useTransform(scrollY, [0, 900], [0, -90]);
-  const yContent = useTransform(scrollY, [0, 600], [0, 40]);
+  const yGlow = useTransform(scrollY, [0, 800], [0, 90]);
 
   return (
-    <Box
-      as="section"
-      id="top"
-      position="relative"
-      overflow="hidden"
-      pt={{ base: 20, md: 28 }}
-      pb={{ base: 20, md: 32 }}
-    >
-      {/* Glows con parallax */}
+    <Box as="section" id="top" position="relative" overflow="hidden">
       <MotionBox
         position="absolute"
-        top="-20%"
-        left="-10%"
-        w="60vw"
-        h="60vw"
+        top="-15%"
+        right="-10%"
+        w="48vw"
+        h="48vw"
         pointerEvents="none"
-        style={{ y: yA }}
-        willChange="transform"
+        style={{ y: yGlow }}
       >
         <Box
           w="full"
           h="full"
-          bg="brand.500"
-          opacity={0.18}
-          filter="blur(120px)"
+          bg="#E8A23D"
+          opacity={0.1}
+          filter="blur(140px)"
           borderRadius="full"
-          animation="floatGlowA 16s ease-in-out infinite"
-          willChange="transform"
-        />
-      </MotionBox>
-      <MotionBox
-        position="absolute"
-        bottom="-30%"
-        right="-15%"
-        w="55vw"
-        h="55vw"
-        pointerEvents="none"
-        style={{ y: yB }}
-        willChange="transform"
-      >
-        <Box
-          w="full"
-          h="full"
-          bg="purple.500"
-          opacity={0.14}
-          filter="blur(130px)"
-          borderRadius="full"
-          animation="floatGlowB 20s ease-in-out infinite"
-          willChange="transform"
+          animation="glowDrift 18s ease-in-out infinite"
         />
       </MotionBox>
 
-      <MotionBox style={{ y: yContent }}>
-      <Container maxW="6xl" position="relative">
-        <VStack align="start" spacing={7}>
-          <Badge
-            px={3}
-            py={1.5}
-            borderRadius="full"
-            bg="whiteAlpha.100"
-            color="brand.300"
-            border="1px solid"
-            borderColor="whiteAlpha.200"
-            fontWeight="semibold"
-            textTransform="none"
-          >
-            <Box as="span" display="inline-block" w="8px" h="8px" bg="green.400" borderRadius="full" mr={2} />
-            {profile.status}
-          </Badge>
-
-          <Heading
-            as="h1"
-            fontSize={{ base: "5xl", md: "7xl" }}
-            fontWeight="black"
-            lineHeight="0.95"
-            letterSpacing="tight"
-          >
-            {profile.name.split(" ").slice(0, 1)}{" "}
-            <Box
-              as="span"
-              bgGradient="linear(to-r, brand.300, purple.300)"
-              bgClip="text"
-            >
-              {profile.name.split(" ").slice(1).join(" ")}
-            </Box>
-          </Heading>
-
-          <VStack align="start" spacing={1}>
-            <Text fontSize={{ base: "xl", md: "2xl" }} fontWeight="bold">
-              {profile.role}
-            </Text>
-            <Text fontSize={{ base: "md", md: "lg" }} color="brand.300">
-              {profile.subrole}
-            </Text>
-          </VStack>
-
-          <Text fontSize={{ base: "md", md: "lg" }} color="gray.400" maxW="2xl" lineHeight="1.7">
-            {profile.tagline}
+      <Container maxW="72rem" position="relative" pt={{ base: 16, md: 24 }} pb={{ base: 14, md: 20 }}>
+        {/* línia d'expedient */}
+        <Flex
+          className="tnum"
+          align="center"
+          gap={{ base: 3, md: 5 }}
+          fontSize={{ base: "0.68rem", md: "xs" }}
+          letterSpacing="0.18em"
+          textTransform="uppercase"
+          color="fgMuted"
+          flexWrap="wrap"
+          mb={{ base: 10, md: 14 }}
+        >
+          <HStack spacing={2}>
+            <Box w="7px" h="7px" borderRadius="full" bg="accentDot" />
+            <Text>{t.hero.expedient}</Text>
+          </HStack>
+          <Box w="1px" h="12px" bg="lineStrong" />
+          <Text>{t.hero.location}</Text>
+          <Box w="1px" h="12px" bg="lineStrong" />
+          <Text>{t.hero.registre}</Text>
+          <Box w="1px" h="12px" bg="lineStrong" display={{ base: "none", sm: "block" }} />
+          <Text color="accent" display={{ base: "none", sm: "block" }}>
+            {t.hero.disponible}
           </Text>
+        </Flex>
 
-          <HStack spacing={4} flexWrap="wrap" gap={3}>
+        {/* nameplate */}
+        <Heading
+          as="h1"
+          fontWeight="400"
+          fontSize={{ base: "3.5rem", md: "7rem" }}
+          lineHeight="0.94"
+          letterSpacing="-0.03em"
+          color="fg"
+        >
+          Celestí{" "}
+          <Box as="span" fontStyle="italic" fontWeight="500">
+            Ticó Petit
+          </Box>
+        </Heading>
+
+        <Flex mt={8} gap={{ base: 6, md: 12 }} direction={{ base: "column", md: "row" }} align={{ md: "end" }}>
+          <Box flex="1">
+            <Text
+              className="tnum"
+              fontSize="xs"
+              letterSpacing="0.22em"
+              textTransform="uppercase"
+              color="accent"
+              mb={3}
+            >
+              {t.hero.role}
+            </Text>
+            <Text fontSize={{ base: "lg", md: "xl" }} color="fgMuted" maxW="34rem" lineHeight="1.6">
+              {t.hero.tagline}
+            </Text>
+          </Box>
+
+          <HStack spacing={3} flexShrink={0}>
             <Button
               as={Link}
               href="#contacto"
-              size="lg"
-              bg="brand.400"
-              color="ink.900"
-              _hover={{ bg: "brand.300", textDecoration: "none" }}
-              rightIcon={<FiArrowRight />}
-              fontWeight="bold"
+              bg="#E8A23D"
+              color="#141210"
+              borderRadius="2px"
+              px={6}
+              h="52px"
+              fontWeight="600"
+              _hover={{ bg: "#F0B662", textDecoration: "none" }}
             >
-              Contactar
+              {t.hero.contactar}
             </Button>
             <Button
               as={Link}
               href="#destacados"
-              size="lg"
               variant="outline"
-              borderColor="whiteAlpha.300"
-              _hover={{ bg: "whiteAlpha.100", textDecoration: "none" }}
+              borderColor="lineStrong"
+              color="fg"
+              borderRadius="2px"
+              px={6}
+              h="52px"
+              fontWeight="500"
+              _hover={{ bg: "surfaceTint", borderColor: "accent", textDecoration: "none" }}
             >
-              Ver proyectos
+              {t.hero.veure}
             </Button>
           </HStack>
-
-          <Flex gap={6} flexWrap="wrap" pt={4} color="gray.400" fontSize="sm">
-            <HStack>
-              <Icon as={FiMapPin} color="brand.400" />
-              <Text>{profile.location}</Text>
-            </HStack>
-            <Link href={`tel:${profile.phone.replace(/\s/g, "")}`} _hover={{ color: "brand.300" }}>
-              <HStack>
-                <Icon as={FiPhone} color="brand.400" />
-                <Text>{profile.phone}</Text>
-              </HStack>
-            </Link>
-            <Link href={`mailto:${profile.email}`} _hover={{ color: "brand.300" }}>
-              <HStack>
-                <Icon as={FiMail} color="brand.400" />
-                <Text>{profile.email}</Text>
-              </HStack>
-            </Link>
-          </Flex>
-        </VStack>
+        </Flex>
       </Container>
-      </MotionBox>
     </Box>
   );
 }

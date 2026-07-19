@@ -185,7 +185,7 @@ export const clientHours: ClientHours[] = [
 ];
 
 export const clientHoursSummary = {
-  totalHours: "7.136,63 h",
+  totalHours: "7.136,63",
   totalProjects: "195",
   note: "Horas imputadas a proyectos en el gestor. Muchos encargos institucionales se facturaron sin imputar horas, por lo que la dedicación real es mayor.",
 };

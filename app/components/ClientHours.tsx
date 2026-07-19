@@ -1,102 +1,123 @@
 "use client";
 
-import { Box, Flex, HStack, SimpleGrid, Text, VStack } from "@chakra-ui/react";
+import { Box, Grid, GridItem, Text } from "@chakra-ui/react";
 import { Section } from "./Section";
 import { clientHours, clientHoursSummary } from "../data";
+import { useT } from "../i18n";
 
-// Formato español (miles con punto, decimales con coma), determinista sin depender de ICU.
+// Format català/espanyol: milers amb punt, decimals amb coma. Determinista, sense ICU.
 function fmtHours(n: number): string {
   const [int, dec] = n.toFixed(2).split(".");
   const grouped = int.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-  if (dec === "00") return grouped;
-  return `${grouped},${dec.replace(/0$/, "")}`;
+  return dec === "00" ? grouped : `${grouped},${dec.replace(/0$/, "")}`;
 }
 
-export function ClientHours() {
-  const max = Math.max(...clientHours.map((c) => c.hours));
+const COLS = { base: "1.8rem 1fr 4.5rem", md: "2.2rem 1fr 5rem 8rem 7rem" };
 
+function Head({ l }: { l: ReturnType<typeof useT>["ledger"] }) {
   return (
-    <Section
-      id="trayectoria"
-      kicker="Trayectoria por clientes"
-      title="Horas dedicadas por cliente"
-      subtitle="Datos reales de dedicación imputada a proyectos en el gestor, ordenados por horas."
+    <Grid
+      templateColumns={COLS}
+      gap={{ base: 3, md: 6 }}
+      className="tnum"
+      fontSize="0.66rem"
+      letterSpacing="0.14em"
+      textTransform="uppercase"
+      color="fgFaint"
+      pb={3}
+      borderBottom="1px solid"
+      borderColor="lineStrong"
     >
-      {/* summary */}
-      <SimpleGrid columns={{ base: 3 }} spacing={6} mb={{ base: 10, md: 12 }} maxW="lg">
-        <Stat value={clientHoursSummary.totalHours} label="Horas en proyectos" />
-        <Stat value={clientHoursSummary.totalProjects} label="Proyectos" />
-        <Stat value="11" label="Clientes top" />
-      </SimpleGrid>
-
-      {/* bars */}
-      <VStack align="stretch" spacing={{ base: 4, md: 3 }}>
-        {clientHours.map((c, i) => (
-          <Box key={c.name}>
-            <Flex
-              justify="space-between"
-              align={{ base: "start", sm: "center" }}
-              mb={2}
-              direction={{ base: "column", sm: "row" }}
-              gap={1}
-            >
-              <HStack spacing={3}>
-                <Text color="gray.400" fontWeight="bold" fontSize="sm" w="6" textAlign="right">
-                  {String(i + 1).padStart(2, "0")}
-                </Text>
-                <Text fontWeight="bold">{c.name}</Text>
-                <Text color="gray.400" fontSize="sm" display={{ base: "none", md: "block" }}>
-                  · {c.projects} proyectos · {c.period}
-                </Text>
-              </HStack>
-              <Text
-                fontWeight="extrabold"
-                fontSize={{ base: "md", md: "lg" }}
-                bgGradient="linear(to-r, brand.300, purple.300)"
-                bgClip="text"
-                flexShrink={0}
-              >
-                {fmtHours(c.hours)} h
-              </Text>
-            </Flex>
-            <Box h="10px" bg="whiteAlpha.100" borderRadius="full" overflow="hidden">
-              <Box
-                h="full"
-                w={`${Math.max((c.hours / max) * 100, 2)}%`}
-                borderRadius="full"
-                bgGradient="linear(to-r, brand.500, brand.300)"
-                transition="width .6s ease"
-              />
-            </Box>
-            <Text color="gray.400" fontSize="xs" mt={1.5} display={{ base: "block", md: "none" }}>
-              {c.projects} proyectos · {c.period}
-            </Text>
-          </Box>
-        ))}
-      </VStack>
-
-      <Text color="gray.400" fontSize="sm" mt={8} maxW="3xl">
-        {clientHoursSummary.note}
-      </Text>
-    </Section>
+      <Text>Nº</Text>
+      <Text>{l.colClient}</Text>
+      <GridItem display={{ base: "none", md: "block" }}>
+        <Text>{l.colProj}</Text>
+      </GridItem>
+      <GridItem display={{ base: "none", md: "block" }}>
+        <Text>{l.colPeriod}</Text>
+      </GridItem>
+      <Text textAlign="right">{l.colHours}</Text>
+    </Grid>
   );
 }
 
-function Stat({ value, label }: { value: string; label: string }) {
+export function ClientHours() {
+  const t = useT();
+  const l = t.ledger;
+  const max = Math.max(...clientHours.map((c) => c.hours));
+
   return (
-    <Box>
-      <Text
-        fontSize={{ base: "2xl", md: "3xl" }}
-        fontWeight="black"
-        bgGradient="linear(to-r, brand.300, purple.300)"
-        bgClip="text"
-        lineHeight="1"
-      >
-        {value}
+    <Section id="trayectoria" kicker={l.kicker} title={l.title} subtitle={l.subtitle} bg="canvas">
+      <Head l={l} />
+      <Box>
+        {clientHours.map((c, i) => {
+          const pct = Math.max((c.hours / max) * 100, 1.5);
+          return (
+            <Box key={c.name}>
+              <Grid
+                templateColumns={COLS}
+                gap={{ base: 3, md: 6 }}
+                alignItems="baseline"
+                py={{ base: 3.5, md: 4 }}
+              >
+                <Text className="tnum" fontSize="sm" color="fgFaint">
+                  {String(i + 1).padStart(2, "0")}
+                </Text>
+                <Box minW={0}>
+                  <Text fontFamily="heading" fontSize={{ base: "1.05rem", md: "1.25rem" }} color="fg" noOfLines={1}>
+                    {c.name}
+                  </Text>
+                  <Text className="tnum" fontSize="0.68rem" color="fgMuted" mt={0.5} display={{ md: "none" }}>
+                    {c.projects} proj · {c.period}
+                  </Text>
+                </Box>
+                <Text className="tnum" fontSize="sm" color="fgMuted" display={{ base: "none", md: "block" }}>
+                  {c.projects}
+                </Text>
+                <Text className="tnum" fontSize="sm" color="fgMuted" display={{ base: "none", md: "block" }}>
+                  {c.period}
+                </Text>
+                <Text className="tnum" fontSize={{ base: "sm", md: "md" }} fontWeight="500" color="fg" textAlign="right">
+                  {fmtHours(c.hours)}
+                </Text>
+              </Grid>
+              {/* filet-registre amb magnitud */}
+              <Box h="2px" bg="line" position="relative">
+                <Box h="full" w={`${pct}%`} bg="accentDot" opacity={0.55} />
+              </Box>
+            </Box>
+          );
+        })}
+
+        {/* totals */}
+        <Grid
+          templateColumns={COLS}
+          gap={{ base: 3, md: 6 }}
+          alignItems="baseline"
+          pt={4}
+          mt={1}
+          borderTop="2px solid"
+          borderColor="fg"
+        >
+          <Text className="tnum" fontSize="0.66rem" color="accent" letterSpacing="0.1em">
+            Σ
+          </Text>
+          <Text className="tnum" fontSize="0.72rem" letterSpacing="0.14em" textTransform="uppercase" color="fgMuted">
+            {l.total}
+          </Text>
+          <Text className="tnum" fontSize="sm" color="fg" display={{ base: "none", md: "block" }}>
+            {clientHoursSummary.totalProjects}
+          </Text>
+          <GridItem display={{ base: "none", md: "block" }} />
+          <Text className="tnum" fontSize={{ base: "sm", md: "md" }} fontWeight="600" color="fg" textAlign="right">
+            {clientHoursSummary.totalHours}
+          </Text>
+        </Grid>
+      </Box>
+
+      <Text color="fgMuted" fontSize="sm" mt={8} maxW="44rem" lineHeight="1.7">
+        {l.note}
       </Text>
-      <Text color="gray.400" fontSize="xs" mt={1}>
-        {label}
-      </Text>
-    </Box>
+    </Section>
   );
 }

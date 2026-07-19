@@ -1,7 +1,31 @@
 import type { Metadata } from "next";
+import { Fraunces, IBM_Plex_Sans, IBM_Plex_Mono } from "next/font/google";
 import { ColorModeScript } from "@chakra-ui/react";
 import { Providers } from "./providers";
 import { profile } from "./data";
+
+const display = Fraunces({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  style: ["normal", "italic"],
+  variable: "--font-display",
+  display: "swap",
+  preload: true,
+});
+const body = IBM_Plex_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-body",
+  display: "swap",
+  preload: true,
+});
+const mono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-mono",
+  display: "swap",
+  preload: false,
+});
 
 const title = `${profile.name} — ${profile.role}`;
 const description = profile.tagline;
@@ -66,7 +90,11 @@ const jsonLd = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="es" style={{ colorScheme: "dark" }}>
+    <html
+      lang="ca"
+      style={{ colorScheme: "light dark" }}
+      className={`${display.variable} ${body.variable} ${mono.variable}`}
+    >
       <head>
         <script
           type="application/ld+json"
@@ -74,7 +102,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body>
-        <ColorModeScript initialColorMode="dark" />
+        <ColorModeScript initialColorMode="system" />
         <Providers>{children}</Providers>
       </body>
     </html>

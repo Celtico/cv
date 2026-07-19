@@ -1,20 +1,20 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500" role="img" aria-label="RBAC Platform: control de acceso, IA y Odoo">
   <defs>
     <linearGradient id="bgR" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#0a1020"/>
-      <stop offset="1" stop-color="#0a0f1a"/>
+      <stop offset="0" stop-color="#141210"/>
+      <stop offset="1" stop-color="#141210"/>
     </linearGradient>
     <linearGradient id="barR" x1="0" y1="1" x2="0" y2="0">
-      <stop offset="0" stop-color="#1e6fd8"/>
-      <stop offset="1" stop-color="#5fd9ff"/>
+      <stop offset="0" stop-color="#CE8724"/>
+      <stop offset="1" stop-color="#F0B662"/>
     </linearGradient>
     <linearGradient id="lineR" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="#33ccff"/>
-      <stop offset="1" stop-color="#a78bfa"/>
+      <stop offset="0" stop-color="#E8A23D"/>
+      <stop offset="1" stop-color="#C9BFA8"/>
     </linearGradient>
     <radialGradient id="glowR" cx="0.5" cy="0.5" r="0.5">
-      <stop offset="0" stop-color="#2b6fff" stop-opacity="0.7"/>
-      <stop offset="1" stop-color="#2b6fff" stop-opacity="0"/>
+      <stop offset="0" stop-color="#E8A23D" stop-opacity="0.7"/>
+      <stop offset="1" stop-color="#E8A23D" stop-opacity="0"/>
     </radialGradient>
     <style>
       @keyframes breathe { 0%,100%{opacity:.12} 50%{opacity:.26} }
@@ -49,9 +49,9 @@
 
   <!-- Dashboard card -->
   <g transform="translate(70,110)">
-    <rect width="360" height="280" rx="18" fill="#0e1626" stroke="#22304a" stroke-width="1.5"/>
+    <rect width="360" height="280" rx="18" fill="#1B1813" stroke="#2E2A22" stroke-width="1.5"/>
     <circle cx="26" cy="28" r="5" fill="#ff5f57"/><circle cx="44" cy="28" r="5" fill="#febc2e"/><circle cx="62" cy="28" r="5" fill="#28c840"/>
-    <text x="300" y="33" text-anchor="end" fill="#5f7191" font-family="system-ui,sans-serif" font-size="13" letter-spacing="1">DASHBOARD</text>
+    <text x="300" y="33" text-anchor="end" fill="#A79F8E" font-family="system-ui,sans-serif" font-size="13" letter-spacing="1">DASHBOARD</text>
 
     <!-- sparkline -->
     <polyline class="spark" fill="none" stroke="url(#lineR)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
@@ -61,14 +61,14 @@
       <rect class="b1" x="40"  y="170" width="46" height="80" rx="6" fill="url(#barR)"/>
       <rect class="b2" x="110" y="170" width="46" height="80" rx="6" fill="url(#barR)"/>
       <rect class="b3" x="180" y="170" width="46" height="80" rx="6" fill="url(#barR)"/>
-      <rect x="256" y="176" width="80" height="10" rx="5" fill="#22304a"/>
-      <rect x="256" y="198" width="60" height="10" rx="5" fill="#22304a"/>
-      <rect x="256" y="220" width="72" height="10" rx="5" fill="#22304a"/>
+      <rect x="256" y="176" width="80" height="10" rx="5" fill="#2E2A22"/>
+      <rect x="256" y="198" width="60" height="10" rx="5" fill="#2E2A22"/>
+      <rect x="256" y="220" width="72" height="10" rx="5" fill="#2E2A22"/>
     </g>
   </g>
 
   <!-- Connectors -->
-  <g fill="none" stroke="#33ccff" stroke-width="2" opacity="0.55">
+  <g fill="none" stroke="#E8A23D" stroke-width="2" opacity="0.55">
     <path class="flow" d="M470,140 H600"/>
     <path class="flow" d="M470,250 H600"/>
     <path class="flow" d="M470,360 H600"/>
@@ -76,33 +76,33 @@
 
   <!-- Chip: RBAC shield -->
   <g class="chip1" transform="translate(600,110)">
-    <rect width="150" height="62" rx="14" fill="#101a2e" stroke="#33507e" stroke-width="1.5"/>
-    <path d="M32,16 l16,6 v14 c0,10 -8,16 -16,20 c-8,-4 -16,-10 -16,-20 v-14 z" fill="#0c2136" stroke="#5fd9ff" stroke-width="2" transform="translate(0,-2)"/>
-    <rect x="27" y="28" width="10" height="9" rx="2" fill="#5fd9ff"/>
-    <text x="66" y="30" fill="#e6f6ff" font-family="system-ui,sans-serif" font-size="15" font-weight="700">RBAC</text>
-    <text x="66" y="47" fill="#7d90b0" font-family="system-ui,sans-serif" font-size="10" letter-spacing="1">CONTROL D'ACCÉS</text>
+    <rect width="150" height="62" rx="14" fill="#1B1813" stroke="#4A4234" stroke-width="1.5"/>
+    <path d="M32,16 l16,6 v14 c0,10 -8,16 -16,20 c-8,-4 -16,-10 -16,-20 v-14 z" fill="#141210" stroke="#F0B662" stroke-width="2" transform="translate(0,-2)"/>
+    <rect x="27" y="28" width="10" height="9" rx="2" fill="#F0B662"/>
+    <text x="66" y="30" fill="#EDE6D6" font-family="system-ui,sans-serif" font-size="15" font-weight="700">RBAC</text>
+    <text x="66" y="47" fill="#A79F8E" font-family="system-ui,sans-serif" font-size="10" letter-spacing="1">CONTROL D'ACCÉS</text>
   </g>
 
   <!-- Chip: IA chat -->
   <g class="chip2" transform="translate(600,220)">
-    <rect width="150" height="62" rx="14" fill="#101a2e" stroke="#4a3b7e" stroke-width="1.5"/>
-    <rect x="16" y="16" width="34" height="26" rx="8" fill="#150f2e" stroke="#a78bfa" stroke-width="2"/>
-    <circle class="dot1" cx="26" cy="29" r="2.6" fill="#c4b5fd"/>
-    <circle class="dot2" cx="33" cy="29" r="2.6" fill="#c4b5fd"/>
-    <circle class="dot3" cx="40" cy="29" r="2.6" fill="#c4b5fd"/>
-    <text x="66" y="30" fill="#f0ecff" font-family="system-ui,sans-serif" font-size="15" font-weight="700">IA · LangChain</text>
-    <text x="66" y="47" fill="#8b81b0" font-family="system-ui,sans-serif" font-size="10" letter-spacing="1">XAT AMB EL NEGOCI</text>
+    <rect width="150" height="62" rx="14" fill="#1B1813" stroke="#4A4234" stroke-width="1.5"/>
+    <rect x="16" y="16" width="34" height="26" rx="8" fill="#1E1A12" stroke="#C9BFA8" stroke-width="2"/>
+    <circle class="dot1" cx="26" cy="29" r="2.6" fill="#D8CFBB"/>
+    <circle class="dot2" cx="33" cy="29" r="2.6" fill="#D8CFBB"/>
+    <circle class="dot3" cx="40" cy="29" r="2.6" fill="#D8CFBB"/>
+    <text x="66" y="30" fill="#EDE6D6" font-family="system-ui,sans-serif" font-size="15" font-weight="700">IA · LangChain</text>
+    <text x="66" y="47" fill="#A79F8E" font-family="system-ui,sans-serif" font-size="10" letter-spacing="1">XAT AMB EL NEGOCI</text>
   </g>
 
   <!-- Chip: Odoo -->
   <g class="chip3" transform="translate(600,330)">
-    <rect width="150" height="62" rx="14" fill="#101a2e" stroke="#5a3f6e" stroke-width="1.5"/>
-    <circle cx="33" cy="31" r="16" fill="#1e1030" stroke="#c084fc" stroke-width="2"/>
-    <circle class="ring" cx="33" cy="31" r="26" fill="none" stroke="#c084fc" stroke-width="2"/>
-    <text x="33" y="35" text-anchor="middle" fill="#e9d5ff" font-family="system-ui,sans-serif" font-size="10" font-weight="700">ERP</text>
-    <text x="66" y="30" fill="#fbeaff" font-family="system-ui,sans-serif" font-size="15" font-weight="700">Odoo</text>
-    <text x="66" y="47" fill="#a889b8" font-family="system-ui,sans-serif" font-size="10" letter-spacing="1">ERP CONNECTAT</text>
+    <rect width="150" height="62" rx="14" fill="#1B1813" stroke="#4A4234" stroke-width="1.5"/>
+    <circle cx="33" cy="31" r="16" fill="#1E1A12" stroke="#C9BFA8" stroke-width="2"/>
+    <circle class="ring" cx="33" cy="31" r="26" fill="none" stroke="#C9BFA8" stroke-width="2"/>
+    <text x="33" y="35" text-anchor="middle" fill="#EDE6D6" font-family="system-ui,sans-serif" font-size="10" font-weight="700">ERP</text>
+    <text x="66" y="30" fill="#EDE6D6" font-family="system-ui,sans-serif" font-size="15" font-weight="700">Odoo</text>
+    <text x="66" y="47" fill="#A79F8E" font-family="system-ui,sans-serif" font-size="10" letter-spacing="1">ERP CONNECTAT</text>
   </g>
 
-  <text x="70" y="430" fill="#5eead4" font-family="ui-monospace,monospace" font-size="14" opacity="0.85">crea una factura a l'Odoo →  ✓ feta</text>
+  <text x="70" y="430" fill="#F0B662" font-family="ui-monospace,monospace" font-size="14" opacity="0.85">crea una factura a l'Odoo →  ✓ feta</text>
 </svg>

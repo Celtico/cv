@@ -1,30 +1,52 @@
 "use client";
 
-import { Box, Container, SimpleGrid, Text } from "@chakra-ui/react";
+import { Box, Container, Flex, Text } from "@chakra-ui/react";
 import { stats } from "../data";
+import { useT } from "../i18n";
 
 export function Stats() {
+  const t = useT();
   return (
-    <Box borderY="1px solid" borderColor="whiteAlpha.100" bg="ink.800">
-      <Container maxW="6xl" py={{ base: 10, md: 14 }}>
-        <SimpleGrid columns={{ base: 2, md: 4 }} spacing={{ base: 6, md: 8 }}>
-          {stats.map((s) => (
-            <Box key={s.label} textAlign="center">
+    <Box borderY="1px solid" borderColor="line" bg="canvasAlt">
+      <Container maxW="72rem" py={{ base: 8, md: 10 }}>
+        <Flex direction={{ base: "column", md: "row" }} gap={{ base: 4, md: 0 }}>
+          {stats.map((s, i) => (
+            <Flex
+              key={s.label}
+              flex="1"
+              align={{ base: "center", md: "start" }}
+              justify={{ base: "space-between", md: "start" }}
+              direction={{ md: "column" }}
+              px={{ md: 8 }}
+              py={{ base: 2, md: 0 }}
+              pl={{ md: i === 0 ? 0 : 8 }}
+              borderTop={{ base: i === 0 ? "none" : "1px solid", md: "none" }}
+              borderLeft={{ md: i === 0 ? "none" : "1px solid" }}
+              borderColor="line"
+            >
               <Text
-                fontSize={{ base: "4xl", md: "5xl" }}
-                fontWeight="black"
-                bgGradient="linear(to-r, brand.300, purple.300)"
-                bgClip="text"
+                className="tnum"
+                fontSize={{ base: "2.4rem", md: "3rem" }}
+                fontWeight="500"
+                color="fg"
                 lineHeight="1"
+                letterSpacing="-0.02em"
               >
                 {s.value}
               </Text>
-              <Text mt={2} color="gray.400" fontSize={{ base: "xs", md: "sm" }} fontWeight="medium">
-                {s.label}
+              <Text
+                className="tnum"
+                mt={{ md: 2 }}
+                color="fgMuted"
+                fontSize="0.7rem"
+                letterSpacing="0.14em"
+                textTransform="uppercase"
+              >
+                {t.statLabels[i] ?? s.label}
               </Text>
-            </Box>
+            </Flex>
           ))}
-        </SimpleGrid>
+        </Flex>
       </Container>
     </Box>
   );

@@ -3,63 +3,68 @@
 import { extendTheme, type ThemeConfig } from "@chakra-ui/react";
 
 const config: ThemeConfig = {
-  initialColorMode: "dark",
-  useSystemColorMode: false,
+  initialColorMode: "system", // primera visita = tema del sistema
+  useSystemColorMode: false, // després respecta i recorda la tria del botó
 };
 
+// «La bitàcola del taller» — dualitat tinta (nit) ↔ paper (dia).
 const theme = extendTheme({
   config,
   fonts: {
-    heading:
-      "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif",
-    body: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif",
+    heading: "var(--font-display), Georgia, serif",
+    body: "var(--font-body), system-ui, sans-serif",
+    mono: "var(--font-mono), ui-monospace, monospace",
   },
-  colors: {
-    brand: {
-      50: "#e6fbff",
-      100: "#b9f1ff",
-      200: "#8ce6ff",
-      300: "#5fd9ff",
-      400: "#33ccff",
-      500: "#19b3e6",
-      600: "#0d8bb4",
-      700: "#036382",
-      800: "#003b51",
-      900: "#001521",
-    },
-    ink: {
-      900: "#07090f",
-      800: "#0b0e16",
-      700: "#11151f",
-      600: "#161b28",
-      500: "#232a3d",
+  semanticTokens: {
+    colors: {
+      canvas: { default: "#ECE5D5", _dark: "#141210" },
+      canvasAlt: { default: "#E4DBC8", _dark: "#1B1813" },
+      surface: { default: "#F4EFE4", _dark: "#221E18" },
+      fg: { default: "#1A1712", _dark: "#EDE6D6" },
+      fgMuted: { default: "#5C5546", _dark: "#A79F8E" },
+      fgFaint: { default: "#847C6A", _dark: "#847C6A" },
+      accent: { default: "#8F5E10", _dark: "#E8A23D" }, // ambre segur com a text
+      accentDot: { default: "#CE8724", _dark: "#E8A23D" }, // marca decorativa
+      line: { default: "blackAlpha.200", _dark: "whiteAlpha.200" },
+      lineStrong: { default: "blackAlpha.300", _dark: "whiteAlpha.300" },
+      surfaceTint: { default: "blackAlpha.50", _dark: "whiteAlpha.100" },
+      // bloc invertit (sempre el contrari del canvas)
+      invBg: { default: "#141210", _dark: "#E9E2D3" },
+      invFg: { default: "#EDE6D6", _dark: "#1A1712" },
+      invMuted: { default: "#A79F8E", _dark: "#6B6353" },
+      invLine: { default: "whiteAlpha.300", _dark: "blackAlpha.300" },
+      invAccent: { default: "#F0B662", _dark: "#8F5E10" },
     },
   },
   styles: {
     global: {
       "html, body": {
-        bg: "ink.900",
-        color: "gray.100",
+        bg: "canvas",
+        color: "fg",
         scrollBehavior: "smooth",
       },
       "::selection": {
-        bg: "brand.400",
-        color: "ink.900",
+        bg: "#E8A23D",
+        color: "#141210",
       },
-      "@keyframes floatGlowA": {
-        "0%, 100%": { transform: "translate(0, 0) scale(1)", opacity: 0.16 },
-        "50%": { transform: "translate(3%, 4%) scale(1.08)", opacity: 0.24 },
-      },
-      "@keyframes floatGlowB": {
-        "0%, 100%": { transform: "translate(0, 0) scale(1)", opacity: 0.12 },
-        "50%": { transform: "translate(-4%, -3%) scale(1.1)", opacity: 0.18 },
+      ".tnum": {
+        fontFamily: "var(--font-mono), ui-monospace, monospace",
+        fontVariantNumeric: "tabular-nums",
+        fontFeatureSettings: "'tnum' 1",
       },
       "@keyframes lhDraw": {
         from: { strokeDashoffset: 264 },
         to: { strokeDashoffset: 0 },
       },
+      "@keyframes glowDrift": {
+        "0%, 100%": { transform: "translate(0,0) scale(1)", opacity: 0.1 },
+        "50%": { transform: "translate(2%, 3%) scale(1.06)", opacity: 0.16 },
+      },
       "@media (prefers-reduced-motion: reduce)": {
-        "*": { animationDuration: "0.001ms !important", animationIterationCount: "1 !important" },
+        "*": {
+          animationDuration: "0.001ms !important",
+          animationIterationCount: "1 !important",
+        },
       },
     },
   },

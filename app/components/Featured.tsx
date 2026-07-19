@@ -1,105 +1,101 @@
 "use client";
 
+import { useRef } from "react";
 import {
   AspectRatio,
-  Badge,
   Box,
   Button,
   Flex,
-  HStack,
   Icon,
   Image,
   Link,
   List,
   ListIcon,
   ListItem,
-  Tag,
   Text,
   VStack,
   Wrap,
   WrapItem,
 } from "@chakra-ui/react";
-import { FiArrowUpRight, FiCheckCircle } from "react-icons/fi";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { FiArrowUpRight, FiCornerDownRight } from "react-icons/fi";
 import { Section } from "./Section";
 import { featured } from "../data";
+import { useT } from "../i18n";
+
+const MotionBox = motion(Box);
+
+function Plate({ src, alt, index, badge }: { src: string; alt: string; index: number; badge: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
+  const y = useTransform(scrollYProgress, [0, 1], ["-6%", "6%"]);
+
+  return (
+    <Box ref={ref} border="1px solid" borderColor="lineStrong" borderRadius="2px" overflow="hidden">
+      <Flex
+        className="tnum"
+        align="center"
+        justify="space-between"
+        px={4}
+        py={2}
+        bg="surfaceTint"
+        borderBottom="1px solid"
+        borderColor="line"
+        fontSize="0.66rem"
+        letterSpacing="0.14em"
+        textTransform="uppercase"
+        color="fgMuted"
+      >
+        <Text>Plate {String(index + 1).padStart(2, "0")}</Text>
+        <Text color="accent">{badge}</Text>
+      </Flex>
+      <AspectRatio ratio={16 / 10} overflow="hidden">
+        <MotionBox style={{ y }} w="full" h="112%">
+          <Image src={src} alt={alt} w="full" h="full" objectFit="cover" objectPosition="top" />
+        </MotionBox>
+      </AspectRatio>
+    </Box>
+  );
+}
 
 export function Featured() {
+  const t = useT();
   return (
-    <Section
-      id="destacados"
-      kicker="Proyectos destacados"
-      title="Aplicaciones en producción"
-      subtitle="Dos plataformas reales que puedes visitar ahora mismo. Producto completo: front-end, back-end, IA e integración de ERP."
-    >
-      <VStack spacing={{ base: 12, md: 20 }} align="stretch">
+    <Section id="destacados" kicker={t.featured.kicker} title={t.featured.title} subtitle={t.featured.subtitle} bg="canvas">
+      <VStack spacing={{ base: 14, md: 24 }} align="stretch">
         {featured.map((p, i) => {
+          const tr = t.featured.items[i];
           const reverse = i % 2 === 1;
           return (
             <Flex
               key={p.title}
               direction={{ base: "column", lg: reverse ? "row-reverse" : "row" }}
-              gap={{ base: 8, lg: 14 }}
-              align="center"
+              gap={{ base: 8, lg: 16 }}
+              align="stretch"
             >
-              {/* Screenshot */}
-              <Box flex="1.1" w="full">
-                <Box
-                  position="relative"
-                  borderRadius="2xl"
-                  overflow="hidden"
-                  border="1px solid"
-                  borderColor="whiteAlpha.200"
-                  boxShadow="0 30px 80px -30px rgba(0,0,0,.8)"
-                  transition="transform .3s"
-                  _hover={{ transform: "translateY(-6px)" }}
-                >
-                  <Box
-                    position="absolute"
-                    inset={0}
-                    bgGradient={`linear(to-br, ${p.accent}, transparent)`}
-                    opacity={0.12}
-                    pointerEvents="none"
-                    zIndex={1}
-                  />
-                  <Link href={p.url} isExternal>
-                    <AspectRatio ratio={16 / 10}>
-                      <Image src={p.img} alt={p.title} objectFit="cover" objectPosition="top" />
-                    </AspectRatio>
-                  </Link>
-                </Box>
+              <Box flex="1.15" w="full">
+                <Link href={p.url} isExternal _hover={{ textDecoration: "none" }}>
+                  <Plate src={p.img} alt={p.title} index={i} badge={p.badge ?? t.featured.visitar} />
+                </Link>
               </Box>
 
-              {/* Text */}
-              <VStack flex="1" align="start" spacing={5}>
-                <HStack spacing={3} flexWrap="wrap">
-                  <Text fontSize={{ base: "2xl", md: "3xl" }} fontWeight="extrabold">
+              <VStack flex="1" align="start" spacing={5} justify="center">
+                <Box>
+                  <Text className="tnum" fontSize="xs" letterSpacing="0.2em" textTransform="uppercase" color="accent" mb={2}>
+                    {tr.subtitle}
+                  </Text>
+                  <Text fontFamily="heading" fontSize={{ base: "2.2rem", md: "2.8rem" }} lineHeight="1.05" color="fg">
                     {p.title}
                   </Text>
-                  {p.badge && (
-                    <Badge
-                      px={3}
-                      py={1}
-                      borderRadius="full"
-                      bg={p.accent}
-                      color="ink.900"
-                      fontWeight="bold"
-                      textTransform="none"
-                    >
-                      {p.badge}
-                    </Badge>
-                  )}
-                </HStack>
-                <Text color={p.accent} fontWeight="semibold" mt={-2}>
-                  {p.subtitle}
-                </Text>
-                <Text color="gray.300" lineHeight="1.8">
-                  {p.desc}
+                </Box>
+                <Text color="fgMuted" lineHeight="1.8">
+                  {tr.desc}
                 </Text>
 
                 <List spacing={2.5}>
-                  {p.highlights.map((h) => (
-                    <ListItem key={h} color="gray.400" display="flex" alignItems="start">
-                      <ListIcon as={FiCheckCircle} color={p.accent} mt={1} flexShrink={0} />
+                  {tr.highlights.map((h) => (
+                    <ListItem key={h} color="fgMuted" display="flex" alignItems="start" fontSize="0.95rem">
+                      <ListIcon as={FiCornerDownRight} color="accent" mt={1} flexShrink={0} />
                       <Text as="span">{h}</Text>
                     </ListItem>
                   ))}
@@ -108,9 +104,18 @@ export function Featured() {
                 <Wrap spacing={2} pt={1}>
                   {p.stack.map((s) => (
                     <WrapItem key={s}>
-                      <Tag size="sm" bg="whiteAlpha.100" color="gray.300" borderRadius="md">
+                      <Text
+                        className="tnum"
+                        fontSize="0.72rem"
+                        color="fgMuted"
+                        px={2}
+                        py={1}
+                        border="1px solid"
+                        borderColor="line"
+                        borderRadius="2px"
+                      >
                         {s}
-                      </Tag>
+                      </Text>
                     </WrapItem>
                   ))}
                 </Wrap>
@@ -119,15 +124,17 @@ export function Featured() {
                   as={Link}
                   href={p.url}
                   isExternal
-                  size="lg"
                   mt={2}
-                  bg={p.accent}
-                  color="ink.900"
-                  _hover={{ opacity: 0.9, textDecoration: "none" }}
+                  bg="#E8A23D"
+                  color="#141210"
+                  borderRadius="2px"
+                  h="48px"
+                  px={5}
+                  fontWeight="600"
+                  _hover={{ bg: "#F0B662", textDecoration: "none" }}
                   rightIcon={<Icon as={FiArrowUpRight} />}
-                  fontWeight="bold"
                 >
-                  Visitar {p.title.split(" ")[0]}
+                  {t.featured.visitar} {p.title.split(" ")[0]}
                 </Button>
               </VStack>
             </Flex>

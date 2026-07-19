@@ -1,52 +1,58 @@
 "use client";
 
-import { Box, SimpleGrid, Tag, Text, VStack, Wrap, WrapItem } from "@chakra-ui/react";
+import { Box, Grid, Text, Wrap, WrapItem } from "@chakra-ui/react";
 import { Section } from "./Section";
 import { skills } from "../data";
+import { useT } from "../i18n";
 
 export function Skills() {
+  const t = useT();
   return (
-    <Section
-      id="skills"
-      kicker="Stack técnico"
-      title="Competencias"
-      subtitle="Herramientas y tecnologías evidenciadas por proyectos reales."
-      bg="ink.800"
-    >
-      <SimpleGrid columns={{ base: 1, sm: 2, lg: 3 }} spacing={6}>
-        {skills.map((s) => (
-          <Box
+    <Section id="skills" kicker={t.skills.kicker} title={t.skills.title} subtitle={t.skills.subtitle} bg="canvas">
+      <Box borderTop="1px solid" borderColor="line">
+        {skills.map((s, i) => (
+          <Grid
             key={s.group}
-            bg="ink.700"
-            border="1px solid"
-            borderColor="whiteAlpha.100"
-            borderRadius="2xl"
-            p={6}
-            transition="all .2s"
-            _hover={{ borderColor: "brand.500", transform: "translateY(-4px)" }}
+            templateColumns={{ base: "1fr", md: "0.9fr 2.4fr auto" }}
+            gap={{ base: 3, md: 8 }}
+            alignItems="baseline"
+            py={{ base: 6, md: 7 }}
+            borderBottom="1px solid"
+            borderColor="line"
           >
-            <Text fontWeight="bold" mb={4} fontSize="lg">
-              {s.group}
+            <Text fontFamily="heading" fontSize={{ base: "1.4rem", md: "1.7rem" }} color="fg">
+              {t.skills.groups[i] ?? s.group}
             </Text>
             <Wrap spacing={2}>
-              {s.items.map((i) => (
-                <WrapItem key={i}>
-                  <Tag
-                    size="md"
-                    bg="whiteAlpha.100"
-                    color="gray.200"
+              {s.items.map((it) => (
+                <WrapItem key={it}>
+                  <Text
+                    className="tnum"
+                    fontSize="0.78rem"
+                    color="fgMuted"
+                    px={2.5}
+                    py={1}
                     border="1px solid"
-                    borderColor="whiteAlpha.200"
-                    borderRadius="md"
+                    borderColor="line"
+                    borderRadius="2px"
                   >
-                    {i}
-                  </Tag>
+                    {it}
+                  </Text>
                 </WrapItem>
               ))}
             </Wrap>
-          </Box>
+            <Text
+              className="tnum"
+              fontSize="xs"
+              color="fgFaint"
+              textAlign={{ md: "right" }}
+              display={{ base: "none", md: "block" }}
+            >
+              {String(i + 1).padStart(2, "0")} / {String(skills.length).padStart(2, "0")}
+            </Text>
+          </Grid>
         ))}
-      </SimpleGrid>
+      </Box>
     </Section>
   );
 }

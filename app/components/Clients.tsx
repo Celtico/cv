@@ -1,70 +1,48 @@
 "use client";
 
-import { Box, Flex, Icon, SimpleGrid, Tag, Text, VStack, Wrap, WrapItem } from "@chakra-ui/react";
-import { FiHeart, FiHome, FiPackage } from "react-icons/fi";
-import { IconType } from "react-icons";
+import { Box, Grid, Text, VStack } from "@chakra-ui/react";
 import { Section } from "./Section";
 import { clients } from "../data";
-
-const meta: Record<string, { icon: IconType; color: string }> = {
-  "Sector público e institucional": { icon: FiHome, color: "brand.400" },
-  "Empresas y cadenas": { icon: FiPackage, color: "purple.300" },
-  "Cultura, salud y tercer sector": { icon: FiHeart, color: "pink.300" },
-};
+import { useT } from "../i18n";
 
 export function Clients() {
+  const t = useT();
   return (
-    <Section
-      id="clientes"
-      kicker="Confianza"
-      title="Clientes destacados"
-      subtitle="Una muestra de los más de 200 clientes: sector público, industria, cultura y tercer sector."
-      bg="ink.800"
-    >
-      <SimpleGrid columns={{ base: 1, md: 3 }} spacing={8}>
-        {Object.entries(clients).map(([group, list]) => {
-          const m = meta[group] ?? { icon: FiPackage, color: "brand.400" };
-          return (
-            <VStack
-              key={group}
-              align="start"
-              spacing={4}
-              bg="ink.700"
-              border="1px solid"
-              borderColor="whiteAlpha.100"
-              borderRadius="2xl"
-              p={6}
-              transition="all .2s"
-              _hover={{ borderColor: m.color, transform: "translateY(-4px)" }}
+    <Section id="clientes" kicker={t.clients.kicker} title={t.clients.title} subtitle={t.clients.subtitle} bg="canvasAlt">
+      <Grid templateColumns={{ base: "1fr", md: "repeat(3, 1fr)" }} gap={{ base: 10, md: 12 }}>
+        {Object.values(clients).map((list, gi) => (
+          <Box key={gi}>
+            <Text
+              className="tnum"
+              fontSize="0.7rem"
+              letterSpacing="0.14em"
+              textTransform="uppercase"
+              color="accent"
+              pb={3}
+              mb={2}
+              borderBottom="1px solid"
+              borderColor="lineStrong"
             >
-              <Flex
-                w={12}
-                h={12}
-                align="center"
-                justify="center"
-                borderRadius="xl"
-                bg="whiteAlpha.100"
-                border="1px solid"
-                borderColor="whiteAlpha.200"
-              >
-                <Icon as={m.icon} boxSize={6} color={m.color} />
-              </Flex>
-              <Text fontWeight="bold" color={m.color}>
-                {group}
-              </Text>
-              <Wrap spacing={2}>
-                {list.map((c) => (
-                  <WrapItem key={c}>
-                    <Tag size="md" bg="whiteAlpha.100" color="gray.200" borderRadius="md">
-                      {c}
-                    </Tag>
-                  </WrapItem>
-                ))}
-              </Wrap>
+              {String(gi + 1).padStart(2, "0")} · {t.clients.groups[gi]}
+            </Text>
+            <VStack align="stretch" spacing={0}>
+              {list.map((c) => (
+                <Text
+                  key={c}
+                  fontFamily="heading"
+                  fontSize={{ base: "1.05rem", md: "1.15rem" }}
+                  color="fg"
+                  py={2}
+                  borderBottom="1px solid"
+                  borderColor="line"
+                >
+                  {c}
+                </Text>
+              ))}
             </VStack>
-          );
-        })}
-      </SimpleGrid>
+          </Box>
+        ))}
+      </Grid>
     </Section>
   );
 }

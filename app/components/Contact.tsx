@@ -1,88 +1,104 @@
 "use client";
 
-import { Box, Button, Container, HStack, Heading, Icon, Link, Text, VStack } from "@chakra-ui/react";
-import { FiMail, FiPhone, FiGlobe } from "react-icons/fi";
+import { Box, Button, Container, Flex, HStack, Heading, Icon, Link, Text } from "@chakra-ui/react";
+import { FiArrowUpRight, FiGlobe } from "react-icons/fi";
 import { profile } from "../data";
+import { useT } from "../i18n";
 
 export function Contact() {
+  const t = useT();
   return (
-    <Box as="section" id="contacto" py={{ base: 20, md: 28 }} position="relative" overflow="hidden">
-      <Box
-        position="absolute"
-        top="50%"
-        left="50%"
-        transform="translate(-50%,-50%)"
-        w="70vw"
-        h="70vw"
-        maxW="900px"
-        maxH="900px"
-        bg="brand.500"
-        opacity={0.12}
-        filter="blur(140px)"
-        borderRadius="full"
-        pointerEvents="none"
-      />
-      <Container maxW="4xl" position="relative" textAlign="center">
-        <VStack spacing={6}>
-          <Text
-            fontSize="sm"
-            fontWeight="bold"
-            letterSpacing="widest"
-            textTransform="uppercase"
-            color="brand.400"
+    <Box as="section" id="contacto" bg="invBg" color="invFg">
+      <Container maxW="72rem" py={{ base: 20, md: 28 }}>
+        <Flex
+          className="tnum"
+          align="center"
+          gap={3}
+          fontSize="xs"
+          letterSpacing="0.2em"
+          textTransform="uppercase"
+          color="invMuted"
+          mb={8}
+        >
+          <Box as="span" color="invAccent">
+            §
+          </Box>
+          <Text>{t.contact.kicker}</Text>
+          <Box flex="1" h="1px" bg="invLine" />
+        </Flex>
+
+        <Heading
+          as="h2"
+          fontWeight="400"
+          fontSize={{ base: "2.6rem", md: "4.5rem" }}
+          lineHeight="1"
+          letterSpacing="-0.02em"
+          color="invFg"
+          maxW="20ch"
+        >
+          {t.contact.t1}{" "}
+          <Box as="span" fontStyle="italic">
+            {t.contact.ti}
+          </Box>{" "}
+          {t.contact.t2}
+        </Heading>
+
+        <Text mt={6} color="invMuted" fontSize={{ base: "md", md: "lg" }} maxW="34rem" lineHeight="1.7">
+          {t.contact.subtitle}
+        </Text>
+
+        <Flex mt={10} gap={4} wrap="wrap" align="center">
+          <Button
+            as={Link}
+            href={`mailto:${profile.email}`}
+            bg="invAccent"
+            color="invBg"
+            borderRadius="2px"
+            h="52px"
+            px={6}
+            fontWeight="600"
+            rightIcon={<Icon as={FiArrowUpRight} />}
+            _hover={{ opacity: 0.9, textDecoration: "none" }}
+            className="tnum"
           >
-            Contacto
-          </Text>
-          <Heading fontSize={{ base: "3xl", md: "5xl" }} fontWeight="black" lineHeight="1.05">
-            ¿Construimos algo juntos?
-          </Heading>
-          <Text color="gray.400" fontSize={{ base: "md", md: "lg" }} maxW="2xl">
-            Disponible para proyectos y colaboraciones. Escríbeme y te respondo enseguida.
-          </Text>
+            {profile.email}
+          </Button>
+          <Link
+            href={`tel:${profile.phone.replace(/\s/g, "")}`}
+            className="tnum"
+            color="invFg"
+            fontSize="lg"
+            _hover={{ color: "invAccent" }}
+          >
+            {profile.phone}
+          </Link>
+        </Flex>
 
-          <HStack spacing={4} flexWrap="wrap" justify="center" gap={3} pt={2}>
-            <Button
-              as={Link}
-              href={`mailto:${profile.email}`}
-              size="lg"
-              bg="brand.400"
-              color="ink.900"
-              _hover={{ bg: "brand.300", textDecoration: "none" }}
-              leftIcon={<FiMail />}
-              fontWeight="bold"
-            >
-              {profile.email}
-            </Button>
-            <Button
-              as={Link}
-              href={`tel:${profile.phone.replace(/\s/g, "")}`}
-              size="lg"
-              variant="outline"
-              borderColor="whiteAlpha.300"
-              _hover={{ bg: "whiteAlpha.100", textDecoration: "none" }}
-              leftIcon={<FiPhone />}
-            >
-              {profile.phone}
-            </Button>
-          </HStack>
-
-          <HStack spacing={6} pt={6} color="gray.400" fontSize="sm" flexWrap="wrap" justify="center">
-            <Link href={profile.company} isExternal _hover={{ color: "brand.300" }}>
-              <HStack>
-                <Icon as={FiGlobe} color="brand.400" />
+        <Flex
+          mt={{ base: 16, md: 24 }}
+          pt={8}
+          borderTop="1px solid"
+          borderColor="invLine"
+          justify="space-between"
+          align="center"
+          wrap="wrap"
+          gap={4}
+          className="tnum"
+          fontSize="xs"
+          letterSpacing="0.12em"
+          textTransform="uppercase"
+          color="invMuted"
+        >
+          <Text>© Celestí Ticó Petit · {profile.location}</Text>
+          <HStack spacing={6}>
+            <Link href={profile.company} isExternal _hover={{ color: "invAccent" }}>
+              <HStack spacing={1.5}>
+                <Icon as={FiGlobe} />
                 <Text>cenics.net</Text>
               </HStack>
             </Link>
           </HStack>
-        </VStack>
-      </Container>
-
-      <Container maxW="6xl" mt={{ base: 16, md: 24 }}>
-        <Box borderTop="1px solid" borderColor="whiteAlpha.100" pt={8} textAlign="center">
-          <Text color="gray.400" fontSize="sm">
-            © {profile.name} · {profile.location}
-          </Text>
-        </Box>
+        </Flex>
       </Container>
     </Box>
   );

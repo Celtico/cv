@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Container, Heading, Text, VStack } from "@chakra-ui/react";
+import { Box, Container, Flex, Heading, Text } from "@chakra-ui/react";
 
 export function Section({
   id,
@@ -8,7 +8,8 @@ export function Section({
   title,
   subtitle,
   children,
-  bg,
+  bg = "canvas",
+  inverted = false,
 }: {
   id: string;
   kicker?: string;
@@ -16,36 +17,59 @@ export function Section({
   subtitle?: string;
   children: React.ReactNode;
   bg?: string;
+  inverted?: boolean;
 }) {
+  const titleColor = inverted ? "invFg" : "fg";
+  const subColor = inverted ? "invMuted" : "fgMuted";
+  const kickColor = inverted ? "invMuted" : "fgMuted";
+  const rule = inverted ? "whiteAlpha.300" : "lineStrong";
+
   return (
-    <Box as="section" id={id} py={{ base: 16, md: 24 }} bg={bg} scrollMarginTop="72px">
-      <Container maxW="6xl">
-        <VStack align="start" spacing={3} mb={{ base: 8, md: 12 }}>
+    <Box
+      as="section"
+      id={id}
+      py={{ base: 16, md: 24 }}
+      bg={inverted ? "invBg" : bg}
+      color={inverted ? "invFg" : "fg"}
+      scrollMarginTop="72px"
+    >
+      <Container maxW="72rem">
+        <Box mb={{ base: 10, md: 14 }}>
           {kicker && (
-            <Text
-              fontSize="sm"
-              fontWeight="bold"
-              letterSpacing="widest"
-              textTransform="uppercase"
-              color="brand.400"
-            >
-              {kicker}
-            </Text>
+            <Flex align="center" gap={3} mb={5}>
+              <Box as="span" className="tnum" fontSize="xs" color="accent" letterSpacing="0.2em">
+                §
+              </Box>
+              <Text
+                as="span"
+                className="tnum"
+                fontSize="xs"
+                fontWeight="500"
+                letterSpacing="0.22em"
+                textTransform="uppercase"
+                color={kickColor}
+              >
+                {kicker}
+              </Text>
+              <Box flex="1" h="1px" bg={rule} />
+            </Flex>
           )}
           <Heading
             as="h2"
-            fontSize={{ base: "3xl", md: "4xl" }}
-            fontWeight="extrabold"
-            lineHeight="1.1"
+            fontWeight="500"
+            fontSize={{ base: "2.6rem", md: "3.8rem" }}
+            lineHeight="1.02"
+            letterSpacing="-0.02em"
+            color={titleColor}
           >
             {title}
           </Heading>
           {subtitle && (
-            <Text color="gray.400" fontSize={{ base: "md", md: "lg" }} maxW="3xl">
+            <Text mt={5} color={subColor} fontSize={{ base: "md", md: "lg" }} maxW="42rem" lineHeight="1.7">
               {subtitle}
             </Text>
           )}
-        </VStack>
+        </Box>
         {children}
       </Container>
     </Box>

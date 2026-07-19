@@ -3,28 +3,15 @@
 import { AspectRatio, Box, Image, SimpleGrid, Text } from "@chakra-ui/react";
 import { Section } from "./Section";
 import { gallery } from "../data";
+import { useT } from "../i18n";
 
 export function Gallery() {
+  const t = useT();
   return (
-    <Section
-      id="galeria"
-      kicker="Trabajo de cliente"
-      title="Una muestra de 422 proyectos"
-      subtitle="Webs, e-commerce y aplicaciones entregadas a más de 200 clientes."
-      bg="ink.800"
-    >
-      <SimpleGrid columns={{ base: 2, md: 3, lg: 4 }} spacing={4}>
+    <Section id="galeria" kicker={t.gallery.kicker} title={t.gallery.title} subtitle={t.gallery.subtitle} bg="canvas">
+      <SimpleGrid columns={{ base: 2, md: 3, lg: 4 }} spacing={{ base: 3, md: 4 }}>
         {gallery.map((g, i) => (
-          <Box
-            key={i}
-            position="relative"
-            borderRadius="xl"
-            overflow="hidden"
-            border="1px solid"
-            borderColor="whiteAlpha.100"
-            role="group"
-            cursor="default"
-          >
+          <Box key={i} role="group" border="1px solid" borderColor="line" borderRadius="2px" overflow="hidden" bg="surface">
             <AspectRatio ratio={4 / 3}>
               <Image
                 src={g.img}
@@ -33,24 +20,23 @@ export function Gallery() {
                 objectPosition="top"
                 loading="lazy"
                 transition="transform .4s"
-                _groupHover={{ transform: "scale(1.06)" }}
+                _groupHover={{ transform: "scale(1.05)" }}
               />
             </AspectRatio>
-            <Box
-              position="absolute"
-              inset={0}
-              bgGradient="linear(to-t, rgba(7,9,15,.9), transparent 60%)"
-              opacity={0}
-              transition="opacity .3s"
-              _groupHover={{ opacity: 1 }}
-              display="flex"
-              alignItems="flex-end"
-              p={4}
+            <Text
+              className="tnum"
+              fontSize="0.66rem"
+              letterSpacing="0.1em"
+              textTransform="uppercase"
+              color="fgMuted"
+              px={3}
+              py={2}
+              borderTop="1px solid"
+              borderColor="line"
+              noOfLines={1}
             >
-              <Text fontWeight="bold" fontSize="sm">
-                {g.label}
-              </Text>
-            </Box>
+              {String(i + 1).padStart(2, "0")} · {g.label === "Proyecto web" ? t.gallery.web : g.label}
+            </Text>
           </Box>
         ))}
       </SimpleGrid>
