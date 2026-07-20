@@ -1,7 +1,7 @@
 "use client";
 
 import { Box, Button, Container, Flex, HStack, Heading, Icon, Link, Text } from "@chakra-ui/react";
-import { FiArrowUpRight, FiGlobe } from "react-icons/fi";
+import { FiArrowUpRight, FiDownload, FiGlobe } from "react-icons/fi";
 import { profile } from "../data";
 import { useT } from "../i18n";
 
@@ -72,6 +72,22 @@ export function Contact() {
           >
             {profile.phone}
           </Link>
+          <Button
+            as={Link}
+            href="/cv-celesti-tico.pdf"
+            download
+            variant="outline"
+            borderColor="invLine"
+            color="invFg"
+            borderRadius="2px"
+            h="52px"
+            px={6}
+            fontWeight="500"
+            leftIcon={<Icon as={FiDownload} />}
+            _hover={{ borderColor: "invAccent", color: "invAccent", textDecoration: "none" }}
+          >
+            {t.hero.descarregar}
+          </Button>
         </Flex>
 
         <Flex

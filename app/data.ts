@@ -50,6 +50,10 @@ export const skills = [
     group: "Diseño",
     items: ["UX/UI", "Identidad visual", "Photoshop", "Illustrator", "InDesign", "Print"],
   },
+  {
+    group: "Flujo de trabajo",
+    items: ["Desarrollo asistido por IA (Claude Code)", "PhpStorm", "Git", "Code review", "Docker"],
+  },
 ];
 
 export type Featured = {

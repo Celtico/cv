@@ -1,6 +1,8 @@
 "use client";
 
 import { Box, Flex, Grid, Text } from "@chakra-ui/react";
+import Image from "next/image";
+import { RichText } from "./RichText";
 import { Section } from "./Section";
 import { useT } from "../i18n";
 
@@ -18,14 +20,34 @@ export function About() {
             color="invFg"
             mb={6}
           >
-            {t.about.p1}
+            <RichText>{t.about.p1}</RichText>
           </Text>
           <Text color="invMuted" fontSize={{ base: "md", md: "lg" }} lineHeight="1.8">
-            {t.about.p2}
+            <RichText>{t.about.p2}</RichText>
           </Text>
         </Box>
 
         <Box>
+          <Box
+            position="relative"
+            w="full"
+            maxW="70px"
+            aspectRatio="1"
+            mb={8}
+            overflow="hidden"
+            borderRadius="full"
+            border="1px solid"
+            borderColor="invLine"
+          >
+            <Image
+              src="/img/cel-tico-petit.webp"
+              alt="Celestí Ticó Petit"
+              fill
+              sizes="70px"
+              style={{ objectFit: "cover" }}
+            />
+          </Box>
+
           <Text
             className="tnum"
             fontSize="xs"

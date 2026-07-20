@@ -1,7 +1,8 @@
 "use client";
 
-import { Box, Button, Container, Flex, HStack, Heading, Link, Text } from "@chakra-ui/react";
+import { Box, Button, Container, Flex, HStack, Heading, Icon, Link, Text } from "@chakra-ui/react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import { FiDownload } from "react-icons/fi";
 import { useT } from "../i18n";
 
 const MotionBox = motion(Box);
@@ -92,7 +93,7 @@ export function Hero() {
             </Text>
           </Box>
 
-          <HStack spacing={3} flexShrink={0}>
+          <Flex gap={3} flexShrink={0} wrap="wrap">
             <Button
               as={Link}
               href="#contacto"
@@ -120,7 +121,23 @@ export function Hero() {
             >
               {t.hero.veure}
             </Button>
-          </HStack>
+            <Button
+              as={Link}
+              href="/cv-celesti-tico.pdf"
+              download
+              variant="outline"
+              borderColor="lineStrong"
+              color="fg"
+              borderRadius="2px"
+              px={6}
+              h="52px"
+              fontWeight="500"
+              leftIcon={<Icon as={FiDownload} />}
+              _hover={{ bg: "surfaceTint", borderColor: "accent", textDecoration: "none" }}
+            >
+              {t.hero.descarregar}
+            </Button>
+          </Flex>
         </Flex>
       </Container>
     </Box>

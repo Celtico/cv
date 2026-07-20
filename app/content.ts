@@ -16,6 +16,7 @@ type Dict = {
     tagline: string;
     contactar: string;
     veure: string;
+    descarregar: string;
   };
   statLabels: string[];
   about: {
@@ -87,13 +88,14 @@ export const content: Record<Lang, Dict> = {
         "20+ anys construint producte digital de principi a fi: del briefing i el disseny al codi, la infraestructura i el SEO. Autodidacta, polivalent i orientat a resoldre.",
       contactar: "Contactar",
       veure: "Veure projectes",
+      descarregar: "Descarregar CV (PDF)",
     },
     statLabels: ["Projectes entregats", "Clients", "Anys d'experiència", "Autodidacta"],
     about: {
       kicker: "Perfil — expedient",
       title: "De l'ofici a la infraestructura",
-      p1: "Desenvolupador full-stack i dissenyador amb més de dues dècades entregant webs, e-commerce i aplicacions a mida. He acompanyat el cicle complet de centenars de projectes: briefing, wireframes, disseny, maquetació, programació, infraestructura i publicació.",
-      p2: "Perfil polivalent i autodidacta: aprenc a partir de projectes reals i de la comunitat de programari lliure. Combino un back-end sòlid (NestJS, Node, APIs REST) amb front-ends moderns (React 19, Next.js, Chakra UI) i integració d'IA i ERP.",
+      p1: "**Desenvolupador full-stack i dissenyador** amb **més de dues dècades** entregant webs, e-commerce i aplicacions a mida. He acompanyat el **cicle complet** de centenars de projectes: briefing, wireframes, disseny, maquetació, programació, infraestructura i publicació.",
+      p2: "Perfil **polivalent i autodidacta**: aprenc a partir de projectes reals i de la comunitat de programari lliure. Combino un **back-end sòlid** (NestJS, Node, APIs REST) amb **front-ends moderns** (React 19, Next.js, Chakra UI) i **integració d'IA i ERP**.",
       idiomes: "Idiomes",
       languages: [
         { name: "Català", level: "Natiu" },
@@ -105,7 +107,7 @@ export const content: Record<Lang, Dict> = {
       kicker: "Eines — inventari",
       title: "Amb què treballo",
       subtitle: "Tecnologies i disciplines evidenciades per projectes reals, agrupades per domini.",
-      groups: ["Llenguatges", "Front-end", "Back-end", "IA i dades", "Infra / DevOps", "Disseny"],
+      groups: ["Llenguatges", "Front-end", "Back-end", "IA i dades", "Infra / DevOps", "Disseny", "Flux de treball"],
     },
     lighthouse: {
       kicker: "Qualitat — auditoria",
@@ -137,6 +139,7 @@ export const content: Record<Lang, Dict> = {
           desc: "«Identifica i segueix cada peça després del nesting». Importa el CSV de nesting i el STEP de TopSolid en un visor únic: cada peça amb la seva referència, mida i posició al tauler, lligada al seu sòlid 3D.",
           highlights: [
             "Etiquetar: genera i enganxa etiquetes amb QR, tauler a tauler",
+            "Mecanitzar: talla les peces amb la CNC segons el nesting",
             "Laminar: marca les làmines col·locades a les peces ja etiquetades",
             "Muntar: munta el moble pas a pas amb escaneig de QR i control de ferratges",
             "Traçabilitat completa de cada pas del procés",
@@ -223,13 +226,14 @@ export const content: Record<Lang, Dict> = {
         "20+ años construyendo producto digital de principio a fin: del briefing y el diseño al código, la infraestructura y el SEO. Autodidacta, polivalente y orientado a resolver.",
       contactar: "Contactar",
       veure: "Ver proyectos",
+      descarregar: "Descargar CV (PDF)",
     },
     statLabels: ["Proyectos entregados", "Clientes", "Años de experiencia", "Autodidacta"],
     about: {
       kicker: "Perfil — expediente",
       title: "Del oficio a la infraestructura",
-      p1: "Desarrollador full-stack y diseñador con más de dos décadas entregando webs, e-commerce y aplicaciones a medida. He acompañado el ciclo completo de cientos de proyectos: briefing, wireframes, diseño, maquetación, programación, infraestructura y publicación.",
-      p2: "Perfil polivalente y autodidacta: aprendo a partir de proyectos reales y de la comunidad de software libre. Combino un back-end sólido (NestJS, Node, APIs REST) con front-ends modernos (React 19, Next.js, Chakra UI) e integración de IA y ERP.",
+      p1: "**Desarrollador full-stack y diseñador** con **más de dos décadas** entregando webs, e-commerce y aplicaciones a medida. He acompañado el **ciclo completo** de cientos de proyectos: briefing, wireframes, diseño, maquetación, programación, infraestructura y publicación.",
+      p2: "Perfil **polivalente y autodidacta**: aprendo a partir de proyectos reales y de la comunidad de software libre. Combino un **back-end sólido** (NestJS, Node, APIs REST) con **front-ends modernos** (React 19, Next.js, Chakra UI) e **integración de IA y ERP**.",
       idiomes: "Idiomas",
       languages: [
         { name: "Catalán", level: "Nativo" },
@@ -241,7 +245,7 @@ export const content: Record<Lang, Dict> = {
       kicker: "Herramientas — inventario",
       title: "Con qué trabajo",
       subtitle: "Tecnologías y disciplinas evidenciadas por proyectos reales, agrupadas por dominio.",
-      groups: ["Lenguajes", "Front-end", "Back-end", "IA y datos", "Infra / DevOps", "Diseño"],
+      groups: ["Lenguajes", "Front-end", "Back-end", "IA y datos", "Infra / DevOps", "Diseño", "Flujo de trabajo"],
     },
     lighthouse: {
       kicker: "Calidad — auditoría",
@@ -273,6 +277,7 @@ export const content: Record<Lang, Dict> = {
           desc: "«Identifica y sigue cada pieza después del nesting». Importa el CSV de nesting y el STEP de TopSolid en un visor único: cada pieza con su referencia, medida y posición en el tablero, ligada a su sólido 3D.",
           highlights: [
             "Etiquetar: genera y pega etiquetas con QR, tablero a tablero",
+            "Mecanizar: corta las piezas con la CNC según el nesting",
             "Laminar: marca las láminas colocadas en las piezas ya etiquetadas",
             "Montar: monta el mueble paso a paso con escaneo de QR y control de herrajes",
             "Trazabilidad completa de cada paso del proceso",
@@ -359,13 +364,14 @@ export const content: Record<Lang, Dict> = {
         "20+ years building digital product end to end: from briefing and design to code, infrastructure and SEO. Self-taught, versatile and focused on solving.",
       contactar: "Get in touch",
       veure: "View projects",
+      descarregar: "Download CV (PDF)",
     },
     statLabels: ["Projects delivered", "Clients", "Years of experience", "Self-taught"],
     about: {
       kicker: "Profile — file",
       title: "From craft to infrastructure",
-      p1: "Full-stack developer and designer with more than two decades delivering websites, e-commerce and custom applications. I've owned the full cycle of hundreds of projects: briefing, wireframes, design, layout, programming, infrastructure and launch.",
-      p2: "Versatile and self-taught: I learn from real projects and the free-software community. I pair a solid back-end (NestJS, Node, REST APIs) with modern front-ends (React 19, Next.js, Chakra UI) and AI and ERP integration.",
+      p1: "**Full-stack developer and designer** with **more than two decades** delivering websites, e-commerce and custom applications. I've owned the **full cycle** of hundreds of projects: briefing, wireframes, design, layout, programming, infrastructure and launch.",
+      p2: "**Versatile and self-taught**: I learn from real projects and the free-software community. I pair a **solid back-end** (NestJS, Node, REST APIs) with **modern front-ends** (React 19, Next.js, Chakra UI) and **AI and ERP integration**.",
       idiomes: "Languages",
       languages: [
         { name: "Catalan", level: "Native" },
@@ -377,7 +383,7 @@ export const content: Record<Lang, Dict> = {
       kicker: "Tools — inventory",
       title: "What I work with",
       subtitle: "Technologies and disciplines evidenced by real projects, grouped by domain.",
-      groups: ["Languages", "Front-end", "Back-end", "AI & data", "Infra / DevOps", "Design"],
+      groups: ["Languages", "Front-end", "Back-end", "AI & data", "Infra / DevOps", "Design", "Workflow"],
     },
     lighthouse: {
       kicker: "Quality — audit",
@@ -408,6 +414,7 @@ export const content: Record<Lang, Dict> = {
           desc: "“Identify and track every part after nesting.” Imports the nesting CSV and the TopSolid STEP into a single viewer: each part with its reference, size and position on the board, linked to its 3D solid.",
           highlights: [
             "Label: generate and stick QR labels, board by board",
+            "Machine: cut the parts on the CNC following the nesting",
             "Laminate: mark the sheets placed on already-labelled parts",
             "Assemble: build the furniture step by step with QR scanning and hardware control",
             "Full traceability of every step of the process",

@@ -11,9 +11,9 @@ const config: ThemeConfig = {
 const theme = extendTheme({
   config,
   fonts: {
-    heading: "var(--font-display), Georgia, serif",
-    body: "var(--font-body), system-ui, sans-serif",
-    mono: "var(--font-mono), ui-monospace, monospace",
+    heading: "ui-serif, 'New York', Georgia, 'Times New Roman', serif",
+    body: "system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif",
+    mono: "ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace",
   },
   semanticTokens: {
     colors: {
@@ -47,14 +47,16 @@ const theme = extendTheme({
         bg: "#E8A23D",
         color: "#141210",
       },
+      // Georgia — el fallback serif a Windows — fa xifres d'estil antic per
+      // defecte. Als titulars ("100 · 100 · 100 · 100", "422 projectes")
+      // les forcem de caixa alta perquè no ballin sobre la línia de base.
+      "h1, h2, h3, h4": {
+        fontVariantNumeric: "lining-nums",
+      },
       ".tnum": {
-        fontFamily: "var(--font-mono), ui-monospace, monospace",
+        fontFamily: "ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace",
         fontVariantNumeric: "tabular-nums",
         fontFeatureSettings: "'tnum' 1",
-      },
-      "@keyframes lhDraw": {
-        from: { strokeDashoffset: 264 },
-        to: { strokeDashoffset: 0 },
       },
       "@keyframes glowDrift": {
         "0%, 100%": { transform: "translate(0,0) scale(1)", opacity: 0.1 },
