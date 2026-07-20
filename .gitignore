@@ -1,0 +1,15 @@
+# El lloc web té el seu propi repositori (gitwins.serverscel.com/cel/cv-web)
+web/
+
+# Entorn i sistema
+.idea/
+.DS_Store
+
+# Documents oficials amb dades personals sensibles: informe de vida laboral
+# de la Seguretat Social. Es queden al disc, fora del control de versions.
+vida_laboral
+vida_laboral.pdf
+
+# Captures i imatges soltes de treball
+Captura de pantalla*.png
+img.png
