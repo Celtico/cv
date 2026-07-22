@@ -54,9 +54,9 @@ Tasques (del portfoli "Sobre mí"):
 ### Experiència per compte d'altri (del document de vida laboral)
 Rol: **desenvolupador web** (front-end / back-end).
 
-- **Vunkers IT Experts, S.L.** — Desenvolupador web · nov 2025 – jul 2026
-- **Iridium Network Digital Technologies, SL** — Desenvolupador web · nov 2023 – jul 2024
-- **Noves Tecnologies de Venta, S.L.** — Desenvolupador web · abr 2023 – may 2023
+- **Vunkers IT Experts, S.L.** — Desenvolupador web · nov 2025 – jul 2026 — Substitució del director de programació per baixa de paternitat.
+- **Iridium Network Digital Technologies, SL** — Desenvolupador web · nov 2023 – jul 2024 — Realització de tests E2E de tot el panell de control de cdmon.
+- **Noves Tecnologies de Venta, S.L.** — Desenvolupador web · abr 2023 – may 2023 — Configuració d'un clúster amb MariaDB Galera i HAProxy, amb monitorització amb Prometheus i Grafana.
 
 *(Vida laboral també recull etapes anteriors — V&A Vicente i Associats, Petit Agustí i Luminosos Estel, 2000–2003 — no incloses al CV per acord amb el Cel.)*
 
@@ -75,6 +75,16 @@ Rol: **desenvolupador web** (front-end / back-end).
 
 Soft skills (del portfoli): treball en equip, creativitat, identificació de problemes,
 metodologies àgils, iniciativa, perfil polivalent i versàtil, col·laboració interdisciplinària.
+
+---
+
+## Infraestructura (servidors propis)
+
+- **Bare metal:** equips barebone administrats directament
+- **Virtualització:** Proxmox
+- **Xarxa i serveis:** Nginx Proxy Manager, Pi-hole (servidor DNS)
+- **Entorn de desenvolupament local:** Docker i Kubernetes (K8s) amb emmagatzematge Ceph
+- **Núvol de producció:** OpenStack amb emmagatzematge Ceph
 
 ---
 
