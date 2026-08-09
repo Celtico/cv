@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import {
   Box,
   Button,
@@ -38,7 +39,7 @@ function ThemeToggle() {
       color="fg"
       borderRadius="2px"
       fontSize="18px"
-      _hover={{ bg: "surfaceTint", color: "accent" }}
+      _hover={{ bg: "bg.muted", color: "accent.fg" }}
     />
   );
 }
@@ -46,7 +47,7 @@ function ThemeToggle() {
 function LangSwitch() {
   const { lang, setLang } = useLang();
   return (
-    <HStack spacing={0} border="1px solid" borderColor="line" borderRadius="2px" overflow="hidden">
+    <HStack spacing={0} border="1px solid" borderColor="border" borderRadius="2px" overflow="hidden">
       {LANGS.map((l: Lang) => (
         <Button
           key={l}
@@ -61,9 +62,9 @@ function LangSwitch() {
           fontSize="0.66rem"
           letterSpacing="0.08em"
           fontWeight={lang === l ? "600" : "400"}
-          bg={lang === l ? "accent" : "transparent"}
-          color={lang === l ? "canvas" : "fgMuted"}
-          _hover={lang === l ? {} : { bg: "surfaceTint", color: "fg" }}
+          bg={lang === l ? "accent.fg" : "transparent"}
+          color={lang === l ? "bg" : "fg.muted"}
+          _hover={lang === l ? {} : { bg: "bg.muted", color: "fg" }}
           aria-pressed={lang === l}
         >
           {l.toUpperCase()}
@@ -76,17 +77,33 @@ function LangSwitch() {
 export function Nav() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const t = useT();
-  const barBg = useColorModeValue("rgba(236,229,213,0.8)", "rgba(20,18,16,0.78)");
 
+  // La barra s'amaga en baixar i torna a sortir en pujar.
+  const [hidden, setHidden] = useState(false);
+  useEffect(() => {
+    let lastY = window.scrollY;
+    const onScroll = () => {
+      const y = window.scrollY;
+      if (Math.abs(y - lastY) > 4) {
+        setHidden(y > lastY && y > 120);
+        lastY = y;
+      }
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Amb el prefix "/" les àncores també funcionen des de /blog.
   const links = [
-    { href: "#sobre-mi", label: t.nav.perfil },
-    { href: "#skills", label: t.nav.eines },
-    { href: "#calidad", label: t.nav.qualitat },
-    { href: "#destacados", label: t.nav.destacats },
-    { href: "#proyectos", label: t.nav.projectes },
-    { href: "#experiencia", label: t.nav.trajectoria },
-    { href: "#trayectoria", label: t.nav.registre },
-    { href: "#contacto", label: t.nav.contacte },
+    { href: "/#sobre-mi", label: t.nav.perfil },
+    { href: "/#skills", label: t.nav.eines },
+    { href: "/#calidad", label: t.nav.qualitat },
+    { href: "/#destacados", label: t.nav.destacats },
+    { href: "/#proyectos", label: t.nav.projectes },
+    { href: "/#experiencia", label: t.nav.trajectoria },
+    { href: "/#trayectoria", label: t.nav.registre },
+    { href: "/blog", label: t.nav.blog },
+    { href: "/#contacto", label: t.nav.contacte },
   ];
 
   return (
@@ -95,14 +112,16 @@ export function Nav() {
       position="sticky"
       top={0}
       zIndex={100}
-      bg={barBg}
+      bg="bg.nav"
       backdropFilter="blur(12px)"
       borderBottom="1px solid"
-      borderColor="line"
+      borderColor="border"
+      transform={hidden && !isOpen ? "translateY(-100%)" : "translateY(0)"}
+      transition="transform .3s ease"
     >
       <Container maxW="72rem">
         <Flex h="64px" align="center" justify="space-between">
-          <Link href="#top" _hover={{ textDecoration: "none" }}>
+          <Link href="/#top" _hover={{ textDecoration: "none" }}>
             <Text
               className="tnum"
               fontWeight="600"
@@ -112,7 +131,7 @@ export function Nav() {
               color="fg"
             >
               CTP
-              <Box as="span" color="accent">
+              <Box as="span" color="accent.fg">
                 ·
               </Box>
             </Text>
@@ -127,8 +146,8 @@ export function Nav() {
                 fontSize="0.72rem"
                 letterSpacing="0.12em"
                 textTransform="uppercase"
-                color="fgMuted"
-                _hover={{ color: "accent", textDecoration: "none" }}
+                color="fg.muted"
+                _hover={{ color: "accent.fg", textDecoration: "none" }}
               >
                 {l.label}
               </Link>
@@ -147,7 +166,7 @@ export function Nav() {
               borderRadius="2px"
               display={{ base: "inline-flex", xl: "none" }}
               onClick={onOpen}
-              _hover={{ bg: "surfaceTint" }}
+              _hover={{ bg: "bg.muted" }}
             />
           </HStack>
         </Flex>
@@ -155,11 +174,15 @@ export function Nav() {
 
       <Drawer isOpen={isOpen} placement="right" onClose={onClose}>
         <DrawerOverlay bg="blackAlpha.600" backdropFilter="blur(4px)" />
-        <DrawerContent bg="canvasAlt" borderLeft="1px solid" borderColor="line">
+        <DrawerContent bg="bg.subtle" borderLeft="1px solid" borderColor="border">
           <DrawerCloseButton color="fg" mt={2} />
           <DrawerHeader>
-            <Text className="tnum" fontWeight="600" letterSpacing="0.15em" color="fg">
-              CELESTÍ TICÓ PETIT
+            <Text className="tnum" fontWeight="600" letterSpacing="0.15em" color="fg" lineHeight="1.4">
+              CELESTÍ
+              <br />
+              TICÓ
+              <br />
+              PETIT
             </Text>
           </DrawerHeader>
           <DrawerBody>
@@ -172,7 +195,7 @@ export function Nav() {
                   py={4}
                   borderTop={i === 0 ? "1px solid" : undefined}
                   borderBottom="1px solid"
-                  borderColor="line"
+                  borderColor="border"
                   className="tnum"
                   fontSize="sm"
                   letterSpacing="0.1em"
@@ -180,10 +203,10 @@ export function Nav() {
                   color="fg"
                   display="flex"
                   justifyContent="space-between"
-                  _hover={{ color: "accent", textDecoration: "none" }}
+                  _hover={{ color: "accent.fg", textDecoration: "none" }}
                 >
                   <Box as="span">{l.label}</Box>
-                  <Box as="span" color="fgFaint">
+                  <Box as="span" color="fg.subtle">
                     {String(i + 1).padStart(2, "0")}
                   </Box>
                 </Link>

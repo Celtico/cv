@@ -7,7 +7,8 @@
 > immediata i en cerca activa de feina.
 
 Aquest lloc és el currículum i portfoli personal de Celestí Ticó Petit ("Cel").
-És una sola pàgina amb àncores; no hi ha altres rutes. El contingut existeix en
+És una pàgina principal amb àncores, més un blog a /blog amb notes sobre IA
+aplicada i els projectes propis (VehicleOS, FABRIK). El contingut existeix en
 català, castellà i anglès, i es tria amb el commutador CA/ES/EN sense canviar la
 URL, de manera que aquest fitxer resumeix tot el que conté el lloc.
 

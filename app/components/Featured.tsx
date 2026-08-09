@@ -20,6 +20,7 @@ import {
 import { motion, useScroll, useTransform } from "framer-motion";
 import { FiArrowUpRight, FiCornerDownRight } from "react-icons/fi";
 import { Section } from "./Section";
+import { InlineSvg } from "./InlineSvg";
 import { featured } from "../data";
 import { useT } from "../i18n";
 
@@ -31,27 +32,31 @@ function Plate({ src, alt, index, badge }: { src: string; alt: string; index: nu
   const y = useTransform(scrollYProgress, [0, 1], ["-6%", "6%"]);
 
   return (
-    <Box ref={ref} border="1px solid" borderColor="lineStrong" borderRadius="2px" overflow="hidden">
+    <Box ref={ref} border="1px solid" borderColor="border.emphasized" borderRadius="2px" overflow="hidden">
       <Flex
         className="tnum"
         align="center"
         justify="space-between"
         px={4}
         py={2}
-        bg="surfaceTint"
+        bg="bg.muted"
         borderBottom="1px solid"
-        borderColor="line"
+        borderColor="border"
         fontSize="0.66rem"
         letterSpacing="0.14em"
         textTransform="uppercase"
-        color="fgMuted"
+        color="fg.muted"
       >
         <Text>Plate {String(index + 1).padStart(2, "0")}</Text>
-        <Text color="accent">{badge}</Text>
+        <Text color="accent.fg">{badge}</Text>
       </Flex>
       <AspectRatio ratio={16 / 10} overflow="hidden">
         <MotionBox style={{ y }} w="full" h="112%">
-          <Image src={src} alt={alt} w="full" h="full" objectFit="cover" objectPosition="top" />
+          {src.endsWith(".svg") ? (
+            <InlineSvg src={src} title={alt} />
+          ) : (
+            <Image src={src} alt={alt} w="full" h="full" objectFit="cover" objectPosition="top" />
+          )}
         </MotionBox>
       </AspectRatio>
     </Box>
@@ -61,7 +66,7 @@ function Plate({ src, alt, index, badge }: { src: string; alt: string; index: nu
 export function Featured() {
   const t = useT();
   return (
-    <Section id="destacados" kicker={t.featured.kicker} title={t.featured.title} subtitle={t.featured.subtitle} bg="canvas">
+    <Section id="destacados" kicker={t.featured.kicker} title={t.featured.title} subtitle={t.featured.subtitle} bg="bg">
       <VStack spacing={{ base: 14, md: 24 }} align="stretch">
         {featured.map((p, i) => {
           const tr = t.featured.items[i];
@@ -81,21 +86,21 @@ export function Featured() {
 
               <VStack flex="1" align="start" spacing={5} justify="center">
                 <Box>
-                  <Text className="tnum" fontSize="xs" letterSpacing="0.2em" textTransform="uppercase" color="accent" mb={2}>
+                  <Text className="tnum" fontSize="xs" letterSpacing="0.2em" textTransform="uppercase" color="accent.fg" mb={2}>
                     {tr.subtitle}
                   </Text>
                   <Text fontFamily="heading" fontSize={{ base: "2.2rem", md: "2.8rem" }} lineHeight="1.05" color="fg">
                     {p.title}
                   </Text>
                 </Box>
-                <Text color="fgMuted" lineHeight="1.8">
+                <Text color="fg.muted" lineHeight="1.8">
                   {tr.desc}
                 </Text>
 
                 <List spacing={2.5}>
                   {tr.highlights.map((h) => (
-                    <ListItem key={h} color="fgMuted" display="flex" alignItems="start" fontSize="0.95rem">
-                      <ListIcon as={FiCornerDownRight} color="accent" mt={1} flexShrink={0} />
+                    <ListItem key={h} color="fg.muted" display="flex" alignItems="start" fontSize="0.95rem">
+                      <ListIcon as={FiCornerDownRight} color="accent.fg" mt={1} flexShrink={0} />
                       <Text as="span">{h}</Text>
                     </ListItem>
                   ))}
@@ -107,11 +112,11 @@ export function Featured() {
                       <Text
                         className="tnum"
                         fontSize="0.72rem"
-                        color="fgMuted"
+                        color="fg.muted"
                         px={2}
                         py={1}
                         border="1px solid"
-                        borderColor="line"
+                        borderColor="border"
                         borderRadius="2px"
                       >
                         {s}
@@ -125,13 +130,13 @@ export function Featured() {
                   href={p.url}
                   isExternal
                   mt={2}
-                  bg="#E8A23D"
-                  color="#141210"
+                  bg="accent.solid"
+                  color="accent.contrast"
                   borderRadius="2px"
                   h="48px"
                   px={5}
                   fontWeight="600"
-                  _hover={{ bg: "#F0B662", textDecoration: "none" }}
+                  _hover={{ bg: "accent.emphasized", textDecoration: "none" }}
                   rightIcon={<Icon as={FiArrowUpRight} />}
                 >
                   {t.featured.visitar} {p.title.split(" ")[0]}

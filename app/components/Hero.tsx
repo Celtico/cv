@@ -26,7 +26,7 @@ export function Hero() {
         <Box
           w="full"
           h="full"
-          bg="#E8A23D"
+          bg="accent.solid"
           opacity={0.1}
           filter="blur(140px)"
           borderRadius="full"
@@ -43,20 +43,20 @@ export function Hero() {
           fontSize={{ base: "0.68rem", md: "xs" }}
           letterSpacing="0.18em"
           textTransform="uppercase"
-          color="fgMuted"
+          color="fg.muted"
           flexWrap="wrap"
           mb={{ base: 10, md: 14 }}
         >
           <HStack spacing={2}>
-            <Box w="7px" h="7px" borderRadius="full" bg="accentDot" />
+            <Box w="7px" h="7px" borderRadius="full" bg="accent.dot" />
             <Text>{t.hero.expedient}</Text>
           </HStack>
-          <Box w="1px" h="12px" bg="lineStrong" />
+          <Box w="1px" h="12px" bg="border.emphasized" />
           <Text>{t.hero.location}</Text>
-          <Box w="1px" h="12px" bg="lineStrong" />
+          <Box w="1px" h="12px" bg="border.emphasized" />
           <Text>{t.hero.registre}</Text>
-          <Box w="1px" h="12px" bg="lineStrong" display={{ base: "none", sm: "block" }} />
-          <Text color="accent" display={{ base: "none", sm: "block" }}>
+          <Box w="1px" h="12px" bg="border.emphasized" display={{ base: "none", sm: "block" }} />
+          <Text color="accent.fg" display={{ base: "none", sm: "block" }}>
             {t.hero.disponible}
           </Text>
         </Flex>
@@ -83,12 +83,12 @@ export function Hero() {
               fontSize="xs"
               letterSpacing="0.22em"
               textTransform="uppercase"
-              color="accent"
+              color="accent.fg"
               mb={3}
             >
               {t.hero.role}
             </Text>
-            <Text fontSize={{ base: "lg", md: "xl" }} color="fgMuted" maxW="34rem" lineHeight="1.6">
+            <Text fontSize={{ base: "lg", md: "xl" }} color="fg.muted" maxW="34rem" lineHeight="1.6">
               {t.hero.tagline}
             </Text>
           </Box>
@@ -97,13 +97,13 @@ export function Hero() {
             <Button
               as={Link}
               href="#contacto"
-              bg="#E8A23D"
-              color="#141210"
+              bg="accent.solid"
+              color="accent.contrast"
               borderRadius="2px"
               px={6}
               h="52px"
               fontWeight="600"
-              _hover={{ bg: "#F0B662", textDecoration: "none" }}
+              _hover={{ bg: "accent.emphasized", textDecoration: "none" }}
             >
               {t.hero.contactar}
             </Button>
@@ -111,13 +111,13 @@ export function Hero() {
               as={Link}
               href="#destacados"
               variant="outline"
-              borderColor="lineStrong"
+              borderColor="border.emphasized"
               color="fg"
               borderRadius="2px"
               px={6}
               h="52px"
               fontWeight="500"
-              _hover={{ bg: "surfaceTint", borderColor: "accent", textDecoration: "none" }}
+              _hover={{ bg: "bg.muted", borderColor: "accent.fg", textDecoration: "none" }}
             >
               {t.hero.veure}
             </Button>
@@ -126,14 +126,14 @@ export function Hero() {
               href="/cv-celesti-tico.pdf"
               download
               variant="outline"
-              borderColor="lineStrong"
+              borderColor="border.emphasized"
               color="fg"
               borderRadius="2px"
               px={6}
               h="52px"
               fontWeight="500"
               leftIcon={<Icon as={FiDownload} />}
-              _hover={{ bg: "surfaceTint", borderColor: "accent", textDecoration: "none" }}
+              _hover={{ bg: "bg.muted", borderColor: "accent.fg", textDecoration: "none" }}
             >
               {t.hero.descarregar}
             </Button>

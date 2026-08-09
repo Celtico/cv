@@ -4,11 +4,12 @@ import { Box, Button, Container, Flex, HStack, Heading, Icon, Link, Text } from 
 import { FiArrowUpRight, FiDownload, FiGlobe } from "react-icons/fi";
 import { profile } from "../data";
 import { useT } from "../i18n";
+import { ColorPicker } from "./ColorPicker";
 
 export function Contact() {
   const t = useT();
   return (
-    <Box as="section" id="contacto" bg="invBg" color="invFg">
+    <Box as="section" id="contacto" bg="bg.inverted" color="fg.inverted">
       <Container maxW="72rem" py={{ base: 20, md: 28 }}>
         <Flex
           className="tnum"
@@ -17,14 +18,14 @@ export function Contact() {
           fontSize="xs"
           letterSpacing="0.2em"
           textTransform="uppercase"
-          color="invMuted"
+          color="fg.inverted.muted"
           mb={8}
         >
-          <Box as="span" color="invAccent">
+          <Box as="span" color="accent.inverted">
             §
           </Box>
           <Text>{t.contact.kicker}</Text>
-          <Box flex="1" h="1px" bg="invLine" />
+          <Box flex="1" h="1px" bg="border.inverted" />
         </Flex>
 
         <Heading
@@ -33,7 +34,7 @@ export function Contact() {
           fontSize={{ base: "2.6rem", md: "4.5rem" }}
           lineHeight="1"
           letterSpacing="-0.02em"
-          color="invFg"
+          color="fg.inverted"
           maxW="20ch"
         >
           {t.contact.t1}{" "}
@@ -43,7 +44,7 @@ export function Contact() {
           {t.contact.t2}
         </Heading>
 
-        <Text mt={6} color="invMuted" fontSize={{ base: "md", md: "lg" }} maxW="34rem" lineHeight="1.7">
+        <Text mt={6} color="fg.inverted.muted" fontSize={{ base: "md", md: "lg" }} maxW="34rem" lineHeight="1.7">
           {t.contact.subtitle}
         </Text>
 
@@ -51,8 +52,8 @@ export function Contact() {
           <Button
             as={Link}
             href={`mailto:${profile.email}`}
-            bg="invAccent"
-            color="invBg"
+            bg="accent.inverted"
+            color="bg.inverted"
             borderRadius="2px"
             h="52px"
             px={6}
@@ -66,9 +67,9 @@ export function Contact() {
           <Link
             href={`tel:${profile.phone.replace(/\s/g, "")}`}
             className="tnum"
-            color="invFg"
+            color="fg.inverted"
             fontSize="lg"
-            _hover={{ color: "invAccent" }}
+            _hover={{ color: "accent.inverted" }}
           >
             {profile.phone}
           </Link>
@@ -77,24 +78,28 @@ export function Contact() {
             href="/cv-celesti-tico.pdf"
             download
             variant="outline"
-            borderColor="invLine"
-            color="invFg"
+            borderColor="border.inverted"
+            color="fg.inverted"
             borderRadius="2px"
             h="52px"
             px={6}
             fontWeight="500"
             leftIcon={<Icon as={FiDownload} />}
-            _hover={{ borderColor: "invAccent", color: "invAccent", textDecoration: "none" }}
+            _hover={{ borderColor: "accent.inverted", color: "accent.inverted", textDecoration: "none" }}
           >
             {t.hero.descarregar}
           </Button>
         </Flex>
 
+        <Box mt={{ base: 14, md: 20 }}>
+          <ColorPicker />
+        </Box>
+
         <Flex
-          mt={{ base: 16, md: 24 }}
+          mt={{ base: 12, md: 16 }}
           pt={8}
           borderTop="1px solid"
-          borderColor="invLine"
+          borderColor="border.inverted"
           justify="space-between"
           align="center"
           wrap="wrap"
@@ -103,11 +108,11 @@ export function Contact() {
           fontSize="xs"
           letterSpacing="0.12em"
           textTransform="uppercase"
-          color="invMuted"
+          color="fg.inverted.muted"
         >
           <Text>© Celestí Ticó Petit · {profile.location}</Text>
           <HStack spacing={6}>
-            <Link href={profile.company} isExternal _hover={{ color: "invAccent" }}>
+            <Link href={profile.company} isExternal _hover={{ color: "accent.inverted" }}>
               <HStack spacing={1.5}>
                 <Icon as={FiGlobe} />
                 <Text>cenics.net</Text>

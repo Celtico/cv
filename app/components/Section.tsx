@@ -8,7 +8,7 @@ export function Section({
   title,
   subtitle,
   children,
-  bg = "canvas",
+  bg = "bg",
   inverted = false,
 }: {
   id: string;
@@ -19,25 +19,25 @@ export function Section({
   bg?: string;
   inverted?: boolean;
 }) {
-  const titleColor = inverted ? "invFg" : "fg";
-  const subColor = inverted ? "invMuted" : "fgMuted";
-  const kickColor = inverted ? "invMuted" : "fgMuted";
-  const rule = inverted ? "whiteAlpha.300" : "lineStrong";
+  const titleColor = inverted ? "fg.inverted" : "fg";
+  const subColor = inverted ? "fg.inverted.muted" : "fg.muted";
+  const kickColor = inverted ? "fg.inverted.muted" : "fg.muted";
+  const rule = inverted ? "whiteAlpha.300" : "border.emphasized";
 
   return (
     <Box
       as="section"
       id={id}
       py={{ base: 16, md: 24 }}
-      bg={inverted ? "invBg" : bg}
-      color={inverted ? "invFg" : "fg"}
+      bg={inverted ? "bg.inverted" : bg}
+      color={inverted ? "fg.inverted" : "fg"}
       scrollMarginTop="72px"
     >
       <Container maxW="72rem">
         <Box mb={{ base: 10, md: 14 }}>
           {kicker && (
             <Flex align="center" gap={3} mb={5}>
-              <Box as="span" className="tnum" fontSize="xs" color="accent" letterSpacing="0.2em">
+              <Box as="span" className="tnum" fontSize="xs" color="accent.fg" letterSpacing="0.2em">
                 §
               </Box>
               <Text

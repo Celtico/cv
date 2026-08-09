@@ -8,8 +8,8 @@ import { useT } from "../i18n";
 export function Experience() {
   const t = useT();
   return (
-    <Section id="experiencia" kicker={t.experience.kicker} title={t.experience.title} bg="canvasAlt">
-      <Box borderTop="1px solid" borderColor="lineStrong">
+    <Section id="experiencia" kicker={t.experience.kicker} title={t.experience.title} bg="bg.subtle">
+      <Box borderTop="1px solid" borderColor="border.emphasized">
         {experience.map((e, i) => (
           <Grid
             key={e.company}
@@ -18,19 +18,19 @@ export function Experience() {
             alignItems="baseline"
             py={{ base: 6, md: 8 }}
             borderBottom="1px solid"
-            borderColor="line"
+            borderColor="border"
           >
-            <Text className="tnum" fontSize="sm" color="fgFaint">
+            <Text className="tnum" fontSize="sm" color="fg.subtle">
               {String(i + 1).padStart(2, "0")}
             </Text>
-            <Text className="tnum" fontSize="0.8rem" color="accent" letterSpacing="0.06em">
+            <Text className="tnum" fontSize="0.8rem" color="accent.fg" letterSpacing="0.06em">
               {e.period}
             </Text>
             <Box>
               <Text fontFamily="heading" fontSize={{ base: "1.4rem", md: "1.7rem" }} lineHeight="1.15" color="fg">
                 {e.company}
               </Text>
-              <Text color="fgMuted" mt={1}>
+              <Text color="fg.muted" mt={1}>
                 {t.experience.roles[i] ?? e.role}
               </Text>
             </Box>

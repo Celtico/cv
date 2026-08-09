@@ -17,12 +17,12 @@ export function About() {
             fontWeight="400"
             fontSize={{ base: "1.5rem", md: "1.9rem" }}
             lineHeight="1.4"
-            color="invFg"
+            color="fg.inverted"
             mb={6}
           >
             <RichText>{t.about.p1}</RichText>
           </Text>
-          <Text color="invMuted" fontSize={{ base: "md", md: "lg" }} lineHeight="1.8">
+          <Text color="fg.inverted.muted" fontSize={{ base: "md", md: "lg" }} lineHeight="1.8">
             <RichText>{t.about.p2}</RichText>
           </Text>
         </Box>
@@ -37,7 +37,7 @@ export function About() {
             overflow="hidden"
             borderRadius="full"
             border="1px solid"
-            borderColor="invLine"
+            borderColor="border.inverted"
           >
             <Image
               src="/img/cel-tico-petit.webp"
@@ -53,7 +53,7 @@ export function About() {
             fontSize="xs"
             letterSpacing="0.2em"
             textTransform="uppercase"
-            color="invMuted"
+            color="fg.inverted.muted"
             mb={4}
           >
             {t.about.idiomes}
@@ -66,12 +66,12 @@ export function About() {
               py={4}
               borderTop={i === 0 ? "1px solid" : undefined}
               borderBottom="1px solid"
-              borderColor="invLine"
+              borderColor="border.inverted"
             >
-              <Text fontFamily="heading" fontSize="lg" color="invFg">
+              <Text fontFamily="heading" fontSize="lg" color="fg.inverted">
                 {l.name}
               </Text>
-              <Text className="tnum" fontSize="xs" letterSpacing="0.1em" textTransform="uppercase" color="invMuted">
+              <Text className="tnum" fontSize="xs" letterSpacing="0.1em" textTransform="uppercase" color="fg.inverted.muted">
                 {l.level}
               </Text>
             </Flex>

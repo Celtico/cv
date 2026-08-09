@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, SimpleGrid, Text, VStack, useColorModeValue } from "@chakra-ui/react";
+import { Box, SimpleGrid, Text, VStack } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import { Section } from "./Section";
 import { useT } from "../i18n";
@@ -52,7 +52,7 @@ function Gauge({ value, label, delay, numColor, ringColor, trackColor }: GaugePr
         fontSize="0.72rem"
         letterSpacing="0.1em"
         textTransform="uppercase"
-        color="fgMuted"
+        color="fg.muted"
         textAlign="center"
       >
         {label}
@@ -63,13 +63,14 @@ function Gauge({ value, label, delay, numColor, ringColor, trackColor }: GaugePr
 
 export function Lighthouse() {
   const t = useT();
-  // Ambre de la paleta del lloc. L'anell és decoratiu i pot ser més clar; la
-  // xifra és text i necessita contrast, per això en clar va més fosca.
-  const ringColor = useColorModeValue("#CE8724", "#E8A23D");
-  const trackColor = useColorModeValue("rgba(206,135,36,0.20)", "rgba(232,162,61,0.18)");
-  const numColor = useColorModeValue("#8F5E10", "#E8A23D");
+  // Tokens semàntics de l'accent: l'anell és decoratiu i pot ser més clar; la
+  // xifra és text i necessita contrast. Als <circle> d'SVG hi arriben com a
+  // variables CSS perquè `stroke` no resol tokens de Chakra.
+  const ringColor = "var(--chakra-colors-accent-dot)";
+  const trackColor = "var(--chakra-colors-accent-muted)";
+  const numColor = "accent.fg";
   return (
-    <Section id="calidad" kicker={t.lighthouse.kicker} title={t.lighthouse.title} subtitle={t.lighthouse.subtitle} bg="canvasAlt">
+    <Section id="calidad" kicker={t.lighthouse.kicker} title={t.lighthouse.title} subtitle={t.lighthouse.subtitle} bg="bg.subtle">
       <SimpleGrid columns={{ base: 2, md: 4 }} spacing={{ base: 8, md: 6 }} justifyItems="center">
         {t.lighthouse.labels.map((label, i) => (
           <Gauge

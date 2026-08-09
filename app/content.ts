@@ -64,6 +64,20 @@ type Dict = {
     t2: string;
     subtitle: string;
   };
+  picker: {
+    main: string;
+    secondary: string;
+    suggestions: string;
+    preview: string;
+  };
+  blog: {
+    kicker: string;
+    title: string;
+    subtitle: string;
+    published: string;
+    source: string;
+    backHome: string;
+  };
 };
 
 export const content: Record<Lang, Dict> = {
@@ -76,6 +90,7 @@ export const content: Record<Lang, Dict> = {
       projectes: "Projectes",
       trajectoria: "Trajectòria",
       registre: "Registre",
+      blog: "Blog",
       contacte: "Contacte",
     },
     hero: {
@@ -118,7 +133,7 @@ export const content: Record<Lang, Dict> = {
     },
     featured: {
       kicker: "Destacats — en producció",
-      title: "Dues aplicacions vives",
+      title: "Tres aplicacions vives",
       subtitle:
         "Producte complet que pots visitar ara mateix: front-end, back-end, IA i integració d'ERP.",
       plate: "Plate",
@@ -143,6 +158,16 @@ export const content: Record<Lang, Dict> = {
             "Laminar: marca les làmines col·locades a les peces ja etiquetades",
             "Muntar: munta el moble pas a pas amb escaneig de QR i control de ferratges",
             "Traçabilitat completa de cada pas del procés",
+          ],
+        },
+        {
+          subtitle: "El quadre digital que el teu cotxe no portava de fàbrica",
+          desc: "«Llegeix. Entén. Protegeix.» Converteix el port OBD-II d'un cotxe de fa vint anys en un quadre digital amb diagnòstic explicat, assistent que interpreta la telemetria real i panell web de flota. PWA instal·lable: funciona a la pantalla del salpicador, tauleta o mòbil.",
+          highlights: [
+            "Diagnòstic traduït: no et diu P0401, et diu quina peça ho pateix i l'encén sobre el cotxe",
+            "Assistent que respon amb la telemetria real del moment: causes ordenades i si pots seguir circulant",
+            "Panell de flota: viatges, alertes automàtiques i telemetria per WebSocket, amb mode sense cobertura",
+            "Pont Android (Kotlin) com a únic procés amb accés a l'adaptador: la pantalla mai toca el hardware",
           ],
         },
       ],
@@ -172,9 +197,9 @@ export const content: Record<Lang, Dict> = {
       kicker: "Trajectòria — per compte d'altri",
       title: "Experiència professional",
       roles: [
-        "Desenvolupador web",
-        "Desenvolupador web",
-        "Desenvolupador web",
+        "Desenvolupador web · Substitució del director de programació per baixa de paternitat",
+        "Desenvolupador web · Tests E2E de tot el panell de control de cdmon",
+        "Desenvolupador web · Clúster MariaDB Galera + HAProxy amb monitorització Prometheus i Grafana",
         "Desenvolupador d'apps i web · 422 projectes, 200+ clients",
       ],
     },
@@ -203,6 +228,21 @@ export const content: Record<Lang, Dict> = {
       t2: "junts?",
       subtitle: "Disponible per a projectes i col·laboracions. Escriu-me i et responc de seguida.",
     },
+    picker: {
+      main: "Color principal",
+      secondary: "Color secundari (gris)",
+      suggestions: "Suggeriments",
+      preview: "Així es veurà",
+    },
+    blog: {
+      kicker: "Bitàcola — notes de treball",
+      title: "Blog",
+      subtitle:
+        "Notes sobre IA aplicada, integració empresarial i els projectes propis en producció. Publicades originalment a LinkedIn.",
+      published: "Publicat el",
+      source: "Veure a LinkedIn",
+      backHome: "Tornar al CV",
+    },
   },
 
   es: {
@@ -214,6 +254,7 @@ export const content: Record<Lang, Dict> = {
       projectes: "Proyectos",
       trajectoria: "Trayectoria",
       registre: "Registro",
+      blog: "Blog",
       contacte: "Contacto",
     },
     hero: {
@@ -256,7 +297,7 @@ export const content: Record<Lang, Dict> = {
     },
     featured: {
       kicker: "Destacados — en producción",
-      title: "Dos aplicaciones vivas",
+      title: "Tres aplicaciones vivas",
       subtitle:
         "Producto completo que puedes visitar ahora mismo: front-end, back-end, IA e integración de ERP.",
       plate: "Plate",
@@ -281,6 +322,16 @@ export const content: Record<Lang, Dict> = {
             "Laminar: marca las láminas colocadas en las piezas ya etiquetadas",
             "Montar: monta el mueble paso a paso con escaneo de QR y control de herrajes",
             "Trazabilidad completa de cada paso del proceso",
+          ],
+        },
+        {
+          subtitle: "El cuadro digital que tu coche no traía de fábrica",
+          desc: "«Lee. Entiende. Protege.» Convierte el puerto OBD-II de un coche de hace veinte años en un cuadro digital con diagnóstico explicado, asistente que interpreta la telemetría real y panel web de flota. PWA instalable: funciona en la pantalla del salpicadero, tableta o móvil.",
+          highlights: [
+            "Diagnóstico traducido: no te dice P0401, te dice qué pieza lo sufre y la enciende sobre el coche",
+            "Asistente que responde con la telemetría real del momento: causas ordenadas y si puedes seguir circulando",
+            "Panel de flota: viajes, alertas automáticas y telemetría por WebSocket, con modo sin cobertura",
+            "Puente Android (Kotlin) como único proceso con acceso al adaptador: la pantalla nunca toca el hardware",
           ],
         },
       ],
@@ -310,9 +361,9 @@ export const content: Record<Lang, Dict> = {
       kicker: "Trayectoria — por cuenta ajena",
       title: "Experiencia profesional",
       roles: [
-        "Desarrollador web",
-        "Desarrollador web",
-        "Desarrollador web",
+        "Desarrollador web · Sustitución del director de programación por baja de paternidad",
+        "Desarrollador web · Tests E2E de todo el panel de control de cdmon",
+        "Desarrollador web · Clúster MariaDB Galera + HAProxy con monitorización Prometheus y Grafana",
         "Desarrollador de apps y web · 422 proyectos, 200+ clientes",
       ],
     },
@@ -341,6 +392,21 @@ export const content: Record<Lang, Dict> = {
       t2: "juntos?",
       subtitle: "Disponible para proyectos y colaboraciones. Escríbeme y te respondo enseguida.",
     },
+    picker: {
+      main: "Color principal",
+      secondary: "Color secundario (gris)",
+      suggestions: "Sugerencias",
+      preview: "Así se verá",
+    },
+    blog: {
+      kicker: "Bitácora — notas de trabajo",
+      title: "Blog",
+      subtitle:
+        "Notas sobre IA aplicada, integración empresarial y los proyectos propios en producción. Publicadas originalmente en LinkedIn.",
+      published: "Publicado el",
+      source: "Ver en LinkedIn",
+      backHome: "Volver al CV",
+    },
   },
 
   en: {
@@ -352,6 +418,7 @@ export const content: Record<Lang, Dict> = {
       projectes: "Projects",
       trajectoria: "Career",
       registre: "Ledger",
+      blog: "Blog",
       contacte: "Contact",
     },
     hero: {
@@ -394,7 +461,7 @@ export const content: Record<Lang, Dict> = {
     },
     featured: {
       kicker: "Featured — in production",
-      title: "Two live applications",
+      title: "Three live applications",
       subtitle: "Complete product you can visit right now: front-end, back-end, AI and ERP integration.",
       plate: "Plate",
       visitar: "Visit",
@@ -418,6 +485,16 @@ export const content: Record<Lang, Dict> = {
             "Laminate: mark the sheets placed on already-labelled parts",
             "Assemble: build the furniture step by step with QR scanning and hardware control",
             "Full traceability of every step of the process",
+          ],
+        },
+        {
+          subtitle: "The digital dashboard your car didn't come with",
+          desc: "“Read. Understand. Protect.” Turns the OBD-II port of a twenty-year-old car into a digital dashboard with explained diagnostics, an assistant that interprets real telemetry, and a web fleet panel. Installable PWA: it runs on the dashboard screen, a tablet or a phone.",
+          highlights: [
+            "Translated diagnostics: it doesn't say P0401 — it names the part that's suffering and lights it up on the car",
+            "An assistant that answers with the actual telemetry of the moment: ranked causes and whether you can keep driving",
+            "Fleet panel: trips, automatic alerts and WebSocket telemetry, with an offline mode",
+            "An Android bridge (Kotlin) is the only process touching the adapter: the screen never touches the hardware",
           ],
         },
       ],
@@ -447,9 +524,9 @@ export const content: Record<Lang, Dict> = {
       kicker: "Career — employed",
       title: "Professional experience",
       roles: [
-        "Web developer",
-        "Web developer",
-        "Web developer",
+        "Web developer · Covering the programming director's paternity leave",
+        "Web developer · E2E testing of the entire cdmon control panel",
+        "Web developer · MariaDB Galera + HAProxy cluster with Prometheus & Grafana monitoring",
         "App & web developer · 422 projects, 200+ clients",
       ],
     },
@@ -477,6 +554,21 @@ export const content: Record<Lang, Dict> = {
       ti: "something",
       t2: "together?",
       subtitle: "Available for projects and collaborations. Write to me and I'll reply right away.",
+    },
+    picker: {
+      main: "Main color",
+      secondary: "Secondary color (gray)",
+      suggestions: "Suggestions",
+      preview: "How it will look",
+    },
+    blog: {
+      kicker: "Logbook — working notes",
+      title: "Blog",
+      subtitle:
+        "Notes on applied AI, enterprise integration and my own products in production. Originally published on LinkedIn.",
+      published: "Published on",
+      source: "View on LinkedIn",
+      backHome: "Back to the CV",
     },
   },
 };

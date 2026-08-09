@@ -23,10 +23,10 @@ function Head({ l }: { l: ReturnType<typeof useT>["ledger"] }) {
       fontSize="0.66rem"
       letterSpacing="0.14em"
       textTransform="uppercase"
-      color="fgFaint"
+      color="fg.subtle"
       pb={3}
       borderBottom="1px solid"
-      borderColor="lineStrong"
+      borderColor="border.emphasized"
     >
       <Text>Nº</Text>
       <Text>{l.colClient}</Text>
@@ -47,7 +47,7 @@ export function ClientHours() {
   const max = Math.max(...clientHours.map((c) => c.hours));
 
   return (
-    <Section id="trayectoria" kicker={l.kicker} title={l.title} subtitle={l.subtitle} bg="canvas">
+    <Section id="trayectoria" kicker={l.kicker} title={l.title} subtitle={l.subtitle} bg="bg">
       <Head l={l} />
       <Box>
         {clientHours.map((c, i) => {
@@ -60,21 +60,21 @@ export function ClientHours() {
                 alignItems="baseline"
                 py={{ base: 3.5, md: 4 }}
               >
-                <Text className="tnum" fontSize="sm" color="fgFaint">
+                <Text className="tnum" fontSize="sm" color="fg.subtle">
                   {String(i + 1).padStart(2, "0")}
                 </Text>
                 <Box minW={0}>
                   <Text fontFamily="heading" fontSize={{ base: "1.05rem", md: "1.25rem" }} color="fg" noOfLines={1}>
                     {c.name}
                   </Text>
-                  <Text className="tnum" fontSize="0.68rem" color="fgMuted" mt={0.5} display={{ md: "none" }}>
+                  <Text className="tnum" fontSize="0.68rem" color="fg.muted" mt={0.5} display={{ md: "none" }}>
                     {c.projects} proj · {c.period}
                   </Text>
                 </Box>
-                <Text className="tnum" fontSize="sm" color="fgMuted" display={{ base: "none", md: "block" }}>
+                <Text className="tnum" fontSize="sm" color="fg.muted" display={{ base: "none", md: "block" }}>
                   {c.projects}
                 </Text>
-                <Text className="tnum" fontSize="sm" color="fgMuted" display={{ base: "none", md: "block" }}>
+                <Text className="tnum" fontSize="sm" color="fg.muted" display={{ base: "none", md: "block" }}>
                   {c.period}
                 </Text>
                 <Text className="tnum" fontSize={{ base: "sm", md: "md" }} fontWeight="500" color="fg" textAlign="right">
@@ -82,8 +82,8 @@ export function ClientHours() {
                 </Text>
               </Grid>
               {/* filet-registre amb magnitud */}
-              <Box h="2px" bg="line" position="relative">
-                <Box h="full" w={`${pct}%`} bg="accentDot" opacity={0.55} />
+              <Box h="2px" bg="border" position="relative">
+                <Box h="full" w={`${pct}%`} bg="accent.dot" opacity={0.55} />
               </Box>
             </Box>
           );
@@ -99,10 +99,10 @@ export function ClientHours() {
           borderTop="2px solid"
           borderColor="fg"
         >
-          <Text className="tnum" fontSize="0.66rem" color="accent" letterSpacing="0.1em">
+          <Text className="tnum" fontSize="0.66rem" color="accent.fg" letterSpacing="0.1em">
             Σ
           </Text>
-          <Text className="tnum" fontSize="0.72rem" letterSpacing="0.14em" textTransform="uppercase" color="fgMuted">
+          <Text className="tnum" fontSize="0.72rem" letterSpacing="0.14em" textTransform="uppercase" color="fg.muted">
             {l.total}
           </Text>
           <Text className="tnum" fontSize="sm" color="fg" display={{ base: "none", md: "block" }}>
@@ -115,7 +115,7 @@ export function ClientHours() {
         </Grid>
       </Box>
 
-      <Text color="fgMuted" fontSize="sm" mt={8} maxW="44rem" lineHeight="1.7">
+      <Text color="fg.muted" fontSize="sm" mt={8} maxW="44rem" lineHeight="1.7">
         {l.note}
       </Text>
     </Section>

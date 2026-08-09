@@ -100,6 +100,22 @@ export const featured: Featured[] = [
     url: "https://fabrik.serverscel.com",
     accent: "orange.400",
   },
+  {
+    title: "VehicleOS",
+    subtitle: "El cuadro digital que tu coche no traía de fábrica",
+    desc: "«Lee. Entiende. Protege.» Convierte el puerto OBD-II de un coche de hace veinte años en un cuadro digital con diagnóstico explicado, asistente que interpreta la telemetría real y panel web de flota. PWA instalable: funciona en la pantalla del salpicadero, tableta o móvil.",
+    highlights: [
+      "Diagnóstico traducido: no te dice P0401, te dice qué pieza lo sufre y la enciende sobre el coche",
+      "Asistente que responde con la telemetría real del momento: causas ordenadas y si puedes seguir circulando",
+      "Panel de flota: viajes, alertas automáticas y telemetría por WebSocket, con modo sin cobertura",
+      "Puente Android (Kotlin) como único proceso con acceso al adaptador: la pantalla nunca toca el hardware",
+    ],
+    stack: ["Next.js PWA", "NestJS", "PostgreSQL", "WebSocket", "Kotlin", "OBD-II · ELM327", "JWT"],
+    img: "/img/anim-vehicleos.svg",
+    url: "https://vehicleos.serverscel.com",
+    accent: "blue.400",
+    badge: "OBD-II",
+  },
 ];
 
 export type Project = {
@@ -131,17 +147,17 @@ export const projects: Project[] = [
 export const experience = [
   {
     company: "Vunkers IT Experts, S.L.",
-    role: "Desarrollador web",
+    role: "Desarrollador web · Sustitución del director de programación por baja de paternidad",
     period: "nov 2025 – jul 2026",
   },
   {
     company: "Iridium Network Digital Technologies, SL",
-    role: "Desarrollador web",
+    role: "Desarrollador web · Tests E2E de todo el panel de control de cdmon",
     period: "nov 2023 – jul 2024",
   },
   {
     company: "Noves Tecnologies de Venta, S.L.",
-    role: "Desarrollador web",
+    role: "Desarrollador web · Clúster MariaDB Galera + HAProxy con monitorización Prometheus y Grafana",
     period: "abr 2023 – may 2023",
   },
   {

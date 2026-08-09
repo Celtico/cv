@@ -8,8 +8,8 @@ import { useT } from "../i18n";
 export function Skills() {
   const t = useT();
   return (
-    <Section id="skills" kicker={t.skills.kicker} title={t.skills.title} subtitle={t.skills.subtitle} bg="canvas">
-      <Box borderTop="1px solid" borderColor="line">
+    <Section id="skills" kicker={t.skills.kicker} title={t.skills.title} subtitle={t.skills.subtitle} bg="bg">
+      <Box borderTop="1px solid" borderColor="border">
         {skills.map((s, i) => (
           <Grid
             key={s.group}
@@ -18,7 +18,7 @@ export function Skills() {
             alignItems="baseline"
             py={{ base: 6, md: 7 }}
             borderBottom="1px solid"
-            borderColor="line"
+            borderColor="border"
           >
             <Text fontFamily="heading" fontSize={{ base: "1.4rem", md: "1.7rem" }} color="fg">
               {t.skills.groups[i] ?? s.group}
@@ -29,11 +29,11 @@ export function Skills() {
                   <Text
                     className="tnum"
                     fontSize="0.78rem"
-                    color="fgMuted"
+                    color="fg.muted"
                     px={2.5}
                     py={1}
                     border="1px solid"
-                    borderColor="line"
+                    borderColor="border"
                     borderRadius="2px"
                   >
                     {it}
@@ -44,7 +44,7 @@ export function Skills() {
             <Text
               className="tnum"
               fontSize="xs"
-              color="fgFaint"
+              color="fg.subtle"
               textAlign={{ md: "right" }}
               display={{ base: "none", md: "block" }}
             >

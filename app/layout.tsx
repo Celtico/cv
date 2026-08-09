@@ -70,14 +70,20 @@ const jsonLd = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="ca" style={{ colorScheme: "light dark" }}>
+    // Chakra ajusta color-scheme (i la classe del body) abans de la hidratació
+    // segons el mode desat; els suppressHydrationWarning eviten els avisos
+    // d'atributs desajustats en desenvolupament.
+    <html lang="ca" style={{ colorScheme: "light dark" }} suppressHydrationWarning>
       <head>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body>
+      {/* L'script de mode de color de Chakra posa la classe chakra-ui-light/dark
+          al body abans de la hidratació; sense això React avisa d'un atribut
+          "class" extra en mode desenvolupament. */}
+      <body suppressHydrationWarning>
         <ColorModeScript initialColorMode="system" />
         <Providers>{children}</Providers>
       </body>

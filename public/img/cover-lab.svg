@@ -1,16 +1,16 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450" role="img" aria-label="Laboratorio de experimentos">
   <defs>
     <linearGradient id="bgL" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#141210"/>
-      <stop offset="1" stop-color="#141210"/>
+      <stop offset="0" style="stop-color:var(--chakra-colors-ink-bg, #141210)"/>
+      <stop offset="1" style="stop-color:var(--chakra-colors-ink-bg, #141210)"/>
     </linearGradient>
     <linearGradient id="wave" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="#C9BFA8"/>
-      <stop offset="1" stop-color="#E8A23D"/>
+      <stop offset="0" style="stop-color:var(--chakra-colors-ink-fg, #C9BFA8)"/>
+      <stop offset="1" style="stop-color:var(--chakra-colors-accent-solid, #E8A23D)"/>
     </linearGradient>
     <radialGradient id="glowL" cx="0.5" cy="0.5" r="0.5">
-      <stop offset="0" stop-color="#C9BFA8" stop-opacity="0.8"/>
-      <stop offset="1" stop-color="#C9BFA8" stop-opacity="0"/>
+      <stop offset="0" style="stop-color:var(--chakra-colors-ink-fg, #C9BFA8)" stop-opacity="0.8"/>
+      <stop offset="1" style="stop-color:var(--chakra-colors-ink-fg, #C9BFA8)" stop-opacity="0"/>
     </radialGradient>
     <style>
       @keyframes lbreathe { 0%,100%{opacity:.14} 50%{opacity:.24} }
@@ -33,7 +33,7 @@
   </g>
 
   <!-- RTL-SDR radio waves -->
-  <g fill="none" stroke="#E8A23D" stroke-width="2" opacity="0.35">
+  <g fill="none" stroke="var(--chakra-colors-accent-solid, #E8A23D)" stroke-width="2" opacity="0.35">
     <path d="M120,225 q30,-60 60,0 t60,0 t60,0 t60,0"/>
   </g>
   <g fill="none" stroke="url(#wave)" stroke-width="3">
@@ -41,22 +41,22 @@
   </g>
 
   <!-- concentric radio broadcast (top-right) -->
-  <g fill="none" stroke="#C9BFA8" stroke-width="2">
+  <g fill="none" stroke="var(--chakra-colors-ink-fg, #C9BFA8)" stroke-width="2">
     <circle cx="640" cy="120" r="18" opacity="0.9"/>
     <circle cx="640" cy="120" r="38" opacity="0.5"/>
     <circle cx="640" cy="120" r="58" opacity="0.25"/>
     <circle class="lring" cx="640" cy="120" r="6"/>
-    <circle cx="640" cy="120" r="6" fill="#C9BFA8"/>
+    <circle cx="640" cy="120" r="6" fill="var(--chakra-colors-ink-fg, #C9BFA8)"/>
   </g>
 
   <!-- WASM hexagon chip -->
   <g transform="translate(560,330)">
-    <polygon points="0,-34 30,-17 30,17 0,34 -30,17 -30,-17" fill="#1B1813" stroke="#E8A23D" stroke-width="2.5"/>
-    <text x="0" y="6" fill="#F0B662" font-family="ui-monospace, monospace" font-size="15" text-anchor="middle" font-weight="700">WASM</text>
+    <polygon points="0,-34 30,-17 30,17 0,34 -30,17 -30,-17" fill="var(--chakra-colors-ink-bg, #1B1813)" stroke="var(--chakra-colors-accent-solid, #E8A23D)" stroke-width="2.5"/>
+    <text x="0" y="6" fill="var(--chakra-colors-accent-emphasized, #F0B662)" font-family="ui-monospace, monospace" font-size="15" text-anchor="middle" font-weight="700">WASM</text>
   </g>
 
   <!-- code brackets -->
-  <text x="60" y="90" fill="#C9BFA8" font-family="ui-monospace, monospace" font-size="40" opacity="0.85">&lt;/&gt;</text>
-  <text x="60" y="410" fill="#F0B662" font-family="ui-monospace, monospace" font-size="16" opacity="0.9">WebRTC · PHP-Wasm · RTL-SDR · Live Editor</text>
-  <text x="740" y="60" fill="#A79F8E" font-family="system-ui, sans-serif" font-size="15" text-anchor="end" letter-spacing="2">I + D</text>
+  <text x="60" y="90" fill="var(--chakra-colors-ink-fg, #C9BFA8)" font-family="ui-monospace, monospace" font-size="40" opacity="0.85">&lt;/&gt;</text>
+  <text x="60" y="410" fill="var(--chakra-colors-accent-emphasized, #F0B662)" font-family="ui-monospace, monospace" font-size="16" opacity="0.9">WebRTC · PHP-Wasm · RTL-SDR · Live Editor</text>
+  <text x="740" y="60" fill="var(--chakra-colors-ink-fg-muted, #A79F8E)" font-family="system-ui, sans-serif" font-size="15" text-anchor="end" letter-spacing="2">I + D</text>
 </svg>
