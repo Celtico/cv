@@ -91,7 +91,7 @@ function Post({ post, index }: { post: BlogPost; index: number }) {
       mt={{ base: 12, md: 16 }}
       borderTop={index > 0 ? "1px solid" : undefined}
       borderColor="border"
-      scrollMarginTop="80px"
+      scrollMarginTop="0"
     >
       <Flex
         className="tnum"
