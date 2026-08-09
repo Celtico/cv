@@ -37,6 +37,7 @@ const theme = extendTheme({
       "border.emphasized": { default: "blackAlpha.300", _dark: "whiteAlpha.300" },
       "border.inverted": { default: "whiteAlpha.300", _dark: "blackAlpha.300" },
       "gray.emphasized": { default: "#C9BFA8", _dark: "#4A4234" }, // vel de les fotos
+      "gray.contrast": { default: "#F7F3E9", _dark: "#0D0B09" }, // panell de màxim contrast (seccions Perfil i Contacte)
       "accent.fg": { default: "#8F5E10", _dark: "#E8A23D" }, // ambre segur com a text
       "accent.dot": { default: "#CE8724", _dark: "#E8A23D" }, // marca decorativa
       "accent.solid": { default: "#E8A23D", _dark: "#E8A23D" }, // fons de botó ple
@@ -56,10 +57,11 @@ const theme = extendTheme({
   },
   styles: {
     global: {
+      // sense scroll-behavior smooth: els salts d'àncora són instantanis
+      // (amb smooth, el parallax cancel·lava els scrolls programàtics)
       "html, body": {
         bg: "bg",
         color: "fg",
-        scrollBehavior: "smooth",
       },
       "::selection": {
         bg: "accent.solid",

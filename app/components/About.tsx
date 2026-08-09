@@ -9,7 +9,7 @@ import { useT } from "../i18n";
 export function About() {
   const t = useT();
   return (
-    <Section id="sobre-mi" kicker={t.about.kicker} title={t.about.title} inverted>
+    <Section id="sobre-mi" kicker={t.about.kicker} title={t.about.title} bg="gray.contrast">
       <Grid templateColumns={{ base: "1fr", md: "1.6fr 1fr" }} gap={{ base: 10, md: 16 }}>
         <Box>
           <Text
@@ -17,12 +17,12 @@ export function About() {
             fontWeight="400"
             fontSize={{ base: "1.5rem", md: "1.9rem" }}
             lineHeight="1.4"
-            color="fg.inverted"
+            color="fg"
             mb={6}
           >
             <RichText>{t.about.p1}</RichText>
           </Text>
-          <Text color="fg.inverted.muted" fontSize={{ base: "md", md: "lg" }} lineHeight="1.8">
+          <Text color="fg.muted" fontSize={{ base: "md", md: "lg" }} lineHeight="1.8">
             <RichText>{t.about.p2}</RichText>
           </Text>
         </Box>
@@ -37,7 +37,7 @@ export function About() {
             overflow="hidden"
             borderRadius="full"
             border="1px solid"
-            borderColor="border.inverted"
+            borderColor="border.emphasized"
           >
             <Image
               src="/img/cel-tico-petit.webp"
@@ -53,7 +53,7 @@ export function About() {
             fontSize="xs"
             letterSpacing="0.2em"
             textTransform="uppercase"
-            color="fg.inverted.muted"
+            color="fg.muted"
             mb={4}
           >
             {t.about.idiomes}
@@ -66,12 +66,12 @@ export function About() {
               py={4}
               borderTop={i === 0 ? "1px solid" : undefined}
               borderBottom="1px solid"
-              borderColor="border.inverted"
+              borderColor="border.emphasized"
             >
-              <Text fontFamily="heading" fontSize="lg" color="fg.inverted">
+              <Text fontFamily="heading" fontSize="lg" color="fg">
                 {l.name}
               </Text>
-              <Text className="tnum" fontSize="xs" letterSpacing="0.1em" textTransform="uppercase" color="fg.inverted.muted">
+              <Text className="tnum" fontSize="xs" letterSpacing="0.1em" textTransform="uppercase" color="fg.muted">
                 {l.level}
               </Text>
             </Flex>

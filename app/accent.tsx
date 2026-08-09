@@ -133,6 +133,7 @@ const NEUTRAL_DEFAULTS: Record<string, [string, string]> = {
   "fg.inverted": ["#EDE6D6", "#1A1712"],
   "fg.inverted.muted": ["#A79F8E", "#6B6353"],
   "gray.emphasized": ["#C9BFA8", "#4A4234"], // gris èmfasi: vel de les fotos
+  "gray.contrast": ["#F7F3E9", "#0D0B09"], // panell de màxim contrast
   // tinta de les il·lustracions: sempre fosca, però segueix el to del gris
   "ink.bg": ["#14110c", "#14110c"],
   "ink.subtle": ["#1d1913", "#1d1913"],
@@ -211,7 +212,10 @@ export function AccentProvider({ children }: { children: React.ReactNode }) {
       ...(hex2 ? deriveNeutrals(hex2, mode) : {}),
     };
     for (const [name, value] of Object.entries(tokens)) {
-      document.body.style.setProperty(`--chakra-colors-${name.replace(/\./g, "-")}`, value);
+      const cssVar = `--chakra-colors-${name.replace(/\./g, "-")}`;
+      // al body (mana sobre el contingut) i a l'html (fons de l'overscroll)
+      document.body.style.setProperty(cssVar, value);
+      document.documentElement.style.setProperty(cssVar, value);
     }
   }, [hex, hex2, colorMode, ready]);
 

@@ -28,12 +28,12 @@ export function Gallery() {
                   transition="transform .4s, filter .35s ease"
                   _groupHover={{ transform: "scale(1.05)", filter: "none" }}
                 />
-                {/* capa plana del color principal a 0.98; el hover la retira */}
+                {/* capa plana del color principal a 0.9; el hover la retira */}
                 <Box
                   position="absolute"
                   inset={0}
                   bg="accent.solid"
-                  opacity={0.98}
+                  opacity={0.9}
                   transition="opacity .35s ease"
                   pointerEvents="none"
                   _groupHover={{ opacity: 0 }}

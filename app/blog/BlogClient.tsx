@@ -47,7 +47,7 @@ function TintedImage({ src, alt, cover = false }: { src: string; alt: string; co
         position="absolute"
         inset={0}
         bg="accent.solid"
-        opacity={0.98}
+        opacity={0.9}
         transition="opacity .35s ease"
         pointerEvents="none"
         _groupHover={{ opacity: 0 }}
@@ -91,7 +91,7 @@ function Post({ post, index }: { post: BlogPost; index: number }) {
       mt={{ base: 12, md: 16 }}
       borderTop={index > 0 ? "1px solid" : undefined}
       borderColor="border"
-      scrollMarginTop="80px"
+      scrollMarginTop="0"
     >
       <Flex
         className="tnum"

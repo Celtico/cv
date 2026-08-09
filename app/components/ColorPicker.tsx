@@ -18,7 +18,7 @@ function Label({ children }: { children: React.ReactNode }) {
       fontSize="0.66rem"
       letterSpacing="0.14em"
       textTransform="uppercase"
-      color="fg.inverted.muted"
+      color="fg.muted"
       mb={3}
     >
       {children}
@@ -53,7 +53,7 @@ function ColorField({ label, value, onChange }: { label: string; value: string; 
           p={0}
           borderRadius="6px"
           border="1px solid"
-          borderColor="border.inverted"
+          borderColor="border.emphasized"
           bg="transparent"
           cursor="pointer"
           flexShrink={0}
@@ -70,13 +70,13 @@ function ColorField({ label, value, onChange }: { label: string; value: string; 
           h="46px"
           className="tnum"
           fontSize="16px"
-          color="fg.inverted"
+          color="fg"
           bg="transparent"
           border="1px solid"
-          borderColor="border.inverted"
+          borderColor="border.emphasized"
           borderRadius="6px"
-          _hover={{ borderColor: "fg.inverted.muted" }}
-          _focusVisible={{ borderColor: "accent.inverted", boxShadow: "none" }}
+          _hover={{ borderColor: "fg.muted" }}
+          _focusVisible={{ borderColor: "accent.fg", boxShadow: "none" }}
           aria-label={label}
           spellCheck={false}
         />
@@ -113,9 +113,9 @@ export function ColorPicker() {
               borderRadius="full"
               bg={c}
               border="2px solid"
-              borderColor={selected ? "fg.inverted" : "transparent"}
+              borderColor={selected ? "fg" : "transparent"}
               outline="1px solid"
-              outlineColor="border.inverted"
+              outlineColor="border.emphasized"
               outlineOffset="2px"
               cursor="pointer"
               transition="transform 0.15s ease"
@@ -126,7 +126,7 @@ export function ColorPicker() {
       </HStack>
 
       <Label>{t.picker.preview}</Label>
-      <Flex borderRadius="8px" overflow="hidden" maxW="30rem" h="44px" border="1px solid" borderColor="border.inverted">
+      <Flex borderRadius="8px" overflow="hidden" maxW="30rem" h="44px" border="1px solid" borderColor="border.emphasized">
         {RAMP_LIGHTNESS.map((l) => (
           <Box key={l} flex="1" bg={withLightness(hex, l)} />
         ))}

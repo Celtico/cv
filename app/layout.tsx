@@ -1,6 +1,8 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { ColorModeScript } from "@chakra-ui/react";
 import { Providers } from "./providers";
+import { PwaRegister } from "./components/PwaRegister";
+import { HashScroll } from "./components/HashScroll";
 import { profile } from "./data";
 
 
@@ -48,6 +50,18 @@ export const metadata: Metadata = {
   },
   robots: { index: true, follow: true },
   alternates: { canonical: siteUrl },
+  appleWebApp: {
+    capable: true,
+    title: "Cel · CV",
+    statusBarStyle: "black-translucent",
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ECE5D5" },
+    { media: "(prefers-color-scheme: dark)", color: "#141210" },
+  ],
 };
 
 const jsonLd = {
@@ -85,6 +99,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           "class" extra en mode desenvolupament. */}
       <body suppressHydrationWarning>
         <ColorModeScript initialColorMode="system" />
+        <PwaRegister />
+        <HashScroll />
         <Providers>{children}</Providers>
       </body>
     </html>
