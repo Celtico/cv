@@ -57,11 +57,10 @@ const theme = extendTheme({
   },
   styles: {
     global: {
-      // sense scroll-behavior smooth: els salts d'àncora són instantanis
-      // (amb smooth, el parallax cancel·lava els scrolls programàtics)
       "html, body": {
         bg: "bg",
         color: "fg",
+        scrollBehavior: "smooth",
       },
       "::selection": {
         bg: "accent.solid",

@@ -31,8 +31,7 @@ export function Section({
       py={{ base: 16, md: 24 }}
       bg={inverted ? "bg.inverted" : bg}
       color={inverted ? "fg.inverted" : "fg"}
-      // la barra s'amaga en baixar, així que la secció pot encaixar arran de dalt
-      scrollMarginTop="0"
+      scrollMarginTop="72px"
     >
       <Container maxW="72rem">
         <Box mb={{ base: 10, md: 14 }}>

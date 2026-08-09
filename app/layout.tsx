@@ -2,7 +2,6 @@ import type { Metadata, Viewport } from "next";
 import { ColorModeScript } from "@chakra-ui/react";
 import { Providers } from "./providers";
 import { PwaRegister } from "./components/PwaRegister";
-import { HashScroll } from "./components/HashScroll";
 import { profile } from "./data";
 
 
@@ -100,7 +99,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body suppressHydrationWarning>
         <ColorModeScript initialColorMode="system" />
         <PwaRegister />
-        <HashScroll />
         <Providers>{children}</Providers>
       </body>
     </html>
