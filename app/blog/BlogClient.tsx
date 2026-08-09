@@ -5,21 +5,18 @@ import {
   Container,
   Flex,
   Heading,
-  Icon,
   Image,
-  Link,
   SimpleGrid,
   Text,
   VStack,
   Wrap,
   WrapItem,
 } from "@chakra-ui/react";
-import { FiArrowUpRight } from "react-icons/fi";
 import { Nav } from "../components/Nav";
 import { Contact } from "../components/Contact";
 import { Reveal } from "../components/Reveal";
 import { useLang, useT } from "../i18n";
-import { blogPosts, LINKEDIN_ACTIVITY, type BlogPost } from "./posts";
+import { blogPosts, type BlogPost } from "./posts";
 
 function formatDate(iso: string, lang: string) {
   return new Date(`${iso}T12:00:00`).toLocaleDateString(
@@ -142,23 +139,6 @@ function Post({ post, index }: { post: BlogPost; index: number }) {
         ))}
       </VStack>
 
-      <Link
-        href={LINKEDIN_ACTIVITY}
-        isExternal
-        display="inline-flex"
-        alignItems="center"
-        gap={1.5}
-        mt={6}
-        className="tnum"
-        fontSize="0.72rem"
-        letterSpacing="0.12em"
-        textTransform="uppercase"
-        color="accent.fg"
-        _hover={{ textDecoration: "none", color: "fg" }}
-      >
-        {t.blog.source}
-        <Icon as={FiArrowUpRight} />
-      </Link>
     </Box>
   );
 }
