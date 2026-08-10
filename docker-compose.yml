@@ -7,11 +7,7 @@ services:
     container_name: cv-celesti-tico
     restart: unless-stopped
     ports:
-      # Lligat a loopback a posta: Docker escriu les seves regles a DOCKER-USER,
-      # per davant d'ufw, així que publicar a 0.0.0.0 deixava el Next accessible
-      # des d'Internet saltant-se el Nginx i, amb ell, el TLS i les capçaleres.
-      # El reverse proxy del host hi arriba per 127.0.0.1:3592.
-      - "127.0.0.1:3592:3000"
+      - "3592:3000"
     environment:
       - NODE_ENV=production
       - PORT=3000
