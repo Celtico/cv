@@ -199,10 +199,10 @@ export const blogPosts: BlogPost[] = [
     date: "2026-07-27",
     images: [
       {
-        src: "/img/blog/agents-codi.svg",
-        width: 800,
-        height: 500,
-        alt: "Columna de codi on les primeres línies són escrites a mà i la resta les emeten tres agents connectats per fils",
+        src: "/img/blog/agents-codi.webp",
+        width: 1200,
+        height: 669,
+        alt: "Panell de codi sobre una retícula fosca: les tres primeres línies en gris, escrites a mà, i la resta en ambre, emeses per tres nodes connectats amb fils prims",
       },
     ],
     content: {
