@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Grid, Text } from "@chakra-ui/react";
+import { Box, Grid, Heading, Text } from "@chakra-ui/react";
 import { Section } from "./Section";
 import { experience } from "../data";
 import { useT } from "../i18n";
@@ -27,9 +27,9 @@ export function Experience() {
               {e.period}
             </Text>
             <Box>
-              <Text fontFamily="heading" fontSize={{ base: "1.4rem", md: "1.7rem" }} lineHeight="1.15" color="fg">
+              <Heading as="h3" textStyle="cardTitle" fontSize={{ base: "1.4rem", md: "1.7rem" }} lineHeight="1.15" color="fg">
                 {e.company}
-              </Text>
+              </Heading>
               <Text color="fg.muted" mt={1}>
                 {t.experience.roles[i] ?? e.role}
               </Text>

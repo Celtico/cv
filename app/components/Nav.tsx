@@ -21,9 +21,11 @@ import {
   useColorModeValue,
   useDisclosure,
 } from "@chakra-ui/react";
+import NextLink from "next/link";
+import { usePathname } from "next/navigation";
 import { FiMenu, FiMoon, FiSun } from "react-icons/fi";
 import { LANGS, type Lang } from "../content";
-import { useLang, useT } from "../i18n";
+import { anchorHref, langHref, stripLang, useLang, useT } from "../i18n";
 
 function ThemeToggle() {
   const { toggleColorMode } = useColorMode();
@@ -44,14 +46,23 @@ function ThemeToggle() {
   );
 }
 
+// Ara cada idioma és una URL de debò (/ · /es · /en), així que el commutador
+// són enllaços i no un canvi d'estat: es poden compartir, indexar i obrir en
+// una pestanya nova.
 function LangSwitch() {
   const { lang, setLang } = useLang();
+  const pathname = usePathname();
+  const rest = stripLang(pathname ?? "/");
+
   return (
     <HStack spacing={0} border="1px solid" borderColor="border" borderRadius="2px" overflow="hidden">
       {LANGS.map((l: Lang) => (
         <Button
           key={l}
+          as={NextLink}
+          href={langHref(l, rest)}
           onClick={() => setLang(l)}
+          hrefLang={l}
           size="xs"
           h="30px"
           minW="34px"
@@ -65,7 +76,7 @@ function LangSwitch() {
           bg={lang === l ? "accent.fg" : "transparent"}
           color={lang === l ? "bg" : "fg.muted"}
           _hover={lang === l ? {} : { bg: "bg.muted", color: "fg" }}
-          aria-pressed={lang === l}
+          aria-current={lang === l ? "true" : undefined}
         >
           {l.toUpperCase()}
         </Button>
@@ -77,6 +88,7 @@ function LangSwitch() {
 export function Nav() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const t = useT();
+  const { lang } = useLang();
 
   // La barra s'amaga en baixar i torna a sortir en pujar.
   const [hidden, setHidden] = useState(false);
@@ -93,22 +105,22 @@ export function Nav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Amb el prefix "/" les àncores també funcionen des de /blog.
+  // Les àncores porten prefix perquè també han de funcionar des de /blog, i
+  // porten l'idioma perquè si no et treuen de /es o /en i et tornen al català.
   const links = [
-    { href: "/#sobre-mi", label: t.nav.perfil },
-    { href: "/#skills", label: t.nav.eines },
-    { href: "/#calidad", label: t.nav.qualitat },
-    { href: "/#destacados", label: t.nav.destacats },
-    { href: "/#proyectos", label: t.nav.projectes },
-    { href: "/#experiencia", label: t.nav.trajectoria },
-    { href: "/#trayectoria", label: t.nav.registre },
-    { href: "/blog", label: t.nav.blog },
-    { href: "/#contacto", label: t.nav.contacte },
+    { href: anchorHref(lang, "destacados"), label: t.nav.destacats },
+    { href: anchorHref(lang, "sobre-mi"), label: t.nav.perfil },
+    { href: anchorHref(lang, "skills"), label: t.nav.eines },
+    { href: anchorHref(lang, "proyectos"), label: t.nav.projectes },
+    { href: anchorHref(lang, "experiencia"), label: t.nav.trajectoria },
+    { href: anchorHref(lang, "trayectoria"), label: t.nav.registre },
+    { href: langHref(lang, "/blog"), label: t.nav.blog },
+    { href: anchorHref(lang, "contacto"), label: t.nav.contacte },
   ];
 
   return (
     <Box
-      as="nav"
+      as="header"
       position="sticky"
       top={0}
       zIndex={100}
@@ -120,8 +132,8 @@ export function Nav() {
       transition="transform .3s ease"
     >
       <Container maxW="72rem">
-        <Flex h="64px" align="center" justify="space-between">
-          <Link href="/#top" _hover={{ textDecoration: "none" }}>
+        <Flex as="nav" h="64px" align="center" justify="space-between">
+          <Link href={anchorHref(lang, "top")} _hover={{ textDecoration: "none" }}>
             <Text
               className="tnum"
               fontWeight="600"

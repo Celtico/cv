@@ -4,7 +4,11 @@
 FROM node:20-alpine AS deps
 WORKDIR /app
 COPY package.json package-lock.json* ./
-RUN npm install
+# `npm ci` respecta el lockfile al peu de la lletra: amb `npm install` dues
+# builds del mateix commit podien resoldre versions diferents dins dels rangs ^.
+# --ignore-scripts evita la descàrrega dels navegadors de Playwright (centenars
+# de MB) i l'execució de postinstall de tercers; `next build` no en necessita cap.
+RUN npm ci --ignore-scripts
 
 # ---- Builder ----
 FROM node:20-alpine AS builder

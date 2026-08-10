@@ -7,7 +7,9 @@ import type { Lang } from "../content";
 export type BlogPost = {
   slug: string;
   date: string; // ISO
-  images: { src: string; alt: string }[];
+  // width/height reals: el navegador en dedueix la proporció i reserva la
+  // caixa abans de descarregar la imatge (sense això, /blog feia CLS).
+  images: { src: string; alt: string; width: number; height: number }[];
   content: Record<Lang, { title: string; excerpt: string; tags: string[]; body: string[] }>;
 };
 
@@ -17,7 +19,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "ia-resultats-recursos",
     date: "2026-08-09",
-    images: [{ src: "/img/blog/ia-recursos.webp", alt: "Dos robots: un esgotat sense recursos i un altre productiu amb dades i infraestructura" }],
+    images: [{ src: "/img/blog/ia-recursos.webp", width: 646, height: 437, alt: "Dos robots: un esgotat sense recursos i un altre productiu amb dades i infraestructura" }],
     content: {
       ca: {
         title: "Esperes resultats extraordinaris de la IA… amb recursos mínims?",
@@ -54,7 +56,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "ia-empresarial-integrada",
     date: "2026-08-08",
-    images: [{ src: "/img/blog/ia-empresarial.webp", alt: "Integrem IA a la teva empresa: automatització, decisions amb dades, seguretat i integració a mida" }],
+    images: [{ src: "/img/blog/ia-empresarial.webp", width: 639, height: 604, alt: "Integrem IA a la teva empresa: automatització, decisions amb dades, seguretat i integració a mida" }],
     content: {
       ca: {
         title: "Integrar IA a l'empresa sense perdre el control de les dades",
@@ -103,7 +105,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "vehicleos-ia-diagnostic",
     date: "2026-08-08",
-    images: [{ src: "/img/blog/vehicleos-diagnostic.webp", alt: "VehicleOS: el diagnòstic intel·ligent que el teu cotxe mereix — comparativa amb eines de taller" }],
+    images: [{ src: "/img/blog/vehicleos-diagnostic.webp", width: 537, height: 632, alt: "VehicleOS: el diagnòstic intel·ligent que el teu cotxe mereix — comparativa amb eines de taller" }],
     content: {
       ca: {
         title: "I si poguessis dur al cotxe part de la intel·ligència de les eines de diagnosi d'un taller?",
@@ -152,7 +154,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "vehicleos-quadre-digital",
     date: "2026-08-08",
-    images: [{ src: "/img/blog/vehicleos-cockpit.webp", alt: "VehicleOS: el teu cotxe, intel·ligent i connectat — converteix la tauleta en el cervell del cotxe" }],
+    images: [{ src: "/img/blog/vehicleos-cockpit.webp", width: 642, height: 632, alt: "VehicleOS: el teu cotxe, intel·ligent i connectat — converteix la tauleta en el cervell del cotxe" }],
     content: {
       ca: {
         title: "I si el teu cotxe de fa 20 anys pogués tenir el quadre d'un cotxe nou?",
@@ -242,10 +244,10 @@ export const blogPosts: BlogPost[] = [
     slug: "fabrik-tracabilitat-nesting",
     date: "2026-07-26",
     images: [
-      { src: "/img/blog/fabrik-nesting.webp", alt: "FABRIK: tauler de nesting amb les peces i les etiquetes QR" },
-      { src: "/img/blog/fabrik-mecanitzar.webp", alt: "FABRIK: peça en 3D marcada com a mecanitzada" },
-      { src: "/img/blog/fabrik-laminar.webp", alt: "FABRIK: làmines col·locades sobre una peça etiquetada" },
-      { src: "/img/blog/fabrik-muntar.webp", alt: "FABRIK: muntatge del moble pas a pas amb control de ferratges" },
+      { src: "/img/blog/fabrik-nesting.webp", width: 645, height: 348, alt: "FABRIK: tauler de nesting amb les peces i les etiquetes QR" },
+      { src: "/img/blog/fabrik-mecanitzar.webp", width: 645, height: 380, alt: "FABRIK: peça en 3D marcada com a mecanitzada" },
+      { src: "/img/blog/fabrik-laminar.webp", width: 646, height: 370, alt: "FABRIK: làmines col·locades sobre una peça etiquetada" },
+      { src: "/img/blog/fabrik-muntar.webp", width: 646, height: 366, alt: "FABRIK: muntatge del moble pas a pas amb control de ferratges" },
     ],
     content: {
       ca: {

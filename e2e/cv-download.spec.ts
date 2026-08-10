@@ -36,7 +36,7 @@ test.describe("descàrrega del CV en PDF", () => {
       ["EN", /download cv/i],
       ["CA", /descarregar cv/i],
     ] as const) {
-      await page.getByRole("button", { name: codi, exact: true }).click();
+      await page.getByRole("link", { name: codi, exact: true }).click();
       await expect(page.getByRole("link", { name: text }).first()).toBeVisible();
     }
   });

@@ -10,6 +10,8 @@
     "skipLibCheck": true,
     "strict": true,
     "noEmit": true,
+    // els tests de node:test importen ".ts" directament
+    "allowImportingTsExtensions": true,
     "esModuleInterop": true,
     "module": "esnext",
     "moduleResolution": "bundler",

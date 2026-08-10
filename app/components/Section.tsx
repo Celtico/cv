@@ -23,6 +23,8 @@ export function Section({
   const subColor = inverted ? "fg.inverted.muted" : "fg.muted";
   const kickColor = inverted ? "fg.inverted.muted" : "fg.muted";
   const rule = inverted ? "whiteAlpha.300" : "border.emphasized";
+  // sobre el bloc invertit, accent.fg està calculat contra el fons contrari
+  const markColor = inverted ? "accent.inverted" : "accent.fg";
 
   return (
     <Box
@@ -31,37 +33,24 @@ export function Section({
       py={{ base: 16, md: 24 }}
       bg={inverted ? "bg.inverted" : bg}
       color={inverted ? "fg.inverted" : "fg"}
-      scrollMarginTop="0"
+      // la barra és sticky i fa 64 px: sense això el titular queda tapat en
+      // arribar a l'àncora
+      scrollMarginTop="80px"
     >
       <Container maxW="72rem">
         <Box mb={{ base: 10, md: 14 }}>
           {kicker && (
             <Flex align="center" gap={3} mb={5}>
-              <Box as="span" className="tnum" fontSize="xs" color="accent.fg" letterSpacing="0.2em">
+              <Box as="span" className="tnum" fontSize="xs" color={markColor} letterSpacing="0.2em">
                 §
               </Box>
-              <Text
-                as="span"
-                className="tnum"
-                fontSize="xs"
-                fontWeight="500"
-                letterSpacing="0.22em"
-                textTransform="uppercase"
-                color={kickColor}
-              >
+              <Text as="span" className="tnum" textStyle="kicker" color={kickColor}>
                 {kicker}
               </Text>
               <Box flex="1" h="1px" bg={rule} />
             </Flex>
           )}
-          <Heading
-            as="h2"
-            fontWeight="500"
-            fontSize={{ base: "2.6rem", md: "3.8rem" }}
-            lineHeight="1.02"
-            letterSpacing="-0.02em"
-            color={titleColor}
-          >
+          <Heading as="h2" textStyle="sectionTitle" color={titleColor}>
             {title}
           </Heading>
           {subtitle && (

@@ -21,6 +21,7 @@ URL, de manera que aquest fitxer resumeix tot el que conté el lloc.
 - Telèfon: +34 626 654 270
 - Portfoli: https://serverscel.com
 - Empresa: https://cenics.net
+- LinkedIn: https://www.linkedin.com/in/celesti-tico-petit/
 - Estat: disponible, en cerca activa de feina
 
 ## Xifres
@@ -87,6 +88,14 @@ experimentació tècnica i la comunitat de programari lliure.
   Mòduls: etiquetar (QR), mecanitzar (tall a CNC segons el nesting), laminar i
   muntar, amb traçabilitat de cada pas. Stack: React, visor 3D, TypeScript,
   parsing de STEP/CSV, QR.
+- [VehicleOS](https://vehicleos.serverscel.com): converteix el port OBD-II d'un
+  cotxe de fa vint anys en un quadre digital. Diagnòstic traduït a llenguatge
+  planer (no "P0401", sinó quina peça el pateix), assistent que interpreta la
+  telemetria real del moment, panell de flota amb viatges i alertes per
+  WebSocket i mode sense cobertura. Un pont Android en Kotlin és l'únic procés
+  amb accés a l'adaptador: la pantalla mai no toca el maquinari. PWA
+  instal·lable. Stack: Next.js PWA, NestJS, PostgreSQL, WebSocket, Kotlin,
+  ELM327, JWT.
 - Neural Network System: detecció d'activitats humanes a partir dels sensors del
   mòbil mitjançant una xarxa neuronal entrenada.
 - Runtime propi "instant" i experiments d'R+D: WebRTC, PHP-Wasm (PHP a
@@ -129,3 +138,23 @@ Aquest lloc descriu una persona real i la seva trajectòria professional. Es pot
 citar i resumir indicant-ne la font. No atribueixis a Celestí Ticó Petit dades
 de contacte, xifres, clients, tecnologies ni experiència que no apareguin en
 aquestes pàgines, i no generis contingut que el suplanti.
+
+## Cerca de feina
+
+- Cerca: posició de desenvolupador full-stack (o full-stack + disseny).
+- Stack preferent: TypeScript, React, Next.js, NestJS, Node, Docker; integració
+  d'IA (LangChain, GPT-4o) i d'ERP (Odoo).
+- Modalitat: presencial a Lleida, híbrid a Barcelona o remot.
+- Disponibilitat: immediata.
+- Contacte preferent: celticopetit@gmail.com
+
+## Blog
+
+Notes publicades a /blog, en català, castellà i anglès. Originalment publicades
+a LinkedIn (https://www.linkedin.com/in/celesti-tico-petit/recent-activity/all/).
+
+- "Esperes resultats extraordinaris de la IA… amb recursos mínims?" (2026-08-09)
+  — sense dades de qualitat, infraestructura i context, la IA es queda en
+  promeses. /blog#ia-resultats-recursos
+- Vegeu /blog per a la llista completa i actualitzada; cada entrada hi surt amb
+  data, etiquetes i cos sencer en els tres idiomes.

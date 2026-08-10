@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Grid, Text, Wrap, WrapItem } from "@chakra-ui/react";
+import { Box, Grid, Heading, Text, Wrap, WrapItem } from "@chakra-ui/react";
 import { Section } from "./Section";
 import { skills } from "../data";
 import { useT } from "../i18n";
@@ -20,9 +20,9 @@ export function Skills() {
             borderBottom="1px solid"
             borderColor="border"
           >
-            <Text fontFamily="heading" fontSize={{ base: "1.4rem", md: "1.7rem" }} color="fg">
+            <Heading as="h3" textStyle="cardTitle" fontSize={{ base: "1.4rem", md: "1.7rem" }} color="fg">
               {t.skills.groups[i] ?? s.group}
-            </Text>
+            </Heading>
             <Wrap spacing={2}>
               {s.items.map((it) => (
                 <WrapItem key={it}>

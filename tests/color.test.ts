@@ -1,0 +1,79 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import {
+  ACCENT_SUGGESTIONS,
+  bestTextOn,
+  contrastRatio,
+  hexToHsl,
+  hslToHex,
+  normalizeHex,
+  relativeLuminance,
+  solidWithReadableText,
+  withLightness,
+} from "../app/color.ts";
+
+test("normalizeHex accepta el que ha d'acceptar i rebutja la resta", () => {
+  assert.equal(normalizeHex("#CE8724"), "#ce8724");
+  assert.equal(normalizeHex("ce8724"), "#ce8724");
+  assert.equal(normalizeHex("  #CE8724  "), "#ce8724");
+  assert.equal(normalizeHex("#ce87"), null);
+  assert.equal(normalizeHex("#ce87244"), null);
+  assert.equal(normalizeHex("vermell"), null);
+  assert.equal(normalizeHex(""), null);
+});
+
+test("hex → HSL → hex torna al mateix color", () => {
+  for (const hex of [...ACCENT_SUGGESTIONS, "#847C6A", "#000000", "#ffffff", "#7f7f7f"]) {
+    const [h, s, l] = hexToHsl(hex);
+    assert.equal(hslToHex(h, s, l), hex.toLowerCase(), `round-trip de ${hex}`);
+  }
+});
+
+test("withLightness conserva el to i acota la claror", () => {
+  for (const hex of ACCENT_SUGGESTIONS) {
+    const [h0] = hexToHsl(hex);
+    for (const l of [0, 0.25, 0.5, 0.75, 1]) {
+      const out = withLightness(hex, l);
+      const [h1, , l1] = hexToHsl(out);
+      assert.ok(l1 >= 0 && l1 <= 1);
+      // a claror 0 o 1 el to es perd (negre/blanc): només el comprovem enmig
+      if (l > 0 && l < 1) assert.ok(Math.abs(h1 - h0) < 0.02, `to de ${hex} a l=${l}`);
+    }
+  }
+  // fora de rang, s'acota en comptes de produir un color invàlid
+  assert.equal(withLightness("#CE8724", -1), "#000000");
+  assert.equal(withLightness("#CE8724", 2), "#ffffff");
+});
+
+test("relativeLuminance situa el negre i el blanc als extrems", () => {
+  assert.equal(relativeLuminance("#000000"), 0);
+  assert.equal(relativeLuminance("#ffffff"), 1);
+  assert.equal(contrastRatio("#000000", "#ffffff"), 21);
+  assert.equal(contrastRatio("#CE8724", "#CE8724"), 1);
+});
+
+test("bestTextOn tria sempre la tinta amb més contrast", () => {
+  for (const hex of ACCENT_SUGGESTIONS) {
+    const chosen = bestTextOn(hex);
+    const other = chosen === "#141210" ? "#f5efe2" : "#141210";
+    assert.ok(
+      contrastRatio(chosen, hex) >= contrastRatio(other, hex),
+      `sobre ${hex} s'ha triat ${chosen}`,
+    );
+  }
+  // el cas que abans fallava: l'ambre demana text fosc, no clar
+  assert.equal(bestTextOn("#CE8724"), "#141210");
+});
+
+test("solidWithReadableText només mou el que cal i conserva el to", () => {
+  for (const hex of ACCENT_SUGGESTIONS) {
+    const solid = solidWithReadableText(hex);
+    const best = Math.max(contrastRatio("#141210", solid), contrastRatio("#f5efe2", solid));
+    assert.ok(best >= 4.5, `${hex} → ${solid} = ${best.toFixed(2)}`);
+    const [h0] = hexToHsl(hex);
+    const [h1] = hexToHsl(solid);
+    assert.ok(Math.abs(h1 - h0) < 0.02, `el to de ${hex} s'ha mogut`);
+  }
+  // els que ja complien no s'han de tocar
+  assert.equal(solidWithReadableText("#CE8724"), "#CE8724");
+});

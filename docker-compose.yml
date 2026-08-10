@@ -7,10 +7,26 @@ services:
     container_name: cv-celesti-tico
     restart: unless-stopped
     ports:
-      - "3592:3000"
+      # Lligat a loopback a posta: Docker escriu les seves regles a DOCKER-USER,
+      # per davant d'ufw, així que publicar a 0.0.0.0 deixava el Next accessible
+      # des d'Internet saltant-se el Nginx i, amb ell, el TLS i les capçaleres.
+      # El reverse proxy del host hi arriba per 127.0.0.1:3592.
+      - "127.0.0.1:3592:3000"
     environment:
       - NODE_ENV=production
       - PORT=3000
+    logging:
+      # sense rotació, els logs JSON acaben omplint el disc del host
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    mem_limit: 512m
+    cpus: 1.0
+    security_opt:
+      - "no-new-privileges:true"
+    cap_drop:
+      - ALL
     healthcheck:
       test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3000"]
       interval: 30s

@@ -53,23 +53,36 @@ export function Hero() {
           </HStack>
           <Box w="1px" h="12px" bg="border.emphasized" />
           <Text>{t.hero.location}</Text>
-          <Box w="1px" h="12px" bg="border.emphasized" />
-          <Text>{t.hero.registre}</Text>
           <Box w="1px" h="12px" bg="border.emphasized" display={{ base: "none", sm: "block" }} />
-          <Text color="accent.fg" display={{ base: "none", sm: "block" }}>
-            {t.hero.disponible}
-          </Text>
+          <Text display={{ base: "none", sm: "block" }}>{t.hero.registre}</Text>
+        </Flex>
+
+        {/* Disponibilitat: és el fet més accionable per a qui llegeix això, i
+            abans vivia amagat al final de la línia d'expedient i ocult del tot
+            al mòbil. Ara és una píndola visible a totes les mides. */}
+        <Flex
+          className="tnum"
+          display="inline-flex"
+          align="center"
+          gap={2.5}
+          mb={{ base: 6, md: 8 }}
+          px={3}
+          py={1.5}
+          borderRadius="2px"
+          bg="accent.muted"
+          border="1px solid"
+          borderColor="accent.dot"
+          color="accent.fg"
+          fontSize={{ base: "0.7rem", md: "xs" }}
+          letterSpacing="0.16em"
+          textTransform="uppercase"
+        >
+          <Box w="7px" h="7px" borderRadius="full" bg="accent.dot" flexShrink={0} />
+          <Text>{t.hero.disponible}</Text>
         </Flex>
 
         {/* nameplate */}
-        <Heading
-          as="h1"
-          fontWeight="400"
-          fontSize={{ base: "3.5rem", md: "7rem" }}
-          lineHeight="0.94"
-          letterSpacing="-0.03em"
-          color="fg"
-        >
+        <Heading as="h1" textStyle="display" color="fg">
           Celestí{" "}
           <Box as="span" fontStyle="italic" fontWeight="500">
             Ticó Petit
@@ -78,13 +91,16 @@ export function Hero() {
 
         <Flex mt={8} gap={{ base: 6, md: 12 }} direction={{ base: "column", md: "row" }} align={{ md: "end" }}>
           <Box flex="1">
+            {/* El rol és la dada de decisió per a qui contracta: abans era el
+                text més petit de tota la pantalla. */}
             <Text
               className="tnum"
-              fontSize="xs"
-              letterSpacing="0.22em"
+              fontSize={{ base: "0.82rem", md: "0.95rem" }}
+              fontWeight="500"
+              letterSpacing="0.16em"
               textTransform="uppercase"
               color="accent.fg"
-              mb={3}
+              mb={4}
             >
               {t.hero.role}
             </Text>

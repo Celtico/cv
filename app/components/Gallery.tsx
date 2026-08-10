@@ -27,16 +27,21 @@ export function Gallery() {
                   filter="grayscale(1)"
                   transition="transform .4s, filter .35s ease"
                   _groupHover={{ transform: "scale(1.05)", filter: "none" }}
+                  // Sense ratolí no hi ha hover: la captura s'ha de veure tal com és.
+                  sx={{ "@media (hover: none)": { filter: "none" } }}
                 />
-                {/* capa plana del color principal a 0.9; el hover la retira */}
+                {/* Vel del color principal. A 0.9 i lligat només al hover, al
+                    mòbil la galeria es veia com dotze rectangles plans: la
+                    baixem i la retirem del tot on no hi ha ratolí. */}
                 <Box
                   position="absolute"
                   inset={0}
                   bg="accent.solid"
-                  opacity={0.9}
+                  opacity={0.45}
                   transition="opacity .35s ease"
                   pointerEvents="none"
                   _groupHover={{ opacity: 0 }}
+                  sx={{ "@media (hover: none)": { opacity: 0 } }}
                 />
               </Box>
             </AspectRatio>

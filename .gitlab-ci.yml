@@ -1,0 +1,38 @@
+# Pipeline mínim viable per al GitLab autoallotjat (gitwins.serverscel.com).
+# El risc real d'un projecte d'un sol operador no és el desplegament: és el
+# silenci. Això cobreix tipus, build i els e2e abans que res arribi al servidor.
+
+stages: [check, e2e]
+
+variables:
+  NEXT_TELEMETRY_DISABLED: "1"
+
+tipus-build-i-unitaris:
+  stage: check
+  image: node:20-alpine
+  script:
+    - npm ci --ignore-scripts
+    - npx tsc --noEmit
+    - npm test
+    - npm run build
+  cache:
+    key:
+      files: [package-lock.json]
+    paths: [node_modules/]
+
+e2e:
+  stage: e2e
+  # imatge oficial amb els navegadors ja instal·lats: ha de coincidir amb la
+  # versió de @playwright/test del package.json
+  image: mcr.microsoft.com/playwright:v1.61.1-noble
+  variables:
+    CI: "true"
+  script:
+    - npm ci
+    - npx playwright test
+  artifacts:
+    when: on_failure
+    paths:
+      - playwright-report/
+      - test-results/
+    expire_in: 1 week

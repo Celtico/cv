@@ -10,7 +10,7 @@ export const profile = {
   email: "celticopetit@gmail.com",
   portfolio: "https://serverscel.com",
   company: "https://cenics.net",
-  status: "Disponible · en búsqueda activa",
+  linkedin: "https://www.linkedin.com/in/celesti-tico-petit/",
 };
 
 export const stats = [
@@ -60,7 +60,6 @@ export type Featured = {
   title: string;
   subtitle: string;
   desc: string;
-  highlights: string[];
   stack: string[];
   img: string;
   url: string;
@@ -73,12 +72,6 @@ export const featured: Featured[] = [
     title: "RBAC Platform",
     subtitle: "Plataforma de administración empresarial",
     desc: "«Todo el control, en un solo lugar». Gestión de usuarios, roles y permisos granulares (RBAC), IA conversacional con LangChain y galería multimedia, todo integrado con Odoo ERP.",
-    highlights: [
-      "Integración Odoo: KPIs en vivo de ventas, clientes, productos, facturas pendientes, oportunidades CRM y empleados",
-      "IA conversacional (LangChain + GPT-4o) que responde sobre el negocio y crea facturas en Odoo chateando",
-      "Control de acceso RBAC: cada usuario ve exactamente lo que le corresponde",
-      "Dashboards y logs en tiempo real (SSE · Socket.IO), seguridad JWT",
-    ],
     stack: ["React 19", "Chakra UI v3", "NestJS", "LangChain", "GPT-4o", "Odoo 17", "Docker"],
     img: "/img/anim-rbac.svg",
     url: "https://album.serverscel.com",
@@ -89,12 +82,6 @@ export const featured: Featured[] = [
     title: "FABRIK · Taller CNC",
     subtitle: "Trazabilidad de piezas para fabricación de mobiliario",
     desc: "«Identifica y sigue cada pieza después del nesting». Importa el CSV de nesting y el STEP de TopSolid en un visor único: cada pieza con su referencia, medida y posición en el tablero, ligada a su sólido 3D.",
-    highlights: [
-      "Etiquetar: genera y pega etiquetas con QR, tablero a tablero",
-      "Laminar: marca las láminas colocadas en las piezas ya etiquetadas",
-      "Muntar: monta el mueble paso a paso con escaneo de QR y control de herrajes",
-      "Trazabilidad completa de cada paso del proceso",
-    ],
     stack: ["React", "Visor 3D", "TypeScript", "STEP / CSV", "QR", "TopSolid"],
     img: "/img/anim-fabrik.svg",
     url: "https://fabrik.serverscel.com",
@@ -104,12 +91,6 @@ export const featured: Featured[] = [
     title: "VehicleOS",
     subtitle: "El cuadro digital que tu coche no traía de fábrica",
     desc: "«Lee. Entiende. Protege.» Convierte el puerto OBD-II de un coche de hace veinte años en un cuadro digital con diagnóstico explicado, asistente que interpreta la telemetría real y panel web de flota. PWA instalable: funciona en la pantalla del salpicadero, tableta o móvil.",
-    highlights: [
-      "Diagnóstico traducido: no te dice P0401, te dice qué pieza lo sufre y la enciende sobre el coche",
-      "Asistente que responde con la telemetría real del momento: causas ordenadas y si puedes seguir circulando",
-      "Panel de flota: viajes, alertas automáticas y telemetría por WebSocket, con modo sin cobertura",
-      "Puente Android (Kotlin) como único proceso con acceso al adaptador: la pantalla nunca toca el hardware",
-    ],
     stack: ["Next.js PWA", "NestJS", "PostgreSQL", "WebSocket", "Kotlin", "OBD-II · ELM327", "JWT"],
     img: "/img/anim-vehicleos.svg",
     url: "https://vehicleos.serverscel.com",

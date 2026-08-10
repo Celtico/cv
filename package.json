@@ -11,7 +11,8 @@
     "prod": "npm run build:prod && npm run start:prod",
     "_stage:prod": "rm -rf .next-prod/standalone/public .next-prod/standalone/.next-prod/static && cp -r public .next-prod/standalone/public && cp -r .next-prod/static .next-prod/standalone/.next-prod/static",
     "test:e2e": "playwright test",
-    "test:e2e:ui": "playwright test --ui"
+    "test:e2e:ui": "playwright test --ui",
+    "test": "node --test --disable-warning=ExperimentalWarning --disable-warning=MODULE_TYPELESS_PACKAGE_JSON tests/*.test.ts"
   },
   "dependencies": {
     "@chakra-ui/react": "^2.10.4",

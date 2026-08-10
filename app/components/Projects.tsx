@@ -1,12 +1,12 @@
 "use client";
 
-import { AspectRatio, Box, Image, SimpleGrid, Text, VStack, Wrap, WrapItem } from "@chakra-ui/react";
+import { AspectRatio, Box, Heading, Image, SimpleGrid, Text, VStack, Wrap, WrapItem } from "@chakra-ui/react";
 import { Section } from "./Section";
 import { InlineSvg } from "./InlineSvg";
 import { projects } from "../data";
 import { useT } from "../i18n";
 
-export function Projects() {
+export function Projects({ svgs = {} }: { svgs?: Record<string, string> }) {
   const t = useT();
   return (
     <Section id="proyectos" kicker={t.projects.kicker} title={t.projects.title} subtitle={t.projects.subtitle} bg="bg.subtle">
@@ -16,7 +16,7 @@ export function Projects() {
             <Box borderBottom="1px solid" borderColor="border">
               <AspectRatio ratio={16 / 9}>
                 {p.img.endsWith(".svg") ? (
-                  <InlineSvg src={p.img} title={p.title} />
+                  <InlineSvg src={p.img} title={p.title} markup={svgs[p.img]} />
                 ) : (
                   <Image src={p.img} alt={p.title} objectFit="cover" loading="lazy" />
                 )}
@@ -27,9 +27,9 @@ export function Projects() {
                 <Text className="tnum" fontSize="xs" color="accent.fg" letterSpacing="0.16em" textTransform="uppercase" mb={2}>
                   {String(i + 1).padStart(2, "0")} · {t.projects.items[i]?.subtitle ?? p.subtitle}
                 </Text>
-                <Text fontFamily="heading" fontSize="1.9rem" lineHeight="1.1" color="fg">
+                <Heading as="h3" textStyle="cardTitle" fontSize="1.9rem" lineHeight="1.1" color="fg">
                   {p.title}
-                </Text>
+                </Heading>
               </Box>
               <Text color="fg.muted" lineHeight="1.7">
                 {t.projects.items[i]?.desc ?? p.desc}

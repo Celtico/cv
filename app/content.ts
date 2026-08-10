@@ -28,13 +28,13 @@ type Dict = {
     languages: { name: string; level: string }[];
   };
   skills: { kicker: string; title: string; subtitle: string; groups: string[] };
-  lighthouse: { kicker: string; title: string; subtitle: string; labels: string[] };
   featured: {
     kicker: string;
     title: string;
     subtitle: string;
     plate: string;
     visitar: string;
+    parlem: string;
     items: { subtitle: string; desc: string; highlights: string[] }[];
   };
   projects: {
@@ -64,12 +64,6 @@ type Dict = {
     t2: string;
     subtitle: string;
   };
-  picker: {
-    main: string;
-    secondary: string;
-    suggestions: string;
-    preview: string;
-  };
   blog: {
     kicker: string;
     title: string;
@@ -85,7 +79,6 @@ export const content: Record<Lang, Dict> = {
     nav: {
       perfil: "Perfil",
       eines: "Eines",
-      qualitat: "Qualitat",
       destacats: "Destacats",
       projectes: "Projectes",
       trajectoria: "Trajectòria",
@@ -97,10 +90,10 @@ export const content: Record<Lang, Dict> = {
       expedient: "Expedient 001",
       location: "Balaguer · Lleida",
       registre: "Registre 2000 — 2026",
-      disponible: "Disponible",
-      role: "Dissenyador · Desenvolupador full-stack",
+      disponible: "Disponible · en cerca activa",
+      role: "Desenvolupador full-stack · Disseny UX/UI · Balaguer (Lleida)",
       tagline:
-        "20+ anys construint producte digital de principi a fi: del briefing i el disseny al codi, la infraestructura i el SEO. Autodidacta, polivalent i orientat a resoldre.",
+        "20+ anys construint producte digital de principi a fi: del briefing i el disseny al codi, la infraestructura i el SEO. Autodidacta i polivalent. Ara busco incorporar-me a un equip: presencial a Lleida, híbrid a Barcelona o en remot.",
       contactar: "Contactar",
       veure: "Veure projectes",
       descarregar: "Descarregar CV (PDF)",
@@ -124,13 +117,6 @@ export const content: Record<Lang, Dict> = {
       subtitle: "Tecnologies i disciplines evidenciades per projectes reals, agrupades per domini.",
       groups: ["Llenguatges", "Front-end", "Back-end", "IA i dades", "Infra / DevOps", "Disseny", "Flux de treball"],
     },
-    lighthouse: {
-      kicker: "Qualitat — auditoria",
-      title: "100 · 100 · 100 · 100",
-      subtitle:
-        "Auditoria de Google Lighthouse sobre aquesta mateixa web en producció (serverscel.com): rendiment, accessibilitat, bones pràctiques i SEO, tot al màxim.",
-      labels: ["Rendiment", "Accessibilitat", "Bones pràctiques", "SEO"],
-    },
     featured: {
       kicker: "Destacats — en producció",
       title: "Tres aplicacions vives",
@@ -138,6 +124,7 @@ export const content: Record<Lang, Dict> = {
         "Producte complet que pots visitar ara mateix: front-end, back-end, IA i integració d'ERP.",
       plate: "Plate",
       visitar: "Visitar",
+      parlem: "Parlem d'aquest projecte",
       items: [
         {
           subtitle: "Plataforma d'administració empresarial",
@@ -226,13 +213,8 @@ export const content: Record<Lang, Dict> = {
       t1: "Construïm",
       ti: "alguna cosa",
       t2: "junts?",
-      subtitle: "Disponible per a projectes i col·laboracions. Escriu-me i et responc de seguida.",
-    },
-    picker: {
-      main: "Color principal",
-      secondary: "Color secundari (gris)",
-      suggestions: "Suggeriments",
-      preview: "Així es veurà",
+      subtitle:
+        "En cerca activa de feina com a desenvolupador full-stack (React · Next.js · NestJS) i obert a projectes freelance. Escriu-me i et responc el mateix dia.",
     },
     blog: {
       kicker: "Bitàcola — notes de treball",
@@ -249,7 +231,6 @@ export const content: Record<Lang, Dict> = {
     nav: {
       perfil: "Perfil",
       eines: "Herramientas",
-      qualitat: "Calidad",
       destacats: "Destacados",
       projectes: "Proyectos",
       trajectoria: "Trayectoria",
@@ -261,10 +242,10 @@ export const content: Record<Lang, Dict> = {
       expedient: "Expediente 001",
       location: "Balaguer · Lleida",
       registre: "Registro 2000 — 2026",
-      disponible: "Disponible",
-      role: "Diseñador · Desarrollador full-stack",
+      disponible: "Disponible · en búsqueda activa",
+      role: "Desarrollador full-stack · Diseño UX/UI · Balaguer (Lleida)",
       tagline:
-        "20+ años construyendo producto digital de principio a fin: del briefing y el diseño al código, la infraestructura y el SEO. Autodidacta, polivalente y orientado a resolver.",
+        "20+ años construyendo producto digital de principio a fin: del briefing y el diseño al código, la infraestructura y el SEO. Autodidacta y polivalente. Ahora busco incorporarme a un equipo: presencial en Lleida, híbrido en Barcelona o en remoto.",
       contactar: "Contactar",
       veure: "Ver proyectos",
       descarregar: "Descargar CV (PDF)",
@@ -288,13 +269,6 @@ export const content: Record<Lang, Dict> = {
       subtitle: "Tecnologías y disciplinas evidenciadas por proyectos reales, agrupadas por dominio.",
       groups: ["Lenguajes", "Front-end", "Back-end", "IA y datos", "Infra / DevOps", "Diseño", "Flujo de trabajo"],
     },
-    lighthouse: {
-      kicker: "Calidad — auditoría",
-      title: "100 · 100 · 100 · 100",
-      subtitle:
-        "Auditoría de Google Lighthouse sobre esta misma web en producción (serverscel.com): rendimiento, accesibilidad, buenas prácticas y SEO, todo al máximo.",
-      labels: ["Rendimiento", "Accesibilidad", "Buenas prácticas", "SEO"],
-    },
     featured: {
       kicker: "Destacados — en producción",
       title: "Tres aplicaciones vivas",
@@ -302,6 +276,7 @@ export const content: Record<Lang, Dict> = {
         "Producto completo que puedes visitar ahora mismo: front-end, back-end, IA e integración de ERP.",
       plate: "Plate",
       visitar: "Visitar",
+      parlem: "Hablemos de este proyecto",
       items: [
         {
           subtitle: "Plataforma de administración empresarial",
@@ -390,13 +365,8 @@ export const content: Record<Lang, Dict> = {
       t1: "¿Construimos",
       ti: "algo",
       t2: "juntos?",
-      subtitle: "Disponible para proyectos y colaboraciones. Escríbeme y te respondo enseguida.",
-    },
-    picker: {
-      main: "Color principal",
-      secondary: "Color secundario (gris)",
-      suggestions: "Sugerencias",
-      preview: "Así se verá",
+      subtitle:
+        "En búsqueda activa de trabajo como desarrollador full-stack (React · Next.js · NestJS) y abierto a proyectos freelance. Escríbeme y te respondo el mismo día.",
     },
     blog: {
       kicker: "Bitácora — notas de trabajo",
@@ -413,7 +383,6 @@ export const content: Record<Lang, Dict> = {
     nav: {
       perfil: "Profile",
       eines: "Tools",
-      qualitat: "Quality",
       destacats: "Featured",
       projectes: "Projects",
       trajectoria: "Career",
@@ -425,10 +394,10 @@ export const content: Record<Lang, Dict> = {
       expedient: "File 001",
       location: "Balaguer · Lleida",
       registre: "Record 2000 — 2026",
-      disponible: "Available",
-      role: "Designer · Full-stack developer",
+      disponible: "Available · actively looking",
+      role: "Full-stack developer · UX/UI design · Balaguer (Lleida), Spain",
       tagline:
-        "20+ years building digital product end to end: from briefing and design to code, infrastructure and SEO. Self-taught, versatile and focused on solving.",
+        "20+ years building digital product end to end: from briefing and design to code, infrastructure and SEO. Self-taught and versatile. I am now looking to join a team: on-site in Lleida, hybrid in Barcelona or fully remote.",
       contactar: "Get in touch",
       veure: "View projects",
       descarregar: "Download CV (PDF)",
@@ -452,19 +421,13 @@ export const content: Record<Lang, Dict> = {
       subtitle: "Technologies and disciplines evidenced by real projects, grouped by domain.",
       groups: ["Languages", "Front-end", "Back-end", "AI & data", "Infra / DevOps", "Design", "Workflow"],
     },
-    lighthouse: {
-      kicker: "Quality — audit",
-      title: "100 · 100 · 100 · 100",
-      subtitle:
-        "Google Lighthouse audit of this very site in production (serverscel.com): performance, accessibility, best practices and SEO, all maxed out.",
-      labels: ["Performance", "Accessibility", "Best practices", "SEO"],
-    },
     featured: {
       kicker: "Featured — in production",
       title: "Three live applications",
       subtitle: "Complete product you can visit right now: front-end, back-end, AI and ERP integration.",
       plate: "Plate",
       visitar: "Visit",
+      parlem: "Let's talk about this project",
       items: [
         {
           subtitle: "Business administration platform",
@@ -553,13 +516,8 @@ export const content: Record<Lang, Dict> = {
       t1: "Shall we build",
       ti: "something",
       t2: "together?",
-      subtitle: "Available for projects and collaborations. Write to me and I'll reply right away.",
-    },
-    picker: {
-      main: "Main color",
-      secondary: "Secondary color (gray)",
-      suggestions: "Suggestions",
-      preview: "How it will look",
+      subtitle:
+        "Actively looking for a full-stack developer role (React · Next.js · NestJS) and open to freelance projects. Write to me and I'll reply the same day.",
     },
     blog: {
       kicker: "Logbook — working notes",

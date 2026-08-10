@@ -1,6 +1,16 @@
 // Service worker de la PWA: navegació network-first amb reserva a la memòria
 // cau, i estàtics cache-first. Sense dependències.
-const CACHE = "cv-v1";
+//
+// Puja el número cada cop que canviï l'estratègia d'aquest fitxer: `activate`
+// només purga les caus que tinguin un nom diferent de l'actual.
+const CACHE = "cv-v2";
+
+// Cache-first NOMÉS per a allò que és realment immutable: els chunks de Next
+// porten hash al nom, i les imatges i icones es reemplacen amb nom nou.
+// El PDF del CV en queda FORA a posta: viu a una URL fixa i es regenera cada
+// cop que canvien les dades, així que en cache-first un visitant recurrent es
+// descarregaria per sempre la versió antiga del currículum.
+const IMMUTABLE = /\/_next\/static\/|\/img\/|\.(?:png|webp|svg|ico|woff2?)$/;
 
 self.addEventListener("install", () => {
   self.skipWaiting();
@@ -33,7 +43,7 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
-  if (/\/_next\/static\/|\/img\/|\.(?:png|webp|svg|pdf|ico|woff2?)$/.test(request.url)) {
+  if (IMMUTABLE.test(request.url)) {
     // estàtics amb hash o immutables: memòria cau primer
     event.respondWith(
       caches.match(request).then(
@@ -47,6 +57,23 @@ self.addEventListener("fetch", (event) => {
             return res;
           }),
       ),
+    );
+    return;
+  }
+
+  if (/\.pdf$/.test(request.url)) {
+    // el CV: xarxa primer perquè sempre s'entregui l'última versió, amb la
+    // còpia desada només com a reserva sense connexió
+    event.respondWith(
+      fetch(request)
+        .then((res) => {
+          if (res.ok) {
+            const copy = res.clone();
+            caches.open(CACHE).then((c) => c.put(request, copy));
+          }
+          return res;
+        })
+        .catch(() => caches.match(request)),
     );
   }
 });

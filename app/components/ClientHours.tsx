@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Grid, GridItem, Text } from "@chakra-ui/react";
+import { Box, Text, VisuallyHidden } from "@chakra-ui/react";
 import { Section } from "./Section";
 import { clientHours, clientHoursSummary } from "../data";
 import { useT } from "../i18n";
@@ -14,32 +14,18 @@ function fmtHours(n: number): string {
 
 const COLS = { base: "1.8rem 1fr 4.5rem", md: "2.2rem 1fr 5rem 8rem 7rem" };
 
-function Head({ l }: { l: ReturnType<typeof useT>["ledger"] }) {
-  return (
-    <Grid
-      templateColumns={COLS}
-      gap={{ base: 3, md: 6 }}
-      className="tnum"
-      fontSize="0.66rem"
-      letterSpacing="0.14em"
-      textTransform="uppercase"
-      color="fg.subtle"
-      pb={3}
-      borderBottom="1px solid"
-      borderColor="border.emphasized"
-    >
-      <Text>Nº</Text>
-      <Text>{l.colClient}</Text>
-      <GridItem display={{ base: "none", md: "block" }}>
-        <Text>{l.colProj}</Text>
-      </GridItem>
-      <GridItem display={{ base: "none", md: "block" }}>
-        <Text>{l.colPeriod}</Text>
-      </GridItem>
-      <Text textAlign="right">{l.colHours}</Text>
-    </Grid>
-  );
-}
+// Aquesta secció és un conjunt de dades tabulars de cinc columnes. Abans es
+// dibuixava amb Grid i Box: visualment idèntic, però per a un lector de
+// pantalla arribava com a text solt, sense relació entre capçalera i cel·la.
+// Ara són <table>/<th scope="col">/<td> de debò, maquetats amb grid.
+const rowGrid = {
+  display: "grid",
+  gridTemplateColumns: COLS,
+  gap: { base: 3, md: 6 },
+  alignItems: "baseline",
+} as const;
+
+const hideBase = { base: "none", md: "block" };
 
 export function ClientHours() {
   const t = useT();
@@ -48,71 +34,115 @@ export function ClientHours() {
 
   return (
     <Section id="trayectoria" kicker={l.kicker} title={l.title} subtitle={l.subtitle} bg="bg">
-      <Head l={l} />
-      <Box>
-        {clientHours.map((c, i) => {
-          const pct = Math.max((c.hours / max) * 100, 1.5);
-          return (
-            <Box key={c.name}>
-              <Grid
-                templateColumns={COLS}
-                gap={{ base: 3, md: 6 }}
-                alignItems="baseline"
+      <Box as="table" w="full" sx={{ display: "block", borderCollapse: "collapse" }}>
+        <VisuallyHidden as="caption">{l.subtitle}</VisuallyHidden>
+
+        <Box as="thead" display="block">
+          <Box
+            as="tr"
+            sx={rowGrid}
+            className="tnum"
+            fontSize="0.7rem"
+            letterSpacing="0.14em"
+            textTransform="uppercase"
+            color="fg.subtle"
+            pb={3}
+            borderBottom="1px solid"
+            borderColor="border.emphasized"
+          >
+            <Box as="th" scope="col" textAlign="left" fontWeight="inherit">
+              Nº
+            </Box>
+            <Box as="th" scope="col" textAlign="left" fontWeight="inherit">
+              {l.colClient}
+            </Box>
+            <Box as="th" scope="col" textAlign="left" fontWeight="inherit" display={hideBase}>
+              {l.colProj}
+            </Box>
+            <Box as="th" scope="col" textAlign="left" fontWeight="inherit" display={hideBase}>
+              {l.colPeriod}
+            </Box>
+            <Box as="th" scope="col" textAlign="right" fontWeight="inherit">
+              {l.colHours}
+            </Box>
+          </Box>
+        </Box>
+
+        <Box as="tbody" display="block">
+          {clientHours.map((c, i) => {
+            const pct = Math.max((c.hours / max) * 100, 1.5);
+            return (
+              <Box
+                as="tr"
+                key={c.name}
+                sx={{
+                  ...rowGrid,
+                  // el filet-registre amb la magnitud, ara com a fons de la
+                  // fila: abans era un <div> germà, que dins d'una taula no és
+                  // marcatge vàlid
+                  background: `linear-gradient(to right, var(--chakra-colors-accent-dot) ${pct}%, var(--chakra-colors-border) ${pct}%) bottom left / 100% 2px no-repeat`,
+                }}
                 py={{ base: 3.5, md: 4 }}
               >
-                <Text className="tnum" fontSize="sm" color="fg.subtle">
+                <Box as="td" className="tnum" fontSize="sm" color="fg.subtle">
                   {String(i + 1).padStart(2, "0")}
-                </Text>
-                <Box minW={0}>
+                </Box>
+                <Box as="td" minW={0}>
                   <Text fontFamily="heading" fontSize={{ base: "1.05rem", md: "1.25rem" }} color="fg" noOfLines={1}>
                     {c.name}
                   </Text>
-                  <Text className="tnum" fontSize="0.68rem" color="fg.muted" mt={0.5} display={{ md: "none" }}>
+                  <Text className="tnum" fontSize="0.7rem" color="fg.muted" mt={0.5} display={{ md: "none" }}>
                     {c.projects} proj · {c.period}
                   </Text>
                 </Box>
-                <Text className="tnum" fontSize="sm" color="fg.muted" display={{ base: "none", md: "block" }}>
+                <Box as="td" className="tnum" fontSize="sm" color="fg.muted" display={hideBase}>
                   {c.projects}
-                </Text>
-                <Text className="tnum" fontSize="sm" color="fg.muted" display={{ base: "none", md: "block" }}>
+                </Box>
+                <Box as="td" className="tnum" fontSize="sm" color="fg.muted" display={hideBase}>
                   {c.period}
-                </Text>
-                <Text className="tnum" fontSize={{ base: "sm", md: "md" }} fontWeight="500" color="fg" textAlign="right">
+                </Box>
+                <Box
+                  as="td"
+                  className="tnum"
+                  fontSize={{ base: "sm", md: "md" }}
+                  fontWeight="500"
+                  color="fg"
+                  textAlign="right"
+                >
                   {fmtHours(c.hours)}
-                </Text>
-              </Grid>
-              {/* filet-registre amb magnitud */}
-              <Box h="2px" bg="border" position="relative">
-                <Box h="full" w={`${pct}%`} bg="accent.dot" opacity={0.55} />
+                </Box>
               </Box>
-            </Box>
-          );
-        })}
+            );
+          })}
+        </Box>
 
-        {/* totals */}
-        <Grid
-          templateColumns={COLS}
-          gap={{ base: 3, md: 6 }}
-          alignItems="baseline"
-          pt={4}
-          mt={1}
-          borderTop="2px solid"
-          borderColor="fg"
-        >
-          <Text className="tnum" fontSize="0.66rem" color="accent.fg" letterSpacing="0.1em">
-            Σ
-          </Text>
-          <Text className="tnum" fontSize="0.72rem" letterSpacing="0.14em" textTransform="uppercase" color="fg.muted">
-            {l.total}
-          </Text>
-          <Text className="tnum" fontSize="sm" color="fg" display={{ base: "none", md: "block" }}>
-            {clientHoursSummary.totalProjects}
-          </Text>
-          <GridItem display={{ base: "none", md: "block" }} />
-          <Text className="tnum" fontSize={{ base: "sm", md: "md" }} fontWeight="600" color="fg" textAlign="right">
-            {clientHoursSummary.totalHours}
-          </Text>
-        </Grid>
+        <Box as="tfoot" display="block">
+          <Box as="tr" sx={rowGrid} pt={4} mt={1} borderTop="2px solid" borderColor="fg">
+            <Box as="td" className="tnum" fontSize="0.7rem" color="accent.fg" letterSpacing="0.1em">
+              Σ
+            </Box>
+            <Box
+              as="th"
+              scope="row"
+              textAlign="left"
+              className="tnum"
+              fontSize="0.72rem"
+              fontWeight="inherit"
+              letterSpacing="0.14em"
+              textTransform="uppercase"
+              color="fg.muted"
+            >
+              {l.total}
+            </Box>
+            <Box as="td" className="tnum" fontSize="sm" color="fg" display={hideBase}>
+              {clientHoursSummary.totalProjects}
+            </Box>
+            <Box as="td" display={hideBase} />
+            <Box as="td" className="tnum" fontSize={{ base: "sm", md: "md" }} fontWeight="600" color="fg" textAlign="right">
+              {clientHoursSummary.totalHours}
+            </Box>
+          </Box>
+        </Box>
       </Box>
 
       <Text color="fg.muted" fontSize="sm" mt={8} maxW="44rem" lineHeight="1.7">

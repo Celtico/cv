@@ -12,6 +12,7 @@ import {
   List,
   ListIcon,
   ListItem,
+  Heading,
   Text,
   VStack,
   Wrap,
@@ -26,7 +27,19 @@ import { useT } from "../i18n";
 
 const MotionBox = motion(Box);
 
-function Plate({ src, alt, index, badge }: { src: string; alt: string; index: number; badge: string }) {
+function Plate({
+  src,
+  alt,
+  index,
+  badge,
+  markup,
+}: {
+  src: string;
+  alt: string;
+  index: number;
+  badge: string;
+  markup?: string;
+}) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
   const y = useTransform(scrollYProgress, [0, 1], ["-6%", "6%"]);
@@ -53,7 +66,7 @@ function Plate({ src, alt, index, badge }: { src: string; alt: string; index: nu
       <AspectRatio ratio={16 / 10} overflow="hidden">
         <MotionBox style={{ y }} w="full" h="112%">
           {src.endsWith(".svg") ? (
-            <InlineSvg src={src} title={alt} />
+            <InlineSvg src={src} title={alt} markup={markup} />
           ) : (
             <Image src={src} alt={alt} w="full" h="full" objectFit="cover" objectPosition="top" />
           )}
@@ -63,7 +76,7 @@ function Plate({ src, alt, index, badge }: { src: string; alt: string; index: nu
   );
 }
 
-export function Featured() {
+export function Featured({ svgs = {} }: { svgs?: Record<string, string> }) {
   const t = useT();
   return (
     <Section id="destacados" kicker={t.featured.kicker} title={t.featured.title} subtitle={t.featured.subtitle} bg="bg">
@@ -80,7 +93,7 @@ export function Featured() {
             >
               <Box flex="1.15" w="full">
                 <Link href={p.url} isExternal _hover={{ textDecoration: "none" }}>
-                  <Plate src={p.img} alt={p.title} index={i} badge={p.badge ?? t.featured.visitar} />
+                  <Plate src={p.img} alt={p.title} index={i} badge={p.badge ?? t.featured.visitar} markup={svgs[p.img]} />
                 </Link>
               </Box>
 
@@ -89,9 +102,9 @@ export function Featured() {
                   <Text className="tnum" fontSize="xs" letterSpacing="0.2em" textTransform="uppercase" color="accent.fg" mb={2}>
                     {tr.subtitle}
                   </Text>
-                  <Text fontFamily="heading" fontSize={{ base: "2.2rem", md: "2.8rem" }} lineHeight="1.05" color="fg">
+                  <Heading as="h3" textStyle="cardTitle" fontSize={{ base: "2.2rem", md: "2.8rem" }} lineHeight="1.05" color="fg">
                     {p.title}
-                  </Text>
+                  </Heading>
                 </Box>
                 <Text color="fg.muted" lineHeight="1.8">
                   {tr.desc}
@@ -125,22 +138,41 @@ export function Featured() {
                   ))}
                 </Wrap>
 
-                <Button
-                  as={Link}
-                  href={p.url}
-                  isExternal
-                  mt={2}
-                  bg="accent.solid"
-                  color="accent.contrast"
-                  borderRadius="2px"
-                  h="48px"
-                  px={5}
-                  fontWeight="600"
-                  _hover={{ bg: "accent.emphasized", textDecoration: "none" }}
-                  rightIcon={<Icon as={FiArrowUpRight} />}
-                >
-                  {t.featured.visitar} {p.title.split(" ")[0]}
-                </Button>
+                <Wrap spacing={3} pt={1}>
+                  <WrapItem>
+                    <Button
+                      as={Link}
+                      href="#contacto"
+                      bg="accent.solid"
+                      color="accent.contrast"
+                      borderRadius="2px"
+                      h="48px"
+                      px={5}
+                      fontWeight="600"
+                      _hover={{ bg: "accent.emphasized", textDecoration: "none" }}
+                    >
+                      {t.featured.parlem}
+                    </Button>
+                  </WrapItem>
+                  <WrapItem>
+                    <Button
+                      as={Link}
+                      href={p.url}
+                      isExternal
+                      variant="outline"
+                      borderColor="border.emphasized"
+                      color="fg"
+                      borderRadius="2px"
+                      h="48px"
+                      px={5}
+                      fontWeight="500"
+                      _hover={{ bg: "bg.muted", borderColor: "accent.fg", textDecoration: "none" }}
+                      rightIcon={<Icon as={FiArrowUpRight} />}
+                    >
+                      {t.featured.visitar} {p.title.split(" ")[0]}
+                    </Button>
+                  </WrapItem>
+                </Wrap>
               </VStack>
             </Flex>
           );

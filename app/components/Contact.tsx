@@ -1,15 +1,14 @@
 "use client";
 
-import { Box, Button, Container, Flex, HStack, Heading, Icon, Link, Text } from "@chakra-ui/react";
-import { FiArrowUpRight, FiDownload, FiGlobe } from "react-icons/fi";
+import { Box, Button, Container, Flex, Heading, Icon, Link, Text } from "@chakra-ui/react";
+import { FiArrowUpRight, FiDownload } from "react-icons/fi";
 import { profile } from "../data";
 import { useT } from "../i18n";
-import { ColorPicker } from "./ColorPicker";
 
 export function Contact() {
   const t = useT();
   return (
-    <Box as="section" id="contacto" bg="gray.contrast" color="fg">
+    <Box as="section" id="contacto" bg="gray.contrast" color="fg" scrollMarginTop="80px">
       <Container maxW="72rem" py={{ base: 20, md: 28 }}>
         <Flex
           className="tnum"
@@ -91,35 +90,6 @@ export function Contact() {
           </Button>
         </Flex>
 
-        <Box mt={{ base: 14, md: 20 }}>
-          <ColorPicker />
-        </Box>
-
-        <Flex
-          mt={{ base: 12, md: 16 }}
-          pt={8}
-          borderTop="1px solid"
-          borderColor="border.emphasized"
-          justify="space-between"
-          align="center"
-          wrap="wrap"
-          gap={4}
-          className="tnum"
-          fontSize="xs"
-          letterSpacing="0.12em"
-          textTransform="uppercase"
-          color="fg.muted"
-        >
-          <Text>© Celestí Ticó Petit · {profile.location}</Text>
-          <HStack spacing={6}>
-            <Link href={profile.company} isExternal _hover={{ color: "accent.fg" }}>
-              <HStack spacing={1.5}>
-                <Icon as={FiGlobe} />
-                <Text>cenics.net</Text>
-              </HStack>
-            </Link>
-          </HStack>
-        </Flex>
       </Container>
     </Box>
   );
