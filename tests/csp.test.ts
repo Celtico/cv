@@ -6,7 +6,7 @@
 
 import test from "node:test";
 import assert from "node:assert/strict";
-import { buildCsp } from "../next.config.mjs";
+import { buildCsp } from "../csp.mjs";
 
 test("en desenvolupament la CSP deixa treballar Fast Refresh", () => {
   const dev = buildCsp(true);
