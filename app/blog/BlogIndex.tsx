@@ -108,13 +108,20 @@ export function BlogIndex() {
                       </Wrap>
                     </Flex>
 
-                    <Heading as="h2" textStyle="cardTitle" fontSize={{ base: "1.35rem", md: "1.45rem" }} color="fg" mb={3}>
+                    <Heading
+                      as="h2"
+                      textStyle="cardTitle"
+                      fontSize={{ base: "1.35rem", md: "1.45rem" }}
+                      color="fg"
+                      mb={3}
+                      noOfLines={3}
+                    >
                       <LinkOverlay as={NextLink} href={langHref(lang, `/blog/${post.slug}`)}>
                         {c.title}
                       </LinkOverlay>
                     </Heading>
 
-                    <Text color="fg.muted" lineHeight="1.7">
+                    <Text color="fg.muted" lineHeight="1.7" noOfLines={4}>
                       {c.excerpt}
                     </Text>
                   </Box>
