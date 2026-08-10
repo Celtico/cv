@@ -1,5 +1,12 @@
 /** @type {import('next').NextConfig} */
 
+// En DESENVOLUPAMENT, Fast Refresh de Next avalua codi amb eval() i la seva
+// connexió d'HMR va per websocket. Sense les excepcions de sota, el runtime de
+// react-refresh peta amb EvalError, la hidratació no s'acaba mai i TOTS els
+// components de client queden morts (botó de tema, commutador d'idioma...).
+// En producció no s'emeten.
+const isDev = process.env.NODE_ENV !== "production";
+
 // CSP compatible amb aquest projecte tal com és:
 // - Emotion (Chakra v2) injecta etiquetes <style> en línia,
 // - layout.tsx fa dangerouslySetInnerHTML per al JSON-LD i per a l'script
@@ -14,13 +21,13 @@
 // HSTS no va aquí: només s'ha d'emetre sobre HTTPS i el TLS el fa el Nginx del
 // host. Vegeu REVISIO-2026-08.md per a la línia d'Nginx i l'avís sobre
 // includeSubDomains.
-const csp = [
+export const buildCsp = (dev = isDev) => [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline'",
+  `script-src 'self' 'unsafe-inline'${dev ? " 'unsafe-eval'" : ""}`,
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob:",
   "font-src 'self'", // tipografies del sistema, cap host extern
-  "connect-src 'self'",
+  `connect-src 'self'${dev ? " ws: wss:" : ""}`,
   "manifest-src 'self'",
   "worker-src 'self'", // sw.js
   "object-src 'none'",
@@ -29,6 +36,8 @@ const csp = [
   "frame-ancestors 'none'",
   "upgrade-insecure-requests",
 ].join("; ");
+
+const csp = buildCsp();
 
 const nextConfig = {
   output: "standalone",
