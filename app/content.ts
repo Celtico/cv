@@ -226,7 +226,7 @@ export const content: Record<Lang, Dict> = {
         "==En cerca activa de feina== com a desenvolupador full-stack (React · Next.js · NestJS) i obert a projectes freelance. Escriu-me i et responc el mateix dia.",
     },
     blog: {
-      kicker: "Bitàcola — notes de treball",
+      kicker: "Notes de treball",
       title: "Blog",
       subtitle:
         "Notes sobre IA aplicada, integració empresarial i els projectes propis en producció. Publicades originalment a LinkedIn.",
@@ -390,7 +390,7 @@ export const content: Record<Lang, Dict> = {
         "==En búsqueda activa de trabajo== como desarrollador full-stack (React · Next.js · NestJS) y abierto a proyectos freelance. Escríbeme y te respondo el mismo día.",
     },
     blog: {
-      kicker: "Bitácora — notas de trabajo",
+      kicker: "Notas de trabajo",
       title: "Blog",
       subtitle:
         "Notas sobre IA aplicada, integración empresarial y los proyectos propios en producción. Publicadas originalmente en LinkedIn.",
@@ -553,7 +553,7 @@ export const content: Record<Lang, Dict> = {
         "==Actively looking for a full-stack developer role== (React · Next.js · NestJS) and open to freelance projects. Write to me and I'll reply the same day.",
     },
     blog: {
-      kicker: "Logbook — working notes",
+      kicker: "Working notes",
       title: "Blog",
       subtitle:
         "Notes on applied AI, enterprise integration and my own products in production. Originally published on LinkedIn.",

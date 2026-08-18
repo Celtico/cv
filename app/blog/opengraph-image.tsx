@@ -1,15 +1,21 @@
 import { ImageResponse } from "next/og";
 import { profile } from "../data";
 import { blogPosts } from "./posts";
+import { NEUTRAL_DEFAULTS, SECTION_ACCENTS } from "../color";
 
 export const alt = `Blog — ${profile.name}`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-const PAPER = "#141210";
-const INK = "#EDE6D6";
-const MUTED = "#A79F8E";
-const AMBER = "#CE8724";
+// Els colors surten dels tokens, no escrits a mà: aquestes dues imatges es van
+// quedar amb la paleta de paper crema quan la web va passar a negre i blau, i
+// són justament el que es veu quan algú comparteix l'enllaç.
+const N = NEUTRAL_DEFAULTS;
+const PAPER = N.bg[1];
+const INK = N.fg[1];
+const MUTED = N["fg.muted"][1];
+const ACCENT = SECTION_ACCENTS.base;
+const RULE = N["gray.emphasized"][1];
 
 export default function BlogOpengraphImage() {
   const darrers = blogPosts.slice(0, 3);
@@ -29,7 +35,7 @@ export default function BlogOpengraphImage() {
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 18, fontSize: 22, color: MUTED, letterSpacing: 3 }}>
-          <div style={{ width: 12, height: 12, borderRadius: 6, background: AMBER, display: "flex" }} />
+          <div style={{ width: 12, height: 12, borderRadius: 6, background: ACCENT, display: "flex" }} />
           <div style={{ display: "flex" }}>SERVERSCEL.COM / BLOG</div>
         </div>
 
@@ -42,10 +48,10 @@ export default function BlogOpengraphImage() {
           </div>
         </div>
 
-        <div style={{ display: "flex", flexDirection: "column", gap: 10, borderTop: "1px solid #4A4234", paddingTop: 28 }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: 10, borderTop: `1px solid ${RULE}`, paddingTop: 28 }}>
           {darrers.map((p) => (
             <div key={p.slug} style={{ display: "flex", alignItems: "center", gap: 16, fontSize: 22, color: MUTED }}>
-              <div style={{ display: "flex", color: AMBER }}>§</div>
+              <div style={{ display: "flex", width: 8, height: 8, borderRadius: 4, background: ACCENT }} />
               <div style={{ display: "flex" }}>{p.content.ca.title.slice(0, 74)}</div>
             </div>
           ))}

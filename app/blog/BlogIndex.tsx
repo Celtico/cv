@@ -21,6 +21,7 @@ import { useLang, useT, langHref } from "../i18n";
 import { TintedImage } from "./TintedImage";
 import { blogPosts } from "./posts";
 import { RichText } from "../components/RichText";
+import { Kicker } from "../components/Kicker";
 
 export function formatDate(iso: string, lang: string) {
   return new Date(`${iso}T12:00:00`).toLocaleDateString(
@@ -41,15 +42,7 @@ export function BlogIndex() {
       <Nav />
       <Box as="main" id="contingut" bg="bg">
         <Container maxW="72rem" pt={{ base: 14, md: 20 }} pb={{ base: 16, md: 24 }}>
-          <Flex align="center" gap={3} mb={5}>
-            <Box as="span" className="tnum" fontSize="xs" color="accent.fg" letterSpacing="0.2em">
-              §
-            </Box>
-            <Text as="span" className="tnum" textStyle="kicker" color="fg.muted">
-              {t.blog.kicker}
-            </Text>
-            <Box flex="1" h="1px" bg="border.emphasized" />
-          </Flex>
+          <Kicker>{t.blog.kicker}</Kicker>
 
           <Heading as="h1" textStyle="sectionTitle" color="fg">
             {t.blog.title}
@@ -63,17 +56,7 @@ export function BlogIndex() {
               const c = post.content[lang];
               const img = post.images[0];
               return (
-                <LinkBox
-                  as="article"
-                  key={post.slug}
-                  border="1px solid"
-                  borderColor="border"
-                  borderRadius="plate"
-                  overflow="hidden"
-                  bg="bg.panel"
-                  transition="border-color .2s ease"
-                  _hover={{ borderColor: "accent.fg" }}
-                >
+                <LinkBox as="article" key={post.slug} layerStyle="plate">
                   {img && (
                     // Marc fix per a totes les targetes: les imatges originals
                     // van de 646×348 a 537×632, i amb la proporció intrínseca
