@@ -11,7 +11,9 @@ export function Stats() {
     // no una secció a part. El gris que hi havia era l'única superfície del lloc
     // que no era ni banda de color ni negre.
     <Box>
-      <Container maxW="72rem" pt={{ base: 4, md: 6 }} pb={{ base: 20, md: 32, lg: 40 }}>
+            {/* Sense aire per sota: la separació amb el que ve després ja la posa la
+          secció següent, i sumar-hi el d'aquí deixava un buit del doble. */}
+      <Container maxW="72rem" pt={{ base: 4, md: 6 }} pb={0}>
         <Flex direction={{ base: "column", md: "row" }} gap={{ base: 4, md: 0 }}>
           {stats.map((s, i) => (
             <Flex
