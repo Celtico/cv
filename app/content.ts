@@ -181,7 +181,7 @@ export const content: Record<Lang, Dict> = {
       web: "Projecte web",
     },
     experience: {
-      kicker: "Trajectòria — per compte d'altri",
+      kicker: "Trajectòria — on he treballat",
       title: "Experiència professional",
       subtitle:
         "Més de dues dècades de taller propi a Cenics i, des del 2023, per compte d'altri: ==infraestructura, tests E2E i substitució de direcció de programació==.",
@@ -335,7 +335,7 @@ export const content: Record<Lang, Dict> = {
       web: "Proyecto web",
     },
     experience: {
-      kicker: "Trayectoria — por cuenta ajena",
+      kicker: "Trayectoria — dónde he trabajado",
       title: "Experiencia profesional",
       subtitle:
         "Más de dos décadas de taller propio en Cenics y, desde 2023, por cuenta ajena: ==infraestructura, tests E2E y sustitución de dirección de programación==.",
@@ -488,7 +488,7 @@ export const content: Record<Lang, Dict> = {
       web: "Web project",
     },
     experience: {
-      kicker: "Career — employed",
+      kicker: "Career — where I've worked",
       title: "Professional experience",
       subtitle:
         "More than two decades running my own shop at Cenics and, since 2023, working in-house: ==infrastructure, E2E testing and standing in for a programming director==.",
