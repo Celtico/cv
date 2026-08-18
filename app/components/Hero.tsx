@@ -32,7 +32,18 @@ export function Hero() {
         <Box className="accent-cycle" w="full" h="full" opacity={0.45} />
       </MotionBox>
 
-      <Container maxW="72rem" position="relative" pt={{ base: 16, md: 24 }} pb={{ base: 14, md: 20 }}>
+      {/* El bloc de l'entradeta —de la píndola de disponibilitat als botons—
+          duu el mateix aire que les seccions: uns 150 px per sobre i per sota.
+          El de sota el completa la barra de xifres, que hi va enganxada. */}
+      <Container
+        maxW="72rem"
+        position="relative"
+        pt={{ base: 20, md: 32, lg: 40 }}
+        // Compte amb l'escala: Chakra només té 32, 36, 40… Un valor que no hi
+        // sigui (34, posem-hi) no peta, es pren com a 34 PÍXELS i el farciment
+        // es queda a la quarta part sense que ho digui ningú.
+        pb={{ base: 16, md: 28, lg: 32 }}
+      >
         {/* línia d'expedient */}
         {/* Disponibilitat: és el fet més accionable per a qui llegeix això, i
             abans vivia amagat al final de la línia d'expedient i ocult del tot
