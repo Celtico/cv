@@ -31,11 +31,13 @@ export function About() {
           <Box
             position="relative"
             w="full"
-            maxW="70px"
+            maxW={{ base: "150px", md: "220px" }}
             aspectRatio="1"
             mb={8}
             overflow="hidden"
-            borderRadius="full"
+            // Cantonada de làmina, com les targetes, i no el cercle d'abans:
+            // a aquesta mida el cercle es menjava massa cara.
+            borderRadius="plate"
             border="1px solid"
             borderColor="border.emphasized"
           >
@@ -43,7 +45,7 @@ export function About() {
               src="/img/cel-tico-petit.webp"
               alt="Celestí Ticó Petit"
               fill
-              sizes="70px"
+              sizes="(max-width: 48em) 150px, 220px"
               style={{ objectFit: "cover" }}
             />
           </Box>

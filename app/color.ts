@@ -353,11 +353,21 @@ export function accentStylesheet(): string {
   // dos: barrejar un blau i un rosa que passen just el llindar dona un punt
   // intermedi que no hi arriba. Per això els extrems es contrasten amb marge,
   // i `tests/contrast.test.ts` mostreja tot el recorregut per comprovar-ho.
-  const TEXT_MARGIN = 1.5;
+  // El marge està calibrat: amb 1,3 el pitjor punt de totes les parelles cau a
+  // 4,86, i amb 1,2 a 4,54 —massa just per aguantar cap canvi de paleta—.
+  const TEXT_MARGIN = 1.3;
+  // I abans de contrastar-los se'ls puja la saturació: `contrastify` només mou
+  // la claror, així que la saturació que entra és la que surt. Sense això els
+  // colors del degradat quedaven apagats respecte dels de la resta de la pàgina.
+  const TEXT_SATURATION = 1.4;
+  const vivid = (hex: string) => {
+    const [h, sat, l] = hexToHsl(hex);
+    return hslToHex(h, Math.min(1, sat * TEXT_SATURATION), l);
+  };
   for (const mode of ["light", "dark"] as Mode[]) {
     const n = defaultNeutrals(mode);
     const surfaces = [n.bg, n["bg.subtle"], n["bg.panel"], n["gray.contrast"]];
-    const texts = cycle.map((hex) => contrastify(hex, surfaces, AA * TEXT_MARGIN, mode === "light" ? -1 : 1));
+    const texts = cycle.map((hex) => contrastify(vivid(hex), surfaces, AA * TEXT_MARGIN, mode === "light" ? -1 : 1));
     const suffix = mode === "dark" ? "Dark" : "Light";
     for (const [n, offset] of [[1, 0], [2, half]] as const) {
       const stops =
@@ -370,7 +380,7 @@ export function accentStylesheet(): string {
   const safeText = (i: number, mode: Mode) => {
     const n = defaultNeutrals(mode);
     const surf = [n.bg, n["bg.subtle"], n["bg.panel"], n["gray.contrast"]];
-    return contrastify(cycle[i], surf, AA * TEXT_MARGIN, mode === "light" ? -1 : 1);
+    return contrastify(vivid(cycle[i]), surf, AA * TEXT_MARGIN, mode === "light" ? -1 : 1);
   };
   const initialText = (i: number) => safeText(i, "light");
   const initialTextDark = (i: number) => safeText(i, "dark");

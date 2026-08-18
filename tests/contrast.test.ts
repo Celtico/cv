@@ -12,6 +12,8 @@ import {
   contrastRatio,
   defaultNeutrals,
   contrastify,
+  hexToHsl,
+  hslToHex,
   deriveAll,
   mix,
   type Mode,
@@ -117,12 +119,18 @@ test("el degradat de dins de les lletres compleix AA a tot el recorregut", () =>
   // que el pitjor extrem. Aquí es mostreja el recorregut per no haver-ho de
   // creure: barrejar un blau i un rosa que passen just el llindar dona un punt
   // intermedi que NO hi arriba, i per això els extrems es calculen amb marge
-  // (AA × 1,5). Si algú abaixa el marge o canvia la interpolació (posem-hi
-  // `in oklab`), aquest test se n'ha d'assabentar.
+  // (AA × 1,3, calibrat: deixa el pitjor punt a 4,86, i amb 1,2 cauria a 4,54).
+  // Si algú abaixa el marge, puja la saturació o canvia la interpolació
+  // (posem-hi `in oklab`), aquest test se n'ha d'assabentar.
   for (const mode of MODES) {
     const n = defaultNeutrals(mode);
     const surfaces = [n.bg, n["bg.subtle"], n["bg.panel"], n["gray.contrast"]];
-    const texts = ACCENT_HEXES.map((hex) => contrastify(hex, surfaces, AA * 1.5, mode === "light" ? -1 : 1));
+    // Mateix càlcul que `accentStylesheet()`: saturar i després contrastar.
+    const vivid = (hex: string) => {
+      const [h, sat, l] = hexToHsl(hex);
+      return hslToHex(h, Math.min(1, sat * 1.4), l);
+    };
+    const texts = ACCENT_HEXES.map((hex) => contrastify(vivid(hex), surfaces, AA * 1.3, mode === "light" ? -1 : 1));
     for (let i = 0; i < texts.length; i++) {
       const a = texts[i];
       const b = texts[(i + Math.floor(texts.length / 2)) % texts.length];
