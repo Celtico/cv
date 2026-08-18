@@ -202,7 +202,7 @@ export const content: Record<Lang, Dict> = {
         "Desenvolupador web · Substitució del director de programació per baixa de paternitat",
         "Desenvolupador web · Tests E2E de tot el panell de control de cdmon",
         "Desenvolupador web · Clúster MariaDB Galera + HAProxy amb monitorització Prometheus i Grafana",
-        "Desenvolupador d'apps i web · 422 projectes, 200+ clients",
+        "Autònom · Desenvolupador d'apps i web · 422 projectes, 200+ clients",
       ],
     },
     ledger: {
@@ -369,7 +369,7 @@ export const content: Record<Lang, Dict> = {
         "Desarrollador web · Sustitución del director de programación por baja de paternidad",
         "Desarrollador web · Tests E2E de todo el panel de control de cdmon",
         "Desarrollador web · Clúster MariaDB Galera + HAProxy con monitorización Prometheus y Grafana",
-        "Desarrollador de apps y web · 422 proyectos, 200+ clientes",
+        "Autónomo · Desarrollador de apps y web · 422 proyectos, 200+ clientes",
       ],
     },
     ledger: {
@@ -535,7 +535,7 @@ export const content: Record<Lang, Dict> = {
         "Web developer · Covering the programming director's paternity leave",
         "Web developer · E2E testing of the entire cdmon control panel",
         "Web developer · MariaDB Galera + HAProxy cluster with Prometheus & Grafana monitoring",
-        "App & web developer · 422 projects, 200+ clients",
+        "Self-employed · App & web developer · 422 projects, 200+ clients",
       ],
     },
     ledger: {

@@ -142,8 +142,8 @@ export const experience = [
     period: "abr 2023 – may 2023",
   },
   {
-    company: "Cenics — Balaguer (autónomo)",
-    role: "Desarrollador de apps y web · 422 proyectos, 200+ clientes",
+    company: "Cenics — Balaguer",
+    role: "Autónomo · Desarrollador de apps y web · 422 proyectos, 200+ clientes",
     period: "2000 – 2023",
   },
 ];
@@ -175,7 +175,7 @@ export const clientHours: ClientHours[] = [
   { name: "Grupo Rodi", hours: 4749.25, projects: 109, period: "2013 – 2016" },
   { name: "GLS Prefabricados", hours: 652, projects: 25, period: "2011 – 2017" },
   { name: "Pàmies Hortícoles", hours: 368.25, projects: 10, period: "2011 – 2020" },
-  { name: "Nex (neumáticos)", hours: 364.5, projects: 13, period: "2015 – 2021" },
+  { name: "Nex", hours: 364.5, projects: 13, period: "2015 – 2021" },
   { name: "Mecamaq", hours: 363.75, projects: 2, period: "2012 – 2021" },
   { name: "Inglet", hours: 266.25, projects: 16, period: "2011 – 2018" },
   { name: "Grupo Oses", hours: 210.25, projects: 2, period: "2012" },

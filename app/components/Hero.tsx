@@ -107,7 +107,9 @@ export function Hero() {
               // ja porta el degradat, i dues coses de color seguides es fan la
               // competència.
               color="fg"
-              mb={4}
+              // L'aire ha de superar l'interlineat del paràgraf (~34 px) o la
+              // línia es llegeix com la primera del text i no com una etiqueta
+              mb={9}
             >
               {t.hero.role}
             </Text>
