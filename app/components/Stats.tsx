@@ -7,7 +7,10 @@ import { useT } from "../i18n";
 export function Stats() {
   const t = useT();
   return (
-    <Box bg="bg.subtle">
+    // Sense fons propi: les quatre xifres són la prova del que diu l'entradeta,
+    // no una secció a part. El gris que hi havia era l'única superfície del lloc
+    // que no era ni banda de color ni negre.
+    <Box>
       <Container maxW="72rem" py={{ base: 8, md: 10 }}>
         <Flex direction={{ base: "column", md: "row" }} gap={{ base: 4, md: 0 }}>
           {stats.map((s, i) => (

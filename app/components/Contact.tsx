@@ -10,7 +10,15 @@ import { Kicker } from "./Kicker";
 export function Contact() {
   const t = useT();
   return (
-    <Box as="section" id="contacto" bg="gray.contrast" color="fg" scrollMarginTop="80px">
+    <Box
+      as="section"
+      id="contacto"
+      // La pàgina obre amb una rentada ambre a l'entradeta i tanca amb la
+      // mateixa: els dos extrems es responen i el recorregut queda tancat.
+      bgGradient="linear(to-b, bg, accent.panel)"
+      color="fg"
+      scrollMarginTop="80px"
+    >
       <Container maxW="72rem" py={{ base: 20, md: 28 }}>
         <Kicker>{t.contact.kicker}</Kicker>
 

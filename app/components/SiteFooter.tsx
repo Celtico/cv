@@ -11,7 +11,7 @@ import { profile } from "../data";
 
 export function SiteFooter() {
   return (
-    <Box as="footer" bg="gray.contrast" color="fg">
+    <Box as="footer" bg="bg" color="fg">
       <Container maxW="72rem" pb={{ base: 10, md: 14 }}>
         <Flex
           pt={8}
