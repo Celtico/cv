@@ -51,10 +51,14 @@ export function Hero() {
         <Flex
           className="tnum"
           display="inline-flex"
-          align="center"
+          // El punt s'alinea amb la primera línia, no amb el centre de la
+          // pastilla: en castellà el text és més llarg («en búsqueda activa») i
+          // en pantalla estreta salta de línia. Centrat, el punt quedava sol
+          // entre les dues línies i semblava un error.
+          align="flex-start"
           gap={2.5}
           mb={{ base: 6, md: 8 }}
-          px={3}
+          px={{ base: 2.5, sm: 3 }}
           py={1.5}
           borderRadius="control"
           bg="accent.muted"
@@ -62,10 +66,15 @@ export function Hero() {
           borderColor="accent.dot"
           color="accent.fg"
           fontSize="xs"
-          letterSpacing="0.16em"
+          // En un mòbil estret la píndola es partia en dues línies, i una
+          // pastilla partida sembla trencada. L'interlletratge baixa amb
+          // l'amplada, com a la línia de rol.
+          // Calibrat perquè hi càpiga fins i tot a 320 px, que és on la
+          // pastilla es partia en dues línies i semblava trencada.
+          letterSpacing={{ base: "0.02em", sm: "0.12em", md: "0.16em" }}
           textTransform="uppercase"
         >
-          <Box w="7px" h="7px" borderRadius="full" bg="accent.dot" flexShrink={0} />
+          <Box w="7px" h="7px" mt="0.45em" borderRadius="full" bg="accent.dot" flexShrink={0} />
           <Text>{t.hero.disponible}</Text>
         </Flex>
 
@@ -121,7 +130,7 @@ export function Hero() {
               as={Link}
               href="#contacto"
               variant="pillSolid"
-              size="pill"
+              size={{ base: "pillSm", md: "pill" }}
             >
               {t.hero.contactar}
             </Button>
@@ -129,7 +138,7 @@ export function Hero() {
               as={Link}
               href="#destacados"
               variant="pillOutline"
-              size="pill"
+              size={{ base: "pillSm", md: "pill" }}
             >
               {t.hero.veure}
             </Button>
@@ -138,7 +147,7 @@ export function Hero() {
               href="/cv-celesti-tico.pdf"
               download
               variant="pillOutline"
-              size="pill"
+              size={{ base: "pillSm", md: "pill" }}
               leftIcon={<Icon as={FiDownload} />}
             >
               {t.hero.descarregar}

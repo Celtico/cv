@@ -42,7 +42,8 @@ export function Contact() {
             as={Link}
             href={`mailto:${profile.email}`}
             variant="pillSolid"
-            size="pill"
+            // A 320 px el correu sencer no cabia i desbordava la pantalla
+            size={{ base: "pillSm", md: "pill" }}
             rightIcon={<Icon as={FiArrowUpRight} />}
             className="tnum"
           >
@@ -62,7 +63,7 @@ export function Contact() {
             href="/cv-celesti-tico.pdf"
             download
             variant="pillOutline"
-            size="pill"
+            size={{ base: "pillSm", md: "pill" }}
             leftIcon={<Icon as={FiDownload} />}
           >
             {t.hero.descarregar}
