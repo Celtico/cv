@@ -203,7 +203,7 @@ export const content: Record<Lang, Dict> = {
       kicker: "Registre — hores per client",
       title: "El llibre d'hores",
       subtitle:
-        "Dades reals de dedicació imputada a projectes al gestor Cenics, ordenades per hores. Un extracte del registre de ==20 anys d'ofici==.",
+        "Dades reals de dedicació imputada a projectes al gestor Cenics, ordenades per hores. Un extracte del registre de ==25 anys d'ofici==.",
       colClient: "Client",
       colProj: "Proj.",
       colPeriod: "Període",
@@ -367,7 +367,7 @@ export const content: Record<Lang, Dict> = {
       kicker: "Registro — horas por cliente",
       title: "El libro de horas",
       subtitle:
-        "Datos reales de dedicación imputada a proyectos en el gestor Cenics, ordenados por horas. Un extracto del registro de ==20 años de oficio==.",
+        "Datos reales de dedicación imputada a proyectos en el gestor Cenics, ordenados por horas. Un extracto del registro de ==25 años de oficio==.",
       colClient: "Cliente",
       colProj: "Proy.",
       colPeriod: "Período",
@@ -530,7 +530,7 @@ export const content: Record<Lang, Dict> = {
       kicker: "Ledger — hours per client",
       title: "The book of hours",
       subtitle:
-        "Real dedication data logged to projects in the Cenics manager, sorted by hours. An extract from 20 years of craft.",
+        "Real dedication data logged to projects in the Cenics manager, sorted by hours. An extract from ==25 years of craft==.",
       colClient: "Client",
       colProj: "Proj.",
       colPeriod: "Period",

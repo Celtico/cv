@@ -111,6 +111,9 @@ export function ClientHours() {
                   fontWeight="500"
                   color="fg"
                   textAlign="right"
+                  // Al mòbil la columna és estreta i «4.749,25» es partia en dues
+                  // línies, amb el «5» sol a sota.
+                  whiteSpace="nowrap"
                 >
                   {fmtHours(c.hours)}
                 </Box>
