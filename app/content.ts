@@ -44,7 +44,7 @@ type Dict = {
     items: { subtitle: string; desc: string }[];
   };
   gallery: { kicker: string; title: string; subtitle: string; web: string };
-  experience: { kicker: string; title: string; roles: string[] };
+  experience: { kicker: string; title: string; subtitle: string; roles: string[] };
   ledger: {
     kicker: string;
     title: string;
@@ -183,6 +183,8 @@ export const content: Record<Lang, Dict> = {
     experience: {
       kicker: "Trajectòria — per compte d'altri",
       title: "Experiència professional",
+      subtitle:
+        "Més de dues dècades de taller propi a Cenics i, des del 2023, per compte d'altri: ==infraestructura, tests E2E i substitució de direcció de programació==.",
       roles: [
         "Desenvolupador web · Substitució del director de programació per baixa de paternitat",
         "Desenvolupador web · Tests E2E de tot el panell de control de cdmon",
@@ -335,6 +337,8 @@ export const content: Record<Lang, Dict> = {
     experience: {
       kicker: "Trayectoria — por cuenta ajena",
       title: "Experiencia profesional",
+      subtitle:
+        "Más de dos décadas de taller propio en Cenics y, desde 2023, por cuenta ajena: ==infraestructura, tests E2E y sustitución de dirección de programación==.",
       roles: [
         "Desarrollador web · Sustitución del director de programación por baja de paternidad",
         "Desarrollador web · Tests E2E de todo el panel de control de cdmon",
@@ -486,6 +490,8 @@ export const content: Record<Lang, Dict> = {
     experience: {
       kicker: "Career — employed",
       title: "Professional experience",
+      subtitle:
+        "More than two decades running my own shop at Cenics and, since 2023, working in-house: ==infrastructure, E2E testing and standing in for a programming director==.",
       roles: [
         "Web developer · Covering the programming director's paternity leave",
         "Web developer · E2E testing of the entire cdmon control panel",
