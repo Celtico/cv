@@ -15,9 +15,8 @@ export function Clients() {
             <Heading
               as="h3"
               className="tnum"
-              textStyle="micro"
-              fontWeight="500"
-              color="accent.fg"
+              textStyle="groupLabel"
+              color="fg"
               pb={3}
               mb={2}
               borderBottom="1px solid"

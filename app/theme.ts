@@ -71,6 +71,16 @@ const theme = extendTheme({
       letterSpacing: "0.2em",
       textTransform: "uppercase",
     },
+    // Encapçalament de columna: la mateixa veu monoespaiada que `micro`, però
+    // amb cos de lectura. `micro` és per a etiquetes al marge; això encapçala
+    // una llista i s'ha de poder llegir d'una passada.
+    groupLabel: {
+      fontFamily: "mono",
+      fontWeight: 500,
+      fontSize: "sm",
+      letterSpacing: "0.14em",
+      textTransform: "uppercase",
+    },
     micro: {
       fontFamily: "mono",
       fontSize: "0.75rem",
