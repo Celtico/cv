@@ -207,9 +207,14 @@ incomplissin AA al botó principal.
   un, canvia'l als dos llocs.
 - **La separació la fa el farciment, no el filet** (llenguatge pres de jetbrains.com el
   2026-08-18). `deriveAccent` publica tres superfícies plenes, que són el color de la secció
-  barrejat amb el fons del mode: `accent.surface` (targetes), `accent.panel` (contenidors) i
-  `accent.chip` (pastilles). La barreja es fa **contra `bg`** justament perquè el text neutre
-  hi conservi el contrast; `tests/contrast.test.ts` ho comprova per als 8 accents × 2 modes.
+  barrejat amb el fons del mode i formen tres capes: `accent.panel` (fons de secció) →
+  `accent.surface` (targetes) → `accent.chip` (pastilles). La barreja es fa **contra `bg`**
+  justament perquè el text neutre hi conservi el contrast; `tests/contrast.test.ts` ho comprova
+  per als 8 accents × 2 modes. Compte amb el contracte: `panel` i `surface` aguanten
+  `fg.muted`, la `chip` només `fg` — el `layerStyle` «chip» hi fixa el color per això.
+- **Els fons de secció van saltejats**: banda de color massís (`bg="accent.panel"`), banda
+  neta (`bg="bg"`) on el color només hi arriba pel bafarot. Vuit bandes plenes seguides eren
+  un mur. Si afegeixes una secció, mira quina la precedeix i alterna.
 - **Radis**: `plate` (14 px) per a targetes i imatges, `control` (999 px) per a botons,
   etiquetes i commutadors — pastilla completa. La «làmina de paper» de 2 px es va retirar el
   2026-08-18. No escriguis `borderRadius="2px"` a cap component: fes servir el token.
