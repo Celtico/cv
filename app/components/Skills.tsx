@@ -13,7 +13,7 @@ export function Skills() {
         {skills.map((s, i) => (
           <Grid
             key={s.group}
-            templateColumns={{ base: "1fr", md: "0.9fr 2.4fr auto" }}
+            templateColumns={{ base: "1fr", md: "0.9fr 2.4fr" }}
             gap={{ base: 3, md: 8 }}
             alignItems="baseline"
             py={{ base: 6, md: 7 }}
@@ -38,15 +38,6 @@ export function Skills() {
                 </WrapItem>
               ))}
             </Wrap>
-            <Text
-              className="tnum"
-              fontSize="xs"
-              color="fg.subtle"
-              textAlign={{ md: "right" }}
-              display={{ base: "none", md: "block" }}
-            >
-              {String(i + 1).padStart(2, "0")} / {String(skills.length).padStart(2, "0")}
-            </Text>
           </Grid>
         ))}
       </Box>
