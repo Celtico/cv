@@ -23,7 +23,7 @@ export function Experience() {
             <Text className="tnum" fontSize="sm" color="fg.subtle">
               {String(i + 1).padStart(2, "0")}
             </Text>
-            <Text className="tnum" fontSize="0.8rem" color="accent.fg" letterSpacing="0.06em">
+            <Text className="tnum" fontSize="sm" color="fg" letterSpacing="0.06em">
               {e.period}
             </Text>
             <Box>
