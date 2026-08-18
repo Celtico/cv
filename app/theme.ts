@@ -9,7 +9,7 @@ const config: ThemeConfig = {
 
 // Blanc pur de dia, negre pur de nit: la parella de màxim contrast. Els
 // accents ja no els sorteja ningú — cada secció duu el seu i els publica
-// `accentStylesheet()` (app/color.ts). Els accent.* d'aquí són els de l'ambre,
+// `accentStylesheet()` (app/color.ts). Els accent.* d'aquí són els del blau,
 // que fa de color per defecte fora de les seccions.
 const theme = extendTheme({
   config,
@@ -198,7 +198,7 @@ const theme = extendTheme({
   // ATENCIÓ: els neutres d'aquesta taula estan duplicats a NEUTRAL_DEFAULTS
   // (app/color.ts), que és contra qui es comprova el contrast dels accents. Si
   // en canvies un, canvia'l als dos llocs. Els accent.* d'aquí són exactament
-  // el que retorna deriveAll(SECTION_ACCENTS.base, mode) — l'ambre.
+  // el que retorna deriveAll(SECTION_ACCENTS.base, mode) — el blau.
   semanticTokens: {
     colors: {
       bg: { default: "#FFFFFF", _dark: "#000000" },
@@ -218,19 +218,18 @@ const theme = extendTheme({
       "border.inverted": { default: "whiteAlpha.400", _dark: "blackAlpha.400" },
       "gray.emphasized": { default: "#D4D4D8", _dark: "#3F3F46" }, // vel de les fotos
       "gray.contrast": { default: "#FAFAFA", _dark: "#0A0A0B" }, // panell separat del fons pur
-      "accent.fg": { default: "#9b5c11", _dark: "#E8912A" }, // ambre segur com a text
-      "accent.dot": { default: "#d27d17", _dark: "#E8912A" }, // marca decorativa
-      "accent.solid": { default: "#E8912A", _dark: "#E8912A" }, // fons de botó ple
-      "accent.emphasized": { default: "#eba24a", _dark: "#eba24a" }, // hover del sòlid
-      "accent.contrast": { default: "#0A0A0A", _dark: "#0A0A0A" }, // text sobre accent.solid
-      "accent.muted": { default: "rgba(232,145,42,0.2)", _dark: "rgba(232,145,42,0.2)" }, // pista dels anells
-      "accent.inverted": { default: "#E8912A", _dark: "#a46112" },
-      // Superfícies plenes: la separació la fa el farciment, no cap filet
-      "accent.deep": { default: "#a46112", _dark: "#a46112" }, // pastilla d'etiqueta
+      "accent.fg": { default: "#2563EB", _dark: "#4177ee" }, // blau segur com a text
+      "accent.dot": { default: "#2563EB", _dark: "#2563EB" }, // marca decorativa
+      "accent.solid": { default: "#2563EB", _dark: "#2563EB" }, // fons de botó ple
+      "accent.emphasized": { default: "#1451d8", _dark: "#1451d8" }, // hover del sòlid
+      "accent.contrast": { default: "#FFFFFF", _dark: "#FFFFFF" }, // text sobre accent.solid
+      "accent.muted": { default: "rgba(37,99,235,0.2)", _dark: "rgba(37,99,235,0.2)" },
+      "accent.inverted": { default: "#3870ed", _dark: "#2563EB" },
+      "accent.deep": { default: "#2563EB", _dark: "#2563EB" }, // pastilla d'etiqueta
       "accent.deep.fg": { default: "#FFFFFF", _dark: "#FFFFFF" }, // sempre blanc a sobre
-      "accent.panel": { default: "#fdf5ec", _dark: "#2e1d08" }, // fons de secció
-      "accent.surface": { default: "#fbeddd", _dark: "#4f310e" }, // targetes
-      "accent.chip": { default: "#f9e2c8", _dark: "#6f4614" }, // pastilles
+      "accent.panel": { default: "#ebf1fd", _dark: "#07142f" }, // fons de secció
+      "accent.surface": { default: "#dce6fc", _dark: "#0d2250" }, // targetes
+      "accent.chip": { default: "#c6d6fa", _dark: "#123071" }, // pastilles
       // Tinta de les il·lustracions (làmines fosques dels SVG inline): igual
       // en tots dos modes.
       "ink.bg": { default: "#0A0A0A", _dark: "#0A0A0A" },

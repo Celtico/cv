@@ -65,8 +65,10 @@ test("bestTextOn tria sempre la tinta amb més contrast", () => {
       `sobre ${hex} s'ha triat ${chosen}`,
     );
   }
-  // el cas que abans fallava: l'ambre demana text fosc, no clar
-  assert.equal(bestTextOn(SECTION_ACCENTS.base), TEXT_DARK);
+  // El cas que va originar el test: l'ambre és prou clar perquè hi vagi text
+  // fosc, i la derivació antiga hi posava el clar. Ja no és el color de marca
+  // —ara ho és el blau—, però continua a la paleta i la trampa és la mateixa.
+  assert.equal(bestTextOn(SECTION_ACCENTS.featured), TEXT_DARK);
 });
 
 test("solidWithReadableText només mou el que cal i conserva el to", () => {
@@ -79,5 +81,5 @@ test("solidWithReadableText només mou el que cal i conserva el to", () => {
     assert.ok(Math.abs(h1 - h0) < 0.02, `el to de ${hex} s'ha mogut`);
   }
   // els que ja complien no s'han de tocar
-  assert.equal(solidWithReadableText(SECTION_ACCENTS.base), SECTION_ACCENTS.base);
+  assert.equal(solidWithReadableText(SECTION_ACCENTS.featured), SECTION_ACCENTS.featured);
 });

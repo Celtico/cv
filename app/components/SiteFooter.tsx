@@ -11,12 +11,12 @@ import { profile } from "../data";
 
 export function SiteFooter() {
   return (
-    <Box as="footer" bg="bg" color="fg">
-      <Container maxW="72rem" pb={{ base: 10, md: 14 }}>
+    // El peu se separa pel fons, no per un filet: és el mateix criteri que a
+    // les rajoles i les bandes. Prou fosc perquè es llegeixi com a peu, però
+    // dins de la família del negre.
+    <Box as="footer" bg="bg.subtle" color="fg">
+      <Container maxW="72rem" py={{ base: 8, md: 10 }}>
         <Flex
-          pt={8}
-          borderTop="1px solid"
-          borderColor="border.emphasized"
           justify="space-between"
           align="center"
           wrap="wrap"

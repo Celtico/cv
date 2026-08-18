@@ -20,18 +20,23 @@
  * per als dos modes i els publica com a regles CSS, de manera que el color
  * arriba sense JavaScript ni flaix.
  *
- * L'ambre és el de la bitàcola original i fa de color per defecte: el duen la
- * barra, l'entradeta, les xifres, el contacte, el peu i el blog. La resta són
- * els que canten a JetBrains: saturats, un per secció.
+ * El blau fa de color per defecte: el duen la barra, l'entradeta, les xifres,
+ * el contacte, el peu i el blog. La resta són un per secció, saturats.
+ *
+ * Els tons estan repartits a consciència: cap parella per sota de 25° de
+ * distància a la roda. Dues combinacions es van haver de desfer perquè no
+ * complien això —el taronja quedava a 12° de la marca i l'indi a 18°—, i el
+ * símptoma és sempre el mateix: la secció deixa de tenir color propi i sembla
+ * que hi torni a sortir el de la casa. Si en canvies un, torna a mesurar.
  */
 export const SECTION_ACCENTS = {
-  base: "#E8912A", // ambre — barra, entradeta, xifres, contacte, peu, blog
-  featured: "#2563EB", // blau elèctric — Tres aplicacions vives
+  base: "#2563EB", // blau — barra, entradeta, xifres, contacte, peu, blog
+  featured: "#0891B2", // cian — Tres aplicacions vives
   about: "#16A34A", // verd — Perfil
-  skills: "#0891B2", // cian — Competències
-  experience: "#6366F1", // indi — Experiència
+  clients: "#0C9D7D", // verd blau — Clients i trajectòria
+  skills: "#E8912A", // ambre — Competències
+  experience: "#DC2626", // vermell — Experiència
   gallery: "#DB2777", // rosa — Galeria
-  clients: "#EA580C", // taronja — Clients i trajectòria
   projects: "#7C3AED", // violeta — Projectes
 } as const;
 

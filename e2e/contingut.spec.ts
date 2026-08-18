@@ -86,7 +86,7 @@ test.describe("accent per secció", () => {
     // Els valors surten de SECTION_ACCENTS (app/color.ts). Si els canvies allà,
     // canvia'ls aquí: aquesta prova és justament la que detecta que el CSS
     // d'accents ha deixat d'arribar al marcatge.
-    expect(await solid("destacados")).toBe("#2563eb");
+    expect(await solid("destacados")).toBe("#0891b2");
     expect(await solid("sobre-mi")).toBe("#16a34a");
     expect(await solid("proyectos")).toBe("#7c3aed");
   });
