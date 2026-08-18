@@ -52,7 +52,7 @@ function Plate({
         justify="space-between"
         px={4}
         py={2}
-       
+        bg="accent.panel"
         borderBottom="1px solid"
         borderColor="border"
         fontSize="0.66rem"
@@ -138,13 +138,8 @@ export function Featured({ svgs = {} }: { svgs?: Record<string, string> }) {
                     <Button
                       as={Link}
                       href="#contacto"
-                     
-                      color="accent.contrast"
-                      borderRadius="control"
-                      h="48px"
-                      px={5}
-                      fontWeight="600"
-                      _hover={{ bg: "accent.emphasized", textDecoration: "none" }}
+                      variant="pillSolid"
+                      size="pill"
                     >
                       {t.featured.parlem}
                     </Button>
@@ -154,14 +149,8 @@ export function Featured({ svgs = {} }: { svgs?: Record<string, string> }) {
                       as={Link}
                       href={p.url}
                       isExternal
-                      variant="outline"
-                      borderColor="border.emphasized"
-                      color="fg"
-                      borderRadius="control"
-                      h="48px"
-                      px={5}
-                      fontWeight="500"
-                      _hover={{ bg: "bg.muted", borderColor: "accent.fg", textDecoration: "none" }}
+                      variant="pillOutline"
+                      size="pill"
                       rightIcon={<Icon as={FiArrowUpRight} />}
                     >
                       {t.featured.visitar} {p.title.split(" ")[0]}

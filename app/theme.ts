@@ -87,6 +87,37 @@ const theme = extendTheme({
     Heading: {
       defaultProps: { size: null },
     },
+    // Els botons de crida a l'acció eren els mateixos vint props copiats a
+    // Hero, Featured i Contact. Ara són dues variants i una mida.
+    //
+    // La principal no duu el color de marca sinó el contrast màxim —blanc amb
+    // text negre de nit, negre amb text blanc de dia—, que és com la resol
+    // JetBrains: el color ja el posa el fons, i el botó ha de ser el punt més
+    // clar de la pantalla. `bg.inverted`/`fg.inverted` són la parella que ja
+    // comprova `tests/contrast.test.ts`; en passar-hi el ratolí es tomba cap a
+    // `accent.solid`/`accent.contrast`, que també ho és.
+    Button: {
+      sizes: {
+        pill: { h: "56px", px: 8, fontSize: "md", borderRadius: "control" },
+      },
+      variants: {
+        pillSolid: {
+          bg: "bg.inverted",
+          color: "fg.inverted",
+          fontWeight: 600,
+          _hover: { bg: "accent.solid", color: "accent.contrast", textDecoration: "none" },
+        },
+        pillOutline: {
+          bg: "transparent",
+          color: "fg",
+          fontWeight: 500,
+          borderWidth: "1px",
+          borderStyle: "solid",
+          borderColor: "border.emphasized",
+          _hover: { borderColor: "accent.solid", color: "accent.fg", textDecoration: "none" },
+        },
+      },
+    },
   },
   // Estil de làmina compartit per totes les targetes (projectes, destacats).
   // Abans cada component es repetia el mateix `border="1px solid"`; ara la
@@ -244,11 +275,12 @@ const theme = extendTheme({
         fontVariantNumeric: "tabular-nums",
         fontFeatureSettings: "'tnum' 1",
       },
-      // Només mou i respira: el color el posa `accentCycle`, i l'opacitat es
-      // manté baixa perquè el bafarot no es mengi el fons negre.
+      // Només mou. L'opacitat NO va aquí: mentre hi era, els fotogrames la
+      // fixaven i el valor que posés l'element quedava sense efecte —pujar-lo
+      // no feia res—. El color el posen `glow1`/`glow2`.
       "@keyframes glowDrift": {
-        "0%, 100%": { transform: "translate(0,0) scale(1)", opacity: 0.13 },
-        "50%": { transform: "translate(2%, 3%) scale(1.06)", opacity: 0.2 },
+        "0%, 100%": { transform: "translate(0,0) scale(1)" },
+        "50%": { transform: "translate(1.5%, 2.5%) scale(1.05)" },
       },
       "@media (prefers-reduced-motion: reduce)": {
         "*": {

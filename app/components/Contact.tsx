@@ -51,14 +51,9 @@ export function Contact() {
           <Button
             as={Link}
             href={`mailto:${profile.email}`}
-            bg="accent.solid"
-            color="accent.contrast"
-            borderRadius="control"
-            h="52px"
-            px={6}
-            fontWeight="600"
+            variant="pillSolid"
+            size="pill"
             rightIcon={<Icon as={FiArrowUpRight} />}
-            _hover={{ bg: "accent.emphasized", textDecoration: "none" }}
             className="tnum"
           >
             {profile.email}
@@ -76,15 +71,9 @@ export function Contact() {
             as={Link}
             href="/cv-celesti-tico.pdf"
             download
-            variant="outline"
-            borderColor="border.emphasized"
-            color="fg"
-            borderRadius="control"
-            h="52px"
-            px={6}
-            fontWeight="500"
+            variant="pillOutline"
+            size="pill"
             leftIcon={<Icon as={FiDownload} />}
-            _hover={{ borderColor: "accent.fg", color: "accent.fg", textDecoration: "none" }}
           >
             {t.hero.descarregar}
           </Button>

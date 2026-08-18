@@ -300,22 +300,41 @@ const declarations = (tokens: Record<string, string>) =>
  */
 export function accentStylesheet(): string {
   const rules: string[] = [];
-  // El bafarot de l'entradeta no es queda en un color: recorre els vuit de la
-  // pàgina. Va aquí, i no a `theme.ts`, perquè els colors surten de la mateixa
-  // taula que la resta i no s'han de repetir enlloc.
+  // El fons de l'entradeta, a la manera de jetbrains.com: tres degradats
+  // radials superposats que es fonen a transparent, cadascun amb la seva
+  // posició i escala. No hi ha cap `filter: blur` — és més barat i el caient
+  // es controla amb les parades del degradat, no amb un radi de desenfocament.
+  //
+  // Els dos colors vius no es queden quiets: recorren els vuit accents de la
+  // pàgina, desfasats mig cicle l'un de l'altre perquè sempre n'hi hagi dos de
+  // diferents alhora. Perquè un custom property de color es pugui interpolar
+  // cal declarar-lo amb `@property`; als navegadors que no el tenen, es queda
+  // al valor inicial i el fons simplement no s'anima.
   const cycle = Object.values(SECTION_ACCENTS);
-  const stops = cycle
-    .map((hex, i) => `${((i / cycle.length) * 100).toFixed(2)}%{background-color:${hex}}`)
-    .join("");
-  rules.push(`@keyframes accentCycle{${stops}100%{background-color:${cycle[0]}}}`);
-  // Les dues animacions van juntes en una sola declaració: si l'element es
-  // posés `animation` pel seu compte, l'estil en línia guanyaria i en mataria
-  // una. Amb `prefers-reduced-motion` la regla global de `theme.ts` les atura
-  // totes dues i queda el color de partida.
+  const half = Math.floor(cycle.length / 2);
+  const stopsFor = (offset: number) =>
+    cycle
+      .map((_, i) => {
+        const hex = cycle[(i + offset) % cycle.length];
+        return `${((i / cycle.length) * 100).toFixed(2)}%{--glow-${offset ? 2 : 1}:${hex}}`;
+      })
+      .join("") + `100%{--glow-${offset ? 2 : 1}:${cycle[offset % cycle.length]}}`;
+
+  rules.push(`@property --glow-1{syntax:"<color>";inherits:false;initial-value:${cycle[0]}}`);
+  rules.push(`@property --glow-2{syntax:"<color>";inherits:false;initial-value:${cycle[half]}}`);
+  rules.push(`@keyframes glow1{${stopsFor(0)}}`);
+  rules.push(`@keyframes glow2{${stopsFor(half)}}`);
   rules.push(
-    `.accent-cycle{background-color:${cycle[0]};` +
-      `animation:accentCycle 48s linear infinite,glowDrift 18s ease-in-out infinite}`,
+    `.accent-cycle{` +
+      `background:` +
+      // La doble parada és el que fa el degradat: color ple fins al 12-15% i
+      // només després el caient. Amb una sola parada se'n veu la cua i prou.
+      `radial-gradient(72% 86% at 88% 8%,var(--glow-1) 0,var(--glow-1) 12%,transparent 70%),` +
+      `radial-gradient(62% 76% at 68% 96%,var(--glow-2) 0,var(--glow-2) 10%,transparent 62%);` +
+      `animation:glow1 64s linear infinite,glow2 64s linear infinite,` +
+      `glowDrift 18s ease-in-out infinite}`,
   );
+
   for (const [name, hex] of Object.entries(SECTION_ACCENTS)) {
     rules.push(`[data-accent="${name}"]{${declarations(deriveAll(hex, "light"))}}`);
     rules.push(`.chakra-ui-dark [data-accent="${name}"]{${declarations(deriveAll(hex, "dark"))}}`);

@@ -14,23 +14,21 @@ export function Hero() {
 
   return (
     <Box as="section" id="top" position="relative" overflow="hidden">
+      {/* Fons de tres degradats radials superposats. Vessa per fora de la
+          caixa a posta —el `overflow="hidden"` de la secció el retalla— perquè
+          els centres dels radials quedin fora de camp i només se'n vegi el
+          caient. L'opacitat es manté baixa: el text hi va a sobre. */}
       <MotionBox
+        aria-hidden
         position="absolute"
-        top="-15%"
+        top="-20%"
+        left="-10%"
         right="-10%"
-        w="48vw"
-        h="48vw"
+        bottom="-20%"
         pointerEvents="none"
         style={{ y: yGlow }}
       >
-        <Box
-          className="accent-cycle"
-          w="full"
-          h="full"
-          opacity={0.16}
-          filter="blur(140px)"
-          borderRadius="full"
-        />
+        <Box className="accent-cycle" w="full" h="full" opacity={0.45} />
       </MotionBox>
 
       <Container maxW="72rem" position="relative" pt={{ base: 16, md: 24 }} pb={{ base: 14, md: 20 }}>
@@ -112,27 +110,16 @@ export function Hero() {
             <Button
               as={Link}
               href="#contacto"
-              bg="accent.solid"
-              color="accent.contrast"
-              borderRadius="control"
-              px={6}
-              h="52px"
-              fontWeight="600"
-              _hover={{ bg: "accent.emphasized", textDecoration: "none" }}
+              variant="pillSolid"
+              size="pill"
             >
               {t.hero.contactar}
             </Button>
             <Button
               as={Link}
               href="#destacados"
-              variant="outline"
-              borderColor="border.emphasized"
-              color="fg"
-              borderRadius="control"
-              px={6}
-              h="52px"
-              fontWeight="500"
-              _hover={{ bg: "bg.muted", borderColor: "accent.fg", textDecoration: "none" }}
+              variant="pillOutline"
+              size="pill"
             >
               {t.hero.veure}
             </Button>
@@ -140,15 +127,9 @@ export function Hero() {
               as={Link}
               href="/cv-celesti-tico.pdf"
               download
-              variant="outline"
-              borderColor="border.emphasized"
-              color="fg"
-              borderRadius="control"
-              px={6}
-              h="52px"
-              fontWeight="500"
+              variant="pillOutline"
+              size="pill"
               leftIcon={<Icon as={FiDownload} />}
-              _hover={{ bg: "bg.muted", borderColor: "accent.fg", textDecoration: "none" }}
             >
               {t.hero.descarregar}
             </Button>
