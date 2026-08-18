@@ -29,12 +29,7 @@ export function Skills() {
                   <Text
                     className="tnum"
                     fontSize="0.78rem"
-                    color="fg.muted"
-                    px={2.5}
-                    py={1}
-                    border="1px solid"
-                    borderColor="border"
-                    borderRadius="2px"
+                    layerStyle="chip"
                   >
                     {it}
                   </Text>

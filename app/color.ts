@@ -173,6 +173,13 @@ export function solidWithReadableText(solid: string, target = AA): string {
   return solid;
 }
 
+/** Barreja lineal de dos colors, `t` = quantitat del primer. */
+export function mix(a: string, b: string, t: number): string {
+  const [r1, g1, b1] = hexToRgb(a);
+  const [r2, g2, b2] = hexToRgb(b);
+  return rgbToHex(r1 * t + r2 * (1 - t), g1 * t + g2 * (1 - t), b1 * t + b2 * (1 - t));
+}
+
 // ——— neutres ———
 
 // Neutres per defecte del tema (clar / fosc), tal com són a theme.ts.
@@ -251,6 +258,13 @@ export function deriveAccent(hex: string, neutrals: Record<string, string>, mode
     // accent llegible per damunt del bloc invertit
     "accent.inverted": contrastify(hex, [neutrals["bg.inverted"]], AA, dir === 1 ? -1 : 1),
     "accent.muted": alpha(hex, 0.2),
+    // Superfícies plenes, a la manera de JetBrains: la separació la fa el
+    // farciment i no cap filet. La barreja es fa contra el fons del mode, de
+    // manera que el text neutre hi conserva pràcticament tot el contrast —
+    // `tests/contrast.test.ts` ho comprova.
+    "accent.surface": mix(hex, neutrals.bg, mode === "dark" ? 0.22 : 0.1), // targetes
+    "accent.panel": mix(hex, neutrals.bg, mode === "dark" ? 0.12 : 0.05), // contenidor
+    "accent.chip": mix(hex, neutrals.bg, mode === "dark" ? 0.34 : 0.16), // pastilles
   };
 }
 

@@ -125,12 +125,7 @@ export function Featured({ svgs = {} }: { svgs?: Record<string, string> }) {
                       <Text
                         className="tnum"
                         fontSize="0.72rem"
-                        color="fg.muted"
-                        px={2}
-                        py={1}
-                        border="1px solid"
-                        borderColor="border"
-                        borderRadius="2px"
+                        layerStyle="chip"
                       >
                         {s}
                       </Text>
@@ -145,7 +140,7 @@ export function Featured({ svgs = {} }: { svgs?: Record<string, string> }) {
                       href="#contacto"
                       bg="accent.solid"
                       color="accent.contrast"
-                      borderRadius="2px"
+                      borderRadius="control"
                       h="48px"
                       px={5}
                       fontWeight="600"
@@ -162,7 +157,7 @@ export function Featured({ svgs = {} }: { svgs?: Record<string, string> }) {
                       variant="outline"
                       borderColor="border.emphasized"
                       color="fg"
-                      borderRadius="2px"
+                      borderRadius="control"
                       h="48px"
                       px={5}
                       fontWeight="500"

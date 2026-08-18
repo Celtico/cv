@@ -53,7 +53,7 @@ export function Contact() {
             href={`mailto:${profile.email}`}
             bg="accent.solid"
             color="accent.contrast"
-            borderRadius="2px"
+            borderRadius="control"
             h="52px"
             px={6}
             fontWeight="600"
@@ -79,7 +79,7 @@ export function Contact() {
             variant="outline"
             borderColor="border.emphasized"
             color="fg"
-            borderRadius="2px"
+            borderRadius="control"
             h="52px"
             px={6}
             fontWeight="500"

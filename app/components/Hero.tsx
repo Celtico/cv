@@ -27,8 +27,8 @@ export function Hero() {
           w="full"
           h="full"
           bg="accent.solid"
-          opacity={0.22}
-          _dark={{ opacity: 0.32 }}
+          opacity={0.4}
+          _dark={{ opacity: 0.55 }}
           filter="blur(140px)"
           borderRadius="full"
           animation="glowDrift 18s ease-in-out infinite"
@@ -69,7 +69,7 @@ export function Hero() {
           mb={{ base: 6, md: 8 }}
           px={3}
           py={1.5}
-          borderRadius="2px"
+          borderRadius="control"
           bg="accent.muted"
           border="1px solid"
           borderColor="accent.dot"
@@ -116,7 +116,7 @@ export function Hero() {
               href="#contacto"
               bg="accent.solid"
               color="accent.contrast"
-              borderRadius="2px"
+              borderRadius="control"
               px={6}
               h="52px"
               fontWeight="600"
@@ -130,7 +130,7 @@ export function Hero() {
               variant="outline"
               borderColor="border.emphasized"
               color="fg"
-              borderRadius="2px"
+              borderRadius="control"
               px={6}
               h="52px"
               fontWeight="500"
@@ -145,7 +145,7 @@ export function Hero() {
               variant="outline"
               borderColor="border.emphasized"
               color="fg"
-              borderRadius="2px"
+              borderRadius="control"
               px={6}
               h="52px"
               fontWeight="500"

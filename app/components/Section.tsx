@@ -63,9 +63,9 @@ export function Section({
           h={{ base: "90vw", md: "52vw" }}
           bg="accent.solid"
           // de nit el bafarot pot pujar: el negre pur se'l menja de pressa
-          opacity={0.22}
-          _dark={{ opacity: 0.32 }}
-          filter="blur(130px)"
+          opacity={0.4}
+          _dark={{ opacity: 0.55 }}
+          filter="blur(120px)"
           borderRadius="full"
           pointerEvents="none"
         />

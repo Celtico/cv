@@ -82,3 +82,21 @@ test("accent.inverted és llegible sobre el bloc invertit", () => {
     }
   }
 });
+
+test("el text neutre segueix llegible sobre les superfícies plenes de color", () => {
+  // Les targetes i les pastilles ja no són `bg.panel`: són el color de la
+  // secció barrejat amb el fons. La barreja es fa contra `bg` justament perquè
+  // el text neutre hi conservi el contrast, però això s'ha de comprovar.
+  for (const accent of ACCENT_HEXES) {
+    for (const mode of MODES) {
+      const n = defaultNeutrals(mode);
+      const t = deriveAll(accent, mode);
+      for (const surface of ["accent.surface", "accent.panel", "accent.chip"]) {
+        for (const token of ["fg", "fg.muted"]) {
+          const r = contrastRatio(n[token], t[surface]);
+          assert.ok(r >= AA, `${token} sobre ${surface} (${accent}/${mode}) = ${r.toFixed(2)}`);
+        }
+      }
+    }
+  }
+});

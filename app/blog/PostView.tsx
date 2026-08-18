@@ -55,7 +55,7 @@ export function PostView({ post }: { post: BlogPost }) {
               <Wrap spacing={2}>
                 {c.tags.map((tag) => (
                   <WrapItem key={tag}>
-                    <Text px={2} py={0.5} border="1px solid" borderColor="border" borderRadius="2px">
+                    <Text px={2} py={0.5} border="1px solid" borderColor="border" borderRadius="control">
                       {tag}
                     </Text>
                   </WrapItem>
@@ -78,13 +78,13 @@ export function PostView({ post }: { post: BlogPost }) {
 
             {first && (
               <VStack align="stretch" spacing={3} mb={8} maxW="34.5rem">
-                <Box border="1px solid" borderColor="border.emphasized" borderRadius="2px" overflow="hidden">
+                <Box border="1px solid" borderColor="border.emphasized" borderRadius="plate" overflow="hidden">
                   <TintedImage src={first.src} alt={first.alt} width={first.width} height={first.height} />
                 </Box>
                 {rest.length > 0 && (
                   <SimpleGrid columns={{ base: 1, sm: 3 }} spacing={3}>
                     {rest.map((img) => (
-                      <Box key={img.src} border="1px solid" borderColor="border" borderRadius="2px" overflow="hidden">
+                      <Box key={img.src} border="1px solid" borderColor="border" borderRadius="plate" overflow="hidden">
                         <TintedImage src={img.src} alt={img.alt} width={img.width} height={img.height} cover />
                       </Box>
                     ))}

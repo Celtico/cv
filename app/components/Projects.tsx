@@ -40,12 +40,7 @@ export function Projects({ svgs = {} }: { svgs?: Record<string, string> }) {
                     <Text
                       className="tnum"
                       fontSize="0.72rem"
-                      color="fg.muted"
-                      px={2}
-                      py={1}
-                      border="1px solid"
-                      borderColor="border"
-                      borderRadius="2px"
+                      layerStyle="chip"
                     >
                       {s}
                     </Text>

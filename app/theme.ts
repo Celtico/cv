@@ -30,9 +30,10 @@ const theme = extendTheme({
     "2xl": "1.625rem", // 26
   },
   radii: {
-    // «làmina de paper»: tot el sistema comparteix un sol radi
-    plate: "2px",
-    control: "2px",
+    // La làmina de paper de 2 px es va retirar el 2026-08-18: les targetes són
+    // blocs de color massís amb cantonada rodona i els controls, pastilles.
+    plate: "14px",
+    control: "999px",
   },
   // Escala tipogràfica del sistema. Abans cada component inventava la seva:
   // 16 parells de mides, 13 valors de letterSpacing i la mateixa microetiqueta
@@ -79,20 +80,26 @@ const theme = extendTheme({
   // secció, de manera que la mateixa targeta canta diferent a cada apartat.
   layerStyles: {
     plate: {
-      bg: "bg.panel",
+      bg: "accent.surface",
       borderWidth: "2px",
       borderStyle: "solid",
-      borderColor: "border.emphasized",
-      borderTopWidth: "5px",
-      borderTopColor: "accent.solid",
+      borderColor: "accent.dot",
       borderRadius: "plate",
       overflow: "hidden",
       transition: "border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease",
       _hover: {
         borderColor: "accent.solid",
         transform: "translateY(-4px)",
-        boxShadow: "0 22px 45px -28px var(--chakra-colors-accent-solid)",
+        boxShadow: "0 22px 45px -24px var(--chakra-colors-accent-solid)",
       },
+    },
+    // Pastilla d'etiqueta: color massís i cantonada completa, sense filet.
+    chip: {
+      bg: "accent.chip",
+      color: "fg",
+      borderRadius: "control",
+      px: 3,
+      py: 1.5,
     },
   },
   // Semantic tokens amb la nomenclatura de Chakra
@@ -131,6 +138,10 @@ const theme = extendTheme({
       "accent.contrast": { default: "#0A0A0A", _dark: "#0A0A0A" }, // text sobre accent.solid
       "accent.muted": { default: "rgba(232,145,42,0.2)", _dark: "rgba(232,145,42,0.2)" }, // pista dels anells
       "accent.inverted": { default: "#E8912A", _dark: "#a46112" },
+      // Superfícies plenes: la separació la fa el farciment, no cap filet
+      "accent.surface": { default: "#fdf4ea", _dark: "#332009" }, // targetes
+      "accent.panel": { default: "#fefaf4", _dark: "#1c1105" }, // contenidor
+      "accent.chip": { default: "#fbeddd", _dark: "#4f310e" }, // pastilles
       // Tinta de les il·lustracions (làmines fosques dels SVG inline): igual
       // en tots dos modes.
       "ink.bg": { default: "#0A0A0A", _dark: "#0A0A0A" },

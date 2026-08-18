@@ -67,7 +67,7 @@ export function BlogIndex() {
                   key={post.slug}
                   border="1px solid"
                   borderColor="border"
-                  borderRadius="2px"
+                  borderRadius="plate"
                   overflow="hidden"
                   bg="bg.panel"
                   transition="border-color .2s ease"
@@ -100,7 +100,7 @@ export function BlogIndex() {
                       <Wrap spacing={2}>
                         {c.tags.slice(0, 3).map((tag) => (
                           <WrapItem key={tag}>
-                            <Text px={2} py={0.5} border="1px solid" borderColor="border" borderRadius="2px">
+                            <Text px={2} py={0.5} border="1px solid" borderColor="border" borderRadius="control">
                               {tag}
                             </Text>
                           </WrapItem>

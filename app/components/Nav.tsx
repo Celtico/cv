@@ -39,7 +39,7 @@ function ThemeToggle() {
       onClick={toggleColorMode}
       variant="ghost"
       color="fg"
-      borderRadius="2px"
+      borderRadius="control"
       fontSize="18px"
       _hover={{ bg: "bg.muted", color: "accent.fg" }}
     />
@@ -55,7 +55,7 @@ function LangSwitch() {
   const rest = stripLang(pathname ?? "/");
 
   return (
-    <HStack spacing={0} border="1px solid" borderColor="border" borderRadius="2px" overflow="hidden">
+    <HStack spacing={0} border="1px solid" borderColor="border" borderRadius="control" overflow="hidden">
       {LANGS.map((l: Lang) => (
         <Button
           key={l}
@@ -175,7 +175,7 @@ export function Nav() {
               variant="ghost"
               color="fg"
               fontSize="22px"
-              borderRadius="2px"
+              borderRadius="control"
               display={{ base: "inline-flex", xl: "none" }}
               onClick={onOpen}
               _hover={{ bg: "bg.muted" }}
