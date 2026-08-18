@@ -52,7 +52,7 @@ function Plate({
         px={4}
         py={2}
         bg="accent.panel"
-        fontSize="0.66rem"
+        fontSize="xs"
         letterSpacing="0.14em"
         textTransform="uppercase"
         color="fg.muted"
@@ -110,7 +110,7 @@ export function Featured({ svgs = {} }: { svgs?: Record<string, string> }) {
 
                 <List spacing={2.5}>
                   {tr.highlights.map((h) => (
-                    <ListItem key={h} color="fg.muted" display="flex" alignItems="start" fontSize="0.95rem">
+                    <ListItem key={h} color="fg.muted" display="flex" alignItems="start" fontSize="sm">
                       <ListIcon as={FiCornerDownRight} color="accent.fg" mt={1} flexShrink={0} />
                       <Text as="span">{h}</Text>
                     </ListItem>

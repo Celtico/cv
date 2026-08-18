@@ -43,7 +43,7 @@ export function Stats() {
                 className="tnum"
                 mt={{ md: 2 }}
                 color="fg.muted"
-                fontSize="0.7rem"
+                fontSize="xs"
                 letterSpacing="0.14em"
                 textTransform="uppercase"
               >

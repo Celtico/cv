@@ -45,7 +45,7 @@ export function ClientHours() {
             as="tr"
             sx={rowGrid}
             className="tnum"
-            fontSize="0.7rem"
+            fontSize="xs"
             letterSpacing="0.14em"
             textTransform="uppercase"
             color="fg.subtle"
@@ -94,7 +94,7 @@ export function ClientHours() {
                   <Text fontFamily="heading" fontSize={{ base: "1.05rem", md: "1.25rem" }} color="fg" noOfLines={1}>
                     {c.name}
                   </Text>
-                  <Text className="tnum" fontSize="0.7rem" color="fg.muted" mt={0.5} display={{ md: "none" }}>
+                  <Text className="tnum" fontSize="xs" color="fg.muted" mt={0.5} display={{ md: "none" }}>
                     {c.projects} proj · {c.period}
                   </Text>
                 </Box>
@@ -121,7 +121,7 @@ export function ClientHours() {
 
         <Box as="tfoot" display="block">
           <Box as="tr" sx={rowGrid} pt={4} mt={1} borderTop="2px solid" borderColor="fg">
-            <Box as="td" className="tnum" fontSize="0.7rem" color="accent.fg" letterSpacing="0.1em">
+            <Box as="td" className="tnum" fontSize="xs" color="accent.fg" letterSpacing="0.1em">
               Σ
             </Box>
             <Box
@@ -129,7 +129,7 @@ export function ClientHours() {
               scope="row"
               textAlign="left"
               className="tnum"
-              fontSize="0.72rem"
+              fontSize="xs"
               fontWeight="inherit"
               letterSpacing="0.14em"
               textTransform="uppercase"

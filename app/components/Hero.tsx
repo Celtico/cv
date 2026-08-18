@@ -61,7 +61,7 @@ export function Hero() {
           border="1px solid"
           borderColor="accent.dot"
           color="accent.fg"
-          fontSize={{ base: "0.7rem", md: "xs" }}
+          fontSize="xs"
           letterSpacing="0.16em"
           textTransform="uppercase"
         >
@@ -91,7 +91,7 @@ export function Hero() {
                 text més petit de tota la pantalla. */}
             <Text
               className="tnum"
-              fontSize={{ base: "0.82rem", md: "0.95rem" }}
+              fontSize={{ base: "xs", md: "sm" }}
               fontWeight="500"
               letterSpacing="0.16em"
               textTransform="uppercase"

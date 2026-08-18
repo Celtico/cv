@@ -47,7 +47,7 @@ export function Gallery() {
             </AspectRatio>
             <Text
               className="tnum"
-              fontSize="0.66rem"
+              fontSize="xs"
               letterSpacing="0.1em"
               textTransform="uppercase"
               color="fg.muted"
