@@ -47,6 +47,7 @@ Tasques (del portfoli "Sobre mí"):
 - Validació de codi (estructuració, seguretat, compatibilitat cross-browser/dispositiu/SO)
 
 ## Volum (del gestor Cenics)
+- **25 anys** d'experiència (des del 2000)
 - **422 projectes** entregats
 - **200+ clients**
 - Facturació mensual sostinguda (gràfiques 2012–2021+)
@@ -149,5 +150,4 @@ CV i web comparteixen piles del sistema (cap font descarregada):
 - Destacar-hi la implementació d'Odoo (RBAC Platform)
 
 ## Pendents de confirmar amb el Cel
-- Confirmar dates d'experiència (portfoli diu des del 2000)
 - Confirmar/afegir qualsevol empresa recent concreta que falti

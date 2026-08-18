@@ -72,7 +72,9 @@ cv-dades-celesti-tico.md  →  cv-celesti-tico.html  →  cv-celesti-tico.pdf  �
 ```
 
 No inventis dades. Si en falta, pregunta o apunta-ho a la secció "Pendents de confirmar" del `.md`.
-Xifres que s'han de mantenir coherents a tot arreu: **422 projectes**, **200+ clients**, **20+ anys**.
+Xifres que s'han de mantenir coherents a tot arreu: **422 projectes**, **200+ clients**, **25 anys**
+(des del 2000). El CV deia 25 i la web 20+ fins al 2026-08-18; la xifra no era al `.md` i per això
+les dues sortides van poder divergir sense que res ho impedís.
 
 ## Comandes
 
