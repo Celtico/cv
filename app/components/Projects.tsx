@@ -9,7 +9,7 @@ import { useT } from "../i18n";
 export function Projects({ svgs = {} }: { svgs?: Record<string, string> }) {
   const t = useT();
   return (
-    <Section id="proyectos" accent="projects" glow="left" kicker={t.projects.kicker} title={t.projects.title} subtitle={t.projects.subtitle} bg="bg.subtle">
+    <Section id="proyectos" accent="projects" glow="left" kicker={t.projects.kicker} title={t.projects.title} subtitle={t.projects.subtitle} bg="bg">
       <SimpleGrid columns={{ base: 1, md: 2 }} spacing={8}>
         {projects.map((p, i) => (
           <Box key={p.title} layerStyle="plate">

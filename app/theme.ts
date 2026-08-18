@@ -153,9 +153,9 @@ const theme = extendTheme({
       "accent.muted": { default: "rgba(232,145,42,0.2)", _dark: "rgba(232,145,42,0.2)" }, // pista dels anells
       "accent.inverted": { default: "#E8912A", _dark: "#a46112" },
       // Superfícies plenes: la separació la fa el farciment, no cap filet
-      "accent.surface": { default: "#fdf4ea", _dark: "#332009" }, // targetes
-      "accent.panel": { default: "#fefaf4", _dark: "#1c1105" }, // contenidor
-      "accent.chip": { default: "#fbeddd", _dark: "#4f310e" }, // pastilles
+      "accent.panel": { default: "#fdf5ec", _dark: "#2e1d08" }, // fons de secció
+      "accent.surface": { default: "#fbeddd", _dark: "#4f310e" }, // targetes
+      "accent.chip": { default: "#f9e2c8", _dark: "#6f4614" }, // pastilles
       // Tinta de les il·lustracions (làmines fosques dels SVG inline): igual
       // en tots dos modes.
       "ink.bg": { default: "#0A0A0A", _dark: "#0A0A0A" },

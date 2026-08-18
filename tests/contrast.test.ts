@@ -91,12 +91,18 @@ test("el text neutre segueix llegible sobre les superfícies plenes de color", (
     for (const mode of MODES) {
       const n = defaultNeutrals(mode);
       const t = deriveAll(accent, mode);
-      for (const surface of ["accent.surface", "accent.panel", "accent.chip"]) {
+      // `accent.panel` (fons de secció) i `accent.surface` (targetes) porten
+      // paràgrafs sencers, amb text apagat inclòs. `accent.chip` és el més
+      // saturat dels tres i el `layerStyle` «chip» hi fixa `color: fg`
+      // justament per això: si algú hi posa `fg.muted` a sobre, no passarà.
+      for (const surface of ["accent.panel", "accent.surface"]) {
         for (const token of ["fg", "fg.muted"]) {
           const r = contrastRatio(n[token], t[surface]);
           assert.ok(r >= AA, `${token} sobre ${surface} (${accent}/${mode}) = ${r.toFixed(2)}`);
         }
       }
+      const chip = contrastRatio(n.fg, t["accent.chip"]);
+      assert.ok(chip >= AA, `fg sobre accent.chip (${accent}/${mode}) = ${chip.toFixed(2)}`);
     }
   }
 });

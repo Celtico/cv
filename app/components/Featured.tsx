@@ -52,7 +52,7 @@ function Plate({
         justify="space-between"
         px={4}
         py={2}
-        bg="bg.muted"
+        bg="accent.panel"
         borderBottom="1px solid"
         borderColor="border"
         fontSize="0.66rem"

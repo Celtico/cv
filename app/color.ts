@@ -262,9 +262,9 @@ export function deriveAccent(hex: string, neutrals: Record<string, string>, mode
     // farciment i no cap filet. La barreja es fa contra el fons del mode, de
     // manera que el text neutre hi conserva pràcticament tot el contrast —
     // `tests/contrast.test.ts` ho comprova.
-    "accent.surface": mix(hex, neutrals.bg, mode === "dark" ? 0.22 : 0.1), // targetes
-    "accent.panel": mix(hex, neutrals.bg, mode === "dark" ? 0.12 : 0.05), // contenidor
-    "accent.chip": mix(hex, neutrals.bg, mode === "dark" ? 0.34 : 0.16), // pastilles
+    "accent.panel": mix(hex, neutrals.bg, mode === "dark" ? 0.2 : 0.09), // fons de secció
+    "accent.surface": mix(hex, neutrals.bg, mode === "dark" ? 0.34 : 0.16), // targetes
+    "accent.chip": mix(hex, neutrals.bg, mode === "dark" ? 0.48 : 0.26), // pastilles
   };
 }
 
