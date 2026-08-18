@@ -30,7 +30,6 @@ export function Skills() {
                 <WrapItem key={it}>
                   <Text
                     className="tnum"
-                    fontSize="0.78rem"
                     layerStyle="chip"
                   >
                     {it}

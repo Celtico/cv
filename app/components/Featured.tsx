@@ -122,7 +122,6 @@ export function Featured({ svgs = {} }: { svgs?: Record<string, string> }) {
                     <WrapItem key={s}>
                       <Text
                         className="tnum"
-                        fontSize="0.72rem"
                         layerStyle="chip"
                       >
                         {s}

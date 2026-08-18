@@ -180,9 +180,13 @@ const theme = extendTheme({
     chip: {
       bg: "accent.chip",
       color: "fg",
+      // La mida va aquí. Mentre no hi era, Skills, Projects i Featured se
+      // n'escrivien una cadascun (0,78 i 0,72 rem) i les pastilles no eren
+      // iguals d'una secció a l'altra.
+      fontSize: "xs",
       borderRadius: "control",
-      px: 3,
-      py: 1.5,
+      px: 3.5,
+      py: 2,
     },
   },
   // Semantic tokens amb la nomenclatura de Chakra
