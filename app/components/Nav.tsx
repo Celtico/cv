@@ -65,12 +65,12 @@ function LangSwitch() {
           hrefLang={l}
           size="xs"
           h="30px"
-          minW="34px"
-          px={2}
+          minW="38px"
+          px={2.5}
           borderRadius={0}
           variant="ghost"
           className="tnum"
-          fontSize="0.66rem"
+          fontSize="xs"
           letterSpacing="0.08em"
           fontWeight={lang === l ? "600" : "400"}
           bg={lang === l ? "accent.fg" : "transparent"}
@@ -155,7 +155,9 @@ export function Nav() {
                 key={l.href}
                 href={l.href}
                 className="tnum"
-                fontSize="0.72rem"
+                // Mida de l'escala, no escrita a mà: la resta de la pàgina va
+                // créixer i la barra s'hi va quedar a 11,5 px.
+                fontSize="xs"
                 letterSpacing="0.12em"
                 textTransform="uppercase"
                 color="fg.muted"
