@@ -7,6 +7,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { LANGS, content } from "../app/content.ts";
 import { clients, experience, featured, projects, skills, stats } from "../app/data.ts";
+import { stripMarkup } from "../app/markup.ts";
 
 type Shape = string | { [k: string]: Shape } | Shape[];
 
@@ -56,4 +57,21 @@ test("els arrays traduïts s'alineen amb els de data.ts", () => {
       assert.equal(actual(lang), esperat, `${nom} en ${lang} té ${actual(lang)} elements i data.ts en té ${esperat}`);
     }
   }
+});
+
+test("el marcatge del diccionari no s'escapa cap a les metadades", () => {
+  // `hero.tagline` i `blog.subtitle` es pinten a la pàgina PERÒ també alimenten
+  // la meta description i l'OpenGraph. Quan es va afegir ==ressaltat== al
+  // tagline, el marcatge va sortir literal als cercadors durant unes hores.
+  // Aquí es fixa el contracte: tot el que vagi a metadades passa per
+  // `stripMarkup`, i `stripMarkup` no deixa cap marcador.
+  for (const lang of LANGS) {
+    for (const raw of [content[lang].hero.tagline, content[lang].blog.subtitle]) {
+      const net = stripMarkup(raw);
+      assert.ok(!net.includes("**"), `queda negreta a ${lang}: ${net}`);
+      assert.ok(!net.includes("=="), `queda ressaltat a ${lang}: ${net}`);
+      assert.ok(net.length > 0, `s'ha buidat a ${lang}`);
+    }
+  }
+  assert.equal(stripMarkup("un **fort** i un ==viu=="), "un fort i un viu");
 });

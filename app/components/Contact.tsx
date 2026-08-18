@@ -4,6 +4,7 @@ import { Box, Button, Container, Flex, Heading, Icon, Link, Text } from "@chakra
 import { FiArrowUpRight, FiDownload } from "react-icons/fi";
 import { profile } from "../data";
 import { useT } from "../i18n";
+import { RichText } from "./RichText";
 
 export function Contact() {
   const t = useT();
@@ -44,7 +45,7 @@ export function Contact() {
         </Heading>
 
         <Text mt={6} color="fg.muted" fontSize={{ base: "md", md: "lg" }} maxW="34rem" lineHeight="1.7">
-          {t.contact.subtitle}
+          <RichText>{t.contact.subtitle}</RichText>
         </Text>
 
         <Flex mt={10} gap={4} wrap="wrap" align="center">

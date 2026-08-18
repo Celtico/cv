@@ -1,6 +1,7 @@
 "use client";
 
 import { Box } from "@chakra-ui/react";
+import { MARKUP_SPLIT } from "../markup";
 
 /**
  * Renderitza text del diccionari admetent **negreta** i ==ressaltat==.
@@ -12,7 +13,7 @@ import { Box } from "@chakra-ui/react";
  * amb el text apagat del voltant.
  */
 export function RichText({ children }: { children: string }) {
-  const trossos = children.split(/(\*\*[^*]+\*\*|==[^=]+==)/g).filter(Boolean);
+  const trossos = children.split(MARKUP_SPLIT).filter(Boolean);
   return (
     <>
       {trossos.map((t, i) => {

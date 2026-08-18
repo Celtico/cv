@@ -20,6 +20,7 @@ import { Contact } from "../components/Contact";
 import { useLang, useT, langHref } from "../i18n";
 import { TintedImage } from "./TintedImage";
 import { blogPosts } from "./posts";
+import { RichText } from "../components/RichText";
 
 export function formatDate(iso: string, lang: string) {
   return new Date(`${iso}T12:00:00`).toLocaleDateString(
@@ -54,7 +55,7 @@ export function BlogIndex() {
             {t.blog.title}
           </Heading>
           <Text mt={5} color="fg.muted" fontSize={{ base: "md", md: "lg" }} maxW="42rem" lineHeight="1.7">
-            {t.blog.subtitle}
+            <RichText>{t.blog.subtitle}</RichText>
           </Text>
 
           <SimpleGrid columns={{ base: 1, sm: 2, lg: 3 }} spacing={{ base: 6, md: 8 }} mt={{ base: 12, md: 16 }}>

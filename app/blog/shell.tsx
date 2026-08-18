@@ -7,6 +7,7 @@ import { alternatesFor, ogLocale, urlFor, SITE_URL } from "../seo";
 import { blogPosts } from "./posts";
 import { BlogIndex } from "./BlogIndex";
 import { PostView } from "./PostView";
+import { stripMarkup } from "../markup";
 
 const personRef = { "@id": `${SITE_URL}/#person` };
 
@@ -16,14 +17,14 @@ export function blogIndexMetadata(lang: Lang): Metadata {
   const t = content[lang].blog;
   return {
     title: t.title,
-    description: t.subtitle,
+    description: stripMarkup(t.subtitle),
     keywords: ["Celestí Ticó Petit", "blog", "IA", "VehicleOS", "FABRIK", "Odoo", "Next.js"],
     alternates: alternatesFor(lang, "/blog"),
     openGraph: {
       type: "website",
       url: urlFor(lang, "/blog"),
       title: `${t.title} · ${profile.name}`,
-      description: t.subtitle,
+      description: stripMarkup(t.subtitle),
       locale: ogLocale(lang),
     },
   };
