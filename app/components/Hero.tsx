@@ -93,7 +93,9 @@ export function Hero() {
         {/* Els botons van sempre a sota, no al costat. Quan compartien fila amb
             el paràgraf, els tres ocupaven prou amplada perquè el text quedés
             espremut a dues paraules per línia en finestres mitjanes. */}
-        <Flex mt={8} direction="column" gap={8} align="start">
+        {/* L'aire va aquí, entre el text i els botons, i no entre la línia de
+            rol i el paràgraf: el rol i el text són el mateix bloc. */}
+        <Flex mt={8} direction="column" gap={12} align="start">
           <Box>
             {/* El rol és la dada de decisió per a qui contracta: abans era el
                 text més petit de tota la pantalla. */}
@@ -107,9 +109,7 @@ export function Hero() {
               // ja porta el degradat, i dues coses de color seguides es fan la
               // competència.
               color="fg"
-              // L'aire ha de superar l'interlineat del paràgraf (~34 px) o la
-              // línia es llegeix com la primera del text i no com una etiqueta
-              mb={9}
+              mb={4}
             >
               {t.hero.role}
             </Text>
