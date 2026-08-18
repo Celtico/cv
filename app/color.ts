@@ -40,6 +40,17 @@ export type AccentName = keyof typeof SECTION_ACCENTS;
 /** Els vuit accents en llista, per als tests de contrast. */
 export const ACCENT_HEXES = Object.values(SECTION_ACCENTS) as readonly string[];
 
+/**
+ * Accents que NO entren al degradat de dins de les lletres. El verd hi
+ * embrutava: barrejat amb qualsevol dels altres passa per tons oliva.
+ */
+export const TEXT_GRADIENT_EXCLUDED: readonly AccentName[] = ["about"];
+
+/** Els accents que sí que hi entren, en l'ordre del cicle. */
+export const TEXT_GRADIENT_ACCENTS = (Object.entries(SECTION_ACCENTS) as [AccentName, string][])
+  .filter(([name]) => !TEXT_GRADIENT_EXCLUDED.includes(name))
+  .map(([, hex]) => hex);
+
 /** Les dues tintes de text disponibles per damunt d'un color ple. */
 export const TEXT_DARK = "#0A0A0A";
 export const TEXT_LIGHT = "#FFFFFF";
@@ -353,9 +364,11 @@ export function accentStylesheet(): string {
   // dos: barrejar un blau i un rosa que passen just el llindar dona un punt
   // intermedi que no hi arriba. Per això els extrems es contrasten amb marge,
   // i `tests/contrast.test.ts` mostreja tot el recorregut per comprovar-ho.
-  // El marge està calibrat: amb 1,3 el pitjor punt de totes les parelles cau a
-  // 4,86, i amb 1,2 a 4,54 —massa just per aguantar cap canvi de paleta—.
-  const TEXT_MARGIN = 1.3;
+  // El marge està calibrat contra la llista de dalt: amb 1,4 el pitjor punt de
+  // totes les parelles cau a 4,95 i amb 1,3 a 4,43, per sota del llindar. Si
+  // treus o afegeixes un color a `TEXT_GRADIENT_ACCENTS`, les parelles canvien
+  // i s'ha de tornar a calibrar — el test t'ho dirà.
+  const TEXT_MARGIN = 1.4;
   // I abans de contrastar-los se'ls puja la saturació: `contrastify` només mou
   // la claror, així que la saturació que entra és la que surt. Sense això els
   // colors del degradat quedaven apagats respecte dels de la resta de la pàgina.
@@ -364,12 +377,14 @@ export function accentStylesheet(): string {
     const [h, sat, l] = hexToHsl(hex);
     return hslToHex(h, Math.min(1, sat * TEXT_SATURATION), l);
   };
+  const textCycle = TEXT_GRADIENT_ACCENTS;
+  const textHalf = Math.floor(textCycle.length / 2);
   for (const mode of ["light", "dark"] as Mode[]) {
     const n = defaultNeutrals(mode);
     const surfaces = [n.bg, n["bg.subtle"], n["bg.panel"], n["gray.contrast"]];
-    const texts = cycle.map((hex) => contrastify(vivid(hex), surfaces, AA * TEXT_MARGIN, mode === "light" ? -1 : 1));
+    const texts = textCycle.map((hex) => contrastify(vivid(hex), surfaces, AA * TEXT_MARGIN, mode === "light" ? -1 : 1));
     const suffix = mode === "dark" ? "Dark" : "Light";
-    for (const [n, offset] of [[1, 0], [2, half]] as const) {
+    for (const [n, offset] of [[1, 0], [2, textHalf]] as const) {
       const stops =
         texts
           .map((_, i) => `${((i / texts.length) * 100).toFixed(2)}%{--text-${n}:${texts[(i + offset) % texts.length]}}`)
@@ -380,12 +395,12 @@ export function accentStylesheet(): string {
   const safeText = (i: number, mode: Mode) => {
     const n = defaultNeutrals(mode);
     const surf = [n.bg, n["bg.subtle"], n["bg.panel"], n["gray.contrast"]];
-    return contrastify(vivid(cycle[i]), surf, AA * TEXT_MARGIN, mode === "light" ? -1 : 1);
+    return contrastify(vivid(textCycle[i]), surf, AA * TEXT_MARGIN, mode === "light" ? -1 : 1);
   };
   const initialText = (i: number) => safeText(i, "light");
   const initialTextDark = (i: number) => safeText(i, "dark");
   rules.push(`@property --text-1{syntax:"<color>";inherits:false;initial-value:${initialText(0)}}`);
-  rules.push(`@property --text-2{syntax:"<color>";inherits:false;initial-value:${initialText(half)}}`);
+  rules.push(`@property --text-2{syntax:"<color>";inherits:false;initial-value:${initialText(textHalf)}}`);
   // El color sòlid NO és `transparent`: és la reserva. Qui no sàpiga retallar
   // el fons contra el text el pintarà d'un color que ja compleix AA, en comptes
   // de deixar-lo invisible. És com ho resol apple.com.

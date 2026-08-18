@@ -79,7 +79,7 @@ function Plate({
 export function Featured({ svgs = {} }: { svgs?: Record<string, string> }) {
   const t = useT();
   return (
-    <Section id="destacados" accent="featured" kickerTone="contrast" tone="wash" kicker={t.featured.kicker} title={t.featured.title} subtitle={t.featured.subtitle}>
+    <Section id="destacados" accent="featured" kickerTone="neutral" tone="wash" kicker={t.featured.kicker} title={t.featured.title} subtitle={t.featured.subtitle}>
       <VStack spacing={{ base: 14, md: 24 }} align="stretch">
         {featured.map((p, i) => {
           const tr = t.featured.items[i];

@@ -11,6 +11,7 @@ import {
   ACCENT_HEXES,
   contrastRatio,
   defaultNeutrals,
+  TEXT_GRADIENT_ACCENTS,
   contrastify,
   hexToHsl,
   hslToHex,
@@ -119,9 +120,10 @@ test("el degradat de dins de les lletres compleix AA a tot el recorregut", () =>
   // que el pitjor extrem. Aquí es mostreja el recorregut per no haver-ho de
   // creure: barrejar un blau i un rosa que passen just el llindar dona un punt
   // intermedi que NO hi arriba, i per això els extrems es calculen amb marge
-  // (AA × 1,3, calibrat: deixa el pitjor punt a 4,86, i amb 1,2 cauria a 4,54).
-  // Si algú abaixa el marge, puja la saturació o canvia la interpolació
-  // (posem-hi `in oklab`), aquest test se n'ha d'assabentar.
+  // (AA × 1,4, calibrat: deixa el pitjor punt a 4,95, i amb 1,3 cauria a 4,43).
+  // Si algú abaixa el marge, puja la saturació, treu un color de la llista
+  // —que reparella la resta— o canvia la interpolació (posem-hi `in oklab`),
+  // aquest test se n'ha d'assabentar.
   for (const mode of MODES) {
     const n = defaultNeutrals(mode);
     const surfaces = [n.bg, n["bg.subtle"], n["bg.panel"], n["gray.contrast"]];
@@ -130,7 +132,11 @@ test("el degradat de dins de les lletres compleix AA a tot el recorregut", () =>
       const [h, sat, l] = hexToHsl(hex);
       return hslToHex(h, Math.min(1, sat * 1.4), l);
     };
-    const texts = ACCENT_HEXES.map((hex) => contrastify(vivid(hex), surfaces, AA * 1.3, mode === "light" ? -1 : 1));
+    // La mateixa llista que fa servir `accentStylesheet()`: el verd en queda
+    // fora, i per tant tampoc s'ha de comprovar aquí.
+    const texts = TEXT_GRADIENT_ACCENTS.map((hex) =>
+      contrastify(vivid(hex), surfaces, AA * 1.4, mode === "light" ? -1 : 1),
+    );
     for (let i = 0; i < texts.length; i++) {
       const a = texts[i];
       const b = texts[(i + Math.floor(texts.length / 2)) % texts.length];
@@ -159,5 +165,16 @@ test("l'etiqueta de secció aguanta el text blanc a les vuit seccions", () => {
       const block = contrastRatio(t["accent.deep"], n.bg);
       assert.ok(block >= AA_NON_TEXT, `accent.deep sobre el fons (${accent}/${mode}) = ${block.toFixed(2)}`);
     }
+  }
+});
+
+test("la pastilla d'etiqueta grisa aguanta el text", () => {
+  // L'altra meitat de les etiquetes va de gris amb text normal. `gray.emphasized`
+  // es va triar per als vels de les fotos i aquí se li demana una feina nova:
+  // sostenir text a 4,5:1.
+  for (const mode of MODES) {
+    const n = defaultNeutrals(mode);
+    const r = contrastRatio(n.fg, n["gray.emphasized"]);
+    assert.ok(r >= AA, `fg sobre gray.emphasized (${mode}) = ${r.toFixed(2)}`);
   }
 });

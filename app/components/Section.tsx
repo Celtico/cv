@@ -34,12 +34,10 @@ export function Section({
   tone?: "flat" | "wash";
   /**
    * Color de la pastilla de l'etiqueta. `accent` la pinta amb `accent.deep`,
-   * el color de la secció enfosquit; `contrast` la pinta del contrari del fons
-   * —blanca amb text negre de nit, negra amb text blanc de dia—, que és la
-   * mateixa parella que fa servir el botó principal. Van repartides perquè no
-   * hi hagi vuit pastilles de color seguides.
+   * el color de la secció enfosquit; `neutral` la pinta de gris. Van
+   * repartides perquè no hi hagi vuit pastilles de color seguides.
    */
-  kickerTone?: "accent" | "contrast";
+  kickerTone?: "accent" | "neutral";
 }) {
   const titleColor = inverted ? "fg.inverted" : "fg";
   const subColor = inverted ? "fg.inverted.muted" : "fg.muted";
@@ -75,17 +73,17 @@ export function Section({
             <Flex align="center" gap={4} mb={6}>
               {/* Pastilla massissa, en una de dues parelles: `accent.deep` amb
                   blanc (el color de la secció enfosquit just perquè el blanc hi
-                  arribi a 4,5:1) o `bg.inverted` amb `fg.inverted` (el contrari
-                  del fons). Les dues estan verificades, així que qualsevol de
-                  les dues serveix damunt de qualsevol fons de secció. */}
+                  arribi a 4,5:1) o `gray.emphasized` amb `fg`. Les dues estan
+                  verificades, així que qualsevol serveix damunt de qualsevol
+                  fons de secció. */}
               <Flex
                 as="span"
                 align="center"
                 gap={2}
                 className="tnum"
                 textStyle="kicker"
-                bg={kickerTone === "contrast" ? "bg.inverted" : "accent.deep"}
-                color={kickerTone === "contrast" ? "fg.inverted" : "accent.deep.fg"}
+                bg={kickerTone === "neutral" ? "gray.emphasized" : "accent.deep"}
+                color={kickerTone === "neutral" ? "fg" : "accent.deep.fg"}
                 borderRadius="control"
                 px={4}
                 py={2}
