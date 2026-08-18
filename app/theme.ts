@@ -161,11 +161,14 @@ const theme = extendTheme({
     // arreu.
     plateTinted: {
       bgGradient: "linear(to-br, bg, accent.surface)",
-      borderWidth: "2px",
-      borderStyle: "solid",
-      borderColor: "accent.dot",
       borderRadius: "plate",
       overflow: "hidden",
+      // Sense filet: damunt d'una banda de color, la rajola ja se separa pel
+      // farciment. La vora només apareix en passar-hi el ratolí, que és quan
+      // fa falta assenyalar que allò es pot tocar.
+      borderWidth: "2px",
+      borderStyle: "solid",
+      borderColor: "transparent",
       transition: "border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease",
       _hover: {
         borderColor: "accent.solid",
