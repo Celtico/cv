@@ -205,11 +205,18 @@ incomplissin AA al botó principal.
   re-tintat dels neutres (`deriveNeutrals`, `GRAY_SUGGESTIONS`) i el diccionari `picker`.
 - `NEUTRAL_DEFAULTS` a `color.ts` **duplica** els valors neutres de `theme.ts`. Si en canvies
   un, canvia'l als dos llocs.
+- **La separació la fa el farciment, no el filet** (llenguatge pres de jetbrains.com el
+  2026-08-18). `deriveAccent` publica tres superfícies plenes, que són el color de la secció
+  barrejat amb el fons del mode: `accent.surface` (targetes), `accent.panel` (contenidors) i
+  `accent.chip` (pastilles). La barreja es fa **contra `bg`** justament perquè el text neutre
+  hi conservi el contrast; `tests/contrast.test.ts` ho comprova per als 8 accents × 2 modes.
+- **Radis**: `plate` (14 px) per a targetes i imatges, `control` (999 px) per a botons,
+  etiquetes i commutadors — pastilla completa. La «làmina de paper» de 2 px es va retirar el
+  2026-08-18. No escriguis `borderRadius="2px"` a cap component: fes servir el token.
 - `theme.ts` defineix `textStyles` (`display`, `sectionTitle`, `cardTitle`, `kicker`, `micro`),
-  l'escala de `fontSizes` (pujada un punt: `md` són 17 px) i el `layerStyle` **`plate`**, que
-  és l'estil de targeta compartit — vora de 2 px, cinta superior de 5 px amb el color de la
-  secció i elevació en passar-hi el ratolí. Fes-los servir en comptes d'inventar mides o
-  repetir vores.
+  l'escala de `fontSizes` (pujada un punt: `md` són 17 px) i dos `layerStyles`: **`plate`**
+  (targeta de color massís amb vora d'accent i elevació en passar-hi el ratolí) i **`chip`**
+  (pastilla d'etiqueta). Fes-los servir en comptes d'inventar mides o repetir vores.
 
 ### Altres detalls
 
@@ -218,7 +225,8 @@ incomplissin AA al botó principal.
   Cobert per una prova de regressió a `e2e/navegacio.spec.ts` (compte: en pantalla petita els
   enllaços viuen dins del calaix, no a la barra).
 - `components/Section.tsx` embolcalla totes les seccions: hi posa `data-accent`, el bafarot de
-  color del fons (`glow`, que alterna de costat secció a secció) i el `scrollMarginTop` per no
+  color del fons (`glow`, un bafarot difuminat que alterna de costat secció a secció) i el
+  `scrollMarginTop` per no
   quedar sota la barra sticky. `components/Reveal.tsx` fa l'aparició en scroll com a **millora
   progressiva**: el marcatge surt visible del servidor i només s'amaga, abans de pintar, el
   que queda fora de pantalla. No hi tornis a posar un `initial` de framer-motion.
