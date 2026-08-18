@@ -169,8 +169,16 @@ Els components combinen les dues fonts **per índex**: `t.skills.groups[i] ?? s.
 afegeixes un element a un array de `data.ts`, n'has d'afegir un a la posició equivalent dels
 tres arrays de `content.ts`. `tests/content.test.ts` ho comprova; no confiïs a recordar-ho.
 
-El text del diccionari admet `**negreta**`, que renderitza `components/RichText.tsx`: el
-marcatge viu al text traduïble, no al JSX.
+El text del diccionari admet `**negreta**` i `==ressaltat==` (el degradat per dins de les
+lletres), que renderitza `components/RichText.tsx`: el marcatge viu al text traduïble, no al
+JSX. **La sintaxi viu a `app/markup.ts`**, no dins del component, perquè hi ha dos consumidors
+que han de conèixer-la: qui la pinta i qui l'ha de treure.
+
+Compte amb el segon: `hero.tagline` i `blog.subtitle` es pinten a la pàgina **i** alimenten la
+meta description i l'OpenGraph. Tot el que se'n vagi a metadades ha de passar per
+`stripMarkup()`, o els marcadors surten literals als cercadors. Si afegeixes marcatge a un
+text del diccionari, mira primer si aquell camp també és metadada; `tests/content.test.ts` ho
+comprova per als dos que ho són avui.
 
 ### i18n (`app/i18n.tsx`)
 
