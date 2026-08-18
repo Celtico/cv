@@ -19,7 +19,7 @@ export function Contact() {
       color="fg"
       scrollMarginTop="80px"
     >
-      <Container maxW="72rem" py={{ base: 20, md: 28 }}>
+      <Container maxW="72rem" py={{ base: 20, md: 32, lg: 40 }}>
         <Kicker>{t.contact.kicker}</Kicker>
 
         {/* Mateix paper que la resta de titulars de secció. La cursiva que hi

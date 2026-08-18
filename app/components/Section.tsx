@@ -51,7 +51,10 @@ export function Section({
       // Els tokens accent.* d'aquesta secció arriben per CSS a partir d'aquest
       // atribut i s'hereten a tot el subarbre. Vegeu `accentStylesheet()`.
       data-accent={accent}
-      py={{ base: 16, md: 24 }}
+      // Espaiat generós entre bandes, a la manera d'apple.com: 80 px al mòbil i
+      // fins a 160 a l'escriptori. Amb bandes de color, l'aire és el que fa que
+      // cada una es llegeixi com una parada i no com una franja més.
+      py={{ base: 20, md: 32, lg: 40 }}
       bg={inverted ? "bg.inverted" : bg}
       color={inverted ? "fg.inverted" : "fg"}
       // La banda de degradat recorre tota l'alçada de la secció, del fons net
