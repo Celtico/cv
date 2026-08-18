@@ -335,6 +335,46 @@ export function accentStylesheet(): string {
       `glowDrift 18s ease-in-out infinite}`,
   );
 
+  // El mateix cicle, però per pintar l'interior de les lletres amb
+  // `background-clip: text`. Aquí no s'hi poden fer servir els accents crus:
+  // l'ambre sobre blanc no arriba ni a 3:1. S'usa `accent.fg`, que ja està
+  // contrastat contra les superfícies del mode, i per això cal un joc de
+  // fotogrames per mode.
+  //
+  // Que els dos extrems compleixin AA NO n'hi ha prou. La lluminància creix
+  // de manera monòtona amb cada canal i la interpolació manté cada canal entre
+  // els dels extrems, però la combinació resultant pot ser més fosca que tots
+  // dos: barrejar un blau i un rosa que passen just el llindar dona un punt
+  // intermedi que no hi arriba. Per això els extrems es contrasten amb marge,
+  // i `tests/contrast.test.ts` mostreja tot el recorregut per comprovar-ho.
+  const TEXT_MARGIN = 1.5;
+  for (const mode of ["light", "dark"] as Mode[]) {
+    const n = defaultNeutrals(mode);
+    const surfaces = [n.bg, n["bg.subtle"], n["bg.panel"], n["gray.contrast"]];
+    const texts = cycle.map((hex) => contrastify(hex, surfaces, AA * TEXT_MARGIN, mode === "light" ? -1 : 1));
+    const suffix = mode === "dark" ? "Dark" : "Light";
+    for (const [n, offset] of [[1, 0], [2, half]] as const) {
+      const stops =
+        texts
+          .map((_, i) => `${((i / texts.length) * 100).toFixed(2)}%{--text-${n}:${texts[(i + offset) % texts.length]}}`)
+          .join("") + `100%{--text-${n}:${texts[offset % texts.length]}}`;
+      rules.push(`@keyframes text${n}${suffix}{${stops}}`);
+    }
+  }
+  const initialText = (i: number) => {
+    const n = defaultNeutrals("light");
+    return contrastify(cycle[i], [n.bg, n["bg.subtle"], n["bg.panel"], n["gray.contrast"]], AA * 1.5, -1);
+  };
+  rules.push(`@property --text-1{syntax:"<color>";inherits:false;initial-value:${initialText(0)}}`);
+  rules.push(`@property --text-2{syntax:"<color>";inherits:false;initial-value:${initialText(half)}}`);
+  const textRule =
+    `background-image:linear-gradient(100deg,var(--text-1),var(--text-2));` +
+    `-webkit-background-clip:text;background-clip:text;color:transparent;`;
+  rules.push(`.accent-text{${textRule}animation:text1Light 64s linear infinite,text2Light 64s linear infinite}`);
+  rules.push(`.chakra-ui-dark .accent-text{animation:text1Dark 64s linear infinite,text2Dark 64s linear infinite}`);
+  // En mode d'alt contrast del sistema, el text transparent desapareixeria.
+  rules.push(`@media (forced-colors:active){.accent-text{background-image:none;color:CanvasText}}`);
+
   for (const [name, hex] of Object.entries(SECTION_ACCENTS)) {
     rules.push(`[data-accent="${name}"]{${declarations(deriveAll(hex, "light"))}}`);
     rules.push(`.chakra-ui-dark [data-accent="${name}"]{${declarations(deriveAll(hex, "dark"))}}`);

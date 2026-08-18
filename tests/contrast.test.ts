@@ -11,7 +11,9 @@ import {
   ACCENT_HEXES,
   contrastRatio,
   defaultNeutrals,
+  contrastify,
   deriveAll,
+  mix,
   type Mode,
 } from "../app/color.ts";
 
@@ -103,6 +105,34 @@ test("el text neutre segueix llegible sobre les superfícies plenes de color", (
       }
       const chip = contrastRatio(n.fg, t["accent.chip"]);
       assert.ok(chip >= AA, `fg sobre accent.chip (${accent}/${mode}) = ${chip.toFixed(2)}`);
+    }
+  }
+});
+
+test("el degradat de dins de les lletres compleix AA a tot el recorregut", () => {
+  // El nom de l'entradeta es pinta amb `background-clip: text` i un degradat
+  // entre dos `accent.fg`. L'argument és que la lluminància relativa creix de
+  // manera monòtona amb cada canal i que una interpolació en sRGB manté cada
+  // canal entre els dels extrems, així que cap punt intermedi pot ser pitjor
+  // que el pitjor extrem. Aquí es mostreja el recorregut per no haver-ho de
+  // creure: barrejar un blau i un rosa que passen just el llindar dona un punt
+  // intermedi que NO hi arriba, i per això els extrems es calculen amb marge
+  // (AA × 1,5). Si algú abaixa el marge o canvia la interpolació (posem-hi
+  // `in oklab`), aquest test se n'ha d'assabentar.
+  for (const mode of MODES) {
+    const n = defaultNeutrals(mode);
+    const surfaces = [n.bg, n["bg.subtle"], n["bg.panel"], n["gray.contrast"]];
+    const texts = ACCENT_HEXES.map((hex) => contrastify(hex, surfaces, AA * 1.5, mode === "light" ? -1 : 1));
+    for (let i = 0; i < texts.length; i++) {
+      const a = texts[i];
+      const b = texts[(i + Math.floor(texts.length / 2)) % texts.length];
+      for (let step = 0; step <= 10; step++) {
+        const c = mix(a, b, step / 10);
+        for (const bg of [n.bg, n["bg.subtle"]]) {
+          const r = contrastRatio(c, bg);
+          assert.ok(r >= AA, `${a}→${b} al ${step * 10}% = ${c} sobre ${bg} (${mode}) = ${r.toFixed(2)}`);
+        }
+      }
     }
   }
 });

@@ -7,7 +7,7 @@ import { useT } from "../i18n";
 export function Stats() {
   const t = useT();
   return (
-    <Box borderY="1px solid" borderColor="border" bg="bg.subtle">
+    <Box bg="bg.subtle">
       <Container maxW="72rem" py={{ base: 8, md: 10 }}>
         <Flex direction={{ base: "column", md: "row" }} gap={{ base: 4, md: 0 }}>
           {stats.map((s, i) => (

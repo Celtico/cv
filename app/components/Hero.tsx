@@ -81,7 +81,10 @@ export function Hero() {
         {/* nameplate */}
         <Heading as="h1" textStyle="display" color="fg">
           Celestí{" "}
-          <Box as="span" color="accent.fg">
+          {/* El degradat es pinta a dins de les lletres. Els dos extrems són
+              `accent.fg` del mode, ja contrastats, i per tant tot el recorregut
+              del degradat també ho és. */}
+          <Box as="span" className="accent-text">
             Ticó Petit
           </Box>
         </Heading>
