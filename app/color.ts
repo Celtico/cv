@@ -361,17 +361,30 @@ export function accentStylesheet(): string {
       rules.push(`@keyframes text${n}${suffix}{${stops}}`);
     }
   }
-  const initialText = (i: number) => {
-    const n = defaultNeutrals("light");
-    return contrastify(cycle[i], [n.bg, n["bg.subtle"], n["bg.panel"], n["gray.contrast"]], AA * 1.5, -1);
+  const safeText = (i: number, mode: Mode) => {
+    const n = defaultNeutrals(mode);
+    const surf = [n.bg, n["bg.subtle"], n["bg.panel"], n["gray.contrast"]];
+    return contrastify(cycle[i], surf, AA * TEXT_MARGIN, mode === "light" ? -1 : 1);
   };
+  const initialText = (i: number) => safeText(i, "light");
+  const initialTextDark = (i: number) => safeText(i, "dark");
   rules.push(`@property --text-1{syntax:"<color>";inherits:false;initial-value:${initialText(0)}}`);
   rules.push(`@property --text-2{syntax:"<color>";inherits:false;initial-value:${initialText(half)}}`);
+  // El color sòlid NO és `transparent`: és la reserva. Qui no sàpiga retallar
+  // el fons contra el text el pintarà d'un color que ja compleix AA, en comptes
+  // de deixar-lo invisible. És com ho resol apple.com.
   const textRule =
     `background-image:linear-gradient(100deg,var(--text-1),var(--text-2));` +
-    `-webkit-background-clip:text;background-clip:text;color:transparent;`;
-  rules.push(`.accent-text{${textRule}animation:text1Light 64s linear infinite,text2Light 64s linear infinite}`);
-  rules.push(`.chakra-ui-dark .accent-text{animation:text1Dark 64s linear infinite,text2Dark 64s linear infinite}`);
+    `-webkit-background-clip:text;background-clip:text;` +
+    `-webkit-text-fill-color:transparent;`;
+  rules.push(
+    `.accent-text{color:${initialText(0)};${textRule}` +
+      `animation:text1Light 64s linear infinite,text2Light 64s linear infinite}`,
+  );
+  rules.push(
+    `.chakra-ui-dark .accent-text{color:${initialTextDark(0)};` +
+      `animation:text1Dark 64s linear infinite,text2Dark 64s linear infinite}`,
+  );
   // En mode d'alt contrast del sistema, el text transparent desapareixeria.
   rules.push(`@media (forced-colors:active){.accent-text{background-image:none;color:CanvasText}}`);
 

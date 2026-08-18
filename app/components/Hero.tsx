@@ -4,6 +4,7 @@ import { Box, Button, Container, Flex, HStack, Heading, Icon, Link, Text } from 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { FiDownload } from "react-icons/fi";
 import { useT } from "../i18n";
+import { RichText } from "./RichText";
 
 const MotionBox = motion(Box);
 
@@ -99,13 +100,16 @@ export function Hero() {
               fontWeight="500"
               letterSpacing="0.16em"
               textTransform="uppercase"
-              color="accent.fg"
+              // En blanc (o negre) i no en color: el nom que hi ha just a sobre
+              // ja porta el degradat, i dues coses de color seguides es fan la
+              // competència.
+              color="fg"
               mb={4}
             >
               {t.hero.role}
             </Text>
             <Text fontSize={{ base: "lg", md: "xl" }} color="fg.muted" maxW="34rem" lineHeight="1.6">
-              {t.hero.tagline}
+              <RichText>{t.hero.tagline}</RichText>
             </Text>
           </Box>
 
