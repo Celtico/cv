@@ -139,7 +139,7 @@ export function Featured({ svgs = {} }: { svgs?: Record<string, string> }) {
                       as={Link}
                       href="#contacto"
                       variant="pillSolid"
-                      size="pill"
+                      size="pillSm"
                     >
                       {t.featured.parlem}
                     </Button>
@@ -150,7 +150,7 @@ export function Featured({ svgs = {} }: { svgs?: Record<string, string> }) {
                       href={p.url}
                       isExternal
                       variant="pillOutline"
-                      size="pill"
+                      size="pillSm"
                       rightIcon={<Icon as={FiArrowUpRight} />}
                     >
                       {t.featured.visitar} {p.title.split(" ")[0]}

@@ -111,6 +111,9 @@ const theme = extendTheme({
     Button: {
       sizes: {
         pill: { h: "56px", px: 8, fontSize: "md", borderRadius: "control" },
+        // Dins d'una targeta, la mida gran fa que la parella de botons salti de
+        // línia en les columnes estretes i queda desigual d'una targeta a l'altra.
+        pillSm: { h: "48px", px: 5, fontSize: "sm", borderRadius: "control" },
       },
       variants: {
         pillSolid: {

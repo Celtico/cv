@@ -184,7 +184,7 @@ export const content: Record<Lang, Dict> = {
       kicker: "Trajectòria — on he treballat",
       title: "Experiència professional",
       subtitle:
-        "Més de dues dècades de taller propi a Cenics i, des del 2023, per compte d'altri: ==infraestructura, tests E2E i substitució de direcció de programació==.",
+        "Més de dues dècades de taller propi a Cenics i, des del 2023, en equips d'empresa: ==infraestructura, tests E2E i substitució de direcció de programació==.",
       roles: [
         "Desenvolupador web · Substitució del director de programació per baixa de paternitat",
         "Desenvolupador web · Tests E2E de tot el panell de control de cdmon",
@@ -338,7 +338,7 @@ export const content: Record<Lang, Dict> = {
       kicker: "Trayectoria — dónde he trabajado",
       title: "Experiencia profesional",
       subtitle:
-        "Más de dos décadas de taller propio en Cenics y, desde 2023, por cuenta ajena: ==infraestructura, tests E2E y sustitución de dirección de programación==.",
+        "Más de dos décadas de taller propio en Cenics y, desde 2023, en equipos de empresa: ==infraestructura, tests E2E y sustitución de dirección de programación==.",
       roles: [
         "Desarrollador web · Sustitución del director de programación por baja de paternidad",
         "Desarrollador web · Tests E2E de todo el panel de control de cdmon",
