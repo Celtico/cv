@@ -53,8 +53,6 @@ function Plate({
         px={4}
         py={2}
         bg="accent.panel"
-        borderBottom="1px solid"
-        borderColor="border"
         fontSize="0.66rem"
         letterSpacing="0.14em"
         textTransform="uppercase"
