@@ -212,9 +212,16 @@ incomplissin AA al botó principal.
   justament perquè el text neutre hi conservi el contrast; `tests/contrast.test.ts` ho comprova
   per als 8 accents × 2 modes. Compte amb el contracte: `panel` i `surface` aguanten
   `fg.muted`, la `chip` només `fg` — el `layerStyle` «chip» hi fixa el color per això.
-- **Els fons de secció van saltejats**: banda de color massís (`bg="accent.panel"`), banda
-  neta (`bg="bg"`) on el color només hi arriba pel bafarot. Vuit bandes plenes seguides eren
-  un mur. Si afegeixes una secció, mira quina la precedeix i alterna.
+- **Les bandes van saltejades i el degradat és el llenguatge** (`tone` a `Section.tsx`):
+  `wash` pinta la secció sencera amb un degradat vertical del fons net fins a `accent.panel`;
+  `flat` la deixa negra (o blanca) del tot i el color hi entra només per l'etiqueta i els
+  accents del text. Si afegeixes una secció, mira quina la precedeix i alterna. La banda
+  s'atura a `accent.panel` a posta: si arribés a `accent.surface`, les targetes es fondrien
+  amb el fons al capdavall.
+- **Dos estils de targeta, i no són intercanviables**: `plateTinted` (degradat en diagonal del
+  fons net al color) va damunt d'una banda `wash`; `plate` (fons igual que la secció i filet
+  prim) va damunt d'una banda `flat`. Els extrems dels dos degradats són superfícies ja
+  verificades, que és el que permet posar-hi text a sobre sense recalcular res.
 - **Radis**: `plate` (14 px) per a targetes i imatges, `control` (999 px) per a botons,
   etiquetes i commutadors — pastilla completa. La «làmina de paper» de 2 px es va retirar el
   2026-08-18. No escriguis `borderRadius="2px"` a cap component: fes servir el token.
