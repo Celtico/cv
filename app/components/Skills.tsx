@@ -8,7 +8,7 @@ import { useT } from "../i18n";
 export function Skills() {
   const t = useT();
   return (
-    <Section id="skills" accent="skills" kickerTone="contrast" tone="wash" kicker={t.skills.kicker} title={t.skills.title} subtitle={t.skills.subtitle}>
+    <Section id="skills" accent="skills" tone="wash" kicker={t.skills.kicker} title={t.skills.title} subtitle={t.skills.subtitle}>
       <Box borderTop="1px solid" borderColor="border">
         {skills.map((s, i) => (
           <Grid

@@ -136,3 +136,20 @@ test("el degradat de dins de les lletres compleix AA a tot el recorregut", () =>
     }
   }
 });
+
+test("l'etiqueta de secció aguanta el text blanc a les vuit seccions", () => {
+  // `accent.deep` existeix perquè les vuit etiquetes puguin dur text blanc
+  // sense que cap hagi de canviar a text fosc. Es comprova també que la
+  // pastilla es continuï distingint del fons: si s'enfosquís massa,
+  // desapareixeria sobre negre.
+  for (const accent of ACCENT_HEXES) {
+    for (const mode of MODES) {
+      const t = deriveAll(accent, mode);
+      const n = defaultNeutrals(mode);
+      const text = contrastRatio(t["accent.deep.fg"], t["accent.deep"]);
+      assert.ok(text >= AA, `blanc sobre accent.deep (${accent}/${mode}) = ${text.toFixed(2)}`);
+      const block = contrastRatio(t["accent.deep"], n.bg);
+      assert.ok(block >= AA_NON_TEXT, `accent.deep sobre el fons (${accent}/${mode}) = ${block.toFixed(2)}`);
+    }
+  }
+});

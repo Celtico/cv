@@ -258,6 +258,12 @@ export function deriveAccent(hex: string, neutrals: Record<string, string>, mode
     // accent llegible per damunt del bloc invertit
     "accent.inverted": contrastify(hex, [neutrals["bg.inverted"]], AA, dir === 1 ? -1 : 1),
     "accent.muted": alpha(hex, 0.2),
+    // Pastilla de l'etiqueta de secció: el color de la secció enfosquit just
+    // el que calgui perquè el blanc hi arribi a 4,5:1. Així les vuit seccions
+    // poden dur text blanc i no cal decidir per a cadascuna si el text hi va
+    // fosc o clar —que era el que feia que quatre en desentonessin—.
+    "accent.deep": contrastify(hex, [TEXT_LIGHT], AA, -1),
+    "accent.deep.fg": TEXT_LIGHT,
     // Superfícies plenes, a la manera de JetBrains: la separació la fa el
     // farciment i no cap filet. La barreja es fa contra el fons del mode, de
     // manera que el text neutre hi conserva pràcticament tot el contrast —

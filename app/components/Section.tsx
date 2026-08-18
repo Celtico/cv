@@ -14,7 +14,6 @@ export function Section({
   inverted = false,
   accent = "base",
   tone = "flat",
-  kickerTone = "accent",
 }: {
   id: string;
   kicker?: string;
@@ -32,12 +31,6 @@ export function Section({
    * saltejades: banda de color, banda neta, banda de color.
    */
   tone?: "flat" | "wash";
-  /**
-   * Color de la pastilla de l'etiqueta. `accent` la pinta del color de la
-   * secció; `contrast` la pinta del contrari del fons —blanca de nit, negra de
-   * dia—, que és la mateixa parella que fa servir el botó principal.
-   */
-  kickerTone?: "accent" | "contrast";
 }) {
   const titleColor = inverted ? "fg.inverted" : "fg";
   const subColor = inverted ? "fg.inverted.muted" : "fg.muted";
@@ -71,18 +64,18 @@ export function Section({
         <Box mb={{ base: 10, md: 14 }}>
           {kicker && (
             <Flex align="center" gap={4} mb={6}>
-              {/* Pastilla massissa. Les dues parelles possibles
-                  —`accent.solid`/`accent.contrast` i `bg.inverted`/`fg.inverted`—
-                  estan verificades a 4,5:1, així que qualsevol de les dues
-                  serveix damunt del fons normal i del bloc invertit. */}
+              {/* Pastilla massissa amb el color de la secció enfosquit i text
+                  blanc, sempre. `accent.deep` es deriva justament perquè el
+                  blanc hi arribi a 4,5:1, de manera que les vuit seccions es
+                  poden pintar igual sense que cap hagi de canviar a text fosc. */}
               <Flex
                 as="span"
                 align="center"
                 gap={2}
                 className="tnum"
                 textStyle="kicker"
-                bg={kickerTone === "contrast" ? "bg.inverted" : "accent.solid"}
-                color={kickerTone === "contrast" ? "fg.inverted" : "accent.contrast"}
+                bg="accent.deep"
+                color="accent.deep.fg"
                 borderRadius="control"
                 px={4}
                 py={2}

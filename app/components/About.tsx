@@ -9,7 +9,7 @@ import { useT } from "../i18n";
 export function About() {
   const t = useT();
   return (
-    <Section id="sobre-mi" accent="about" kickerTone="contrast" kicker={t.about.kicker} title={t.about.title}>
+    <Section id="sobre-mi" accent="about" kicker={t.about.kicker} title={t.about.title}>
       <Grid templateColumns={{ base: "1fr", md: "1.6fr 1fr" }} gap={{ base: 10, md: 16 }}>
         <Box>
           <Text
