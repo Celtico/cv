@@ -77,8 +77,10 @@ const theme = extendTheme({
     groupLabel: {
       fontFamily: "mono",
       fontWeight: 500,
-      fontSize: "sm",
-      letterSpacing: "0.14em",
+      fontSize: { base: "md", md: "lg" },
+      // l'interlletratge baixa a mesura que puja el cos: a 21 px, el 0,14em de
+      // `micro` faria que «Cultura, salut i tercer sector» ocupés tres línies
+      letterSpacing: "0.06em",
       textTransform: "uppercase",
     },
     micro: {
