@@ -5,40 +5,21 @@ import { FiArrowUpRight, FiDownload } from "react-icons/fi";
 import { profile } from "../data";
 import { useT } from "../i18n";
 import { RichText } from "./RichText";
+import { Kicker } from "./Kicker";
 
 export function Contact() {
   const t = useT();
   return (
     <Box as="section" id="contacto" bg="gray.contrast" color="fg" scrollMarginTop="80px">
       <Container maxW="72rem" py={{ base: 20, md: 28 }}>
-        <Flex
-          className="tnum"
-          align="center"
-          gap={3}
-          fontSize="xs"
-          letterSpacing="0.2em"
-          textTransform="uppercase"
-          color="fg.muted"
-          mb={8}
-        >
-          <Box as="span" color="accent.fg">
-            §
-          </Box>
-          <Text>{t.contact.kicker}</Text>
-          <Box flex="1" h="1px" bg="border.emphasized" />
-        </Flex>
+        <Kicker>{t.contact.kicker}</Kicker>
 
-        <Heading
-          as="h2"
-          fontWeight="400"
-          fontSize={{ base: "2.6rem", md: "4.5rem" }}
-          lineHeight="1"
-          letterSpacing="-0.02em"
-          color="fg"
-          maxW="20ch"
-        >
+        {/* Mateix paper que la resta de titulars de secció. La cursiva que hi
+            havia era un idioma de serif: amb el pal sec només s'inclinava, i
+            l'èmfasi el fa ara el degradat, com al nom de l'entradeta. */}
+        <Heading as="h2" textStyle="sectionTitle" color="fg" maxW="20ch">
           {t.contact.t1}{" "}
-          <Box as="span" fontStyle="italic">
+          <Box as="span" className="accent-text">
             {t.contact.ti}
           </Box>{" "}
           {t.contact.t2}

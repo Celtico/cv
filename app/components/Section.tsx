@@ -2,6 +2,7 @@
 
 import { Box, Container, Flex, Heading, Text } from "@chakra-ui/react";
 import type { AccentName } from "../color";
+import { Kicker } from "./Kicker";
 import { RichText } from "./RichText";
 
 export function Section({
@@ -70,31 +71,9 @@ export function Section({
       <Container maxW="72rem" position="relative">
         <Box mb={{ base: 10, md: 14 }}>
           {kicker && (
-            <Flex align="center" gap={4} mb={6}>
-              {/* Pastilla massissa, en una de dues parelles: `accent.deep` amb
-                  blanc (el color de la secció enfosquit just perquè el blanc hi
-                  arribi a 4,5:1) o `gray.emphasized` amb `fg`. Les dues estan
-                  verificades, així que qualsevol serveix damunt de qualsevol
-                  fons de secció. */}
-              <Flex
-                as="span"
-                align="center"
-                gap={2}
-                className="tnum"
-                textStyle="kicker"
-                bg={kickerTone === "neutral" ? "gray.emphasized" : "accent.deep"}
-                color={kickerTone === "neutral" ? "fg" : "accent.deep.fg"}
-                borderRadius="control"
-                px={4}
-                py={2}
-              >
-                <Box as="span" aria-hidden>
-                  §
-                </Box>
-                {kicker}
-              </Flex>
-              <Box flex="1" h="1px" bg={rule} />
-            </Flex>
+            <Kicker tone={kickerTone} rule={rule}>
+              {kicker}
+            </Kicker>
           )}
           <Heading as="h2" textStyle="sectionTitle" color={titleColor}>
             {title}
