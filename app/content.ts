@@ -27,7 +27,7 @@ type Dict = {
     idiomes: string;
     languages: { name: string; level: string }[];
   };
-  skills: { kicker: string; title: string; subtitle: string; groups: string[] };
+  skills: { kicker: string; title: string; subtitle: string; groups: string[]; items: string[][] };
   featured: {
     kicker: string;
     title: string;
@@ -41,7 +41,7 @@ type Dict = {
     kicker: string;
     title: string;
     subtitle: string;
-    items: { subtitle: string; desc: string }[];
+    items: { title: string; subtitle: string; desc: string; stack: string[] }[];
   };
   gallery: { kicker: string; title: string; subtitle: string; web: string };
   experience: { kicker: string; title: string; subtitle: string; roles: string[] };
@@ -116,6 +116,15 @@ export const content: Record<Lang, Dict> = {
       title: "Amb què treballo",
       subtitle: "Tecnologies i disciplines ==evidenciades per projectes reals==, agrupades per domini.",
       groups: ["Llenguatges", "Front-end", "Back-end", "IA i dades", "Infra / DevOps", "Disseny", "Flux de treball"],
+      items: [
+        ["TypeScript", "JavaScript", "PHP", "SQL", "HTML", "CSS", "Bash"],
+        ["React 19", "Next.js", "Chakra UI", "Radix UI", "Vite", "Recharts", "Responsive"],
+        ["NestJS", "Node.js", "TypeORM", "Socket.IO", "Swagger", "API REST", "WebRTC", "SSE"],
+        ["LangChain", "OpenAI GPT-4o", "Xarxes neuronals (ML)", "Integració Odoo (ERP)"],
+        ["Docker", "Nginx", "JWT", "MySQL / SQLite", "Servidors", "SSL / dominis", "CI/CD"],
+        ["UX/UI", "Identitat visual", "Photoshop", "Illustrator", "InDesign", "Impressió"],
+        ["Desenvolupament assistit per IA (Claude Code)", "PhpStorm", "Git", "Revisió de codi", "Docker"],
+      ],
     },
     featured: {
       kicker: "Destacats — en producció",
@@ -165,11 +174,15 @@ export const content: Record<Lang, Dict> = {
       subtitle: "Recerca i experiments tècnics ==fora de la feina de client==.",
       items: [
         {
+          title: "Neural Network System",
           subtitle: "Detecció d'activitat humana amb ML",
+          stack: ["Machine Learning", "Xarxes neuronals", "JavaScript", "Sensors"],
           desc: "Reconeixement d'activitats humanes a partir dels sensors del mòbil mitjançant una xarxa neuronal entrenada. Experimentació amb machine learning aplicat a dades de moviment en temps real.",
         },
         {
+          title: "Laboratori d'experiments",
           subtitle: "Runtime propi «instant» + I+D",
+          stack: ["Runtime propi", "Next.js", "WebAssembly", "WebRTC", "RTL-SDR"],
           desc: "Experiments tècnics construïts sobre un runtime propi: WebRTC (comunicació en temps real), PHP-Wasm (PHP a WebAssembly), RTL-SDR (ràdio per software), Live Editor i Web Manager amb Next.js.",
         },
       ],
@@ -270,6 +283,15 @@ export const content: Record<Lang, Dict> = {
       title: "Con qué trabajo",
       subtitle: "Tecnologías y disciplinas ==evidenciadas por proyectos reales==, agrupadas por dominio.",
       groups: ["Lenguajes", "Front-end", "Back-end", "IA y datos", "Infra / DevOps", "Diseño", "Flujo de trabajo"],
+      items: [
+        ["TypeScript", "JavaScript", "PHP", "SQL", "HTML", "CSS", "Bash"],
+        ["React 19", "Next.js", "Chakra UI", "Radix UI", "Vite", "Recharts", "Responsive"],
+        ["NestJS", "Node.js", "TypeORM", "Socket.IO", "Swagger", "API REST", "WebRTC", "SSE"],
+        ["LangChain", "OpenAI GPT-4o", "Redes neuronales (ML)", "Integración Odoo (ERP)"],
+        ["Docker", "Nginx", "JWT", "MySQL / SQLite", "Servidores", "SSL / dominios", "CI/CD"],
+        ["UX/UI", "Identidad visual", "Photoshop", "Illustrator", "InDesign", "Impresión"],
+        ["Desarrollo asistido por IA (Claude Code)", "PhpStorm", "Git", "Revisión de código", "Docker"],
+      ],
     },
     featured: {
       kicker: "Destacados — en producción",
@@ -319,11 +341,15 @@ export const content: Record<Lang, Dict> = {
       subtitle: "Investigación y experimentos técnicos ==fuera del trabajo de cliente==.",
       items: [
         {
+          title: "Neural Network System",
           subtitle: "Detección de actividad humana con ML",
+          stack: ["Machine Learning", "Redes neuronales", "JavaScript", "Sensores"],
           desc: "Reconocimiento de actividades humanas a partir de los sensores del móvil mediante una red neuronal entrenada. Experimentación con machine learning aplicado a datos de movimiento en tiempo real.",
         },
         {
+          title: "Laboratorio de experimentos",
           subtitle: "Runtime propio «instant» + I+D",
+          stack: ["Runtime propio", "Next.js", "WebAssembly", "WebRTC", "RTL-SDR"],
           desc: "Experimentos técnicos construidos sobre un runtime propio: WebRTC (comunicación en tiempo real), PHP-Wasm (PHP en WebAssembly), RTL-SDR (radio por software), Live Editor y Web Manager con Next.js.",
         },
       ],
@@ -424,6 +450,15 @@ export const content: Record<Lang, Dict> = {
       title: "What I work with",
       subtitle: "Technologies and disciplines ==evidenced by real projects==, grouped by domain.",
       groups: ["Languages", "Front-end", "Back-end", "AI & data", "Infra / DevOps", "Design", "Workflow"],
+      items: [
+        ["TypeScript", "JavaScript", "PHP", "SQL", "HTML", "CSS", "Bash"],
+        ["React 19", "Next.js", "Chakra UI", "Radix UI", "Vite", "Recharts", "Responsive"],
+        ["NestJS", "Node.js", "TypeORM", "Socket.IO", "Swagger", "API REST", "WebRTC", "SSE"],
+        ["LangChain", "OpenAI GPT-4o", "Neural networks (ML)", "Odoo integration (ERP)"],
+        ["Docker", "Nginx", "JWT", "MySQL / SQLite", "Servers", "SSL / domains", "CI/CD"],
+        ["UX/UI", "Visual identity", "Photoshop", "Illustrator", "InDesign", "Print"],
+        ["AI-assisted development (Claude Code)", "PhpStorm", "Git", "Code review", "Docker"],
+      ],
     },
     featured: {
       kicker: "Featured — in production",
@@ -472,11 +507,15 @@ export const content: Record<Lang, Dict> = {
       subtitle: "Technical research and experiments ==outside of client work==.",
       items: [
         {
+          title: "Neural Network System",
           subtitle: "Human activity detection with ML",
+          stack: ["Machine Learning", "Neural networks", "JavaScript", "Sensors"],
           desc: "Human activity recognition from phone sensors using a trained neural network. Experimentation with machine learning applied to real-time motion data.",
         },
         {
+          title: "Experiments lab",
           subtitle: "Own “instant” runtime + R&D",
+          stack: ["Own runtime", "Next.js", "WebAssembly", "WebRTC", "RTL-SDR"],
           desc: "Technical experiments built on a custom runtime: WebRTC (real-time communication), PHP-Wasm (PHP in WebAssembly), RTL-SDR (software radio), Live Editor and Web Manager with Next.js.",
         },
       ],

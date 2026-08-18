@@ -90,8 +90,11 @@ export function Hero() {
           </Box>
         </Heading>
 
-        <Flex mt={8} gap={{ base: 6, md: 12 }} direction={{ base: "column", md: "row" }} align={{ md: "end" }}>
-          <Box flex="1">
+        {/* Els botons van sempre a sota, no al costat. Quan compartien fila amb
+            el paràgraf, els tres ocupaven prou amplada perquè el text quedés
+            espremut a dues paraules per línia en finestres mitjanes. */}
+        <Flex mt={8} direction="column" gap={8} align="start">
+          <Box>
             {/* El rol és la dada de decisió per a qui contracta: abans era el
                 text més petit de tota la pantalla. */}
             <Text
@@ -108,12 +111,12 @@ export function Hero() {
             >
               {t.hero.role}
             </Text>
-            <Text fontSize={{ base: "lg", md: "xl" }} color="fg.muted" maxW="34rem" lineHeight="1.6">
+            <Text fontSize={{ base: "lg", md: "xl" }} color="fg" maxW="34rem" lineHeight="1.6">
               <RichText>{t.hero.tagline}</RichText>
             </Text>
           </Box>
 
-          <Flex gap={3} flexShrink={0} wrap="wrap">
+          <Flex gap={3} wrap="wrap">
             <Button
               as={Link}
               href="#contacto"

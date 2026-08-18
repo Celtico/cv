@@ -75,3 +75,16 @@ test("el marcatge del diccionari no s'escapa cap a les metadades", () => {
   }
   assert.equal(stripMarkup("un **fort** i un ==viu=="), "un fort i un viu");
 });
+
+test("l'inventari de competències està alineat amb data.ts als tres idiomes", () => {
+  // Els components combinen `t.skills.items[i]` amb `skills[i].items` per índex.
+  // Si un idioma es descuida un grup o una eina, la pàgina barreja llengües en
+  // silenci —que és exactament el que passava amb «Redes neuronales» en català.
+  for (const lang of LANGS) {
+    const items = content[lang].skills.items;
+    assert.equal(items.length, skills.length, `${lang}: falten grups a l'inventari`);
+    for (const [i, grup] of items.entries()) {
+      assert.equal(grup.length, skills[i].items.length, `${lang}: el grup ${i} no quadra`);
+    }
+  }
+});

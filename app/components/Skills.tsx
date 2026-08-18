@@ -24,7 +24,9 @@ export function Skills() {
               {t.skills.groups[i] ?? s.group}
             </Heading>
             <Wrap spacing={2}>
-              {s.items.map((it) => (
+              {/* Combinació per índex, com la resta del projecte: el diccionari mana
+                  i `data.ts` fa de reserva si algun idioma es queda curt. */}
+              {(t.skills.items[i] ?? s.items).map((it) => (
                 <WrapItem key={it}>
                   <Text
                     className="tnum"
