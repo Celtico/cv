@@ -93,7 +93,9 @@ export function Hero() {
               className="tnum"
               fontSize={{ base: "xs", md: "sm" }}
               fontWeight="500"
-              letterSpacing="0.16em"
+              // Al mòbil ocupava dues línies senceres de majúscules i competia
+              // amb el nom que té a sobre: és una etiqueta, no un segon titular.
+              letterSpacing={{ base: "0.06em", md: "0.16em" }}
               textTransform="uppercase"
               // En blanc (o negre) i no en color: el nom que hi ha just a sobre
               // ja porta el degradat, i dues coses de color seguides es fan la
