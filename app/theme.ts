@@ -33,6 +33,15 @@ const theme = extendTheme({
     xl: "1.5rem", // 24
     "2xl": "1.875rem", // 30
   },
+  // Chakra pinta el focus dels seus components amb un `box-shadow` que llegeix
+  // d'aquesta ombra, i com que és estil de component GUANYA sobre la regla
+  // global `*:focus-visible` del tema —que quedava sense efecte a tots els
+  // enllaços i botons—. Redefinint-la aquí, l'anell passa a ser el color de la
+  // secció i opac. `accent.dot` està derivat justament perquè arribi a 3:1
+  // contra el fons, que és el que demana la 2.4.11 per a un indicador de focus.
+  shadows: {
+    outline: "0 0 0 3px var(--chakra-colors-accent-dot)",
+  },
   radii: {
     // La làmina de paper de 2 px es va retirar el 2026-08-18: les targetes són
     // blocs de color massís amb cantonada rodona i els controls, pastilles.
