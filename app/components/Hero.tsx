@@ -34,27 +34,6 @@ export function Hero() {
 
       <Container maxW="72rem" position="relative" pt={{ base: 16, md: 24 }} pb={{ base: 14, md: 20 }}>
         {/* línia d'expedient */}
-        <Flex
-          className="tnum"
-          align="center"
-          gap={{ base: 3, md: 5 }}
-          fontSize={{ base: "0.68rem", md: "xs" }}
-          letterSpacing="0.18em"
-          textTransform="uppercase"
-          color="fg.muted"
-          flexWrap="wrap"
-          mb={{ base: 10, md: 14 }}
-        >
-          <HStack spacing={2}>
-            <Box w="7px" h="7px" borderRadius="full" bg="accent.dot" />
-            <Text>{t.hero.expedient}</Text>
-          </HStack>
-          <Box w="1px" h="12px" bg="border.emphasized" />
-          <Text>{t.hero.location}</Text>
-          <Box w="1px" h="12px" bg="border.emphasized" display={{ base: "none", sm: "block" }} />
-          <Text display={{ base: "none", sm: "block" }}>{t.hero.registre}</Text>
-        </Flex>
-
         {/* Disponibilitat: és el fet més accionable per a qui llegeix això, i
             abans vivia amagat al final de la línia d'expedient i ocult del tot
             al mòbil. Ara és una píndola visible a totes les mides. */}

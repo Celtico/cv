@@ -4,7 +4,8 @@ import { Box, Flex } from "@chakra-ui/react";
 
 /**
  * L'etiqueta de secció: pastilla massissa i la regla que l'acompanya fins al
- * marge. Viu en un component propi perquè la fan servir `Section` i `Contact`,
+ * marge. El signe § que hi havia al davant venia de la identitat d'expedient
+ * de paper que es va retirar; no descrivia res. Viu en un component propi perquè la fan servir `Section` i `Contact`,
  * que no comparteixen embolcall — mentre estava escrita dins de `Section`, la
  * de contacte es va quedar enrere amb l'estil vell.
  *
@@ -26,7 +27,6 @@ export function Kicker({
       <Flex
         as="span"
         align="center"
-        gap={2}
         className="tnum"
         textStyle="kicker"
         bg={tone === "neutral" ? "gray.emphasized" : "accent.deep"}
@@ -35,9 +35,6 @@ export function Kicker({
         px={4}
         py={2}
       >
-        <Box as="span" aria-hidden>
-          §
-        </Box>
         {children}
       </Flex>
       <Box flex="1" h="1px" bg={rule} />

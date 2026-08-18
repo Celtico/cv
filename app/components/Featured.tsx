@@ -49,7 +49,6 @@ function Plate({
       <Flex
         className="tnum"
         align="center"
-        justify="space-between"
         px={4}
         py={2}
         bg="accent.panel"
@@ -58,7 +57,8 @@ function Plate({
         textTransform="uppercase"
         color="fg.muted"
       >
-        <Text>Plate {String(index + 1).padStart(2, "0")}</Text>
+        {/* Només l'etiqueta que diu de què va el projecte. El «Plate NN» que
+            hi havia numerava làmines d'un expedient que ja no existeix. */}
         <Text color="accent.fg">{badge}</Text>
       </Flex>
       <AspectRatio ratio={16 / 10} overflow="hidden">

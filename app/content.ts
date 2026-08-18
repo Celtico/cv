@@ -8,9 +8,6 @@ export const DEFAULT_LANG: Lang = "ca";
 type Dict = {
   nav: Record<string, string>;
   hero: {
-    expedient: string;
-    location: string;
-    registre: string;
     disponible: string;
     role: string;
     tagline: string;
@@ -87,9 +84,6 @@ export const content: Record<Lang, Dict> = {
       contacte: "Contacte",
     },
     hero: {
-      expedient: "Expedient 001",
-      location: "Balaguer · Lleida",
-      registre: "Registre 2000 — 2026",
       disponible: "Disponible · en cerca activa",
       role: "Desenvolupador full-stack · Disseny UX/UI · Balaguer (Lleida)",
       tagline:
@@ -100,7 +94,7 @@ export const content: Record<Lang, Dict> = {
     },
     statLabels: ["Projectes entregats", "Clients", "Anys d'experiència", "Autodidacta"],
     about: {
-      kicker: "Perfil — expedient",
+      kicker: "Perfil",
       title: "De l'ofici a la infraestructura",
       p1: "**Desenvolupador full-stack i dissenyador** amb **més de dues dècades** entregant webs, e-commerce i aplicacions a mida. He acompanyat el ==cicle complet== de centenars de projectes: briefing, wireframes, disseny, maquetació, programació, infraestructura i publicació.",
       p2: "Perfil **polivalent i autodidacta**: aprenc a partir de projectes reals i de la comunitat de programari lliure. Combino un **back-end sòlid** (NestJS, Node, APIs REST) amb **front-ends moderns** (React 19, Next.js, Chakra UI) i **integració d'IA i ERP**.",
@@ -224,7 +218,7 @@ export const content: Record<Lang, Dict> = {
       groups: ["Sector públic i institucional", "Empreses i cadenes", "Cultura, salut i tercer sector"],
     },
     contact: {
-      kicker: "Contacte — final d'expedient",
+      kicker: "Contacte",
       t1: "Construïm",
       ti: "alguna cosa",
       t2: "junts?",
@@ -254,9 +248,6 @@ export const content: Record<Lang, Dict> = {
       contacte: "Contacto",
     },
     hero: {
-      expedient: "Expediente 001",
-      location: "Balaguer · Lleida",
-      registre: "Registro 2000 — 2026",
       disponible: "Disponible · en búsqueda activa",
       role: "Desarrollador full-stack · Diseño UX/UI · Balaguer (Lleida)",
       tagline:
@@ -267,7 +258,7 @@ export const content: Record<Lang, Dict> = {
     },
     statLabels: ["Proyectos entregados", "Clientes", "Años de experiencia", "Autodidacta"],
     about: {
-      kicker: "Perfil — expediente",
+      kicker: "Perfil",
       title: "Del oficio a la infraestructura",
       p1: "**Desarrollador full-stack y diseñador** con **más de dos décadas** entregando webs, e-commerce y aplicaciones a medida. He acompañado el ==ciclo completo== de cientos de proyectos: briefing, wireframes, diseño, maquetación, programación, infraestructura y publicación.",
       p2: "Perfil **polivalente y autodidacta**: aprendo a partir de proyectos reales y de la comunidad de software libre. Combino un **back-end sólido** (NestJS, Node, APIs REST) con **front-ends modernos** (React 19, Next.js, Chakra UI) e **integración de IA y ERP**.",
@@ -391,7 +382,7 @@ export const content: Record<Lang, Dict> = {
       groups: ["Sector público e institucional", "Empresas y cadenas", "Cultura, salud y tercer sector"],
     },
     contact: {
-      kicker: "Contacto — fin de expediente",
+      kicker: "Contacto",
       t1: "¿Construimos",
       ti: "algo",
       t2: "juntos?",
@@ -421,9 +412,6 @@ export const content: Record<Lang, Dict> = {
       contacte: "Contact",
     },
     hero: {
-      expedient: "File 001",
-      location: "Balaguer · Lleida",
-      registre: "Record 2000 — 2026",
       disponible: "Available · actively looking",
       role: "Full-stack developer · UX/UI design · Balaguer (Lleida), Spain",
       tagline:
@@ -434,7 +422,7 @@ export const content: Record<Lang, Dict> = {
     },
     statLabels: ["Projects delivered", "Clients", "Years of experience", "Self-taught"],
     about: {
-      kicker: "Profile — file",
+      kicker: "Profile",
       title: "From craft to infrastructure",
       p1: "**Full-stack developer and designer** with **more than two decades** delivering websites, e-commerce and custom applications. I've owned the ==full cycle== of hundreds of projects: briefing, wireframes, design, layout, programming, infrastructure and launch.",
       p2: "**Versatile and self-taught**: I learn from real projects and the free-software community. I pair a **solid back-end** (NestJS, Node, REST APIs) with **modern front-ends** (React 19, Next.js, Chakra UI) and **AI and ERP integration**.",
@@ -557,7 +545,7 @@ export const content: Record<Lang, Dict> = {
       groups: ["Public & institutional sector", "Companies & chains", "Culture, health & third sector"],
     },
     contact: {
-      kicker: "Contact — end of file",
+      kicker: "Contact",
       t1: "Shall we build",
       ti: "something",
       t2: "together?",
