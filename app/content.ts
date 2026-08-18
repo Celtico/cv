@@ -102,7 +102,7 @@ export const content: Record<Lang, Dict> = {
     about: {
       kicker: "Perfil — expedient",
       title: "De l'ofici a la infraestructura",
-      p1: "**Desenvolupador full-stack i dissenyador** amb **més de dues dècades** entregant webs, e-commerce i aplicacions a mida. He acompanyat el **cicle complet** de centenars de projectes: briefing, wireframes, disseny, maquetació, programació, infraestructura i publicació.",
+      p1: "**Desenvolupador full-stack i dissenyador** amb **més de dues dècades** entregant webs, e-commerce i aplicacions a mida. He acompanyat el ==cicle complet== de centenars de projectes: briefing, wireframes, disseny, maquetació, programació, infraestructura i publicació.",
       p2: "Perfil **polivalent i autodidacta**: aprenc a partir de projectes reals i de la comunitat de programari lliure. Combino un **back-end sòlid** (NestJS, Node, APIs REST) amb **front-ends moderns** (React 19, Next.js, Chakra UI) i **integració d'IA i ERP**.",
       idiomes: "Idiomes",
       languages: [
@@ -114,14 +114,14 @@ export const content: Record<Lang, Dict> = {
     skills: {
       kicker: "Eines — inventari",
       title: "Amb què treballo",
-      subtitle: "Tecnologies i disciplines evidenciades per projectes reals, agrupades per domini.",
+      subtitle: "Tecnologies i disciplines ==evidenciades per projectes reals==, agrupades per domini.",
       groups: ["Llenguatges", "Front-end", "Back-end", "IA i dades", "Infra / DevOps", "Disseny", "Flux de treball"],
     },
     featured: {
       kicker: "Destacats — en producció",
       title: "Tres aplicacions vives",
       subtitle:
-        "Producte complet que pots visitar ara mateix: front-end, back-end, IA i integració d'ERP.",
+        "Producte complet que ==pots visitar ara mateix==: front-end, back-end, IA i integració d'ERP.",
       plate: "Plate",
       visitar: "Visitar",
       parlem: "Parlem d'aquest projecte",
@@ -162,7 +162,7 @@ export const content: Record<Lang, Dict> = {
     projects: {
       kicker: "I+D — experiments",
       title: "Altres projectes propis",
-      subtitle: "Recerca i experiments tècnics fora de la feina de client.",
+      subtitle: "Recerca i experiments tècnics ==fora de la feina de client==.",
       items: [
         {
           subtitle: "Detecció d'activitat humana amb ML",
@@ -177,7 +177,7 @@ export const content: Record<Lang, Dict> = {
     gallery: {
       kicker: "Feina de client — mostra",
       title: "Una tria de 422 projectes",
-      subtitle: "Webs, e-commerce i aplicacions entregades a més de 200 clients.",
+      subtitle: "Webs, e-commerce i aplicacions entregades a ==més de 200 clients==.",
       web: "Projecte web",
     },
     experience: {
@@ -194,7 +194,7 @@ export const content: Record<Lang, Dict> = {
       kicker: "Registre — hores per client",
       title: "El llibre d'hores",
       subtitle:
-        "Dades reals de dedicació imputada a projectes al gestor Cenics, ordenades per hores. Un extracte del registre de 20 anys d'ofici.",
+        "Dades reals de dedicació imputada a projectes al gestor Cenics, ordenades per hores. Un extracte del registre de ==20 anys d'ofici==.",
       colClient: "Client",
       colProj: "Proj.",
       colPeriod: "Període",
@@ -205,7 +205,7 @@ export const content: Record<Lang, Dict> = {
     clients: {
       kicker: "Confiança — extracte",
       title: "Clients destacats",
-      subtitle: "Una mostra dels més de 200 clients: sector públic, indústria, cultura i tercer sector.",
+      subtitle: "Una mostra dels més de 200 clients: ==sector públic, indústria, cultura i tercer sector==.",
       groups: ["Sector públic i institucional", "Empreses i cadenes", "Cultura, salut i tercer sector"],
     },
     contact: {
@@ -214,7 +214,7 @@ export const content: Record<Lang, Dict> = {
       ti: "alguna cosa",
       t2: "junts?",
       subtitle:
-        "En cerca activa de feina com a desenvolupador full-stack (React · Next.js · NestJS) i obert a projectes freelance. Escriu-me i et responc el mateix dia.",
+        "==En cerca activa de feina== com a desenvolupador full-stack (React · Next.js · NestJS) i obert a projectes freelance. Escriu-me i et responc el mateix dia.",
     },
     blog: {
       kicker: "Bitàcola — notes de treball",
@@ -254,7 +254,7 @@ export const content: Record<Lang, Dict> = {
     about: {
       kicker: "Perfil — expediente",
       title: "Del oficio a la infraestructura",
-      p1: "**Desarrollador full-stack y diseñador** con **más de dos décadas** entregando webs, e-commerce y aplicaciones a medida. He acompañado el **ciclo completo** de cientos de proyectos: briefing, wireframes, diseño, maquetación, programación, infraestructura y publicación.",
+      p1: "**Desarrollador full-stack y diseñador** con **más de dos décadas** entregando webs, e-commerce y aplicaciones a medida. He acompañado el ==ciclo completo== de cientos de proyectos: briefing, wireframes, diseño, maquetación, programación, infraestructura y publicación.",
       p2: "Perfil **polivalente y autodidacta**: aprendo a partir de proyectos reales y de la comunidad de software libre. Combino un **back-end sólido** (NestJS, Node, APIs REST) con **front-ends modernos** (React 19, Next.js, Chakra UI) e **integración de IA y ERP**.",
       idiomes: "Idiomas",
       languages: [
@@ -266,14 +266,14 @@ export const content: Record<Lang, Dict> = {
     skills: {
       kicker: "Herramientas — inventario",
       title: "Con qué trabajo",
-      subtitle: "Tecnologías y disciplinas evidenciadas por proyectos reales, agrupadas por dominio.",
+      subtitle: "Tecnologías y disciplinas ==evidenciadas por proyectos reales==, agrupadas por dominio.",
       groups: ["Lenguajes", "Front-end", "Back-end", "IA y datos", "Infra / DevOps", "Diseño", "Flujo de trabajo"],
     },
     featured: {
       kicker: "Destacados — en producción",
       title: "Tres aplicaciones vivas",
       subtitle:
-        "Producto completo que puedes visitar ahora mismo: front-end, back-end, IA e integración de ERP.",
+        "Producto completo que ==puedes visitar ahora mismo==: front-end, back-end, IA e integración de ERP.",
       plate: "Plate",
       visitar: "Visitar",
       parlem: "Hablemos de este proyecto",
@@ -314,7 +314,7 @@ export const content: Record<Lang, Dict> = {
     projects: {
       kicker: "I+D — experimentos",
       title: "Otros proyectos propios",
-      subtitle: "Investigación y experimentos técnicos fuera del trabajo de cliente.",
+      subtitle: "Investigación y experimentos técnicos ==fuera del trabajo de cliente==.",
       items: [
         {
           subtitle: "Detección de actividad humana con ML",
@@ -329,7 +329,7 @@ export const content: Record<Lang, Dict> = {
     gallery: {
       kicker: "Trabajo de cliente — muestra",
       title: "Una selección de 422 proyectos",
-      subtitle: "Webs, e-commerce y aplicaciones entregadas a más de 200 clientes.",
+      subtitle: "Webs, e-commerce y aplicaciones entregadas a ==más de 200 clientes==.",
       web: "Proyecto web",
     },
     experience: {
@@ -346,7 +346,7 @@ export const content: Record<Lang, Dict> = {
       kicker: "Registro — horas por cliente",
       title: "El libro de horas",
       subtitle:
-        "Datos reales de dedicación imputada a proyectos en el gestor Cenics, ordenados por horas. Un extracto del registro de 20 años de oficio.",
+        "Datos reales de dedicación imputada a proyectos en el gestor Cenics, ordenados por horas. Un extracto del registro de ==20 años de oficio==.",
       colClient: "Cliente",
       colProj: "Proy.",
       colPeriod: "Período",
@@ -357,7 +357,7 @@ export const content: Record<Lang, Dict> = {
     clients: {
       kicker: "Confianza — extracto",
       title: "Clientes destacados",
-      subtitle: "Una muestra de los más de 200 clientes: sector público, industria, cultura y tercer sector.",
+      subtitle: "Una muestra de los más de 200 clientes: ==sector público, industria, cultura y tercer sector==.",
       groups: ["Sector público e institucional", "Empresas y cadenas", "Cultura, salud y tercer sector"],
     },
     contact: {
@@ -366,7 +366,7 @@ export const content: Record<Lang, Dict> = {
       ti: "algo",
       t2: "juntos?",
       subtitle:
-        "En búsqueda activa de trabajo como desarrollador full-stack (React · Next.js · NestJS) y abierto a proyectos freelance. Escríbeme y te respondo el mismo día.",
+        "==En búsqueda activa de trabajo== como desarrollador full-stack (React · Next.js · NestJS) y abierto a proyectos freelance. Escríbeme y te respondo el mismo día.",
     },
     blog: {
       kicker: "Bitácora — notas de trabajo",
@@ -406,7 +406,7 @@ export const content: Record<Lang, Dict> = {
     about: {
       kicker: "Profile — file",
       title: "From craft to infrastructure",
-      p1: "**Full-stack developer and designer** with **more than two decades** delivering websites, e-commerce and custom applications. I've owned the **full cycle** of hundreds of projects: briefing, wireframes, design, layout, programming, infrastructure and launch.",
+      p1: "**Full-stack developer and designer** with **more than two decades** delivering websites, e-commerce and custom applications. I've owned the ==full cycle== of hundreds of projects: briefing, wireframes, design, layout, programming, infrastructure and launch.",
       p2: "**Versatile and self-taught**: I learn from real projects and the free-software community. I pair a **solid back-end** (NestJS, Node, REST APIs) with **modern front-ends** (React 19, Next.js, Chakra UI) and **AI and ERP integration**.",
       idiomes: "Languages",
       languages: [
@@ -418,13 +418,13 @@ export const content: Record<Lang, Dict> = {
     skills: {
       kicker: "Tools — inventory",
       title: "What I work with",
-      subtitle: "Technologies and disciplines evidenced by real projects, grouped by domain.",
+      subtitle: "Technologies and disciplines ==evidenced by real projects==, grouped by domain.",
       groups: ["Languages", "Front-end", "Back-end", "AI & data", "Infra / DevOps", "Design", "Workflow"],
     },
     featured: {
       kicker: "Featured — in production",
       title: "Three live applications",
-      subtitle: "Complete product you can visit right now: front-end, back-end, AI and ERP integration.",
+      subtitle: "Complete product ==you can visit right now==: front-end, back-end, AI and ERP integration.",
       plate: "Plate",
       visitar: "Visit",
       parlem: "Let's talk about this project",
@@ -465,7 +465,7 @@ export const content: Record<Lang, Dict> = {
     projects: {
       kicker: "R&D — experiments",
       title: "Other personal projects",
-      subtitle: "Technical research and experiments outside of client work.",
+      subtitle: "Technical research and experiments ==outside of client work==.",
       items: [
         {
           subtitle: "Human activity detection with ML",
@@ -480,7 +480,7 @@ export const content: Record<Lang, Dict> = {
     gallery: {
       kicker: "Client work — sample",
       title: "A selection of 422 projects",
-      subtitle: "Websites, e-commerce and applications delivered to more than 200 clients.",
+      subtitle: "Websites, e-commerce and applications delivered to ==more than 200 clients==.",
       web: "Web project",
     },
     experience: {
@@ -508,7 +508,7 @@ export const content: Record<Lang, Dict> = {
     clients: {
       kicker: "Trust — extract",
       title: "Notable clients",
-      subtitle: "A sample of the 200+ clients: public sector, industry, culture and third sector.",
+      subtitle: "A sample of the 200+ clients: ==public sector, industry, culture and third sector==.",
       groups: ["Public & institutional sector", "Companies & chains", "Culture, health & third sector"],
     },
     contact: {
@@ -517,7 +517,7 @@ export const content: Record<Lang, Dict> = {
       ti: "something",
       t2: "together?",
       subtitle:
-        "Actively looking for a full-stack developer role (React · Next.js · NestJS) and open to freelance projects. Write to me and I'll reply the same day.",
+        "==Actively looking for a full-stack developer role== (React · Next.js · NestJS) and open to freelance projects. Write to me and I'll reply the same day.",
     },
     blog: {
       kicker: "Logbook — working notes",
