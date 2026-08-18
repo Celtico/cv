@@ -1,7 +1,7 @@
 "use client";
 
 import { Box, Button, Container, Flex, Heading, Icon, Link, Text } from "@chakra-ui/react";
-import { FiArrowUpRight, FiDownload } from "react-icons/fi";
+import { FiArrowUpRight, FiDownload, FiPhone } from "react-icons/fi";
 import { profile } from "../data";
 import { useT } from "../i18n";
 import { RichText } from "./RichText";
@@ -49,15 +49,19 @@ export function Contact() {
           >
             {profile.email}
           </Button>
-          <Link
+          {/* El telèfon també és un botó. Al mòbil, trucar és el gest més
+              natural d'aquesta secció i era l'única de les tres accions que no
+              tenia àrea tocable: un enllaç de text entre dues pastilles. */}
+          <Button
+            as={Link}
             href={`tel:${profile.phone.replace(/\s/g, "")}`}
+            variant="pillOutline"
+            size={{ base: "pillSm", md: "pill" }}
+            leftIcon={<Icon as={FiPhone} />}
             className="tnum"
-            color="fg"
-            fontSize="lg"
-            _hover={{ color: "accent.fg" }}
           >
             {profile.phone}
-          </Link>
+          </Button>
           <Button
             as={Link}
             href="/cv-celesti-tico.pdf"
