@@ -23,6 +23,9 @@
  * El blau fa de color per defecte: el duen la barra, l'entradeta, les xifres,
  * el contacte, el peu i el blog. La resta són un per secció, saturats.
  *
+ * La paleta és freda amb els accents càlids al vermell i el rosa: el groc i el
+ * taronja en van quedar fora el 2026-08-18 per decisió del Cel.
+ *
  * Els tons estan repartits a consciència: cap parella per sota de 25° de
  * distància a la roda. Dues combinacions es van haver de desfer perquè no
  * complien això —el taronja quedava a 12° de la marca i l'indi a 18°—, i el
@@ -31,13 +34,13 @@
  */
 export const SECTION_ACCENTS = {
   base: "#2563EB", // blau — barra, entradeta, xifres, contacte, peu, blog
-  featured: "#0891B2", // cian — Tres aplicacions vives
+  featured: "#7C3AED", // violeta — Tres aplicacions vives
   about: "#16A34A", // verd — Perfil
   clients: "#0C9D7D", // verd blau — Clients i trajectòria
-  skills: "#E8912A", // ambre — Competències
+  skills: "#0891B2", // cian — Competències
   experience: "#DC2626", // vermell — Experiència
   gallery: "#DB2777", // rosa — Galeria
-  projects: "#7C3AED", // violeta — Projectes
+  projects: "#C026D3", // fúcsia — Projectes
 } as const;
 
 export type AccentName = keyof typeof SECTION_ACCENTS;
