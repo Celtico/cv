@@ -76,17 +76,19 @@ test.describe("idioma i tema", () => {
   });
 });
 
-test.describe("accent dinàmic", () => {
-  test("el color es pinta abans d'hidratar i el paràmetre el fixa", async ({ page }) => {
-    await page.goto("/?accent=4F46E5");
-    const solid = () =>
-      page.evaluate(() =>
-        getComputedStyle(document.documentElement)
-          .getPropertyValue("--chakra-colors-accent-solid")
-          .trim()
-          .toLowerCase(),
+test.describe("accent per secció", () => {
+  test("cada secció pinta el seu color i no el de la del costat", async ({ page }) => {
+    await page.goto("/");
+    const solid = (id: string) =>
+      page.locator(`#${id}`).evaluate((el) =>
+        getComputedStyle(el).getPropertyValue("--chakra-colors-accent-solid").trim().toLowerCase(),
       );
-    await expect.poll(solid).toBe("#4f46e5");
+    // Els valors surten de SECTION_ACCENTS (app/color.ts). Si els canvies allà,
+    // canvia'ls aquí: aquesta prova és justament la que detecta que el CSS
+    // d'accents ha deixat d'arribar al marcatge.
+    expect(await solid("destacados")).toBe("#2563eb");
+    expect(await solid("sobre-mi")).toBe("#16a34a");
+    expect(await solid("proyectos")).toBe("#7c3aed");
   });
 
   test("el text dels botons plens manté contrast amb el fons del botó", async ({ page }) => {

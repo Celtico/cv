@@ -7,13 +7,27 @@ const config: ThemeConfig = {
   useSystemColorMode: false, // després respecta i recorda la tria del botó
 };
 
-// «La bitàcola del taller» — dualitat tinta (nit) ↔ paper (dia).
+// Blanc pur de dia, negre pur de nit: la parella de màxim contrast. Els
+// accents ja no els sorteja ningú — cada secció duu el seu i els publica
+// `accentStylesheet()` (app/color.ts). Els accent.* d'aquí són els de l'ambre,
+// que fa de color per defecte fora de les seccions.
 const theme = extendTheme({
   config,
   fonts: {
     heading: "ui-serif, 'New York', Georgia, 'Times New Roman', serif",
     body: "system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif",
     mono: "ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace",
+  },
+  // Escala de mides pujada un punt respecte de la de Chakra (md passa de 16 a
+  // 17 px). Es toca aquí i no als components perquè els creixi el text sense
+  // que creixi també l'espaiat, que va en rem per la seva banda.
+  fontSizes: {
+    xs: "0.8125rem", // 13
+    sm: "0.9375rem", // 15
+    md: "1.0625rem", // 17
+    lg: "1.1875rem", // 19
+    xl: "1.375rem", // 22
+    "2xl": "1.625rem", // 26
   },
   radii: {
     // «làmina de paper»: tot el sistema comparteix un sol radi
@@ -48,15 +62,37 @@ const theme = extendTheme({
     kicker: {
       fontFamily: "mono",
       fontWeight: 500,
-      fontSize: "0.7rem",
+      fontSize: "0.75rem",
       letterSpacing: "0.2em",
       textTransform: "uppercase",
     },
     micro: {
       fontFamily: "mono",
-      fontSize: "0.7rem",
+      fontSize: "0.75rem",
       letterSpacing: "0.14em",
       textTransform: "uppercase",
+    },
+  },
+  // Estil de làmina compartit per totes les targetes (projectes, destacats).
+  // Abans cada component es repetia el mateix `border="1px solid"`; ara la
+  // contundència es toca en un sol lloc. La cinta superior pren el color de la
+  // secció, de manera que la mateixa targeta canta diferent a cada apartat.
+  layerStyles: {
+    plate: {
+      bg: "bg.panel",
+      borderWidth: "2px",
+      borderStyle: "solid",
+      borderColor: "border.emphasized",
+      borderTopWidth: "5px",
+      borderTopColor: "accent.solid",
+      borderRadius: "plate",
+      overflow: "hidden",
+      transition: "border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease",
+      _hover: {
+        borderColor: "accent.solid",
+        transform: "translateY(-4px)",
+        boxShadow: "0 22px 45px -28px var(--chakra-colors-accent-solid)",
+      },
     },
   },
   // Semantic tokens amb la nomenclatura de Chakra
@@ -67,43 +103,42 @@ const theme = extendTheme({
   //
   // ATENCIÓ: els neutres d'aquesta taula estan duplicats a NEUTRAL_DEFAULTS
   // (app/color.ts), que és contra qui es comprova el contrast dels accents. Si
-  // en canvies un, canvia'l als dos llocs. Els accent.* d'aquí són exactament el que retorna
-  // deriveAll("#CE8724", mode) — l'ambre de la bitàcola.
+  // en canvies un, canvia'l als dos llocs. Els accent.* d'aquí són exactament
+  // el que retorna deriveAll(SECTION_ACCENTS.base, mode) — l'ambre.
   semanticTokens: {
     colors: {
-      bg: { default: "#ECE5D5", _dark: "#141210" },
-      "bg.subtle": { default: "#E4DBC8", _dark: "#1B1813" },
-      "bg.panel": { default: "#F4EFE4", _dark: "#221E18" },
+      bg: { default: "#FFFFFF", _dark: "#000000" },
+      "bg.subtle": { default: "#F4F4F5", _dark: "#111113" },
+      "bg.panel": { default: "#FFFFFF", _dark: "#0A0A0B" },
       "bg.muted": { default: "blackAlpha.50", _dark: "whiteAlpha.100" },
-      "bg.inverted": { default: "#141210", _dark: "#E9E2D3" }, // bloc invertit: el contrari del bg
-      "bg.nav": { default: "rgba(236,229,213,0.8)", _dark: "rgba(20,18,16,0.78)" },
-      fg: { default: "#1A1712", _dark: "#EDE6D6" },
-      "fg.muted": { default: "#5C5546", _dark: "#A79F8E" },
-      // pujat de #847C6A: no arribava a 4,5:1 en cap mode i pinta capçaleres
-      // de columna reals a la taula d'hores (el fons exigent és bg.subtle)
-      "fg.subtle": { default: "#635C4E", _dark: "#9A917F" },
-      "fg.inverted": { default: "#EDE6D6", _dark: "#1A1712" },
-      "fg.inverted.muted": { default: "#A79F8E", _dark: "#6B6353" },
-      border: { default: "blackAlpha.200", _dark: "whiteAlpha.200" },
-      "border.emphasized": { default: "blackAlpha.300", _dark: "whiteAlpha.300" },
-      "border.inverted": { default: "whiteAlpha.300", _dark: "blackAlpha.300" },
-      "gray.emphasized": { default: "#C9BFA8", _dark: "#4A4234" }, // vel de les fotos
-      "gray.contrast": { default: "#F7F3E9", _dark: "#0D0B09" }, // panell de màxim contrast (seccions Perfil i Contacte)
-      "accent.fg": { default: "#805416", _dark: "#CE8724" }, // ambre segur com a text
-      "accent.dot": { default: "#b4761f", _dark: "#CE8724" }, // marca decorativa
-      "accent.solid": { default: "#CE8724", _dark: "#CE8724" }, // fons de botó ple
-      "accent.emphasized": { default: "#dc9839", _dark: "#dc9839" }, // hover del sòlid
-      "accent.contrast": { default: "#141210", _dark: "#141210" }, // text sobre accent.solid
-      "accent.muted": { default: "rgba(206,135,36,0.20)", _dark: "rgba(206,135,36,0.20)" }, // pista dels anells
-      "accent.inverted": { default: "#CE8724", _dark: "#895918" },
+      "bg.inverted": { default: "#000000", _dark: "#FFFFFF" }, // bloc invertit: el contrari del bg
+      "bg.nav": { default: "rgba(255,255,255,0.82)", _dark: "rgba(0,0,0,0.8)" },
+      fg: { default: "#0A0A0A", _dark: "#FFFFFF" },
+      // El fons exigent per als grisos és bg.subtle, no el blanc/negre pur
+      "fg.muted": { default: "#575757", _dark: "#A1A1A1" },
+      "fg.subtle": { default: "#666666", _dark: "#8A8A8A" },
+      "fg.inverted": { default: "#FFFFFF", _dark: "#0A0A0A" },
+      "fg.inverted.muted": { default: "#A1A1A1", _dark: "#575757" },
+      border: { default: "blackAlpha.300", _dark: "whiteAlpha.300" },
+      "border.emphasized": { default: "blackAlpha.500", _dark: "whiteAlpha.400" },
+      "border.inverted": { default: "whiteAlpha.400", _dark: "blackAlpha.400" },
+      "gray.emphasized": { default: "#D4D4D8", _dark: "#3F3F46" }, // vel de les fotos
+      "gray.contrast": { default: "#FAFAFA", _dark: "#0A0A0B" }, // panell separat del fons pur
+      "accent.fg": { default: "#9b5c11", _dark: "#E8912A" }, // ambre segur com a text
+      "accent.dot": { default: "#d27d17", _dark: "#E8912A" }, // marca decorativa
+      "accent.solid": { default: "#E8912A", _dark: "#E8912A" }, // fons de botó ple
+      "accent.emphasized": { default: "#eba24a", _dark: "#eba24a" }, // hover del sòlid
+      "accent.contrast": { default: "#0A0A0A", _dark: "#0A0A0A" }, // text sobre accent.solid
+      "accent.muted": { default: "rgba(232,145,42,0.2)", _dark: "rgba(232,145,42,0.2)" }, // pista dels anells
+      "accent.inverted": { default: "#E8912A", _dark: "#a46112" },
       // Tinta de les il·lustracions (làmines fosques dels SVG inline): igual
       // en tots dos modes.
-      "ink.bg": { default: "#14110c", _dark: "#14110c" },
-      "ink.subtle": { default: "#1d1913", _dark: "#1d1913" },
-      "ink.border": { default: "#4a4234", _dark: "#4a4234" },
-      "ink.border.subtle": { default: "#2e2a22", _dark: "#2e2a22" },
-      "ink.fg": { default: "#EDE6D6", _dark: "#EDE6D6" },
-      "ink.fg.muted": { default: "#A79F8E", _dark: "#A79F8E" },
+      "ink.bg": { default: "#0A0A0A", _dark: "#0A0A0A" },
+      "ink.subtle": { default: "#141416", _dark: "#141416" },
+      "ink.border": { default: "#3F3F46", _dark: "#3F3F46" },
+      "ink.border.subtle": { default: "#242427", _dark: "#242427" },
+      "ink.fg": { default: "#FFFFFF", _dark: "#FFFFFF" },
+      "ink.fg.muted": { default: "#A1A1A1", _dark: "#A1A1A1" },
     },
   },
   styles: {
@@ -112,6 +147,10 @@ const theme = extendTheme({
         bg: "bg",
         color: "fg",
         scrollBehavior: "smooth",
+      },
+      body: {
+        fontSize: "md",
+        lineHeight: "1.65",
       },
       "::selection": {
         bg: "accent.solid",

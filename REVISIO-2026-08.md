@@ -450,6 +450,13 @@ Quatre bifurcacions que no es poden resoldre des del codi.
 
 ### A. El sorteig del color aleatori
 
+> **Resolt el 2026-08-18: retirat.** El Cel el va tombar sencer. En comptes d'un accent
+> sortejat per visita hi ha ara un accent **fix per secció** (`SECTION_ACCENTS` a
+> `app/color.ts`), publicat com a CSS estàtic per `accentStylesheet()`: vuit colors conviuen
+> a la mateixa pàgina, la web és reproduïble i no cal cap JavaScript per pintar-la. Amb el
+> sorteig van marxar l'script bloquejant, `?accent=RRGGBB`, `AccentProvider` i el fitxer
+> `app/accent.tsx`. Els neutres van passar de paper crema a blanc pur ↔ negre pur.
+
 Disseny defensa la idea (demostrar en viu que els tokens aguanten qualsevol accent val més
 que una captura) però adverteix que sortejar **també** el gris deixa 48 combinacions i cap
 constant visual. Accessibilitat no discuteix la idea sinó l'execució.

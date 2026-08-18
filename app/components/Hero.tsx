@@ -27,7 +27,8 @@ export function Hero() {
           w="full"
           h="full"
           bg="accent.solid"
-          opacity={0.1}
+          opacity={0.22}
+          _dark={{ opacity: 0.32 }}
           filter="blur(140px)"
           borderRadius="full"
           animation="glowDrift 18s ease-in-out infinite"

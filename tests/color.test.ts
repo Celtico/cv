@@ -1,7 +1,11 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import {
-  ACCENT_SUGGESTIONS,
+  AA,
+  ACCENT_HEXES,
+  SECTION_ACCENTS,
+  TEXT_DARK,
+  TEXT_LIGHT,
   bestTextOn,
   contrastRatio,
   hexToHsl,
@@ -23,14 +27,14 @@ test("normalizeHex accepta el que ha d'acceptar i rebutja la resta", () => {
 });
 
 test("hex → HSL → hex torna al mateix color", () => {
-  for (const hex of [...ACCENT_SUGGESTIONS, "#847C6A", "#000000", "#ffffff", "#7f7f7f"]) {
+  for (const hex of [...ACCENT_HEXES, "#847C6A", "#000000", "#ffffff", "#7f7f7f"]) {
     const [h, s, l] = hexToHsl(hex);
     assert.equal(hslToHex(h, s, l), hex.toLowerCase(), `round-trip de ${hex}`);
   }
 });
 
 test("withLightness conserva el to i acota la claror", () => {
-  for (const hex of ACCENT_SUGGESTIONS) {
+  for (const hex of ACCENT_HEXES) {
     const [h0] = hexToHsl(hex);
     for (const l of [0, 0.25, 0.5, 0.75, 1]) {
       const out = withLightness(hex, l);
@@ -53,27 +57,27 @@ test("relativeLuminance situa el negre i el blanc als extrems", () => {
 });
 
 test("bestTextOn tria sempre la tinta amb més contrast", () => {
-  for (const hex of ACCENT_SUGGESTIONS) {
+  for (const hex of ACCENT_HEXES) {
     const chosen = bestTextOn(hex);
-    const other = chosen === "#141210" ? "#f5efe2" : "#141210";
+    const other = chosen === TEXT_DARK ? TEXT_LIGHT : TEXT_DARK;
     assert.ok(
       contrastRatio(chosen, hex) >= contrastRatio(other, hex),
       `sobre ${hex} s'ha triat ${chosen}`,
     );
   }
   // el cas que abans fallava: l'ambre demana text fosc, no clar
-  assert.equal(bestTextOn("#CE8724"), "#141210");
+  assert.equal(bestTextOn(SECTION_ACCENTS.base), TEXT_DARK);
 });
 
 test("solidWithReadableText només mou el que cal i conserva el to", () => {
-  for (const hex of ACCENT_SUGGESTIONS) {
+  for (const hex of ACCENT_HEXES) {
     const solid = solidWithReadableText(hex);
-    const best = Math.max(contrastRatio("#141210", solid), contrastRatio("#f5efe2", solid));
-    assert.ok(best >= 4.5, `${hex} → ${solid} = ${best.toFixed(2)}`);
+    const best = Math.max(contrastRatio(TEXT_DARK, solid), contrastRatio(TEXT_LIGHT, solid));
+    assert.ok(best >= AA, `${hex} → ${solid} = ${best.toFixed(2)}`);
     const [h0] = hexToHsl(hex);
     const [h1] = hexToHsl(solid);
     assert.ok(Math.abs(h1 - h0) < 0.02, `el to de ${hex} s'ha mogut`);
   }
   // els que ja complien no s'han de tocar
-  assert.equal(solidWithReadableText("#CE8724"), "#CE8724");
+  assert.equal(solidWithReadableText(SECTION_ACCENTS.base), SECTION_ACCENTS.base);
 });

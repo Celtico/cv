@@ -1,14 +1,14 @@
-// El contrast de tota la web depèn de funcions pures. Aquí s'escombren els 8
-// accents en clar i en fosc contra les quatre superfícies on realment es pinta
-// text. Els neutres són fixos (el gris de la bitàcola), així que no hi ha cap
-// altra dimensió a creuar.
+// El contrast de tota la web depèn de funcions pures. Aquí s'escombren els vuit
+// accents de secció en clar i en fosc contra les quatre superfícies on realment
+// es pinta text. Els neutres són fixos (blanc pur ↔ negre pur), així que no hi
+// ha cap altra dimensió a creuar.
 
 import test from "node:test";
 import assert from "node:assert/strict";
 import {
   AA,
   AA_NON_TEXT,
-  ACCENT_SUGGESTIONS,
+  ACCENT_HEXES,
   contrastRatio,
   defaultNeutrals,
   deriveAll,
@@ -23,7 +23,7 @@ function surfacesFor(mode: Mode) {
 }
 
 test("accent.fg arriba a AA sobre totes les superfícies", () => {
-  for (const accent of ACCENT_SUGGESTIONS) {
+  for (const accent of ACCENT_HEXES) {
     for (const mode of MODES) {
       const { list } = surfacesFor(mode);
       const fg = deriveAll(accent, mode)["accent.fg"];
@@ -36,7 +36,7 @@ test("accent.fg arriba a AA sobre totes les superfícies", () => {
 });
 
 test("el text dels botons plens arriba a AA, també en hover", () => {
-  for (const accent of ACCENT_SUGGESTIONS) {
+  for (const accent of ACCENT_HEXES) {
     for (const mode of MODES) {
       const t = deriveAll(accent, mode);
       const solid = contrastRatio(t["accent.contrast"], t["accent.solid"]);
@@ -48,7 +48,7 @@ test("el text dels botons plens arriba a AA, també en hover", () => {
 });
 
 test("la marca decorativa es distingeix del fons (1.4.11)", () => {
-  for (const accent of ACCENT_SUGGESTIONS) {
+  for (const accent of ACCENT_HEXES) {
     for (const mode of MODES) {
       const { n } = surfacesFor(mode);
       const dot = deriveAll(accent, mode)["accent.dot"];
@@ -74,7 +74,7 @@ test("els neutres del tema mantenen el contrast del text", () => {
 });
 
 test("accent.inverted és llegible sobre el bloc invertit", () => {
-  for (const accent of ACCENT_SUGGESTIONS) {
+  for (const accent of ACCENT_HEXES) {
     for (const mode of MODES) {
       const { n } = surfacesFor(mode);
       const r = contrastRatio(deriveAll(accent, mode)["accent.inverted"], n["bg.inverted"]);

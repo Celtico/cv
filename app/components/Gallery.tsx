@@ -8,7 +8,7 @@ import { useT } from "../i18n";
 export function Gallery() {
   const t = useT();
   return (
-    <Section id="galeria" kicker={t.gallery.kicker} title={t.gallery.title} subtitle={t.gallery.subtitle} bg="bg">
+    <Section id="galeria" accent="gallery" glow="right" kicker={t.gallery.kicker} title={t.gallery.title} subtitle={t.gallery.subtitle} bg="bg">
       <SimpleGrid columns={{ base: 2, md: 3, lg: 4 }} spacing={{ base: 3, md: 4 }}>
         {gallery.map((g, i) => (
           <Box key={i} role="group" border="1px solid" borderColor="border" borderRadius="2px" overflow="hidden" bg="bg.panel">

@@ -1,8 +1,9 @@
 // Nucli determinista del sistema de color de la web.
 //
-// Un sol gris (el de la bitàcola, fix al tema) i vuit accents. El camí que
-// permetia re-tintar els neutres amb un gris triat es va retirar amb el
-// selector del peu: era el seu únic consumidor. Si mai torna, és a l'històric.
+// Neutres de màxim contrast (blanc pur ↔ negre pur) i un accent FIX PER SECCIÓ.
+// El sorteig d'accent per visita es va retirar el 2026-08-18: donava una web
+// monocroma i diferent a cada recàrrega. Ara cada secció duu el seu color, els
+// vuit conviuen a la mateixa pàgina i el resultat és estable i reproduïble.
 //
 // Viu separat d'`accent.tsx` (que és el provider de React) perquè és lògica
 // pura, sense JSX ni DOM: així es pot importar des de `node --test` i cobrir
@@ -13,20 +14,35 @@
 // d'HSL no serveixen — l'HSL no és perceptual i un blau al 34% de claror és
 // molt més fosc que un groc a la mateixa claror.
 
-export const ACCENT_SUGGESTIONS = [
-  "#CE8724", // ambre original de la bitàcola
-  "#4F46E5", // indi
-  "#1D6CE0", // blau
-  "#0E7490", // cian fosc
-  "#2F855A", // verd
-  "#DD6B20", // taronja
-  "#D33A2C", // vermell
-  "#D53F8C", // rosa
-] as const;
+/**
+ * L'accent de cada secció de la portada. La clau és el valor de `data-accent`
+ * que `Section.tsx` posa a l'element; `layout.tsx` en precalcula els tokens
+ * per als dos modes i els publica com a regles CSS, de manera que el color
+ * arriba sense JavaScript ni flaix.
+ *
+ * L'ambre és el de la bitàcola original i fa de color per defecte: el duen la
+ * barra, l'entradeta, les xifres, el contacte, el peu i el blog. La resta són
+ * els que canten a JetBrains: saturats, un per secció.
+ */
+export const SECTION_ACCENTS = {
+  base: "#E8912A", // ambre — barra, entradeta, xifres, contacte, peu, blog
+  featured: "#2563EB", // blau elèctric — Tres aplicacions vives
+  about: "#16A34A", // verd — Perfil
+  skills: "#0891B2", // cian — Competències
+  experience: "#6366F1", // indi — Experiència
+  gallery: "#DB2777", // rosa — Galeria
+  clients: "#EA580C", // taronja — Clients i trajectòria
+  projects: "#7C3AED", // violeta — Projectes
+} as const;
+
+export type AccentName = keyof typeof SECTION_ACCENTS;
+
+/** Els vuit accents en llista, per als tests de contrast. */
+export const ACCENT_HEXES = Object.values(SECTION_ACCENTS) as readonly string[];
 
 /** Les dues tintes de text disponibles per damunt d'un color ple. */
-export const TEXT_DARK = "#141210";
-export const TEXT_LIGHT = "#f5efe2";
+export const TEXT_DARK = "#0A0A0A";
+export const TEXT_LIGHT = "#FFFFFF";
 
 /** Llindar AA per a text normal. */
 export const AA = 4.5;
@@ -160,31 +176,32 @@ export function solidWithReadableText(solid: string, target = AA): string {
 // ——— neutres ———
 
 // Neutres per defecte del tema (clar / fosc), tal com són a theme.ts.
+// Blanc pur ↔ negre pur: la parella de màxim contrast. El paper crema de la
+// bitàcola es va retirar el 2026-08-18 a petició del Cel.
 // IMPORTANT: aquesta taula duplica els valors de `theme.ts`. Si en canvies un,
 // canvia'l als dos llocs — el tema serveix l'SSR i aquesta taula és el fons
 // contra el qual es comprova el contrast de cada accent.
 export const NEUTRAL_DEFAULTS: Record<string, [string, string]> = {
-  bg: ["#ECE5D5", "#141210"],
-  "bg.subtle": ["#E4DBC8", "#1B1813"],
-  "bg.panel": ["#F4EFE4", "#221E18"],
-  fg: ["#1A1712", "#EDE6D6"],
-  "fg.muted": ["#5C5546", "#A79F8E"],
-  // pujat de #847C6A, que no arribava a 4,5:1 en cap mode i pinta capçaleres
-  // de columna reals a la taula d'hores. El clar arriba fins a #635C4E perquè
-  // el fons més exigent és bg.subtle (#E4DBC8), no bg.
-  "fg.subtle": ["#635C4E", "#9A917F"],
-  "bg.inverted": ["#141210", "#E9E2D3"],
-  "fg.inverted": ["#EDE6D6", "#1A1712"],
-  "fg.inverted.muted": ["#A79F8E", "#6B6353"],
-  "gray.emphasized": ["#C9BFA8", "#4A4234"], // gris èmfasi: vel de les fotos
-  "gray.contrast": ["#F7F3E9", "#0D0B09"], // panell de màxim contrast
+  bg: ["#FFFFFF", "#000000"],
+  "bg.subtle": ["#F4F4F5", "#111113"],
+  "bg.panel": ["#FFFFFF", "#0A0A0B"],
+  fg: ["#0A0A0A", "#FFFFFF"],
+  // El fons més exigent per als grisos no és `bg` sinó `bg.subtle`: els valors
+  // estan triats contra aquell, no contra el blanc/negre pur.
+  "fg.muted": ["#575757", "#A1A1A1"],
+  "fg.subtle": ["#666666", "#8A8A8A"],
+  "bg.inverted": ["#000000", "#FFFFFF"],
+  "fg.inverted": ["#FFFFFF", "#0A0A0A"],
+  "fg.inverted.muted": ["#A1A1A1", "#575757"],
+  "gray.emphasized": ["#D4D4D8", "#3F3F46"], // gris èmfasi: vel de les fotos
+  "gray.contrast": ["#FAFAFA", "#0A0A0B"], // panell separat del fons pur
   // tinta de les il·lustracions: fosca en tots dos modes
-  "ink.bg": ["#14110c", "#14110c"],
-  "ink.subtle": ["#1d1913", "#1d1913"],
-  "ink.border": ["#4a4234", "#4a4234"],
-  "ink.border.subtle": ["#2e2a22", "#2e2a22"],
-  "ink.fg": ["#EDE6D6", "#EDE6D6"],
-  "ink.fg.muted": ["#A79F8E", "#A79F8E"],
+  "ink.bg": ["#0A0A0A", "#0A0A0A"],
+  "ink.subtle": ["#141416", "#141416"],
+  "ink.border": ["#3F3F46", "#3F3F46"],
+  "ink.border.subtle": ["#242427", "#242427"],
+  "ink.fg": ["#FFFFFF", "#FFFFFF"],
+  "ink.fg.muted": ["#A1A1A1", "#A1A1A1"],
 };
 
 /** Els neutres del tema sense re-tintar, per al mode donat. */
@@ -192,7 +209,7 @@ export function defaultNeutrals(mode: Mode): Record<string, string> {
   const i = mode === "light" ? 0 : 1;
   const out: Record<string, string> = {};
   for (const [name, defaults] of Object.entries(NEUTRAL_DEFAULTS)) out[name] = defaults[i];
-  out["bg.nav"] = mode === "light" ? alpha("#ECE5D5", 0.8) : alpha("#141210", 0.78);
+  out["bg.nav"] = mode === "light" ? alpha("#FFFFFF", 0.82) : alpha("#000000", 0.8);
   return out;
 }
 
@@ -239,9 +256,39 @@ export function deriveAccent(hex: string, neutrals: Record<string, string>, mode
 
 /**
  * Tokens que s'escriuen al DOM per a un accent. Els neutres del tema no es
- * toquen: el gris de la bitàcola és fix i és el que fa que el paper sembli
- * paper.
+ * toquen mai: només varien els accent.*, que és el que canvia de secció a
+ * secció.
  */
 export function deriveAll(hex: string, mode: Mode): Record<string, string> {
   return deriveAccent(hex, defaultNeutrals(mode), mode);
+}
+
+// ——— publicació com a CSS ———
+
+/** Nom de la variable CSS de Chakra per a un token semàntic. */
+export const cssVarFor = (token: string) => `--chakra-colors-${token.replace(/\./g, "-")}`;
+
+const declarations = (tokens: Record<string, string>) =>
+  Object.entries(tokens)
+    .map(([name, value]) => `${cssVarFor(name)}:${value}`)
+    .join(";");
+
+/**
+ * Full d'estil amb els tokens d'accent de cada secció, en clar i en fosc.
+ *
+ * Es genera en prerenderitzar i s'incrusta al `<head>`: el color arriba amb el
+ * marcatge, sense JavaScript i sense flaix. Abans això ho feia un script
+ * bloquejant que sortejava un accent i escrivia les variables al DOM.
+ *
+ * La regla fosca porta `.chakra-ui-dark` al davant (la classe que Chakra posa
+ * al `<body>`) perquè guanyi per especificitat: sense això, la variable escrita
+ * a l'element de la secció s'heretaria als fills i el mode fosc no hi arribaria.
+ */
+export function accentStylesheet(): string {
+  const rules: string[] = [];
+  for (const [name, hex] of Object.entries(SECTION_ACCENTS)) {
+    rules.push(`[data-accent="${name}"]{${declarations(deriveAll(hex, "light"))}}`);
+    rules.push(`.chakra-ui-dark [data-accent="${name}"]{${declarations(deriveAll(hex, "dark"))}}`);
+  }
+  return rules.join("\n");
 }

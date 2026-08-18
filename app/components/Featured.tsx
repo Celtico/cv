@@ -45,7 +45,7 @@ function Plate({
   const y = useTransform(scrollYProgress, [0, 1], ["-6%", "6%"]);
 
   return (
-    <Box ref={ref} border="1px solid" borderColor="border.emphasized" borderRadius="2px" overflow="hidden">
+    <Box ref={ref} layerStyle="plate">
       <Flex
         className="tnum"
         align="center"
@@ -79,7 +79,7 @@ function Plate({
 export function Featured({ svgs = {} }: { svgs?: Record<string, string> }) {
   const t = useT();
   return (
-    <Section id="destacados" kicker={t.featured.kicker} title={t.featured.title} subtitle={t.featured.subtitle} bg="bg">
+    <Section id="destacados" accent="featured" glow="right" kicker={t.featured.kicker} title={t.featured.title} subtitle={t.featured.subtitle} bg="bg">
       <VStack spacing={{ base: 14, md: 24 }} align="stretch">
         {featured.map((p, i) => {
           const tr = t.featured.items[i];
