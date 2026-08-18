@@ -238,6 +238,27 @@ incomplissin AA al botó principal.
   seva mida i acabes escrivint `fontSize` a mà a cada component — que és exactament la deriva
   que hi havia. Si veus un titular encallat a 36 px, mira primer aquí.
 
+### Degradats de color
+
+- **Fons de l'entradeta**: superposició de degradats radials (`.accent-cycle`, generat a
+  `accentStylesheet()`), no un `filter: blur`. La clau és la **doble parada**
+  (`color 0, color 12%, transparent 70%`): amb una sola parada només se'n veu la cua. Dos
+  colors recorren els vuit accents desfasats mig cicle. Interpolar un custom property de
+  color exigeix declarar-lo amb `@property`.
+- **Per dins de les lletres**: `.accent-text` (`background-clip: text`), i `RichText` hi
+  arriba amb `==ressaltat==`. És per a **una frase clau dins d'un paràgraf apagat**, no per a
+  paràgrafs sencers.
+- **Que els dos extrems d'un degradat compleixin AA NO n'hi ha prou.** La interpolació manté
+  cada canal entre els dels extrems, però la combinació pot ser més fosca que tots dos: un
+  blau i un rosa que passen just el llindar donen un punt intermedi de 4,44. Per això els
+  extrems es calculen amb marge (`AA × 1,5`) i `tests/contrast.test.ts` mostreja onze punts de
+  cada parella. Si canvies la interpolació (per exemple a `in oklab`), el test t'ho dirà.
+- El color sòlid d'un text amb degradat **no ha de ser `transparent`**: ha de ser la reserva
+  llegible, i la retallada la fa `-webkit-text-fill-color`. I sota `forced-colors: active` el
+  degradat s'ha de retirar, o el text desapareix.
+- `glowDrift` **només mou**. Mentre també animava l'opacitat, fixava el valor per damunt del
+  que posés l'element i pujar-la no feia res.
+
 ### Altres detalls
 
 - Els enllaços de secció de la barra han de passar per `anchorHref(lang, id)`, no escriure's
