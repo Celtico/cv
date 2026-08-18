@@ -215,14 +215,11 @@ export function Nav() {
                   letterSpacing="0.1em"
                   textTransform="uppercase"
                   color="fg"
-                  display="flex"
-                  justifyContent="space-between"
                   _hover={{ color: "accent.fg", textDecoration: "none" }}
                 >
+                  {/* Sense numerar: els apartats no són una seqüència que
+                      s'hagi de seguir en ordre, igual que a Competències. */}
                   <Box as="span">{l.label}</Box>
-                  <Box as="span" color="fg.subtle">
-                    {String(i + 1).padStart(2, "0")}
-                  </Box>
                 </Link>
               ))}
             </VStack>
