@@ -85,7 +85,7 @@ export function Hero() {
         {/* nameplate */}
         <Heading as="h1" textStyle="display" color="fg">
           Celestí{" "}
-          <Box as="span" fontStyle="italic" fontWeight="500">
+          <Box as="span" color="accent.fg">
             Ticó Petit
           </Box>
         </Heading>

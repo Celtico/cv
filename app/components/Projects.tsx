@@ -27,7 +27,7 @@ export function Projects({ svgs = {} }: { svgs?: Record<string, string> }) {
                 <Text className="tnum" fontSize="xs" color="accent.fg" letterSpacing="0.16em" textTransform="uppercase" mb={2}>
                   {String(i + 1).padStart(2, "0")} · {t.projects.items[i]?.subtitle ?? p.subtitle}
                 </Text>
-                <Heading as="h3" textStyle="cardTitle" fontSize="1.9rem" lineHeight="1.1" color="fg">
+                <Heading as="h3" textStyle="cardTitle" color="fg">
                   {p.title}
                 </Heading>
               </Box>

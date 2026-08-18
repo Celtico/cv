@@ -14,7 +14,11 @@ const config: ThemeConfig = {
 const theme = extendTheme({
   config,
   fonts: {
-    heading: "ui-serif, 'New York', Georgia, 'Times New Roman', serif",
+    // Titulars de pal sec des del 2026-08-18. La serif («ui-serif, New York,
+    // Georgia») donava un aire de diari que xoca amb la resta del llenguatge;
+    // el que sosté una pàgina com aquesta és un pal sec gros i atapeït. Cap
+    // font descarregada: system-ui ja és SF Pro a macOS i Segoe a Windows.
+    heading: "system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif",
     body: "system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif",
     mono: "ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace",
   },
@@ -22,12 +26,12 @@ const theme = extendTheme({
   // 17 px). Es toca aquí i no als components perquè els creixi el text sense
   // que creixi també l'espaiat, que va en rem per la seva banda.
   fontSizes: {
-    xs: "0.8125rem", // 13
-    sm: "0.9375rem", // 15
-    md: "1.0625rem", // 17
-    lg: "1.1875rem", // 19
-    xl: "1.375rem", // 22
-    "2xl": "1.625rem", // 26
+    xs: "0.875rem", // 14
+    sm: "1rem", // 16
+    md: "1.125rem", // 18
+    lg: "1.3125rem", // 21
+    xl: "1.5rem", // 24
+    "2xl": "1.875rem", // 30
   },
   radii: {
     // La làmina de paper de 2 px es va retirar el 2026-08-18: les targetes són
@@ -41,24 +45,24 @@ const theme = extendTheme({
   textStyles: {
     display: {
       fontFamily: "heading",
-      fontWeight: 400,
-      fontSize: { base: "3.5rem", md: "7rem" },
-      lineHeight: "0.94",
-      letterSpacing: "-0.03em",
+      fontWeight: 700,
+      fontSize: { base: "4rem", md: "8rem" },
+      lineHeight: "0.9",
+      letterSpacing: "-0.045em",
     },
     sectionTitle: {
       fontFamily: "heading",
-      fontWeight: 500,
-      fontSize: { base: "2.6rem", md: "3.8rem" },
-      lineHeight: "1.02",
-      letterSpacing: "-0.02em",
+      fontWeight: 700,
+      fontSize: { base: "3rem", md: "4.6rem" },
+      lineHeight: "0.98",
+      letterSpacing: "-0.035em",
     },
     cardTitle: {
       fontFamily: "heading",
-      fontWeight: 500,
-      fontSize: { base: "1.5rem", md: "1.7rem" },
-      lineHeight: "1.2",
-      letterSpacing: "-0.01em",
+      fontWeight: 700,
+      fontSize: { base: "1.7rem", md: "2rem" },
+      lineHeight: "1.15",
+      letterSpacing: "-0.025em",
     },
     kicker: {
       fontFamily: "mono",
@@ -72,6 +76,16 @@ const theme = extendTheme({
       fontSize: "0.75rem",
       letterSpacing: "0.14em",
       textTransform: "uppercase",
+    },
+  },
+  // Chakra dona al Heading una mida per defecte (size="xl", 36 px) que es
+  // resol com a estil de component i, per tant, guanya sobre `textStyle`. El
+  // resultat era que `display` i `sectionTitle` no pintaven mai la seva mida i
+  // cada component s'havia acabat escrivint un `fontSize` a mà per sobre.
+  // Anul·lant la mida per defecte, els textStyles tornen a manar.
+  components: {
+    Heading: {
+      defaultProps: { size: null },
     },
   },
   // Estil de làmina compartit per totes les targetes (projectes, destacats).
@@ -198,9 +212,10 @@ const theme = extendTheme({
       "input, select, textarea": {
         fontSize: "16px",
       },
-      // Georgia — el fallback serif a Windows — fa xifres d'estil antic per
-      // defecte. Als titulars ("100 · 100 · 100 · 100", "422 projectes")
-      // les forcem de caixa alta perquè no ballin sobre la línia de base.
+      // Herència de quan els titulars eren serif: Georgia fa xifres d'estil
+      // antic per defecte. Es queda perquè no costa res i cobreix qualsevol
+      // fallback que en tingui ("422 projectes" no ha de ballar sobre la línia
+      // de base).
       "h1, h2, h3, h4": {
         fontVariantNumeric: "lining-nums",
       },

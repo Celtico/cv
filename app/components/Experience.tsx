@@ -27,7 +27,7 @@ export function Experience() {
               {e.period}
             </Text>
             <Box>
-              <Heading as="h3" textStyle="cardTitle" fontSize={{ base: "1.4rem", md: "1.7rem" }} lineHeight="1.15" color="fg">
+              <Heading as="h3" textStyle="cardTitle" color="fg">
                 {e.company}
               </Heading>
               <Text color="fg.muted" mt={1}>

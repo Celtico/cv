@@ -102,7 +102,7 @@ export function Featured({ svgs = {} }: { svgs?: Record<string, string> }) {
                   <Text className="tnum" fontSize="xs" letterSpacing="0.2em" textTransform="uppercase" color="accent.fg" mb={2}>
                     {tr.subtitle}
                   </Text>
-                  <Heading as="h3" textStyle="cardTitle" fontSize={{ base: "2.2rem", md: "2.8rem" }} lineHeight="1.05" color="fg">
+                  <Heading as="h3" textStyle="cardTitle" fontSize={{ base: "2.6rem", md: "3.4rem" }} lineHeight="1" color="fg">
                     {p.title}
                   </Heading>
                 </Box>

@@ -20,7 +20,7 @@ export function Skills() {
             borderBottom="1px solid"
             borderColor="border"
           >
-            <Heading as="h3" textStyle="cardTitle" fontSize={{ base: "1.4rem", md: "1.7rem" }} color="fg">
+            <Heading as="h3" textStyle="cardTitle" color="fg">
               {t.skills.groups[i] ?? s.group}
             </Heading>
             <Wrap spacing={2}>
