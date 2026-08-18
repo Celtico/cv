@@ -115,24 +115,29 @@ inexistents (pàgina en blanc, tot 500).
 `web/REVISIO-2026-08.md` documenta una auditoria completa feta el 10 d'agost de 2026 i
 **ja aplicada**. Consulta-la abans de proposar canvis a la web: evita rediagnosticar el que
 ja està diagnosticat i, sobretot, evita recomanar coses descartades amb motiu —migrar a
-Chakra v3 (`accent.tsx` depèn dels noms literals de `--chakra-colors-*`), refactor a RSC,
-xatbot, banner de cookies, `--omit=dev`, `next/image` optimitzat, `JobPosting` al JSON-LD.
+Chakra v3 (`accentStylesheet()` depèn dels noms literals de `--chakra-colors-*`, que la v3
+genera d'una altra manera), refactor a RSC, xatbot, banner de cookies, `--omit=dev`,
+`next/image` optimitzat, `JobPosting` al JSON-LD.
 
 El que hi queda obert depèn de material extern o d'una tria del Cel: demo dels tres
-projectes, tipografia de titular allotjada, testimonis de client i HSTS al Nginx.
+projectes, tipografia de titular allotjada, testimonis de client i HSTS al Nginx. La decisió A
+(el sorteig del color aleatori) es va resoldre el 2026-08-18: retirat, substituït per un
+accent fix per secció.
 
 ## Verificar
 
 ```bash
 cd web
 npx tsc --noEmit     # tipus
-npm test             # unitaris (node:test, sense dependències) — 18 tests
-npm run test:e2e     # Playwright chromium + mobile — 36 tests
+npm test             # unitaris (node:test, sense dependències) — 21 tests
+npm run test:e2e     # Playwright chromium + mobile — 40 tests
 ```
 
-`npm test` cobreix el que és determinista i crític: el contrast AA de les 112 combinacions
-d'accent × gris × mode, la coherència del diccionari trilingüe i l'alineament per índex amb
-`data.ts`, i les entrades del blog. Si toques color o contingut, aquests tests són la xarxa.
+`npm test` cobreix el que és determinista i crític: el contrast AA dels 8 accents de secció
+contra les quatre superfícies en tots dos modes, la coherència del diccionari trilingüe i
+l'alineament per índex amb `data.ts`, i les entrades del blog. Si toques color o contingut,
+aquests tests són la xarxa. Als e2e, `contingut.spec.ts` comprova que cada secció pinta el seu
+color: si canvies `SECTION_ACCENTS`, hi has de tocar els hex.
 
 ## Arquitectura de la web
 
@@ -175,33 +180,36 @@ retorna el diccionari actiu; `langHref()` i `stripLang()` construeixen els enlla
 idiomes. El commutador de la barra són `<Link>`, no botons — si escrius tests, busca'ls com
 a `link`.
 
-### Color i accent (`app/color.ts` + `app/accent.tsx`)
+### Color i accent (`app/color.ts`)
 
-El punt més subtil del projecte, i ara està partit en dos:
+El punt més subtil del projecte. Tot viu a `app/color.ts`, que és lògica pura, sense JSX ni
+DOM: així es pot importar des de `node --test` i cobrir amb tests el que sosté el contrast de
+tot el lloc. **Cap token de text es publica sense comprovar que arriba a 4,5:1** contra el fons
+on es pintarà (`contrastify`, `solidWithReadableText`, `bestTextOn`). No hi tornis a posar
+topalls d'HSL: l'HSL no és perceptual i va ser exactament la causa que 6 dels 8 accents
+incomplissin AA al botó principal.
 
-- **`app/color.ts`** — lògica pura, sense JSX ni DOM: conversions, contrast i derivació dels
-  tokens. **Cap token de text es publica sense comprovar que arriba a 4,5:1** contra el fons
-  on es pintarà (`contrastify`, `solidWithReadableText`, `bestTextOn`). No hi tornis a posar
-  topalls d'HSL: l'HSL no és perceptual i va ser exactament la causa que 6 dels 8 accents
-  incomplissin AA al botó principal.
-- **`app/accent.tsx`** — només el provider de React i l'escriptura de les variables CSS.
-
-Altres coses que cal saber:
-
-- El sorteig el fa un **script bloquejant** al `<body>` (a `layout.tsx`, amb una taula de
-  tokens precalculada al servidor), abans de la primera pintada. Si el moguessis a un efecte
-  tornaria el flaix d'ambre inicial. `AccentProvider` només reaplica els tokens quan es
-  commuta entre dia i nit.
-- **Els neutres són fixos**: el gris de la bitàcola no varia mai. Només l'accent, entre 8
-  opcions. Amb `?accent=RRGGBB` es fixa (enllaç determinista i captures reproduïbles).
-- **No hi ha selector de color** (es va retirar el 2026-08-10, a petició del Cel). Amb ell van
-  marxar el camí de re-tintat dels neutres (`deriveNeutrals`, `GRAY_SUGGESTIONS`) i el
-  diccionari `picker`. És a l'històric si mai torna.
+- **Un accent fix per secció**, no un de sortejat per visita. `SECTION_ACCENTS` lliga cada
+  secció al seu color; l'ambre (`base`) fa de color per defecte i el duen la barra,
+  l'entradeta, les xifres, el contacte, el peu i el blog.
+- **Arriba per CSS, no per JavaScript.** `accentStylesheet()` genera en temps de build una
+  regla `[data-accent="…"]` per secció i mode, i `layout.tsx` la incrusta al `<head>`.
+  `Section.tsx` només posa `data-accent`; les variables s'hereten a tot el subarbre. La regla
+  fosca porta `.chakra-ui-dark` al davant perquè guanyi per especificitat sobre la clara, que
+  s'escriu a l'element de la secció.
+- **Els neutres són fixos i de màxim contrast**: blanc pur de dia, negre pur de nit. El paper
+  crema de la bitàcola i el sorteig d'accent per visita (amb el seu script bloquejant,
+  `?accent=RRGGBB`, `AccentProvider` i `app/accent.tsx`) es van retirar el 2026-08-18 a
+  petició del Cel: donaven una web monocroma i diferent a cada recàrrega. És a l'històric.
+- **No hi ha selector de color** (es va retirar el 2026-08-10). Amb ell van marxar el camí de
+  re-tintat dels neutres (`deriveNeutrals`, `GRAY_SUGGESTIONS`) i el diccionari `picker`.
 - `NEUTRAL_DEFAULTS` a `color.ts` **duplica** els valors neutres de `theme.ts`. Si en canvies
   un, canvia'l als dos llocs.
-- `theme.ts` defineix `textStyles` (`display`, `sectionTitle`, `cardTitle`, `kicker`, `micro`).
-  Fes-los servir en comptes d'inventar mides: la deriva anterior eren 16 parells de `fontSize`
-  i la mateixa microetiqueta amb sis mides.
+- `theme.ts` defineix `textStyles` (`display`, `sectionTitle`, `cardTitle`, `kicker`, `micro`),
+  l'escala de `fontSizes` (pujada un punt: `md` són 17 px) i el `layerStyle` **`plate`**, que
+  és l'estil de targeta compartit — vora de 2 px, cinta superior de 5 px amb el color de la
+  secció i elevació en passar-hi el ratolí. Fes-los servir en comptes d'inventar mides o
+  repetir vores.
 
 ### Altres detalls
 
@@ -209,7 +217,8 @@ Altres coses que cal saber:
   com a `/#id`: amb el prefix fix, des de `/es` o `/en` et tornaven a la portada catalana.
   Cobert per una prova de regressió a `e2e/navegacio.spec.ts` (compte: en pantalla petita els
   enllaços viuen dins del calaix, no a la barra).
-- `components/Section.tsx` embolcalla totes les seccions i ja porta `scrollMarginTop` per no
+- `components/Section.tsx` embolcalla totes les seccions: hi posa `data-accent`, el bafarot de
+  color del fons (`glow`, que alterna de costat secció a secció) i el `scrollMarginTop` per no
   quedar sota la barra sticky. `components/Reveal.tsx` fa l'aparició en scroll com a **millora
   progressiva**: el marcatge surt visible del servidor i només s'amaga, abans de pintar, el
   que queda fora de pantalla. No hi tornis a posar un `initial` de framer-motion.
