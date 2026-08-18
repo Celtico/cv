@@ -55,7 +55,11 @@ export function Gallery() {
               py={2}
               borderTop="1px solid"
               borderColor="border"
-              noOfLines={1}
+              // Tantes línies com calgui fins a tres: a 14 px i en graella de
+              // dues columnes els noms llargs es tallaven («02 · Pàmies…»,
+              // «04 · GLS…»), i el nom del client és justament el que aquesta
+              // secció va a ensenyar. En pantalles de 320 px en calen tres.
+              noOfLines={3}
             >
               {String(i + 1).padStart(2, "0")} · {g.label === "Proyecto web" ? t.gallery.web : g.label}
             </Text>
