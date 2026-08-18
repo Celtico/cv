@@ -49,14 +49,18 @@ export type AccentName = keyof typeof SECTION_ACCENTS;
 export const ACCENT_HEXES = Object.values(SECTION_ACCENTS) as readonly string[];
 
 /**
- * Accents que NO entren al degradat de dins de les lletres. El verd hi
- * embrutava: barrejat amb qualsevol dels altres passa per tons oliva.
+ * Accents que NO entren als degradats que barregen dos colors —ni al fons de
+ * l'entradeta ni al de dins de les lletres—. El verd hi embruta: barrejat amb
+ * qualsevol dels altres passa per tons oliva.
+ *
+ * Que un color serveixi per a una banda de secció, on hi va sol, no vol dir
+ * que serveixi per barrejar-lo.
  */
-export const TEXT_GRADIENT_EXCLUDED: readonly AccentName[] = ["about"];
+export const GRADIENT_EXCLUDED: readonly AccentName[] = ["about"];
 
-/** Els accents que sí que hi entren, en l'ordre del cicle. */
-export const TEXT_GRADIENT_ACCENTS = (Object.entries(SECTION_ACCENTS) as [AccentName, string][])
-  .filter(([name]) => !TEXT_GRADIENT_EXCLUDED.includes(name))
+/** Els accents que sí que entren als degradats, en l'ordre del cicle. */
+export const GRADIENT_ACCENTS = (Object.entries(SECTION_ACCENTS) as [AccentName, string][])
+  .filter(([name]) => !GRADIENT_EXCLUDED.includes(name))
   .map(([, hex]) => hex);
 
 /** Les dues tintes de text disponibles per damunt d'un color ple. */
@@ -378,7 +382,7 @@ export function accentStylesheet(): string {
   // diferents alhora. Perquè un custom property de color es pugui interpolar
   // cal declarar-lo amb `@property`; als navegadors que no el tenen, es queda
   // al valor inicial i el fons simplement no s'anima.
-  const cycle = Object.values(SECTION_ACCENTS);
+  const cycle = GRADIENT_ACCENTS;
   const half = Math.floor(cycle.length / 2);
   const stopsFor = (offset: number) =>
     cycle
@@ -417,7 +421,7 @@ export function accentStylesheet(): string {
   // i `tests/contrast.test.ts` mostreja tot el recorregut per comprovar-ho.
   // El marge està calibrat contra la llista de dalt: amb 1,4 el pitjor punt de
   // totes les parelles cau a 4,95 i amb 1,3 a 4,43, per sota del llindar. Si
-  // treus o afegeixes un color a `TEXT_GRADIENT_ACCENTS`, les parelles canvien
+  // treus o afegeixes un color a `GRADIENT_ACCENTS`, les parelles canvien
   // i s'ha de tornar a calibrar — el test t'ho dirà.
   const TEXT_MARGIN = 1.4;
   // I abans de contrastar-los se'ls puja la saturació: `contrastify` només mou
@@ -428,8 +432,8 @@ export function accentStylesheet(): string {
     const [h, sat, l] = hexToHsl(hex);
     return hslToHex(h, Math.min(1, sat * TEXT_SATURATION), l);
   };
-  const textCycle = TEXT_GRADIENT_ACCENTS;
-  const textHalf = Math.floor(textCycle.length / 2);
+  const textCycle = cycle;
+  const textHalf = half;
   for (const mode of ["light", "dark"] as Mode[]) {
     const n = defaultNeutrals(mode);
     const surfaces = [n.bg, n["bg.subtle"], n["bg.panel"], n["gray.contrast"]];

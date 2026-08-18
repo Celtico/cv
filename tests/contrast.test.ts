@@ -11,7 +11,7 @@ import {
   ACCENT_HEXES,
   contrastRatio,
   defaultNeutrals,
-  TEXT_GRADIENT_ACCENTS,
+  GRADIENT_ACCENTS,
   contrastify,
   hexToHsl,
   hslToHex,
@@ -135,7 +135,7 @@ test("el degradat de dins de les lletres compleix AA a tot el recorregut", () =>
     };
     // La mateixa llista que fa servir `accentStylesheet()`: el verd en queda
     // fora, i per tant tampoc s'ha de comprovar aquí.
-    const texts = TEXT_GRADIENT_ACCENTS.map((hex) =>
+    const texts = GRADIENT_ACCENTS.map((hex) =>
       contrastify(vivid(hex), surfaces, AA * 1.4, mode === "light" ? -1 : 1),
     );
     // Dues interpolacions hi conviuen i totes dues es pinten: la del degradat
