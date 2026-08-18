@@ -87,7 +87,7 @@ export const content: Record<Lang, Dict> = {
       disponible: "Disponible · en cerca activa",
       role: "Desenvolupador full-stack · Disseny UX/UI · Balaguer (Lleida)",
       tagline:
-        "20+ anys construint ==producte digital de principi a fi==: del briefing i el disseny al codi, la infraestructura i el SEO. Autodidacta i polivalent. Ara busco incorporar-me a un equip: presencial a Lleida, híbrid a Barcelona o en remot.",
+        "25 anys construint ==producte digital de principi a fi==: del briefing i el disseny al codi, la infraestructura i el SEO. Autodidacta i polivalent. Ara busco incorporar-me a un equip: presencial a Lleida, híbrid a Barcelona o en remot.",
       contactar: "Contactar",
       veure: "Veure projectes",
       descarregar: "Descarregar CV (PDF)",
@@ -251,7 +251,7 @@ export const content: Record<Lang, Dict> = {
       disponible: "Disponible · en búsqueda activa",
       role: "Desarrollador full-stack · Diseño UX/UI · Balaguer (Lleida)",
       tagline:
-        "20+ años construyendo ==producto digital de principio a fin==: del briefing y el diseño al código, la infraestructura y el SEO. Autodidacta y polivalente. Ahora busco incorporarme a un equipo: presencial en Lleida, híbrido en Barcelona o en remoto.",
+        "25 años construyendo ==producto digital de principio a fin==: del briefing y el diseño al código, la infraestructura y el SEO. Autodidacta y polivalente. Ahora busco incorporarme a un equipo: presencial en Lleida, híbrido en Barcelona o en remoto.",
       contactar: "Contactar",
       veure: "Ver proyectos",
       descarregar: "Descargar CV (PDF)",
@@ -415,7 +415,7 @@ export const content: Record<Lang, Dict> = {
       disponible: "Available · actively looking",
       role: "Full-stack developer · UX/UI design · Balaguer (Lleida), Spain",
       tagline:
-        "20+ years building ==digital product end to end==: from briefing and design to code, infrastructure and SEO. Self-taught and versatile. I am now looking to join a team: on-site in Lleida, hybrid in Barcelona or fully remote.",
+        "25 years building ==digital product end to end==: from briefing and design to code, infrastructure and SEO. Self-taught and versatile. I am now looking to join a team: on-site in Lleida, hybrid in Barcelona or fully remote.",
       contactar: "Get in touch",
       veure: "View projects",
       descarregar: "Download CV (PDF)",

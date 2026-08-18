@@ -5,7 +5,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: "Celestí Ticó Petit — CV i portfoli",
     short_name: "Cel · CV",
     description:
-      "Currículum i portfoli de Celestí Ticó Petit: 20+ anys construint producte digital de principi a fi.",
+      "Currículum i portfoli de Celestí Ticó Petit: 25 anys construint producte digital de principi a fi.",
     id: "/",
     start_url: "/",
     scope: "/",

@@ -8,7 +8,7 @@ import { alternatesFor } from "./seo";
 
 const title = `${profile.name} — Desenvolupador web full-stack i dissenyador a Lleida`;
 const description =
-  "Desenvolupador full-stack (React, Next.js, NestJS) i dissenyador UX/UI a Balaguer, Lleida. 20+ anys, 422 projectes i 200+ clients. En cerca activa de feina.";
+  "Desenvolupador full-stack (React, Next.js, NestJS) i dissenyador UX/UI a Balaguer, Lleida. 25 anys, 422 projectes i 200+ clients. En cerca activa de feina.";
 const siteUrl = "https://serverscel.com";
 
 export const metadata: Metadata = {

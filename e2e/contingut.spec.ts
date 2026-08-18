@@ -31,7 +31,7 @@ test.describe("contingut del perfil", () => {
     await page.goto("/");
     // Les tres són dades del registre d'hores i han de quadrar amb el CV en
     // PDF. El «100%» que hi havia va sortir el 2026-08-18: no era una mesura.
-    for (const xifra of ["422", "200+", "20+"]) {
+    for (const xifra of ["422", "200+", "25"]) {
       await expect(page.getByText(xifra, { exact: true }).first()).toBeVisible();
     }
   });

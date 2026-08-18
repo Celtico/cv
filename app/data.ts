@@ -4,7 +4,7 @@ export const profile = {
   role: "Desarrollador de aplicaciones web",
   subrole: "Front-end & Back-end · Diseño UX/UI",
   tagline:
-    "20+ años construyendo producto digital de principio a fin: del briefing y el diseño al código, la infraestructura y el SEO. Autodidacta, polivalente y orientado a resolver.",
+    "25 años construyendo producto digital de principio a fin: del briefing y el diseño al código, la infraestructura y el SEO. Autodidacta, polivalente y orientado a resolver.",
   location: "Balaguer (Lleida) · España",
   phone: "+34 626 654 270",
   email: "celticopetit@gmail.com",
@@ -16,7 +16,7 @@ export const profile = {
 export const stats = [
   { value: "422", label: "Proyectos entregados" },
   { value: "200+", label: "Clientes" },
-  { value: "20+", label: "Años de experiencia" },
+  { value: "25", label: "Años de experiencia" },
 ];
 
 export const about = [
