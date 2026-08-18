@@ -28,10 +28,7 @@ export function Section({
 }) {
   const titleColor = inverted ? "fg.inverted" : "fg";
   const subColor = inverted ? "fg.inverted.muted" : "fg.muted";
-  const kickColor = inverted ? "fg.inverted.muted" : "fg.muted";
   const rule = inverted ? "whiteAlpha.300" : "border.emphasized";
-  // sobre el bloc invertit, accent.fg està calculat contra el fons contrari
-  const markColor = inverted ? "accent.inverted" : "accent.fg";
 
   return (
     <Box
@@ -74,13 +71,27 @@ export function Section({
       <Container maxW="72rem" position="relative">
         <Box mb={{ base: 10, md: 14 }}>
           {kicker && (
-            <Flex align="center" gap={3} mb={5}>
-              <Box as="span" className="tnum" fontSize="xs" color={markColor} letterSpacing="0.2em">
-                §
-              </Box>
-              <Text as="span" className="tnum" textStyle="kicker" color={kickColor}>
+            <Flex align="center" gap={4} mb={6}>
+              {/* Pastilla massissa: `accent.solid` + `accent.contrast` són una
+                  parella verificada a 4,5:1, així que serveix igual damunt del
+                  fons normal i del bloc invertit. */}
+              <Flex
+                as="span"
+                align="center"
+                gap={2}
+                className="tnum"
+                textStyle="kicker"
+                bg="accent.solid"
+                color="accent.contrast"
+                borderRadius="control"
+                px={4}
+                py={2}
+              >
+                <Box as="span" aria-hidden>
+                  §
+                </Box>
                 {kicker}
-              </Text>
+              </Flex>
               <Box flex="1" h="1px" bg={rule} />
             </Flex>
           )}
