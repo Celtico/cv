@@ -214,9 +214,17 @@ incomplissin AA al botó principal.
   etiquetes i commutadors — pastilla completa. La «làmina de paper» de 2 px es va retirar el
   2026-08-18. No escriguis `borderRadius="2px"` a cap component: fes servir el token.
 - `theme.ts` defineix `textStyles` (`display`, `sectionTitle`, `cardTitle`, `kicker`, `micro`),
-  l'escala de `fontSizes` (pujada un punt: `md` són 17 px) i dos `layerStyles`: **`plate`**
-  (targeta de color massís amb vora d'accent i elevació en passar-hi el ratolí) i **`chip`**
-  (pastilla d'etiqueta). Fes-los servir en comptes d'inventar mides o repetir vores.
+  l'escala de `fontSizes` (`md` són 18 px) i dos `layerStyles`: **`plate`** (targeta de color
+  massís amb vora d'accent i elevació en passar-hi el ratolí) i **`chip`** (pastilla
+  d'etiqueta). Fes-los servir en comptes d'inventar mides o repetir vores.
+- **Els titulars són de pal sec del sistema**, pes 700 i interlletratge tancat (`display`
+  8 rem, `sectionTitle` 4,6, `cardTitle` 2). La serif es va retirar el 2026-08-18. Segueix
+  sense haver-hi cap font descarregada.
+- **`components.Heading.defaultProps.size = null` és imprescindible.** Chakra dona al
+  `Heading` una mida per defecte (`size="xl"`, 36 px) que es resol com a estil de component i
+  **guanya sobre `textStyle`**. Amb ella posada, `display` i `sectionTitle` no pinten mai la
+  seva mida i acabes escrivint `fontSize` a mà a cada component — que és exactament la deriva
+  que hi havia. Si veus un titular encallat a 36 px, mira primer aquí.
 
 ### Altres detalls
 
