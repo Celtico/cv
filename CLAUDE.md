@@ -218,6 +218,11 @@ incomplissin AA al botó principal.
   accents del text. Si afegeixes una secció, mira quina la precedeix i alterna. La banda
   s'atura a `accent.panel` a posta: si arribés a `accent.surface`, les targetes es fondrien
   amb el fons al capdavall.
+- **L'etiqueta de secció** (la pastilla del kicker) va sempre amb `accent.deep` i text blanc.
+  `accent.deep` és el color de la secció enfosquit just el que cal perquè el blanc hi arribi a
+  4,5:1: sense ell, quatre dels vuit accents (verd, cian, taronja, ambre) demanaven text fosc i
+  desentonaven. Té un límit per l'altra banda —si s'enfosquís més, la pastilla es fondria amb
+  el negre—, i el test comprova les dues condicions alhora.
 - **Dos estils de targeta, i no són intercanviables**: `plateTinted` (degradat en diagonal del
   fons net al color) va damunt d'una banda `wash`; `plate` (fons igual que la secció i filet
   prim) va damunt d'una banda `flat`. Els extrems dels dos degradats són superfícies ja
