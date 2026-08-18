@@ -4,6 +4,7 @@ import { Box, Text, VisuallyHidden } from "@chakra-ui/react";
 import { Section } from "./Section";
 import { clientHours, clientHoursSummary } from "../data";
 import { useT } from "../i18n";
+import { stripMarkup } from "../markup";
 
 // Format català/espanyol: milers amb punt, decimals amb coma. Determinista, sense ICU.
 function fmtHours(n: number): string {
@@ -35,7 +36,9 @@ export function ClientHours() {
   return (
     <Section id="trayectoria" accent="clients" tone="wash" kicker={l.kicker} title={l.title} subtitle={l.subtitle}>
       <Box as="table" w="full" sx={{ display: "block", borderCollapse: "collapse" }}>
-        <VisuallyHidden as="caption">{l.subtitle}</VisuallyHidden>
+        {/* La llegenda de la taula la senten els lectors de pantalla: text pla,
+            sense marcadors. */}
+        <VisuallyHidden as="caption">{stripMarkup(l.subtitle)}</VisuallyHidden>
 
         <Box as="thead" display="block">
           <Box

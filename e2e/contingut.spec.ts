@@ -102,3 +102,39 @@ test.describe("accent per secció", () => {
     expect(bg).not.toBe("rgba(0, 0, 0, 0)");
   });
 });
+
+test.describe("marcatge del diccionari", () => {
+  // `content.ts` admet **negreta** i ==ressaltat==, i qualsevol superfície que
+  // pinti aquell text sense passar per `RichText` (o sense `stripMarkup`, si va
+  // a metadades) el treu literal. Ja va passar tres vegades: a la secció de
+  // contacte, a la meta description i —el pitjor— a la llegenda d'una taula,
+  // que només senten els lectors de pantalla i no es veu mirant la pàgina.
+  for (const ruta of ["/", "/es", "/en", "/blog", "/es/blog", "/en/blog"]) {
+    test(`cap marcador cru a ${ruta}`, async ({ page }) => {
+      await page.goto(ruta);
+      const superficies = await page.evaluate(() => {
+        const atributs: string[] = [];
+        for (const el of document.querySelectorAll("*")) {
+          for (const a of ["alt", "title", "aria-label", "placeholder"]) {
+            const v = el.getAttribute(a);
+            if (v) atributs.push(v);
+          }
+        }
+        return {
+          "text visible i ocult": document.body.innerText,
+          metadades: [...document.querySelectorAll("meta")]
+            .map((m) => m.getAttribute("content") || "")
+            .join(" | "),
+          "dades estructurades": [...document.querySelectorAll('script[type="application/ld+json"]')]
+            .map((s) => s.textContent)
+            .join(" "),
+          títol: document.title,
+          atributs: atributs.join(" | "),
+        };
+      });
+      for (const [on, valor] of Object.entries(superficies)) {
+        expect(valor, `marcador cru a ${on}`).not.toMatch(/==|\*\*/);
+      }
+    });
+  }
+});
