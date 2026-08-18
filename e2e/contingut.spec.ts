@@ -29,7 +29,9 @@ test.describe("contingut del perfil", () => {
 
   test("les xifres clau del perfil es mantenen", async ({ page }) => {
     await page.goto("/");
-    for (const xifra of ["422", "200+", "100%"]) {
+    // Les tres són dades del registre d'hores i han de quadrar amb el CV en
+    // PDF. El «100%» que hi havia va sortir el 2026-08-18: no era una mesura.
+    for (const xifra of ["422", "200+", "20+"]) {
       await expect(page.getByText(xifra, { exact: true }).first()).toBeVisible();
     }
   });

@@ -92,7 +92,7 @@ export const content: Record<Lang, Dict> = {
       veure: "Veure projectes",
       descarregar: "Descarregar CV (PDF)",
     },
-    statLabels: ["Projectes entregats", "Clients", "Anys d'experiència", "Autodidacta"],
+    statLabels: ["Projectes entregats", "Clients", "Anys d'experiència"],
     about: {
       kicker: "Perfil",
       title: "De l'ofici a la infraestructura",
@@ -256,7 +256,7 @@ export const content: Record<Lang, Dict> = {
       veure: "Ver proyectos",
       descarregar: "Descargar CV (PDF)",
     },
-    statLabels: ["Proyectos entregados", "Clientes", "Años de experiencia", "Autodidacta"],
+    statLabels: ["Proyectos entregados", "Clientes", "Años de experiencia"],
     about: {
       kicker: "Perfil",
       title: "Del oficio a la infraestructura",
@@ -420,7 +420,7 @@ export const content: Record<Lang, Dict> = {
       veure: "View projects",
       descarregar: "Download CV (PDF)",
     },
-    statLabels: ["Projects delivered", "Clients", "Years of experience", "Self-taught"],
+    statLabels: ["Projects delivered", "Clients", "Years of experience"],
     about: {
       kicker: "Profile",
       title: "From craft to infrastructure",

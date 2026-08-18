@@ -17,7 +17,6 @@ export const stats = [
   { value: "422", label: "Proyectos entregados" },
   { value: "200+", label: "Clientes" },
   { value: "20+", label: "Años de experiencia" },
-  { value: "100%", label: "Autodidacta" },
 ];
 
 export const about = [
