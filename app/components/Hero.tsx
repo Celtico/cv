@@ -113,7 +113,13 @@ export function Hero() {
             >
               {t.hero.role}
             </Text>
-            <Text fontSize={{ base: "lg", md: "xl" }} color="fg" maxW="34rem" lineHeight="1.6">
+            <Text
+              fontSize={{ base: "lg", md: "xl" }}
+              fontWeight="600"
+              color="fg"
+              maxW="42rem"
+              lineHeight="1.55"
+            >
               <RichText>{t.hero.tagline}</RichText>
             </Text>
           </Box>
