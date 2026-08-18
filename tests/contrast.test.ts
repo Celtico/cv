@@ -17,6 +17,7 @@ import {
   hslToHex,
   deriveAll,
   mix,
+  mixOklab,
   type Mode,
 } from "../app/color.ts";
 
@@ -137,14 +138,23 @@ test("el degradat de dins de les lletres compleix AA a tot el recorregut", () =>
     const texts = TEXT_GRADIENT_ACCENTS.map((hex) =>
       contrastify(vivid(hex), surfaces, AA * 1.4, mode === "light" ? -1 : 1),
     );
+    // Dues interpolacions hi conviuen i totes dues es pinten: la del degradat
+    // (entre els dos colors alhora, desfasats mig cicle) i la de l'animació
+    // (entre colors consecutius, al llarg del temps). Es mostregen les dues, i
+    // per sRGB i per to, perquè el resultat no depengui de quin camí faci el
+    // navegador.
+    const half = Math.floor(texts.length / 2);
     for (let i = 0; i < texts.length; i++) {
-      const a = texts[i];
-      const b = texts[(i + Math.floor(texts.length / 2)) % texts.length];
-      for (let step = 0; step <= 10; step++) {
-        const c = mix(a, b, step / 10);
-        for (const bg of [n.bg, n["bg.subtle"]]) {
-          const r = contrastRatio(c, bg);
-          assert.ok(r >= AA, `${a}→${b} al ${step * 10}% = ${c} sobre ${bg} (${mode}) = ${r.toFixed(2)}`);
+      for (const salt of [1, half]) {
+        const a = texts[i];
+        const b = texts[(i + salt) % texts.length];
+        for (let step = 0; step <= 10; step++) {
+          for (const c of [mix(a, b, step / 10), mixOklab(a, b, step / 10)]) {
+            for (const bg of [n.bg, n["bg.subtle"]]) {
+              const r = contrastRatio(c, bg);
+              assert.ok(r >= AA, `${a}→${b} al ${step * 10}% = ${c} sobre ${bg} (${mode}) = ${r.toFixed(2)}`);
+            }
+          }
         }
       }
     }

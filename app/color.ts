@@ -189,6 +189,49 @@ export function solidWithReadableText(solid: string, target = AA): string {
   return solid;
 }
 
+// ——— Oklab ———
+//
+// Espai perceptual: la L és claror percebuda, de manera que interpolar-hi manté
+// la claror entre la dels dos extrems en comptes de disparar-la. És el que fa
+// el navegador amb `linear-gradient(... in oklab, ...)`.
+//
+// Cal per al degradat de dins de les lletres. En sRGB, un blau i un ambre es
+// troben al mig en gris; en HSL, un teal i un ambre s'hi troben en groc, que
+// sobre blanc cau a 2,1:1. Oklab evita totes dues coses, i el test ho comprova.
+
+const srgbToLinear = (c: number) => (c <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4);
+const linearToSrgb = (c: number) => (c <= 0.0031308 ? c * 12.92 : 1.055 * c ** (1 / 2.4) - 0.055);
+
+function hexToOklab(hex: string): [number, number, number] {
+  const [r, g, b] = hexToRgb(hex).map((v) => srgbToLinear(v / 255));
+  const l = Math.cbrt(0.4122214708 * r + 0.5363325363 * g + 0.0514459929 * b);
+  const m = Math.cbrt(0.2119034982 * r + 0.6806995451 * g + 0.1073969566 * b);
+  const s = Math.cbrt(0.0883024619 * r + 0.2817188376 * g + 0.6299787005 * b);
+  return [
+    0.2104542553 * l + 0.793617785 * m - 0.0040720468 * s,
+    1.9779984951 * l - 2.428592205 * m + 0.4505937099 * s,
+    0.0259040371 * l + 0.7827717662 * m - 0.808675766 * s,
+  ];
+}
+
+function oklabToHex(L: number, a: number, bb: number): string {
+  const l = (L + 0.3963377774 * a + 0.2158037573 * bb) ** 3;
+  const m = (L - 0.1055613458 * a - 0.0638541728 * bb) ** 3;
+  const s = (L - 0.0894841775 * a - 1.291485548 * bb) ** 3;
+  return rgbToHex(
+    linearToSrgb(4.0767416621 * l - 3.3077115913 * m + 0.2309699292 * s) * 255,
+    linearToSrgb(-1.2684380046 * l + 2.6097574011 * m - 0.3413193965 * s) * 255,
+    linearToSrgb(-0.0041960863 * l - 0.7034186147 * m + 1.707614701 * s) * 255,
+  );
+}
+
+/** Barreja en Oklab: el camí que fa el degradat del text. */
+export function mixOklab(a: string, b: string, t: number): string {
+  const A = hexToOklab(a);
+  const B = hexToOklab(b);
+  return oklabToHex(A[0] + (B[0] - A[0]) * t, A[1] + (B[1] - A[1]) * t, A[2] + (B[2] - A[2]) * t);
+}
+
 /** Barreja lineal de dos colors, `t` = quantitat del primer. */
 export function mix(a: string, b: string, t: number): string {
   const [r1, g1, b1] = hexToRgb(a);
@@ -410,7 +453,8 @@ export function accentStylesheet(): string {
   // el fons contra el text el pintarà d'un color que ja compleix AA, en comptes
   // de deixar-lo invisible. És com ho resol apple.com.
   const textRule =
-    `background-image:linear-gradient(100deg,var(--text-1),var(--text-2));` +
+    // `in oklab`: sense això, un blau i un ambre es troben al mig en gris.
+    `background-image:linear-gradient(100deg in oklab,var(--text-1),var(--text-2));` +
     `-webkit-background-clip:text;background-clip:text;` +
     `-webkit-text-fill-color:transparent;`;
   rules.push(
