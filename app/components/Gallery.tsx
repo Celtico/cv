@@ -8,10 +8,10 @@ import { useT } from "../i18n";
 export function Gallery() {
   const t = useT();
   return (
-    <Section id="galeria" accent="gallery" glow="right" kicker={t.gallery.kicker} title={t.gallery.title} subtitle={t.gallery.subtitle} bg="accent.panel">
+    <Section id="galeria" accent="gallery" tone="wash" kicker={t.gallery.kicker} title={t.gallery.title} subtitle={t.gallery.subtitle}>
       <SimpleGrid columns={{ base: 2, md: 3, lg: 4 }} spacing={{ base: 3, md: 4 }}>
         {gallery.map((g, i) => (
-          <Box key={i} role="group" border="1px solid" borderColor="border" borderRadius="plate" overflow="hidden" bg="bg.panel">
+          <Box key={i} role="group" border="1px solid" borderColor="border" borderRadius="plate" overflow="hidden">
             <AspectRatio ratio={4 / 3}>
               <Box position="relative" overflow="hidden">
                 <Image
@@ -36,7 +36,7 @@ export function Gallery() {
                 <Box
                   position="absolute"
                   inset={0}
-                  bg="accent.solid"
+                 
                   opacity={0.45}
                   transition="opacity .35s ease"
                   pointerEvents="none"

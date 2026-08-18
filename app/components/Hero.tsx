@@ -24,14 +24,12 @@ export function Hero() {
         style={{ y: yGlow }}
       >
         <Box
+          className="accent-cycle"
           w="full"
           h="full"
-          bg="accent.solid"
-          opacity={0.4}
-          _dark={{ opacity: 0.55 }}
+          opacity={0.16}
           filter="blur(140px)"
           borderRadius="full"
-          animation="glowDrift 18s ease-in-out infinite"
         />
       </MotionBox>
 

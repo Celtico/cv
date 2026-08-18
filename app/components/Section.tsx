@@ -12,7 +12,7 @@ export function Section({
   bg = "bg",
   inverted = false,
   accent = "base",
-  glow = "right",
+  tone = "flat",
 }: {
   id: string;
   kicker?: string;
@@ -23,8 +23,13 @@ export function Section({
   inverted?: boolean;
   /** Color de la secció. Els tokens accent.* els publica `accentStylesheet()`. */
   accent?: AccentName;
-  /** Costat del bafarot de color del fons, o `false` per treure'l. */
-  glow?: "left" | "right" | false;
+  /**
+   * Com hi arriba el color. `wash` és la banda de degradat vertical sencera,
+   * de fons net a dalt fins al to ple a baix; `flat` és negre (o blanc) del
+   * tot, i el color només hi entra per l'etiqueta i els accents del text. Van
+   * saltejades: banda de color, banda neta, banda de color.
+   */
+  tone?: "flat" | "wash";
 }) {
   const titleColor = inverted ? "fg.inverted" : "fg";
   const subColor = inverted ? "fg.inverted.muted" : "fg.muted";
@@ -40,6 +45,13 @@ export function Section({
       py={{ base: 16, md: 24 }}
       bg={inverted ? "bg.inverted" : bg}
       color={inverted ? "fg.inverted" : "fg"}
+      // La banda de degradat recorre tota l'alçada de la secció, del fons net
+      // a dalt al to ple a baix. Els dos extrems són superfícies ja verificades
+      // a 4,5:1 contra el text neutre, així que el text hi és llegible a
+      // qualsevol altura. S'atura a `accent.panel` i no arriba a
+      // `accent.surface` perquè les targetes, que hi van a sobre, es puguin
+      // continuar distingint del fons al capdavall de la banda.
+      bgGradient={tone === "wash" ? "linear(to-b, bg, accent.panel)" : undefined}
       position="relative"
       // el bafarot vessa fora de la caixa: sense això apareix scroll horitzontal
       overflow="hidden"
@@ -47,27 +59,6 @@ export function Section({
       // arribar a l'àncora
       scrollMarginTop="80px"
     >
-      {/* Bafarot del color de la secció. És decoració pura (aria-hidden) i va
-          per sota del contingut; el color surt del token, així que cada secció
-          en té el seu sense que aquí hi hagi cap hex. */}
-      {glow && (
-        <Box
-          aria-hidden
-          position="absolute"
-          top="-30%"
-          {...(glow === "left" ? { left: "-15%" } : { right: "-15%" })}
-          w={{ base: "90vw", md: "52vw" }}
-          h={{ base: "90vw", md: "52vw" }}
-          bg="accent.solid"
-          // de nit el bafarot pot pujar: el negre pur se'l menja de pressa
-          opacity={0.4}
-          _dark={{ opacity: 0.55 }}
-          filter="blur(120px)"
-          borderRadius="full"
-          pointerEvents="none"
-        />
-      )}
-
       <Container maxW="72rem" position="relative">
         <Box mb={{ base: 10, md: 14 }}>
           {kicker && (

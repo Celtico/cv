@@ -93,8 +93,28 @@ const theme = extendTheme({
   // contundència es toca en un sol lloc. La cinta superior pren el color de la
   // secció, de manera que la mateixa targeta canta diferent a cada apartat.
   layerStyles: {
+    // Targeta de banda neta: fons igual que la secció i un filet prim. Sobre
+    // negre, el que la defineix és la vora, no cap farciment.
     plate: {
-      bg: "accent.surface",
+      bg: "bg",
+      borderWidth: "1px",
+      borderStyle: "solid",
+      borderColor: "border.emphasized",
+      borderRadius: "plate",
+      overflow: "hidden",
+      transition: "border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease",
+      _hover: {
+        borderColor: "accent.solid",
+        transform: "translateY(-4px)",
+        boxShadow: "0 22px 45px -24px var(--chakra-colors-accent-solid)",
+      },
+    },
+    // Rajola de banda de color: degradat en diagonal, de la cantonada neta a
+    // la de color, que és com JetBrains hi aplica el color. Els dos extrems
+    // són superfícies verificades, de manera que el text hi aguanta a tot
+    // arreu.
+    plateTinted: {
+      bgGradient: "linear(to-br, bg, accent.surface)",
       borderWidth: "2px",
       borderStyle: "solid",
       borderColor: "accent.dot",
@@ -224,9 +244,11 @@ const theme = extendTheme({
         fontVariantNumeric: "tabular-nums",
         fontFeatureSettings: "'tnum' 1",
       },
+      // Només mou i respira: el color el posa `accentCycle`, i l'opacitat es
+      // manté baixa perquè el bafarot no es mengi el fons negre.
       "@keyframes glowDrift": {
-        "0%, 100%": { transform: "translate(0,0) scale(1)", opacity: 0.1 },
-        "50%": { transform: "translate(2%, 3%) scale(1.06)", opacity: 0.16 },
+        "0%, 100%": { transform: "translate(0,0) scale(1)", opacity: 0.13 },
+        "50%": { transform: "translate(2%, 3%) scale(1.06)", opacity: 0.2 },
       },
       "@media (prefers-reduced-motion: reduce)": {
         "*": {

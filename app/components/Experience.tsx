@@ -8,7 +8,7 @@ import { useT } from "../i18n";
 export function Experience() {
   const t = useT();
   return (
-    <Section id="experiencia" accent="experience" glow="left" kicker={t.experience.kicker} title={t.experience.title} bg="bg">
+    <Section id="experiencia" accent="experience" kicker={t.experience.kicker} title={t.experience.title}>
       <Box borderTop="1px solid" borderColor="border.emphasized">
         {experience.map((e, i) => (
           <Grid

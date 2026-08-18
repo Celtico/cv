@@ -300,6 +300,22 @@ const declarations = (tokens: Record<string, string>) =>
  */
 export function accentStylesheet(): string {
   const rules: string[] = [];
+  // El bafarot de l'entradeta no es queda en un color: recorre els vuit de la
+  // pàgina. Va aquí, i no a `theme.ts`, perquè els colors surten de la mateixa
+  // taula que la resta i no s'han de repetir enlloc.
+  const cycle = Object.values(SECTION_ACCENTS);
+  const stops = cycle
+    .map((hex, i) => `${((i / cycle.length) * 100).toFixed(2)}%{background-color:${hex}}`)
+    .join("");
+  rules.push(`@keyframes accentCycle{${stops}100%{background-color:${cycle[0]}}}`);
+  // Les dues animacions van juntes en una sola declaració: si l'element es
+  // posés `animation` pel seu compte, l'estil en línia guanyaria i en mataria
+  // una. Amb `prefers-reduced-motion` la regla global de `theme.ts` les atura
+  // totes dues i queda el color de partida.
+  rules.push(
+    `.accent-cycle{background-color:${cycle[0]};` +
+      `animation:accentCycle 48s linear infinite,glowDrift 18s ease-in-out infinite}`,
+  );
   for (const [name, hex] of Object.entries(SECTION_ACCENTS)) {
     rules.push(`[data-accent="${name}"]{${declarations(deriveAll(hex, "light"))}}`);
     rules.push(`.chakra-ui-dark [data-accent="${name}"]{${declarations(deriveAll(hex, "dark"))}}`);
