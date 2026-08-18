@@ -14,6 +14,7 @@ export function Section({
   inverted = false,
   accent = "base",
   tone = "flat",
+  kickerTone = "accent",
 }: {
   id: string;
   kicker?: string;
@@ -31,6 +32,14 @@ export function Section({
    * saltejades: banda de color, banda neta, banda de color.
    */
   tone?: "flat" | "wash";
+  /**
+   * Color de la pastilla de l'etiqueta. `accent` la pinta amb `accent.deep`,
+   * el color de la secció enfosquit; `contrast` la pinta del contrari del fons
+   * —blanca amb text negre de nit, negra amb text blanc de dia—, que és la
+   * mateixa parella que fa servir el botó principal. Van repartides perquè no
+   * hi hagi vuit pastilles de color seguides.
+   */
+  kickerTone?: "accent" | "contrast";
 }) {
   const titleColor = inverted ? "fg.inverted" : "fg";
   const subColor = inverted ? "fg.inverted.muted" : "fg.muted";
@@ -64,18 +73,19 @@ export function Section({
         <Box mb={{ base: 10, md: 14 }}>
           {kicker && (
             <Flex align="center" gap={4} mb={6}>
-              {/* Pastilla massissa amb el color de la secció enfosquit i text
-                  blanc, sempre. `accent.deep` es deriva justament perquè el
-                  blanc hi arribi a 4,5:1, de manera que les vuit seccions es
-                  poden pintar igual sense que cap hagi de canviar a text fosc. */}
+              {/* Pastilla massissa, en una de dues parelles: `accent.deep` amb
+                  blanc (el color de la secció enfosquit just perquè el blanc hi
+                  arribi a 4,5:1) o `bg.inverted` amb `fg.inverted` (el contrari
+                  del fons). Les dues estan verificades, així que qualsevol de
+                  les dues serveix damunt de qualsevol fons de secció. */}
               <Flex
                 as="span"
                 align="center"
                 gap={2}
                 className="tnum"
                 textStyle="kicker"
-                bg="accent.deep"
-                color="accent.deep.fg"
+                bg={kickerTone === "contrast" ? "bg.inverted" : "accent.deep"}
+                color={kickerTone === "contrast" ? "fg.inverted" : "accent.deep.fg"}
                 borderRadius="control"
                 px={4}
                 py={2}
