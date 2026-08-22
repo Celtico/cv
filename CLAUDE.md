@@ -300,6 +300,12 @@ incomplissin AA al botó principal.
 
 ### Altres detalls
 
+- **La barra no s'amaga mai** (fins al 2026-08-22 es retirava en baixar) i **marca la secció
+  on ets amb el color d'aquella secció**. El `data-accent` va a l'ENLLAÇ actiu, no a la barra:
+  és el que fa que la regla `[data-accent="…"]` hi resolgui `accent.fg`, de manera que la
+  barra no ha de saber cap hex. El to el llegeix del `data-accent` de la secció visible, no
+  el dedueix — qui reparteix la sèrie segueix sent `home.tsx`. Galeria i Clients no tenen
+  entrada a la barra: quan hi ets, no s'encén res, i és correcte.
 - Els enllaços de secció de la barra han de passar per `anchorHref(lang, id)`, no escriure's
   com a `/#id`: amb el prefix fix, des de `/es` o `/en` et tornaven a la portada catalana.
   Cobert per una prova de regressió a `e2e/navegacio.spec.ts` (compte: en pantalla petita els
