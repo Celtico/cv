@@ -29,8 +29,19 @@ export function Contact({ accent = "blau" }: { accent?: AccentName }) {
       bgGradient="linear(to-b, bg, accent.panel)"
       color="fg"
       scrollMarginTop="80px"
+      // Tanca com obre l'entradeta: una pantalla justa amb el text al mig quan
+      // sobra alçada, i els marges cedint quan en falta. Els 64 px són la barra.
+      minH="calc(100svh - 64px)"
+      display="flex"
+      alignItems="center"
     >
-      <Container maxW="72rem" py={{ base: 20, md: 32, lg: 40 }}>
+      <Container
+        maxW="72rem"
+        w="full"
+        // El mateix joc que a l'entradeta: mana el valor gros mentre hi càpiga,
+        // el `vh` quan la pantalla és baixa, i el terra perquè no s'enganxi.
+        py={{ base: "clamp(2.5rem, 12vh, 5rem)", md: "clamp(2.5rem, 19vh, 8rem)", lg: "clamp(2.5rem, 24vh, 10rem)" }}
+      >
         <Kicker>{t.contact.kicker}</Kicker>
 
         {/* Mateix paper que la resta de titulars de secció. La cursiva que hi
