@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500" role="img" aria-label="FABRIK: nesting, QR y trazabilidad de piezas">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500" role="img" aria-label="FABRIK: nesting, QR i traçabilitat de peces">
   <defs>
     <linearGradient id="bgF" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" style="stop-color:var(--chakra-colors-ink-bg, #171208)"/>
@@ -39,7 +39,7 @@
   <!-- Nesting board -->
   <g transform="translate(70,80)">
     <rect width="330" height="212" rx="10" fill="var(--chakra-colors-ink-bg, #0f0d08)" stroke="var(--chakra-colors-ink-border, #463a22)" stroke-width="2"/>
-    <text x="330" y="-10" text-anchor="end" fill="var(--chakra-colors-ink-fg-muted, #8a7550)" font-family="system-ui,sans-serif" font-size="13" letter-spacing="1">NESTING · TABLERO</text>
+    <text x="330" y="-10" text-anchor="end" fill="var(--chakra-colors-ink-fg-muted, #8a7550)" font-family="system-ui,sans-serif" font-size="13" letter-spacing="1">NESTING · TAULER</text>
     <!-- pieces -->
     <rect class="p1" x="16"  y="16"  width="120" height="80" rx="5" stroke-width="2"/>
     <rect class="p2" x="150" y="16"  width="80"  height="120" rx="5" stroke-width="2"/>
