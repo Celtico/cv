@@ -142,10 +142,13 @@ export function Skills({ accent }: { accent: AccentName }) {
                       maxW="8rem"
                       textAlign="center"
                     >
-                      {id && (
-                        <Icon as={ICONES_ETIQUETA[id]} aria-hidden boxSize="1.6rem" color="accent.fg" />
-                      )}
-                      <Text as="span" fontSize="0.6875rem" lineHeight="1.3" color="fg.muted">
+                      {/* Icona i nom amb el color de text ple, no amb l'accent
+                          ni amb el to apagat: sense fons darrere, l'inventari
+                          s'ha de poder llegir d'una passada, i el verd i el gris
+                          el deixaven a mitges. `fg` és blanc de nit i negre de
+                          dia, o sigui el màxim contrast contra la banda. */}
+                      {id && <Icon as={ICONES_ETIQUETA[id]} aria-hidden boxSize="1.6rem" color="fg" />}
+                      <Text as="span" fontSize="0.6875rem" lineHeight="1.3" color="fg">
                         {it}
                       </Text>
                     </Flex>
