@@ -27,6 +27,11 @@ export function Hero() {
       minH="calc(100svh - var(--barra))"
       display="flex"
       alignItems="center"
+      // Sense això, anar a `#top` —el logotip de la barra— deixava l'scroll a
+      // 65 i els primers 65 px de l'entradeta amagats sota la barra: no
+      // tornaves a dalt de tot, tornaves a un pam per sota. Amb el marge, el
+      // navegador hi resta els mateixos 65 i l'scroll acaba a zero.
+      scrollMarginTop="var(--barra)"
     >
       {/* Fons de tres degradats radials superposats. Vessa per fora de la
           caixa a posta —el `overflow="hidden"` de la secció el retalla— perquè
