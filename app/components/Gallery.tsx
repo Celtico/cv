@@ -1,7 +1,6 @@
 "use client";
 
-import { AspectRatio, Box, Icon, Image, Link, SimpleGrid, Text } from "@chakra-ui/react";
-import { FiArrowUpRight } from "react-icons/fi";
+import { AspectRatio, Box, Image, Link, SimpleGrid, Text } from "@chakra-ui/react";
 import { Section } from "./Section";
 import type { AccentName } from "../color";
 import { gallery } from "../data";
@@ -27,16 +26,15 @@ export function Gallery({ accent }: { accent: AccentName }) {
             // `display="block"` és perquè el Link de Chakra és en línia i,
             // sense, la rajola perdia l'alçada.
             {...(g.url ? { as: Link, href: g.url, isExternal: true, display: "block" } : {})}
-            border="1px solid"
-            // El filet és el que diu si la captura es pot clicar: encès
-            // (`accent.dot`, el to decoratiu ja contrastat a 3:1) per a les
-            // webs que encara són vives, apagat per a les que ja no hi són. La
-            // fletxa del peu sola no es veia de lluny.
+            // El filet és l'ÚNIC que diu si la captura es pot clicar, i per
+            // això marca doble: dos píxels i encès (`accent.dot`, el to
+            // decoratiu ja contrastat a 3:1) per a les webs que encara són
+            // vives, un píxel i apagat per a les que ja no hi són. La captura
+            // es veu igual de nítida a totes dues bandes —la feina és la
+            // mateixa, tant si el client encara té la web dreta com si no.
+            borderWidth={g.url ? "2px" : "1px"}
+            borderStyle="solid"
             borderColor={g.url ? "accent.dot" : "accent.muted"}
-            // I el to de la captura: les que ja no hi són queden enrere en
-            // comptes de competir amb les que es poden visitar. El filet sol
-            // les distingia; això les jerarquitza.
-            opacity={g.url ? 1 : 0.55}
             _hover={g.url ? { borderColor: "accent.solid", textDecoration: "none" } : undefined}
             borderRadius="plate"
             overflow="hidden"
@@ -45,7 +43,7 @@ export function Gallery({ accent }: { accent: AccentName }) {
             // element, i `_groupHover` es resol com «un avantpassat amb
             // role=group està en hover», de manera que aquí no s'activava mai i
             // el filet no s'encenia.
-            transition="border-color .25s ease, opacity .25s ease"
+            transition="border-color .25s ease"
           >
             <AspectRatio ratio={4 / 3}>
               <Box position="relative" overflow="hidden">
@@ -84,9 +82,7 @@ export function Gallery({ accent }: { accent: AccentName }) {
               noOfLines={3}
             >
               {String(i + 1).padStart(2, "0")} · {g.label === "Proyecto web" ? t.gallery.web : g.label}
-              {g.url && (
-                <Icon as={FiArrowUpRight} aria-hidden boxSize="0.9em" ml={1.5} verticalAlign="-0.1em" />
-              )}
+
             </Text>
           </Box>
         ))}
