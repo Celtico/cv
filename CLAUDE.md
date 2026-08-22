@@ -222,17 +222,22 @@ incomplissin AA al botó principal.
   justament perquè el text neutre hi conservi el contrast; `tests/contrast.test.ts` ho comprova
   per als 8 accents × 2 modes. Compte amb el contracte: `panel` i `surface` aguanten
   `fg.muted`, la `chip` només `fg` — el `layerStyle` «chip» hi fixa el color per això.
-- **Les bandes van saltejades i el degradat és el llenguatge** (`tone` a `Section.tsx`):
-  `wash` pinta la secció sencera amb un degradat vertical simètric —fons net, `accent.panel`
-  al mig, fons net—, de manera que el color és el cos de la banda i no una vora;
-  `flat` la deixa negra (o blanca) del tot i el color hi entra només per l'etiqueta i els
-  accents del text. Si afegeixes una secció, mira quina la precedeix i alterna. El to ple és
-  `accent.panel` a posta: si fos `accent.surface`, les targetes es fondrien amb el fons a
-  l'altura on la banda és més tenyida.
+- **El color del fons arriba en bombolles, i el duen TOTES les seccions** (`Section.tsx`):
+  dos degradats radials d'`accent.panel` que es fonen a transparent, un al cantó de dalt i
+  l'altre al de baix del costat contrari. El costat l'escull la secció sola, per la posició
+  del seu accent a `SECTION_ACCENTS`, de manera que dues bandes seguides no queden
+  enquadrades igual. La doble parada és el que la fa: color ple fins al 14% i només després
+  el caient; amb una sola parada només se'n veu la cua. El color és `accent.panel` i no res
+  més saturat perquè qualsevol punt de la banda quedi entre `bg` i `accent.panel`, que són
+  superfícies verificades — amb `accent.surface` les targetes s'hi fondrien.
+  La prop `tone` (`wash`/`flat`) i l'alternança de bandes es van retirar el 2026-08-22:
+  venien de quan la banda era una franja vertical sencera, que marcava dues costures
+  horitzontals amb les veïnes. Una bombolla és prou tènue perquè les vuit seccions en puguin
+  dur una.
 - **Les microetiquetes duen el color de la secció**, no gris: les capçaleres de la taula
   d'hores, els números de fila, els peus de la galeria, l'etiqueta d'idiomes i les de les
   xifres. Van amb `accent.fg`, que per això es contrasta també contra `accent.panel` —en una
-  banda `wash` el degradat hi arriba i el text hi pot caure a sobre a qualsevol altura—. Sense
+  banda el degradat de fons hi arriba i el text hi pot caure a sobre—. Sense
   aquesta parada, el vermell i el fúcsia es quedaven a 4,42 i el blau, en fosc, a 4,43.
 - **A la galeria el color va al filet, no per damunt de la captura.** El vel d'`accent.solid`
   al 45% tenyia les dotze imatges i la graella es llegia com dotze rectangles del mateix to.
@@ -246,10 +251,11 @@ incomplissin AA al botó principal.
 - **Cap secció fa servir el kicker neutre** des del 2026-08-22: la pastilla és el primer que es
   llegeix de la banda i és on el color de la secció s'anuncia. Repartir-les deixava quatre
   seccions de vuit sense color a l'entrada.
-- **Dos estils de targeta, i no són intercanviables**: `plateTinted` (degradat en diagonal del
-  fons net al color) va damunt d'una banda `wash`; `plate` (fons igual que la secció i filet
-  prim) va damunt d'una banda `flat`. Els extrems dels dos degradats són superfícies ja
-  verificades, que és el que permet posar-hi text a sobre sense recalcular res.
+- **Dos estils de targeta**: `plateTinted` (degradat en diagonal del fons net a
+  `accent.surface`) i `plate` (fons igual que la secció i filet prim). Els extrems dels dos
+  degradats són superfícies ja verificades, que és el que permet posar-hi text a sobre sense
+  recalcular res. Fins al 2026-08-22 anaven lligats al `tone` de la banda; sense `tone`, la
+  tria és de cada secció.
 - **Radis**: `plate` (14 px) per a targetes i imatges, `control` (999 px) per a botons,
   etiquetes i commutadors — pastilla completa. La «làmina de paper» de 2 px es va retirar el
   2026-08-18. No escriguis `borderRadius="2px"` a cap component: fes servir el token.
