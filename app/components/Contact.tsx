@@ -28,7 +28,7 @@ export function Contact({ accent = "blau" }: { accent?: AccentName }) {
       // un altre cantó de color.
       bgGradient="linear(to-b, bg, accent.panel)"
       color="fg"
-      scrollMarginTop="80px"
+      scrollMarginTop="var(--barra)"
       // Tanca com obre l'entradeta: una pantalla justa amb el text al mig quan
       // sobra alçada, i els marges cedint quan en falta. L'alçada real de la barra és `--barra`.
       minH="calc(100svh - var(--barra))"

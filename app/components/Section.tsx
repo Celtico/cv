@@ -87,7 +87,10 @@ export function Section({
       overflow="hidden"
       // la barra és sticky i fa 64 px: sense això el titular queda tapat en
       // arribar a l'àncora
-      scrollMarginTop="80px"
+      // Exactament l'alçada de la barra, ni un píxel més: amb 80 fixos —i la
+      // barra fent-ne 65— clicar una àncora deixava la secció 15 px avall i el
+      // tall no encaixava mai.
+      scrollMarginTop="var(--barra)"
     >
       <Container maxW="72rem" position="relative">
         <Box mb={{ base: 10, md: 14 }}>

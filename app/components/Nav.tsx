@@ -106,22 +106,48 @@ export function Nav() {
     // La franja de decisió és la meitat de dalt de la finestra, just sota la
     // barra: activa la secció quan el seu titular hi arriba, no quan la secció
     // sencera hi cap —que amb bandes d'una pantalla no passaria mai—.
-    const observer = new IntersectionObserver(
-      () => {
-        const dalt = 65; // l'alçada real de la barra, filet inclòs (`--barra`)
-        // La que creua la franja i queda més amunt guanya: en baixar, la nova
-        // secció mana des que hi entra.
-        let millor: HTMLElement | null = null;
-        for (const s of seccions) {
-          const r = s.getBoundingClientRect();
-          if (r.top <= dalt + window.innerHeight * 0.4 && r.bottom > dalt) millor = s;
-        }
-        setActiu(millor ? { id: millor.id, accent: millor.dataset.accent ?? "blau" } : null);
-      },
-      { rootMargin: "-65px 0px -60% 0px", threshold: [0, 0.01, 0.5, 1] },
-    );
+    const calcula = () => {
+      const dalt = 65; // l'alçada real de la barra, filet inclòs (`--barra`)
+      // La que creua la franja i queda més amunt guanya: en baixar, la nova
+      // secció mana des que hi entra.
+      let millor: HTMLElement | null = null;
+      for (const s of seccions) {
+        const r = s.getBoundingClientRect();
+        if (r.top <= dalt + window.innerHeight * 0.4 && r.bottom > dalt) millor = s;
+      }
+      setActiu(millor ? { id: millor.id, accent: millor.dataset.accent ?? "blau" } : null);
+    };
+
+    // Es recalcula amb l'scroll i no només quan dispara l'observador. Amb
+    // l'observador sol, la marca es podia quedar encallada: només salta quan
+    // una secció creua el llindar, i qualsevol cosa que mogui l'scroll sense
+    // creuar-ne cap —un salt instantani, el `Reveal` canviant alçades en
+    // aparèixer, tornar a dalt de tot— la deixava on era.
+    let pendent = 0;
+    const onScroll = () => {
+      if (pendent) return;
+      pendent = requestAnimationFrame(() => {
+        pendent = 0;
+        calcula();
+      });
+    };
+    // L'observador es queda com a xarxa per als canvis d'alçada (imatges,
+    // `Reveal`) que no passen per l'scroll.
+    const observer = new IntersectionObserver(calcula, {
+      rootMargin: "-65px 0px -60% 0px",
+      threshold: [0, 0.01, 0.5, 1],
+    });
     for (const s of seccions) observer.observe(s);
-    return () => observer.disconnect();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll, { passive: true });
+    calcula();
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      if (pendent) cancelAnimationFrame(pendent);
+    };
   }, []);
 
   // Les àncores porten prefix perquè també han de funcionar des de /blog, i
