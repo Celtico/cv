@@ -170,10 +170,14 @@ export const experience = [
 // l'havia posat. Si n'hi afegeixes una, posa-li el seu —`t.gallery.web`
 // segueix al diccionari com a reserva, però ja no el fa servir ningú.
 //
-// `url` només el duen les que ENCARA SÓN VIVES. Sense URL, la captura és una
-// captura i prou; amb URL, la rajola es pot clicar i s'obre en una pestanya
-// nova. No se n'inventa cap: una feina de fa quinze anys que ja no és a
-// Internet no ha de dur cap enllaç trencat.
+// `url` només el duen les que segueixen sent FEINA D'AQUÍ i es poden visitar.
+// Sense URL, la captura és una captura i prou; amb URL, la rajola es pot clicar
+// i s'obre en una pestanya nova.
+//
+// Les quatre que no en duen no és que hagin desaparegut d'Internet: el client va
+// refer la web amb un altre proveïdor, i el que hi ha ara al domini ja no és
+// això. La captura documenta la feina; enllaçar-hi ensenyaria la d'un altre. No
+// hi posis l'URL encara que el domini respongui.
 export const gallery = [
   { img: "/img/23-rodibook.png.webp", label: "RodiBook" },
   { img: "/img/17-pamies.png.webp", label: "Pàmies Hortícoles" },
