@@ -172,6 +172,11 @@ export function Nav() {
   // se sentia com un salt a mig text.
   const blog = { href: langHref(lang, "/blog"), label: t.nav.blog };
 
+  // El nom del calaix fa d'inici, igual que el «CTP·» de la barra. Era text
+  // mort: dins del calaix no hi havia manera de tornar a dalt sense tancar-lo i
+  // fer scroll a mà.
+  const inici = { href: anchorHref(lang, "top"), label: t.nav.inici };
+
   return (
     <Box
       as="header"
@@ -271,13 +276,21 @@ export function Nav() {
         <DrawerContent bg="bg.subtle" borderLeft="1px solid" borderColor="border">
           <DrawerCloseButton color="fg" mt={2} />
           <DrawerHeader>
-            <Text className="tnum" fontWeight="600" letterSpacing="0.15em" color="fg" lineHeight="1.4">
-              CELESTÍ
-              <br />
-              TICÓ
-              <br />
-              PETIT
-            </Text>
+            <Link
+              href={inici.href}
+              onClick={onClose}
+              aria-label={inici.label}
+              display="inline-block"
+              _hover={{ color: "accent.fg", textDecoration: "none" }}
+            >
+              <Text className="tnum" fontWeight="600" letterSpacing="0.15em" color="inherit" lineHeight="1.4">
+                CELESTÍ
+                <br />
+                TICÓ
+                <br />
+                PETIT
+              </Text>
+            </Link>
           </DrawerHeader>
           <DrawerBody>
             <VStack align="stretch" spacing={0} mt={2}>

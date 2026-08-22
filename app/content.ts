@@ -73,6 +73,7 @@ type Dict = {
 export const content: Record<Lang, Dict> = {
   ca: {
     nav: {
+      inici: "Inici",
       perfil: "Perfil",
       eines: "Eines",
       destacats: "Destacats",
@@ -236,6 +237,7 @@ export const content: Record<Lang, Dict> = {
 
   es: {
     nav: {
+      inici: "Inicio",
       perfil: "Perfil",
       eines: "Herramientas",
       destacats: "Destacados",
@@ -399,6 +401,7 @@ export const content: Record<Lang, Dict> = {
 
   en: {
     nav: {
+      inici: "Home",
       perfil: "Profile",
       eines: "Tools",
       destacats: "Featured",
