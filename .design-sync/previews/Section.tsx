@@ -47,8 +47,8 @@ const pastilla: CSSProperties = {
 };
 
 /**
- * Banda de color: `tone="wash"` pinta la secció sencera amb el degradat
- * vertical del fons net fins a `accent.panel`, i les rajoles hi van amb el
+ * Banda de color: `tone="wash"` pinta la secció sencera amb un degradat
+ * vertical simètric —net, `accent.panel`, net— i les rajoles hi van amb el
  * degradat en diagonal.
  */
 export function BandaDeColor() {

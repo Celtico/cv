@@ -23,8 +23,9 @@ Els vuit accents: `base` (blau, el per defecte fora de secció), `featured` (vio
 
 La separació entre seccions la fa el farciment, no una línia.
 
-- `tone="wash"` — degradat vertical del fons net a `accent.panel`. La secció sencera es
-  llegeix com una parada.
+- `tone="wash"` — degradat vertical simètric: fons net a dalt, `accent.panel` al mig i fons
+  net a baix. El color és el cos de la banda, no una vora. La secció sencera es llegeix com
+  una parada.
 - `tone="flat"` — negra (o blanca) del tot; el color hi entra només per l'etiqueta i pels
   accents del text.
 

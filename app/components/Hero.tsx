@@ -14,7 +14,20 @@ export function Hero() {
   const yGlow = useTransform(scrollY, [0, 800], [0, 90]);
 
   return (
-    <Box as="section" id="top" position="relative" overflow="hidden">
+    <Box
+      as="section"
+      id="top"
+      position="relative"
+      overflow="hidden"
+      // L'entradeta ocupa una pantalla justa i el text hi va al mig: quan
+      // sobra alçada, el bloc es queda centrat en comptes de penjar de dalt amb
+      // un forat a sota. Els 64 px són la barra, que va enganxada al davant.
+      // `svh` i no `dvh`: amb `dvh` la mesura canvia quan el mòbil amaga la
+      // barra d'adreces i tota l'entradeta fa un salt a mig scroll.
+      minH="calc(100svh - 64px)"
+      display="flex"
+      alignItems="center"
+    >
       {/* Fons de tres degradats radials superposats. Vessa per fora de la
           caixa a posta —el `overflow="hidden"` de la secció el retalla— perquè
           els centres dels radials quedin fora de camp i només se'n vegi el
@@ -38,46 +51,20 @@ export function Hero() {
       <Container
         maxW="72rem"
         position="relative"
-        pt={{ base: 20, md: 32, lg: 40 }}
+        w="full"
+        // Els 150 px són el sostre, no una mesura fixa: en una pantalla baixa
+        // el farciment cedeix abans que el contingut, que és el que fa que
+        // l'entradeta hi càpiga sencera.
+        // Cada marge, entre un terra i un sostre: mana el valor gros mentre
+        // l'entradeta hi càpiga —el canvi comença als 667 px, que és el que fa
+        // el bloc, i per sobre no es mou res—, el `vh` quan la pantalla és més
+        // baixa, i el terra perquè no s'enganxi mai a la barra ni a les xifres.
+        pt={{ base: "clamp(2.5rem, 12vh, 5rem)", md: "clamp(2.5rem, 19vh, 8rem)", lg: "clamp(2.5rem, 24vh, 10rem)" }}
         // Compte amb l'escala: Chakra només té 32, 36, 40… Un valor que no hi
         // sigui (34, posem-hi) no peta, es pren com a 34 PÍXELS i el farciment
         // es queda a la quarta part sense que ho digui ningú.
-        pb={{ base: 16, md: 28, lg: 32 }}
+        pb={{ base: "clamp(2rem, 10vh, 4rem)", md: "clamp(2rem, 17vh, 7rem)", lg: "clamp(2rem, 19vh, 8rem)" }}
       >
-        {/* línia d'expedient */}
-        {/* Disponibilitat: és el fet més accionable per a qui llegeix això, i
-            abans vivia amagat al final de la línia d'expedient i ocult del tot
-            al mòbil. Ara és una píndola visible a totes les mides. */}
-        <Flex
-          className="tnum"
-          display="inline-flex"
-          // El punt s'alinea amb la primera línia, no amb el centre de la
-          // pastilla: en castellà el text és més llarg («en búsqueda activa») i
-          // en pantalla estreta salta de línia. Centrat, el punt quedava sol
-          // entre les dues línies i semblava un error.
-          align="flex-start"
-          gap={2.5}
-          mb={{ base: 6, md: 8 }}
-          px={{ base: 2.5, sm: 3 }}
-          py={1.5}
-          borderRadius="control"
-          bg="accent.muted"
-          border="1px solid"
-          borderColor="accent.dot"
-          color="accent.fg"
-          fontSize="xs"
-          // En un mòbil estret la píndola es partia en dues línies, i una
-          // pastilla partida sembla trencada. L'interlletratge baixa amb
-          // l'amplada, com a la línia de rol.
-          // Calibrat perquè hi càpiga fins i tot a 320 px, que és on la
-          // pastilla es partia en dues línies i semblava trencada.
-          letterSpacing={{ base: "0.02em", sm: "0.12em", md: "0.16em" }}
-          textTransform="uppercase"
-        >
-          <Box w="7px" h="7px" mt="0.45em" borderRadius="full" bg="accent.dot" flexShrink={0} />
-          <Text>{t.hero.disponible}</Text>
-        </Flex>
-
         {/* nameplate */}
         <Heading as="h1" textStyle="display" color="fg">
           Celestí{" "}
@@ -94,7 +81,12 @@ export function Hero() {
             espremut a dues paraules per línia en finestres mitjanes. */}
         {/* L'aire va aquí, entre el text i els botons, i no entre la línia de
             rol i el paràgraf: el rol i el text són el mateix bloc. */}
-        <Flex mt={8} direction="column" gap={12} align="start">
+        <Flex
+          mt="clamp(1rem, 5vh, 2rem)"
+          direction="column"
+          gap="clamp(1.5rem, 7vh, 3rem)"
+          align="start"
+        >
           <Box>
             {/* El rol és la dada de decisió per a qui contracta: abans era el
                 text més petit de tota la pantalla. */}

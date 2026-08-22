@@ -35,11 +35,6 @@ test.describe("contingut del perfil", () => {
       await expect(page.getByText(xifra, { exact: true }).first()).toBeVisible();
     }
   });
-
-  test("la disponibilitat es veu també en pantalla petita", async ({ page }) => {
-    await page.goto("/");
-    await expect(page.getByText(ca.hero.disponible, { exact: true })).toBeVisible();
-  });
 });
 
 test.describe("idioma i tema", () => {

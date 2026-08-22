@@ -55,7 +55,10 @@ const theme = extendTheme({
     display: {
       fontFamily: "heading",
       fontWeight: 700,
-      fontSize: { base: "4rem", md: "8rem" },
+      // 8 rem mentre hi càpiga, i el sostre en alçada de finestra quan la
+      // pantalla és més baixa: sense això, en un portàtil apaïsat el nom sol
+      // s'emportava mitja pantalla.
+      fontSize: { base: "4rem", md: "clamp(2.5rem, 19vh, 8rem)" },
       lineHeight: "0.9",
       letterSpacing: "-0.045em",
     },

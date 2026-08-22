@@ -8,7 +8,6 @@ export const DEFAULT_LANG: Lang = "ca";
 type Dict = {
   nav: Record<string, string>;
   hero: {
-    disponible: string;
     role: string;
     tagline: string;
     contactar: string;
@@ -84,7 +83,6 @@ export const content: Record<Lang, Dict> = {
       contacte: "Contacte",
     },
     hero: {
-      disponible: "Disponible · en cerca activa",
       role: "Desenvolupador full-stack · Disseny UX/UI · Balaguer (Lleida)",
       tagline:
         "25 anys construint ==producte digital de principi a fi==: del briefing i el disseny al codi, la infraestructura i el SEO. Autodidacta i polivalent. Ara busco incorporar-me a un equip: presencial a Lleida, híbrid a Barcelona o en remot.",
@@ -248,7 +246,6 @@ export const content: Record<Lang, Dict> = {
       contacte: "Contacto",
     },
     hero: {
-      disponible: "Disponible · en búsqueda activa",
       role: "Desarrollador full-stack · Diseño UX/UI · Balaguer (Lleida)",
       tagline:
         "25 años construyendo ==producto digital de principio a fin==: del briefing y el diseño al código, la infraestructura y el SEO. Autodidacta y polivalente. Ahora busco incorporarme a un equipo: presencial en Lleida, híbrido en Barcelona o en remoto.",
@@ -412,7 +409,6 @@ export const content: Record<Lang, Dict> = {
       contacte: "Contact",
     },
     hero: {
-      disponible: "Available · actively looking",
       role: "Full-stack developer · UX/UI design · Balaguer (Lleida), Spain",
       tagline:
         "25 years building ==digital product end to end==: from briefing and design to code, infrastructure and SEO. Self-taught and versatile. I am now looking to join a team: on-site in Lleida, hybrid in Barcelona or fully remote.",

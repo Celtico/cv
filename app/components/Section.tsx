@@ -57,13 +57,15 @@ export function Section({
       py={{ base: 20, md: 32, lg: 40 }}
       bg={inverted ? "bg.inverted" : bg}
       color={inverted ? "fg.inverted" : "fg"}
-      // La banda de degradat recorre tota l'alçada de la secció, del fons net
-      // a dalt al to ple a baix. Els dos extrems són superfícies ja verificades
-      // a 4,5:1 contra el text neutre, així que el text hi és llegible a
-      // qualsevol altura. S'atura a `accent.panel` i no arriba a
-      // `accent.surface` perquè les targetes, que hi van a sobre, es puguin
-      // continuar distingint del fons al capdavall de la banda.
-      bgGradient={tone === "wash" ? "linear(to-b, bg, accent.panel)" : undefined}
+      // La banda de degradat recorre tota l'alçada de la secció: net a dalt,
+      // el to ple al mig, net a baix. Simètrica a posta —el color és el cos de
+      // la banda i no una vora—, de manera que la secció s'obre i es tanca amb
+      // el fons del mode i les veïnes hi entronquen sense costura. Els dos
+      // extrems i el mig són superfícies ja verificades a 4,5:1 contra el text
+      // neutre, així que el text hi és llegible a qualsevol altura. El to ple
+      // és `accent.panel` i no `accent.surface` perquè les targetes que hi van
+      // a sobre se'n puguin continuar distingint.
+      bgGradient={tone === "wash" ? "linear(to-b, bg, accent.panel, bg)" : undefined}
       position="relative"
       // el bafarot vessa fora de la caixa: sense això apareix scroll horitzontal
       overflow="hidden"
