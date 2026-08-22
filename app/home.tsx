@@ -66,7 +66,7 @@ export function HomeShell({ lang }: { lang: Lang }) {
           <Reveal>
             <Projects svgs={svgs} accent={to(7)} />
           </Reveal>
-          <Contact />
+          <Contact accent={to(8)} />
         </Box>
         <SiteFooter />
       </Box>

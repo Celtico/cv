@@ -6,15 +6,26 @@ import { profile } from "../data";
 import { useT } from "../i18n";
 import { RichText } from "./RichText";
 import { Kicker } from "./Kicker";
+import type { AccentName } from "../color";
 
-export function Contact() {
+// El blau per defecte és per al blog, que reutilitza aquesta secció fora de la
+// sèrie de la portada.
+export function Contact({ accent = "blau" }: { accent?: AccentName }) {
   const t = useT();
   return (
     <Box
       as="section"
       id="contacto"
-      // La pàgina obre amb una rentada ambre a l'entradeta i tanca amb la
-      // mateixa: els dos extrems es responen i el recorregut queda tancat.
+      // És la novena secció i la sèrie només en té vuit: aquí és on torna a
+      // començar i li toca el blau, el mateix de l'entradeta. Els dos extrems
+      // de la pàgina es responen i el recorregut queda tancat.
+      //
+      // El `data-accent` no és decoració: la barra hi llegeix el to per pintar
+      // l'enllaç actiu, i sense ell «Contacte» seria l'únic que no s'encendria.
+      data-accent={accent}
+      // Aquí la bombolla no hi va: la secció tanca la pàgina i el degradat
+      // vertical fins a `accent.panel` deixa el peu assentat en comptes de fer
+      // un altre cantó de color.
       bgGradient="linear(to-b, bg, accent.panel)"
       color="fg"
       scrollMarginTop="80px"

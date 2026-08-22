@@ -90,32 +90,50 @@ export function Nav() {
   const t = useT();
   const { lang } = useLang();
 
-  // La barra s'amaga en baixar i torna a sortir en pujar.
-  const [hidden, setHidden] = useState(false);
+  // La barra no s'amaga mai. Fins al 2026-08-22 es retirava en baixar i tornava
+  // en pujar; amb cada banda duent el seu color, la barra hi ha de ser sempre
+  // perquè és qui diu on ets.
+
+  // Quina secció s'està mirant, i amb quin to. L'accent NO es dedueix aquí: es
+  // llegeix del `data-accent` que ja escriu `Section`, de manera que qui
+  // reparteix la sèrie segueix sent `home.tsx` i això no se n'ha d'assabentar.
+  const [actiu, setActiu] = useState<{ id: string; accent: string } | null>(null);
   useEffect(() => {
-    let lastY = window.scrollY;
-    const onScroll = () => {
-      const y = window.scrollY;
-      if (Math.abs(y - lastY) > 4) {
-        setHidden(y > lastY && y > 120);
-        lastY = y;
-      }
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    const seccions = Array.from(document.querySelectorAll<HTMLElement>("section[data-accent]"));
+    if (!seccions.length) return;
+
+    // La franja de decisió és la meitat de dalt de la finestra, just sota la
+    // barra: activa la secció quan el seu titular hi arriba, no quan la secció
+    // sencera hi cap —que amb bandes d'una pantalla no passaria mai—.
+    const observer = new IntersectionObserver(
+      () => {
+        const dalt = 64;
+        // La que creua la franja i queda més amunt guanya: en baixar, la nova
+        // secció mana des que hi entra.
+        let millor: HTMLElement | null = null;
+        for (const s of seccions) {
+          const r = s.getBoundingClientRect();
+          if (r.top <= dalt + window.innerHeight * 0.4 && r.bottom > dalt) millor = s;
+        }
+        setActiu(millor ? { id: millor.id, accent: millor.dataset.accent ?? "blau" } : null);
+      },
+      { rootMargin: "-64px 0px -60% 0px", threshold: [0, 0.01, 0.5, 1] },
+    );
+    for (const s of seccions) observer.observe(s);
+    return () => observer.disconnect();
   }, []);
 
   // Les àncores porten prefix perquè també han de funcionar des de /blog, i
   // porten l'idioma perquè si no et treuen de /es o /en i et tornen al català.
   const links = [
-    { href: anchorHref(lang, "destacados"), label: t.nav.destacats },
-    { href: anchorHref(lang, "sobre-mi"), label: t.nav.perfil },
-    { href: anchorHref(lang, "skills"), label: t.nav.eines },
-    { href: anchorHref(lang, "proyectos"), label: t.nav.projectes },
-    { href: anchorHref(lang, "experiencia"), label: t.nav.trajectoria },
-    { href: anchorHref(lang, "trayectoria"), label: t.nav.registre },
-    { href: langHref(lang, "/blog"), label: t.nav.blog },
-    { href: anchorHref(lang, "contacto"), label: t.nav.contacte },
+    { id: "destacados", href: anchorHref(lang, "destacados"), label: t.nav.destacats },
+    { id: "sobre-mi", href: anchorHref(lang, "sobre-mi"), label: t.nav.perfil },
+    { id: "skills", href: anchorHref(lang, "skills"), label: t.nav.eines },
+    { id: "proyectos", href: anchorHref(lang, "proyectos"), label: t.nav.projectes },
+    { id: "experiencia", href: anchorHref(lang, "experiencia"), label: t.nav.trajectoria },
+    { id: "trayectoria", href: anchorHref(lang, "trayectoria"), label: t.nav.registre },
+    { id: null, href: langHref(lang, "/blog"), label: t.nav.blog },
+    { id: "contacto", href: anchorHref(lang, "contacto"), label: t.nav.contacte },
   ];
 
   return (
@@ -128,8 +146,6 @@ export function Nav() {
       backdropFilter="blur(12px)"
       borderBottom="1px solid"
       borderColor="border"
-      transform={hidden && !isOpen ? "translateY(-100%)" : "translateY(0)"}
-      transition="transform .3s ease"
     >
       <Container maxW="72rem">
         <Flex as="nav" h="64px" align="center" justify="space-between">
@@ -150,22 +166,32 @@ export function Nav() {
           </Link>
 
           <HStack spacing={6} display={{ base: "none", xl: "flex" }}>
-            {links.map((l) => (
-              <Link
-                key={l.href}
-                href={l.href}
-                className="tnum"
-                // Mida de l'escala, no escrita a mà: la resta de la pàgina va
-                // créixer i la barra s'hi va quedar a 11,5 px.
-                fontSize="xs"
-                letterSpacing="0.12em"
-                textTransform="uppercase"
-                color="fg.muted"
-                _hover={{ color: "accent.fg", textDecoration: "none" }}
-              >
-                {l.label}
-              </Link>
-            ))}
+            {links.map((l) => {
+              const esActiu = !!l.id && l.id === actiu?.id;
+              return (
+                <Link
+                  key={l.href}
+                  href={l.href}
+                  className="tnum"
+                  // El `data-accent` va a l'ENLLAÇ, no a la barra: és el que fa
+                  // que la regla `[data-accent="…"]` hi resolgui `accent.fg` i
+                  // que, per tant, l'enllaç actiu es pinti amb el to de la
+                  // secció on ets, sense que la barra hagi de saber cap hex.
+                  data-accent={esActiu ? actiu.accent : undefined}
+                  aria-current={esActiu ? "true" : undefined}
+                  // Mida de l'escala, no escrita a mà: la resta de la pàgina va
+                  // créixer i la barra s'hi va quedar a 11,5 px.
+                  fontSize="xs"
+                  letterSpacing="0.12em"
+                  textTransform="uppercase"
+                  color={esActiu ? "accent.fg" : "fg.muted"}
+                  transition="color .25s ease"
+                  _hover={{ color: "accent.fg", textDecoration: "none" }}
+                >
+                  {l.label}
+                </Link>
+              );
+            })}
           </HStack>
 
           <HStack spacing={2}>
