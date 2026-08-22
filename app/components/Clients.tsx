@@ -8,7 +8,7 @@ import { useT } from "../i18n";
 export function Clients() {
   const t = useT();
   return (
-    <Section id="clientes" accent="clients" kickerTone="neutral" kicker={t.clients.kicker} title={t.clients.title} subtitle={t.clients.subtitle}>
+    <Section id="clientes" accent="clients" kicker={t.clients.kicker} title={t.clients.title} subtitle={t.clients.subtitle}>
       <Grid templateColumns={{ base: "1fr", md: "repeat(3, 1fr)" }} gap={{ base: 10, md: 12 }}>
         {Object.values(clients).map((list, gi) => (
           <Box key={gi}>
