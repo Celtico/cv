@@ -169,19 +169,24 @@ export const experience = [
 // Cap peu genèric: les quatre que deien «Proyecto web» tenien nom i ningú
 // l'havia posat. Si n'hi afegeixes una, posa-li el seu —`t.gallery.web`
 // segueix al diccionari com a reserva, però ja no el fa servir ningú.
+//
+// `url` només el duen les que ENCARA SÓN VIVES. Sense URL, la captura és una
+// captura i prou; amb URL, la rajola es pot clicar i s'obre en una pestanya
+// nova. No se n'inventa cap: una feina de fa quinze anys que ja no és a
+// Internet no ha de dur cap enllaç trencat.
 export const gallery = [
   { img: "/img/23-rodibook.png.webp", label: "RodiBook" },
   { img: "/img/17-pamies.png.webp", label: "Pàmies Hortícoles" },
-  { img: "/img/20-mecamaq.png.webp", label: "Mecamaq" },
-  { img: "/img/21-gls.png.webp", label: "GLS Prefabricados" },
-  { img: "/img/24-inglet.png.webp", label: "Inglet" },
-  { img: "/img/25-nuseu.png.webp", label: "Nuseu" },
-  { img: "/img/12-brightexportimport.png.webp", label: "Bright Export" },
-  { img: "/img/22-lluc.png.webp", label: "Lluc Queralt" },
+  { img: "/img/20-mecamaq.png.webp", label: "Mecamaq", url: "https://www.mecamaq.com/" },
+  { img: "/img/21-gls.png.webp", label: "GLS Prefabricados", url: "https://www.glsprefabricados.com/" },
+  { img: "/img/24-inglet.png.webp", label: "Inglet", url: "https://www.ingletmachinery.com/" },
+  { img: "/img/25-nuseu.png.webp", label: "Nuseu", url: "https://museucn.com/" },
+  { img: "/img/12-brightexportimport.png.webp", label: "Bright Export", url: "https://www.brightexportimport.com/" },
+  { img: "/img/22-lluc.png.webp", label: "Lluc Queralt", url: "https://www.llucqueralt.com/" },
   { img: "/img/13-index.png.webp", label: "Rodi" },
   { img: "/img/10-index.png.webp", label: "Web Builder" },
-  { img: "/img/11-index.png.webp", label: "Digitplan" },
-  { img: "/img/14-index.png.webp", label: "Gespasa" },
+  { img: "/img/11-index.png.webp", label: "Digitplan", url: "https://www.digitplan.com/" },
+  { img: "/img/14-index.png.webp", label: "Gespasa", url: "https://www.gespasa.es/" },
 ];
 
 export type ClientHours = {

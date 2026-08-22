@@ -1,6 +1,7 @@
 "use client";
 
-import { AspectRatio, Box, Image, SimpleGrid, Text } from "@chakra-ui/react";
+import { AspectRatio, Box, Icon, Image, Link, SimpleGrid, Text } from "@chakra-ui/react";
+import { FiArrowUpRight } from "react-icons/fi";
 import { Section } from "./Section";
 import type { AccentName } from "../color";
 import { gallery } from "../data";
@@ -21,13 +22,26 @@ export function Gallery({ accent }: { accent: AccentName }) {
           <Box
             key={i}
             role="group"
+            // Les que encara són vives es poden clicar; les altres es queden
+            // com a captura. `isExternal` hi posa el `rel` que toca, i el
+            // `display="block"` és perquè el Link de Chakra és en línia i,
+            // sense, la rajola perdia l'alçada.
+            {...(g.url ? { as: Link, href: g.url, isExternal: true, display: "block" } : {})}
             border="1px solid"
-            borderColor="accent.muted"
+            // El filet és el que diu si la captura es pot clicar: encès
+            // (`accent.dot`, el to decoratiu ja contrastat a 3:1) per a les
+            // webs que encara són vives, apagat per a les que ja no hi són. La
+            // fletxa del peu sola no es veia de lluny.
+            borderColor={g.url ? "accent.dot" : "accent.muted"}
             borderRadius="plate"
             overflow="hidden"
             bg="bg.panel"
             transition="border-color .25s ease"
-            _groupHover={{ borderColor: "accent.solid" }}
+            // `_hover` i no `_groupHover`: el `role="group"` és d'aquest mateix
+            // element, i `_groupHover` es resol com «un avantpassat amb
+            // role=group està en hover», de manera que aquí no s'activava mai i
+            // el filet no s'encenia.
+            _hover={{ borderColor: "accent.solid", textDecoration: "none" }}
           >
             <AspectRatio ratio={4 / 3}>
               <Box position="relative" overflow="hidden">
@@ -66,6 +80,9 @@ export function Gallery({ accent }: { accent: AccentName }) {
               noOfLines={3}
             >
               {String(i + 1).padStart(2, "0")} · {g.label === "Proyecto web" ? t.gallery.web : g.label}
+              {g.url && (
+                <Icon as={FiArrowUpRight} aria-hidden boxSize="0.9em" ml={1.5} verticalAlign="-0.1em" />
+              )}
             </Text>
           </Box>
         ))}
