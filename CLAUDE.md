@@ -236,11 +236,16 @@ incomplissin AA al botó principal.
   aquesta parada, el vermell i el fúcsia es quedaven a 4,42 i el blau, en fosc, a 4,43.
 - **A la galeria el color va al filet, no per damunt de la captura.** El vel d'`accent.solid`
   al 45% tenyia les dotze imatges i la graella es llegia com dotze rectangles del mateix to.
-- **L'etiqueta de secció** (la pastilla del kicker) va sempre amb `accent.deep` i text blanc.
-  `accent.deep` és el color de la secció enfosquit just el que cal perquè el blanc hi arribi a
-  4,5:1: sense ell, quatre dels vuit accents (verd, cian, taronja, ambre) demanaven text fosc i
-  desentonaven. Té un límit per l'altra banda —si s'enfosquís més, la pastilla es fondria amb
-  el negre—, i el test comprova les dues condicions alhora.
+- **L'etiqueta de secció** (la pastilla del kicker) és **filetjada, no massissa**: fons
+  transparent, i el filet i el text amb `accent.fg`. Plena d'`accent.deep` amb text blanc era
+  el segon bloc massís de la banda, just sota la barra, i pesava més que el titular que
+  anuncia. `accent.fg` és l'únic to d'accent verificat contra el fons de la banda —hi entra
+  `accent.panel`—, i per això el duen tots dos. `accent.deep` (el color de la secció enfosquit
+  just el que cal perquè el blanc hi arribi a 4,5:1) segueix definit i verificat, però ja no
+  el pinta ningú.
+- **Cap secció fa servir el kicker neutre** des del 2026-08-22: la pastilla és el primer que es
+  llegeix de la banda i és on el color de la secció s'anuncia. Repartir-les deixava quatre
+  seccions de vuit sense color a l'entrada.
 - **Dos estils de targeta, i no són intercanviables**: `plateTinted` (degradat en diagonal del
   fons net al color) va damunt d'una banda `wash`; `plate` (fons igual que la secció i filet
   prim) va damunt d'una banda `flat`. Els extrems dels dos degradats són superfícies ja
