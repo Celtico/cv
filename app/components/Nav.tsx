@@ -155,13 +155,15 @@ export function Nav() {
   // En l'ORDRE EN QUÈ APAREIXEN A LA PÀGINA. Anar a la barra i haver d'endevinar
   // on cau cada cosa és el que passava mentre «Projectes» sortia abans que
   // «Trajectòria» i el blog quedava enmig de les àncores. Galeria i Clients no
-  // hi són: no tenen entrada al diccionari i afegir-los-hi vol dir tocar les
-  // tres llengües.
+  // Hi són totes nou, Galeria i Clients incloses: no tenien entrada i eren
+  // justament les dues seccions que no s'encenien mai a la barra.
   const links = [
     { id: "destacados", href: anchorHref(lang, "destacados"), label: t.nav.destacats },
     { id: "sobre-mi", href: anchorHref(lang, "sobre-mi"), label: t.nav.perfil },
     { id: "skills", href: anchorHref(lang, "skills"), label: t.nav.eines },
     { id: "experiencia", href: anchorHref(lang, "experiencia"), label: t.nav.trajectoria },
+    { id: "galeria", href: anchorHref(lang, "galeria"), label: t.nav.galeria },
+    { id: "clientes", href: anchorHref(lang, "clientes"), label: t.nav.clients },
     { id: "trayectoria", href: anchorHref(lang, "trayectoria"), label: t.nav.registre },
     { id: "proyectos", href: anchorHref(lang, "proyectos"), label: t.nav.projectes },
     { id: "contacto", href: anchorHref(lang, "contacto"), label: t.nav.contacte },
@@ -206,7 +208,13 @@ export function Nav() {
             </Text>
           </Link>
 
-          <HStack spacing={6} display={{ base: "none", xl: "flex" }}>
+          {/* Espaiat estret i FIX. Amb nou apartats i 1,5 rem entre tots, la
+              fila demanava 1223 px i el commutador de tema quedava tallat.
+              L'amplada de finestra no hi ajuda —el contenidor és de 72 rem, o
+              sigui 1120 útils—, així que l'aire de pantalla ampla tampoc: si
+              n'hi afegeixes un altre, el que toca és treure'n de la barra i
+              deixar-los al calaix, no eixamplar el contenidor. */}
+          <HStack spacing={3} display={{ base: "none", xl: "flex" }}>
             {links.map((l) => {
               const esActiu = !!l.id && l.id === actiu?.id;
               return (
