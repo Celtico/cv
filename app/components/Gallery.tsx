@@ -20,7 +20,17 @@ export function Gallery({ accent }: { accent: AccentName }) {
           // captura es veu tal com és.
           <Box
             key={i}
-            role="group"
+            // Res de `role="group"`. Hi era per al `_groupHover` de la captura,
+            // i quan la rajola va passar a ser enllaç el `role` va anul·lar el
+            // paper d'`<a>`: per a un lector de pantalla deixaven de ser
+            // enllaços i es quedaven sense nom, que és el que va sortir a
+            // l'auditoria d'accessibilitat. L'efecte de la captura el fa ara
+            // l'`sx` de sota, que no depèn de cap `role`.
+            sx={{
+              "&:hover img": { transform: "scale(1.05)", filter: "none" },
+              // Sense ratolí no hi ha hover: la captura s'ha de veure tal com és.
+              "@media (hover: none) img": { filter: "none" },
+            }}
             // Les que encara són vives es poden clicar; les altres es queden
             // com a captura. `isExternal` hi posa el `rel` que toca, i el
             // `display="block"` és perquè el Link de Chakra és en línia i,
@@ -39,10 +49,6 @@ export function Gallery({ accent }: { accent: AccentName }) {
             borderRadius="plate"
             overflow="hidden"
             bg="bg.panel"
-            // `_hover` i no `_groupHover`: el `role="group"` és d'aquest mateix
-            // element, i `_groupHover` es resol com «un avantpassat amb
-            // role=group està en hover», de manera que aquí no s'activava mai i
-            // el filet no s'encenia.
             transition="border-color .25s ease"
           >
             <AspectRatio ratio={4 / 3}>
@@ -58,10 +64,10 @@ export function Gallery({ accent }: { accent: AccentName }) {
                   objectPosition="top"
                   loading="lazy"
                   filter="grayscale(1)"
+                  // L'estat de passada el mana la rajola des de l'`sx` de dalt:
+                  // aquí només queda la transició. Amb `_groupHover` calia un
+                  // `role="group"` a l'enllaç, i això li prenia el paper d'`<a>`.
                   transition="transform .4s, filter .35s ease"
-                  _groupHover={{ transform: "scale(1.05)", filter: "none" }}
-                  // Sense ratolí no hi ha hover: la captura s'ha de veure tal com és.
-                  sx={{ "@media (hover: none)": { filter: "none" } }}
                 />
               </Box>
             </AspectRatio>

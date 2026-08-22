@@ -37,6 +37,26 @@ test.describe("contingut del perfil", () => {
   });
 });
 
+test.describe("galeria", () => {
+  // Les rajoles amb web viva són enllaços, i han de SER-HO per a qui fa servir
+  // un lector de pantalla. Quan la rajola va passar a enllaç es va quedar amb
+  // el `role="group"` que hi havia per a l'efecte de passada, i el `role`
+  // anul·la el paper d'`<a>`: l'auditoria els llistava com a enllaços sense
+  // nom. L'efecte ja no depèn de cap `role`, i això ho vigila.
+  test("les captures amb web viva són enllaços de debò i tenen nom", async ({ page }) => {
+    await page.goto("/");
+    const enllacos = page.locator("#galeria a[href^='http']");
+    const quants = await enllacos.count();
+    expect(quants).toBeGreaterThan(0);
+
+    for (let i = 0; i < quants; i++) {
+      const a = enllacos.nth(i);
+      expect(await a.getAttribute("role"), "cap role que li prengui el paper d'enllaç").toBeNull();
+      expect((await a.innerText()).trim().length, "l'enllaç ha de tenir nom accessible").toBeGreaterThan(2);
+    }
+  });
+});
+
 test.describe("idioma i tema", () => {
   test("canviar d'idioma porta a la seva URL i hi sobreviu la recàrrega", async ({ page }) => {
     await page.goto("/");
