@@ -229,6 +229,13 @@ incomplissin AA al botó principal.
   accents del text. Si afegeixes una secció, mira quina la precedeix i alterna. El to ple és
   `accent.panel` a posta: si fos `accent.surface`, les targetes es fondrien amb el fons a
   l'altura on la banda és més tenyida.
+- **Les microetiquetes duen el color de la secció**, no gris: les capçaleres de la taula
+  d'hores, els números de fila, els peus de la galeria, l'etiqueta d'idiomes i les de les
+  xifres. Van amb `accent.fg`, que per això es contrasta també contra `accent.panel` —en una
+  banda `wash` el degradat hi arriba i el text hi pot caure a sobre a qualsevol altura—. Sense
+  aquesta parada, el vermell i el fúcsia es quedaven a 4,42 i el blau, en fosc, a 4,43.
+- **A la galeria el color va al filet, no per damunt de la captura.** El vel d'`accent.solid`
+  al 45% tenyia les dotze imatges i la graella es llegia com dotze rectangles del mateix to.
 - **L'etiqueta de secció** (la pastilla del kicker) va sempre amb `accent.deep` i text blanc.
   `accent.deep` és el color de la secció enfosquit just el que cal perquè el blanc hi arribi a
   4,5:1: sense ell, quatre dels vuit accents (verd, cian, taronja, ambre) demanaven text fosc i
