@@ -1,7 +1,7 @@
 "use client";
 
 import { Box, Container, Flex, Heading, Text } from "@chakra-ui/react";
-import type { AccentName } from "../color";
+import { SECTION_ACCENTS, type AccentName } from "../color";
 import { Kicker } from "./Kicker";
 import { RichText } from "./RichText";
 
@@ -14,7 +14,6 @@ export function Section({
   bg = "bg",
   inverted = false,
   accent = "base",
-  tone = "flat",
   kickerTone = "accent",
 }: {
   id: string;
@@ -27,19 +26,17 @@ export function Section({
   /** Color de la secció. Els tokens accent.* els publica `accentStylesheet()`. */
   accent?: AccentName;
   /**
-   * Com hi arriba el color. `wash` és la banda de degradat vertical sencera,
-   * de fons net a dalt fins al to ple a baix; `flat` és negre (o blanc) del
-   * tot, i el color només hi entra per l'etiqueta i els accents del text. Van
-   * saltejades: banda de color, banda neta, banda de color.
-   */
-  tone?: "flat" | "wash";
-  /**
    * Color de la pastilla de l'etiqueta. `accent` la pinta amb `accent.deep`,
    * el color de la secció enfosquit; `neutral` la pinta de gris. Van
    * repartides perquè no hi hagi vuit pastilles de color seguides.
    */
   kickerTone?: "accent" | "neutral";
 }) {
+  // De quin costat surt la bombolla de dalt. Va per la posició de l'accent a
+  // `SECTION_ACCENTS`, que és fixa: el resultat és estable entre càrregues i
+  // dues bandes seguides no queden mai enquadrades igual.
+  const esquerra = Object.keys(SECTION_ACCENTS).indexOf(accent) % 2 === 0;
+
   const titleColor = inverted ? "fg.inverted" : "fg";
   const subColor = inverted ? "fg.inverted.muted" : "fg.muted";
   const rule = inverted ? "whiteAlpha.300" : "border.emphasized";
@@ -57,15 +54,27 @@ export function Section({
       py={{ base: 20, md: 32, lg: 40 }}
       bg={inverted ? "bg.inverted" : bg}
       color={inverted ? "fg.inverted" : "fg"}
-      // La banda de degradat recorre tota l'alçada de la secció: net a dalt,
-      // el to ple al mig, net a baix. Simètrica a posta —el color és el cos de
-      // la banda i no una vora—, de manera que la secció s'obre i es tanca amb
-      // el fons del mode i les veïnes hi entronquen sense costura. Els dos
-      // extrems i el mig són superfícies ja verificades a 4,5:1 contra el text
-      // neutre, així que el text hi és llegible a qualsevol altura. El to ple
-      // és `accent.panel` i no `accent.surface` perquè les targetes que hi van
-      // a sobre se'n puguin continuar distingint.
-      bgGradient={tone === "wash" ? "linear(to-b, bg, accent.panel, bg)" : undefined}
+      // El color de la banda arriba en BOMBOLLES, com a l'entradeta: dos
+      // degradats radials que es fonen a transparent, no una franja vertical.
+      // La franja marcava dues costures horitzontals amb les bandes veïnes; la
+      // bombolla no té vores i el color sembla que surti de sota de la pàgina.
+      //
+      // La duen TOTES les seccions. Mentre la banda era una franja sencera, les
+      // vuit seguides haurien estat un mur de color i per això anaven
+      // saltejades (`tone`, retirat el 2026-08-22); una bombolla és prou tènue
+      // perquè cadascuna pugui dur la seva sense que se'n facin la competència.
+      //
+      // La doble parada és el que la fa: color ple fins al 14% i només després
+      // el caient. Amb una sola parada només se'n veu la cua.
+      //
+      // El color és `accent.panel` i no res més saturat perquè així qualsevol
+      // punt de la banda queda entre `bg` i `accent.panel`, que són superfícies
+      // ja verificades a 4,5:1 contra el text neutre. Amb `accent.surface` les
+      // targetes que hi van a sobre s'hi fondrien.
+      backgroundImage={[
+        `radial-gradient(105% 88% at ${esquerra ? "10%" : "90%"} 0%, var(--chakra-colors-accent-panel) 0, var(--chakra-colors-accent-panel) 22%, transparent 76%)`,
+        `radial-gradient(95% 80% at ${esquerra ? "92%" : "8%"} 100%, var(--chakra-colors-accent-panel) 0, var(--chakra-colors-accent-panel) 18%, transparent 70%)`,
+      ].join(",")}
       position="relative"
       // el bafarot vessa fora de la caixa: sense això apareix scroll horitzontal
       overflow="hidden"

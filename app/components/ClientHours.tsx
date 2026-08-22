@@ -34,7 +34,7 @@ export function ClientHours() {
   const max = Math.max(...clientHours.map((c) => c.hours));
 
   return (
-    <Section id="trayectoria" accent="clients" tone="wash" kicker={l.kicker} title={l.title} subtitle={l.subtitle}>
+    <Section id="trayectoria" accent="clients" kicker={l.kicker} title={l.title} subtitle={l.subtitle}>
       <Box as="table" w="full" sx={{ display: "block", borderCollapse: "collapse" }}>
         {/* La llegenda de la taula la senten els lectors de pantalla: text pla,
             sense marcadors. */}

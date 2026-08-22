@@ -8,7 +8,7 @@ import { useT } from "../i18n";
 export function Gallery() {
   const t = useT();
   return (
-    <Section id="galeria" accent="gallery" tone="wash" kicker={t.gallery.kicker} title={t.gallery.title} subtitle={t.gallery.subtitle}>
+    <Section id="galeria" accent="gallery" kicker={t.gallery.kicker} title={t.gallery.title} subtitle={t.gallery.subtitle}>
       <SimpleGrid columns={{ base: 2, md: 3, lg: 4 }} spacing={{ base: 3, md: 4 }}>
         {gallery.map((g, i) => (
           // El color de la secció el duu el FILET, no un vel massís per damunt

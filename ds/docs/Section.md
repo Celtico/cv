@@ -19,18 +19,18 @@ Els vuit accents: `base` (blau, el per defecte fora de secció), `featured` (vio
 `about` (verd), `clients` (verd blau), `skills` (cian), `experience` (vermell),
 `gallery` (rosa), `projects` (fúcsia).
 
-## `tone`: la banda, no el filet
+## El color arriba en bombolles
 
-La separació entre seccions la fa el farciment, no una línia.
+Cada secció duu dos degradats radials d'`accent.panel` que es fonen a transparent: un al
+cantó de dalt i un altre al de baix, al costat contrari. No hi ha cap franja ni cap filet
+entre bandes — la separació la fa el farciment.
 
-- `tone="wash"` — degradat vertical simètric: fons net a dalt, `accent.panel` al mig i fons
-  net a baix. El color és el cos de la banda, no una vora. La secció sencera es llegeix com
-  una parada.
-- `tone="flat"` — negra (o blanca) del tot; el color hi entra només per l'etiqueta i pels
-  accents del text.
+El costat de la bombolla l'escull sola, per la posició de l'accent a `SECTION_ACCENTS`, de
+manera que dues bandes seguides no queden enquadrades igual. No cal fer-hi res.
 
-**Van saltejades**: banda de color, banda neta, banda de color. Si n'hi afegeixes una, mira
-quina la precedeix i alterna.
+La bombolla és `accent.panel` i no res més saturat: així qualsevol punt de la banda queda
+entre `bg` i `accent.panel`, que són superfícies verificades a 4,5:1 contra el text neutre.
+El text hi és llegible per damunt de la bombolla i fora.
 
 ## Superfícies disponibles a dins
 
@@ -38,9 +38,10 @@ Tres capes, totes verificades a 4,5:1 contra el text neutre:
 `accent.panel` (fons de secció) → `accent.surface` (targetes) → `accent.chip` (pastilles).
 `panel` i `surface` aguanten `fg.muted`; la `chip` només `fg`.
 
-Dos estils de targeta, i **no són intercanviables**: `layerStyle="plate"` (fons massís i
-filet prim) damunt d'una banda `flat`; degradat en diagonal del fons net al color damunt
-d'una banda `wash`.
+Dos estils de targeta: `layerStyle="plate"` (fons igual que la secció i filet prim) i
+`layerStyle="plateTinted"` (degradat en diagonal del fons net a `accent.surface`). Els dos
+extrems del degradat són superfícies verificades, i per això s'hi pot posar text a sobre
+sense recalcular res.
 
 ## Exemple
 
@@ -51,7 +52,6 @@ d'una banda `wash`.
   title="Infraestructura que no cau"
   subtitle="Vint-i-cinc anys posant **servidors** en producció."
   accent="skills"
-  tone="wash"
 >
   <SimpleGrid columns={{ base: 1, md: 3 }} gap={6}>
     <Box bg="accent.surface" borderRadius="plate" p={6}>

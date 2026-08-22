@@ -47,24 +47,22 @@ const pastilla: CSSProperties = {
 };
 
 /**
- * Banda de color: `tone="wash"` pinta la secció sencera amb un degradat
- * vertical simètric —net, `accent.panel`, net— i les rajoles hi van amb el
- * degradat en diagonal.
+ * Una banda amb les seves rajoles. El color del fons hi arriba en bombolles, i
+ * el costat del qual surten l'escull la secció sola, per l'accent que duu.
  */
 export function BandaDeColor() {
   return (
     <Section
-      id="seccio-wash"
+      id="seccio-primera"
       kicker="Etiqueta de secció"
       title="Un titular de banda"
       subtitle="L'entradeta de la secció, amb una **paraula en negreta** per veure com hi entra el marcatge."
       accent="skills"
-      tone="wash"
     >
       <div style={graella}>
         <div style={rajolaTintada}>
           <h3 style={titolTargeta}>Primera rajola</h3>
-          <p style={cosTargeta}>Damunt d'una banda de color, la targeta va amb el degradat en diagonal i sense filet.</p>
+          <p style={cosTargeta}>La rajola tintada va amb el degradat en diagonal i sense filet.</p>
         </div>
         <div style={rajolaTintada}>
           <h3 style={titolTargeta}>Segona rajola</h3>
@@ -80,30 +78,29 @@ export function BandaDeColor() {
 }
 
 /**
- * Banda neta: `tone="flat"` deixa el fons del mode sense tocar i el color hi
- * entra només per l'etiqueta i pels accents. Les rajoles hi van amb filet prim.
+ * La banda següent, amb un altre accent: la bombolla surt de l'altre costat.
+ * Aquí les rajoles van amb filet prim en comptes de tintades.
  */
 export function BandaNeta() {
   return (
     <Section
-      id="seccio-flat"
+      id="seccio-segona"
       kicker="Etiqueta neutra"
-      title="La banda següent, sense color"
-      subtitle="Van saltejades: banda de color, banda neta, banda de color."
+      title="La banda següent, amb un altre accent"
+      subtitle="El costat de la bombolla l'escull la secció sola, per l'accent que duu."
       accent="experience"
-      tone="flat"
       kickerTone="neutral"
     >
       <div style={graella}>
         <div style={rajolaNeta}>
           <span style={pastilla}>Pastilla</span>
-          <h3 style={{ ...titolTargeta, marginTop: 16 }}>Rajola de banda neta</h3>
-          <p style={cosTargeta}>Fons igual que la secció i un filet prim: aquí el que la defineix és la vora.</p>
+          <h3 style={{ ...titolTargeta, marginTop: 16 }}>Rajola de filet prim</h3>
+          <p style={cosTargeta}>Els dos extrems del degradat són superfícies verificades.</p>
         </div>
         <div style={rajolaNeta}>
           <span style={pastilla}>Una altra</span>
           <h3 style={{ ...titolTargeta, marginTop: 16 }}>I no són intercanviables</h3>
-          <p style={cosTargeta}>La rajola tintada damunt d'una banda neta perd el sentit, i a l'inrevés es fon amb el fons.</p>
+          <p style={cosTargeta}>Fons igual que la secció i vora fina: aquí el que la defineix és el filet.</p>
         </div>
       </div>
     </Section>
@@ -126,7 +123,6 @@ export function Invertida() {
       title="El fons gira, el color també"
       subtitle="Sobre el bloc invertit, l'accent que val és **accent.inverted**."
       accent="gallery"
-      tone="flat"
       inverted
     >
       <p style={{ color: "var(--chakra-colors-accent-inverted)", fontSize: "1.25rem", margin: 0 }}>
