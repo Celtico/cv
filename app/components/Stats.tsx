@@ -11,9 +11,12 @@ export function Stats() {
     // no una secció a part. El gris que hi havia era l'única superfície del lloc
     // que no era ni banda de color ni negre.
     <Box>
-            {/* Sense aire per sota: la separació amb el que ve després ja la posa la
-          secció següent, i sumar-hi el d'aquí deixava un buit del doble. */}
-      <Container maxW="72rem" pt={{ base: 4, md: 6 }} pb={0}>
+      {/* Aire per sota. Mentre l'entradeta acabava on acabava el text, la
+          separació la posava sencera la secció següent i sumar-hi la d'aquí
+          deixava un buit del doble. Ara l'entradeta ocupa una pantalla justa i
+          la barra de xifres és el que la tanca: sense marge, les xifres queden
+          enganxades al tall i a la banda que ve. */}
+      <Container maxW="72rem" pt={{ base: 4, md: 6 }} pb={{ base: 10, md: 14 }}>
         <Flex direction={{ base: "column", md: "row" }} gap={{ base: 4, md: 0 }}>
           {stats.map((s, i) => (
             <Flex

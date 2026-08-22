@@ -24,7 +24,7 @@ export function Hero() {
       // un forat a sota. Els 64 px són la barra, que va enganxada al davant.
       // `svh` i no `dvh`: amb `dvh` la mesura canvia quan el mòbil amaga la
       // barra d'adreces i tota l'entradeta fa un salt a mig scroll.
-      minH="calc(100svh - 64px)"
+      minH="calc(100svh - var(--barra))"
       display="flex"
       alignItems="center"
     >

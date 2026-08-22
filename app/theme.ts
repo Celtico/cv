@@ -254,6 +254,13 @@ const theme = extendTheme({
   },
   styles: {
     global: {
+      ":root": {
+        // L'alçada REAL de la barra: 64 px de contingut més el filet d'1 px de
+        // sota. Viu aquí perquè qui hi resta —l'entradeta i el contacte, que
+        // ocupen una pantalla justa— no es quedi a un píxel, que és el que
+        // passava mentre cadascú s'escrivia un 64 a mà.
+        "--barra": "65px",
+      },
       "html, body": {
         bg: "bg",
         color: "fg",

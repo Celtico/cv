@@ -107,7 +107,7 @@ export function Nav() {
     // sencera hi cap —que amb bandes d'una pantalla no passaria mai—.
     const observer = new IntersectionObserver(
       () => {
-        const dalt = 64;
+        const dalt = 65; // l'alçada real de la barra, filet inclòs (`--barra`)
         // La que creua la franja i queda més amunt guanya: en baixar, la nova
         // secció mana des que hi entra.
         let millor: HTMLElement | null = null;
@@ -117,7 +117,7 @@ export function Nav() {
         }
         setActiu(millor ? { id: millor.id, accent: millor.dataset.accent ?? "blau" } : null);
       },
-      { rootMargin: "-64px 0px -60% 0px", threshold: [0, 0.01, 0.5, 1] },
+      { rootMargin: "-65px 0px -60% 0px", threshold: [0, 0.01, 0.5, 1] },
     );
     for (const s of seccions) observer.observe(s);
     return () => observer.disconnect();

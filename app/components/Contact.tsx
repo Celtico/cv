@@ -30,8 +30,8 @@ export function Contact({ accent = "blau" }: { accent?: AccentName }) {
       color="fg"
       scrollMarginTop="80px"
       // Tanca com obre l'entradeta: una pantalla justa amb el text al mig quan
-      // sobra alçada, i els marges cedint quan en falta. Els 64 px són la barra.
-      minH="calc(100svh - 64px)"
+      // sobra alçada, i els marges cedint quan en falta. L'alçada real de la barra és `--barra`.
+      minH="calc(100svh - var(--barra))"
       display="flex"
       alignItems="center"
     >
