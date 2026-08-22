@@ -223,11 +223,12 @@ incomplissin AA al botó principal.
   per als 8 accents × 2 modes. Compte amb el contracte: `panel` i `surface` aguanten
   `fg.muted`, la `chip` només `fg` — el `layerStyle` «chip» hi fixa el color per això.
 - **Les bandes van saltejades i el degradat és el llenguatge** (`tone` a `Section.tsx`):
-  `wash` pinta la secció sencera amb un degradat vertical del fons net fins a `accent.panel`;
+  `wash` pinta la secció sencera amb un degradat vertical simètric —fons net, `accent.panel`
+  al mig, fons net—, de manera que el color és el cos de la banda i no una vora;
   `flat` la deixa negra (o blanca) del tot i el color hi entra només per l'etiqueta i els
-  accents del text. Si afegeixes una secció, mira quina la precedeix i alterna. La banda
-  s'atura a `accent.panel` a posta: si arribés a `accent.surface`, les targetes es fondrien
-  amb el fons al capdavall.
+  accents del text. Si afegeixes una secció, mira quina la precedeix i alterna. El to ple és
+  `accent.panel` a posta: si fos `accent.surface`, les targetes es fondrien amb el fons a
+  l'altura on la banda és més tenyida.
 - **L'etiqueta de secció** (la pastilla del kicker) va sempre amb `accent.deep` i text blanc.
   `accent.deep` és el color de la secció enfosquit just el que cal perquè el blanc hi arribi a
   4,5:1: sense ell, quatre dels vuit accents (verd, cian, taronja, ambre) demanaven text fosc i
