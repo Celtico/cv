@@ -1,7 +1,18 @@
 "use client";
 
 import { Box, Flex, Grid, Heading, Icon, Text, Wrap, WrapItem } from "@chakra-ui/react";
-import { FiCloud, FiCode, FiCpu, FiGitBranch, FiLayout, FiPenTool, FiServer } from "react-icons/fi";
+import type { IconType } from "react-icons";
+import {
+  FiActivity, FiBookOpen, FiCloud, FiCode, FiCpu, FiDatabase, FiEye, FiGitBranch, FiImage,
+  FiHexagon, FiLayers, FiLayout, FiLock, FiMessageSquare, FiPenTool, FiPrinter, FiRadio, FiRefreshCw,
+  FiServer, FiShare2, FiSmartphone, FiBarChart2,
+} from "react-icons/fi";
+import {
+  SiChakraui, SiClaude, SiDocker, SiGit, SiGnubash, SiHtml5, SiJavascript, SiJsonwebtokens,
+  SiLangchain, SiMysql, SiNestjs, SiNextdotjs, SiNginx, SiNodedotjs, SiOdoo, SiPhp, SiPhpstorm,
+  SiRadixui, SiReact, SiSocketdotio, SiSwagger, SiTypeorm, SiTypescript, SiVite, SiWebrtc,
+} from "react-icons/si";
+import { skillIcon, type SkillIconId } from "../skill-icons";
 import { Section } from "./Section";
 import type { AccentName } from "../color";
 import { skills } from "../data";
@@ -9,6 +20,56 @@ import { useT } from "../i18n";
 
 // La clau que ve de `data.ts` es resol aquí: així les dades no han d'importar
 // components i el joc d'icones es pot canviar sense tocar-les.
+// Les de les pastilles. On hi ha logotip de marca s'hi posa; on no —«SQL»,
+// «Responsive», «Servidors» i companyia no són marques— hi va una icona
+// representativa. El mapa de quina li toca a cadascuna viu a `skill-icons.ts`,
+// i un test comprova que no en queda cap sense.
+const ICONES_ETIQUETA: Record<SkillIconId, IconType> = {
+  typescript: SiTypescript,
+  javascript: SiJavascript,
+  php: SiPhp,
+  database: FiDatabase,
+  html: SiHtml5,
+  layers: FiLayers,
+  bash: SiGnubash,
+  react: SiReact,
+  nextjs: SiNextdotjs,
+  chakra: SiChakraui,
+  radix: SiRadixui,
+  vite: SiVite,
+  chart: FiBarChart2,
+  smartphone: FiSmartphone,
+  nestjs: SiNestjs,
+  node: SiNodedotjs,
+  typeorm: SiTypeorm,
+  socketio: SiSocketdotio,
+  swagger: SiSwagger,
+  api: FiShare2,
+  webrtc: SiWebrtc,
+  stream: FiRadio,
+  langchain: SiLangchain,
+  chat: FiMessageSquare,
+  neural: FiActivity,
+  odoo: SiOdoo,
+  docker: SiDocker,
+  nginx: SiNginx,
+  jwt: SiJsonwebtokens,
+  mysql: SiMysql,
+  server: FiServer,
+  lock: FiLock,
+  cicd: FiRefreshCw,
+  layout: FiLayout,
+  identity: FiHexagon, // la ploma ja és l'Illustrator; una marca no és el mateix que dibuixar-la
+  image: FiImage,
+  pen: FiPenTool,
+  book: FiBookOpen,
+  printer: FiPrinter,
+  claude: SiClaude,
+  phpstorm: SiPhpstorm,
+  git: SiGit,
+  review: FiEye,
+};
+
 const ICONES = {
   code: FiCode,
   layout: FiLayout,
@@ -53,16 +114,19 @@ export function Skills({ accent }: { accent: AccentName }) {
             <Wrap spacing={2}>
               {/* Combinació per índex, com la resta del projecte: el diccionari mana
                   i `data.ts` fa de reserva si algun idioma es queda curt. */}
-              {(t.skills.items[i] ?? s.items).map((it) => (
-                <WrapItem key={it}>
-                  <Text
-                    className="tnum"
-                    layerStyle="chip"
-                  >
-                    {it}
-                  </Text>
-                </WrapItem>
-              ))}
+              {(t.skills.items[i] ?? s.items).map((it, j) => {
+                // La icona es busca per la cadena NEUTRA, no per la traduïda:
+                // el text de la pastilla canvia amb l'idioma i la icona no.
+                const id = skillIcon(s.items[j] ?? "");
+                return (
+                  <WrapItem key={it}>
+                    <Flex as="span" align="center" gap={2} className="tnum" layerStyle="chip">
+                      {id && <Icon as={ICONES_ETIQUETA[id]} aria-hidden boxSize="0.95em" flexShrink={0} />}
+                      <Text as="span">{it}</Text>
+                    </Flex>
+                  </WrapItem>
+                );
+              })}
             </Wrap>
           </Grid>
         ))}
