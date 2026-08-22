@@ -20,6 +20,7 @@ export { DsProvider } from "./provider";
 export { default as theme } from "../app/theme";
 export {
   SECTION_ACCENTS,
+  ACCENT_SERIES,
   accentStylesheet,
   type AccentName,
   type Mode,

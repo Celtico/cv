@@ -78,10 +78,20 @@ export function Section({
       // punt de la banda queda entre `bg` i `accent.panel`, que són superfícies
       // ja verificades a 4,5:1 contra el text neutre. Amb `accent.surface` les
       // targetes que hi van a sobre s'hi fondrien.
-      backgroundImage={[
-        `radial-gradient(150% 120% at ${esquerra ? "6%" : "94%"} 0%, var(--chakra-colors-accent-panel) 0, var(--chakra-colors-accent-panel) 34%, transparent 88%)`,
-        `radial-gradient(135% 110% at ${esquerra ? "96%" : "4%"} 100%, var(--chakra-colors-accent-panel) 0, var(--chakra-colors-accent-panel) 30%, transparent 84%)`,
-      ].join(",")}
+      //
+      // Al bloc invertit NO n'hi va cap. `accent.panel` és el color de la
+      // secció barrejat amb el fons del MODE, o sigui un to clar de dia; pintat
+      // per damunt d'un `bg.inverted` negre, se'l menja i el text blanc que hi
+      // va a sobre es queda gairebé sense contrast. El bloc invertit és una
+      // llosa plana a posta: el que el defineix és el canvi sec de fons.
+      backgroundImage={
+        inverted
+          ? undefined
+          : [
+              `radial-gradient(150% 120% at ${esquerra ? "6%" : "94%"} 0%, var(--chakra-colors-accent-panel) 0, var(--chakra-colors-accent-panel) 34%, transparent 88%)`,
+              `radial-gradient(135% 110% at ${esquerra ? "96%" : "4%"} 100%, var(--chakra-colors-accent-panel) 0, var(--chakra-colors-accent-panel) 30%, transparent 84%)`,
+            ].join(",")
+      }
       position="relative"
       // el bafarot vessa fora de la caixa: sense això apareix scroll horitzontal
       overflow="hidden"
