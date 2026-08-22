@@ -55,9 +55,12 @@ function Plate({
         bg="accent.panel"
         // El filet entre la franja de l'etiqueta i la làmina. El va treure
         // `f6b07c7` argumentant que la separació ja la feia el to del fons; amb
-        // les imatges fosques a sota, el to sol no arriba a marcar-la. Torna amb
-        // `accent.muted` i no amb el neutre: sobre la rajola tintada, un filet
-        // gris pràcticament no es veu.
+        // les il·lustracions fosques a sota, el to sol no arriba a marcar-la.
+        //
+        // Va MÉS FLUIX que el contorn de la targeta, a posta: mentre tots dos
+        // pesaven igual, la franja de l'etiqueta semblava una peça enganxada a
+        // sobre en comptes de la capçalera de la rajola. El filet que defineix
+        // la targeta és el contorn; aquest només separa.
         borderBottom="1px solid"
         borderColor="accent.muted"
         fontSize="xs"

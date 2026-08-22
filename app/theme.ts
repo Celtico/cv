@@ -179,10 +179,13 @@ const theme = extendTheme({
       // el ratolí— mentre la rajola se separava sola pel farciment damunt d'una
       // banda de color; amb el fons en bombolles, el degradat de la rajola i el
       // de la banda es toquen i el contorn deixava d'existir. El to és
-      // `accent.muted` perquè el filet marqui sense fer de marc.
-      borderWidth: "2px",
+      // `accent.dot`, el to decoratiu que ja està contrastat a 3:1 contra el
+      // fons: amb `accent.muted` —un 20% d'alfa— el contorn es perdia contra la
+      // franja clara de l'etiqueta i la targeta semblava que no en tingués. Un
+      // píxel i no dos: a dos, el contorn feia de marc.
+      borderWidth: "1px",
       borderStyle: "solid",
-      borderColor: "accent.muted",
+      borderColor: "accent.dot",
       transition: "border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease",
       _hover: {
         borderColor: "accent.solid",
