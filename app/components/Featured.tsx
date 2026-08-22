@@ -53,6 +53,13 @@ function Plate({
         px={4}
         py={2}
         bg="accent.panel"
+        // El filet entre la franja de l'etiqueta i la làmina. El va treure
+        // `f6b07c7` argumentant que la separació ja la feia el to del fons; amb
+        // les imatges fosques a sota, el to sol no arriba a marcar-la. Torna amb
+        // `accent.muted` i no amb el neutre: sobre la rajola tintada, un filet
+        // gris pràcticament no es veu.
+        borderBottom="1px solid"
+        borderColor="accent.muted"
         fontSize="xs"
         letterSpacing="0.14em"
         textTransform="uppercase"
