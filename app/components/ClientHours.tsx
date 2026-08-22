@@ -48,7 +48,7 @@ export function ClientHours() {
             fontSize="xs"
             letterSpacing="0.14em"
             textTransform="uppercase"
-            color="fg.subtle"
+            color="accent.fg"
             pb={3}
             borderBottom="1px solid"
             borderColor="border.emphasized"
@@ -87,7 +87,7 @@ export function ClientHours() {
                 }}
                 py={{ base: 3.5, md: 4 }}
               >
-                <Box as="td" className="tnum" fontSize="sm" color="fg.subtle">
+                <Box as="td" className="tnum" fontSize="sm" color="accent.fg">
                   {String(i + 1).padStart(2, "0")}
                 </Box>
                 <Box as="td" minW={0}>
@@ -136,7 +136,7 @@ export function ClientHours() {
               fontWeight="inherit"
               letterSpacing="0.14em"
               textTransform="uppercase"
-              color="fg.muted"
+              color="accent.fg"
             >
               {l.total}
             </Box>

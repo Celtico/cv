@@ -55,7 +55,7 @@ export function About() {
             fontSize="xs"
             letterSpacing="0.2em"
             textTransform="uppercase"
-            color="fg.muted"
+            color="accent.fg"
             mb={4}
           >
             {t.about.idiomes}
@@ -73,7 +73,7 @@ export function About() {
               <Text fontFamily="heading" fontSize="lg" color="fg">
                 {l.name}
               </Text>
-              <Text className="tnum" fontSize="xs" letterSpacing="0.1em" textTransform="uppercase" color="fg.muted">
+              <Text className="tnum" fontSize="xs" letterSpacing="0.1em" textTransform="uppercase" color="accent.fg">
                 {l.level}
               </Text>
             </Flex>

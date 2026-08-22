@@ -42,7 +42,9 @@ export function Stats() {
               <Text
                 className="tnum"
                 mt={{ md: 2 }}
-                color="fg.muted"
+                // Les microetiquetes duen el color de la secció on viuen: és
+                // l'única cosa d'aquestes bandes que en gris no deia res.
+                color="accent.fg"
                 fontSize="xs"
                 letterSpacing="0.14em"
                 textTransform="uppercase"

@@ -32,8 +32,12 @@ test("accent.fg arriba a AA sobre totes les superfícies", () => {
   for (const accent of ACCENT_HEXES) {
     for (const mode of MODES) {
       const { list } = surfacesFor(mode);
-      const fg = deriveAll(accent, mode)["accent.fg"];
-      for (const bg of list) {
+      const t = deriveAll(accent, mode);
+      const fg = t["accent.fg"];
+      // `accent.panel` hi entra perquè en una banda `wash` el degradat hi
+      // arriba i el text d'accent —les microetiquetes de secció, entre altres—
+      // hi pot caure a sobre a qualsevol altura.
+      for (const bg of [...list, t["accent.panel"]]) {
         const r = contrastRatio(fg, bg);
         assert.ok(r >= AA, `accent.fg ${fg} sobre ${bg} (${accent}/${mode}) = ${r.toFixed(2)}`);
       }

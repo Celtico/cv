@@ -11,7 +11,23 @@ export function Gallery() {
     <Section id="galeria" accent="gallery" tone="wash" kicker={t.gallery.kicker} title={t.gallery.title} subtitle={t.gallery.subtitle}>
       <SimpleGrid columns={{ base: 2, md: 3, lg: 4 }} spacing={{ base: 3, md: 4 }}>
         {gallery.map((g, i) => (
-          <Box key={i} role="group" border="1px solid" borderColor="border" borderRadius="plate" overflow="hidden" bg="bg.panel">
+          // El color de la secció el duu el FILET, no un vel massís per damunt
+          // de la captura: el vel d'`accent.solid` al 45% tenyia les dotze
+          // imatges i la graella es llegia com dotze rectangles del mateix to,
+          // amb les captures a sota sense poder-se distingir. Ara la peça de
+          // color és la vora —fina, i més viva en passar-hi el ratolí— i la
+          // captura es veu tal com és.
+          <Box
+            key={i}
+            role="group"
+            border="1px solid"
+            borderColor="accent.muted"
+            borderRadius="plate"
+            overflow="hidden"
+            bg="bg.panel"
+            transition="border-color .25s ease"
+            _groupHover={{ borderColor: "accent.solid" }}
+          >
             <AspectRatio ratio={4 / 3}>
               <Box position="relative" overflow="hidden">
                 <Image
@@ -30,19 +46,6 @@ export function Gallery() {
                   // Sense ratolí no hi ha hover: la captura s'ha de veure tal com és.
                   sx={{ "@media (hover: none)": { filter: "none" } }}
                 />
-                {/* Vel del color principal. A 0.9 i lligat només al hover, al
-                    mòbil la galeria es veia com dotze rectangles plans: la
-                    baixem i la retirem del tot on no hi ha ratolí. */}
-                <Box
-                  position="absolute"
-                  inset={0}
-                  bg="accent.solid"
-                  opacity={0.45}
-                  transition="opacity .35s ease"
-                  pointerEvents="none"
-                  _groupHover={{ opacity: 0 }}
-                  sx={{ "@media (hover: none)": { opacity: 0 } }}
-                />
               </Box>
             </AspectRatio>
             <Text
@@ -50,11 +53,11 @@ export function Gallery() {
               fontSize="xs"
               letterSpacing="0.1em"
               textTransform="uppercase"
-              color="fg.muted"
+              color="accent.fg"
               px={3}
               py={2}
               borderTop="1px solid"
-              borderColor="border"
+              borderColor="accent.muted"
               // Tantes línies com calgui fins a tres: a 14 px i en graella de
               // dues columnes els noms llargs es tallaven («02 · Pàmies…»,
               // «04 · GLS…»), i el nom del client és justament el que aquesta

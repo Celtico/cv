@@ -295,7 +295,13 @@ export function defaultNeutrals(mode: Mode): Record<string, string> {
  */
 export function deriveAccent(hex: string, neutrals: Record<string, string>, mode: Mode): Record<string, string> {
   const dir = mode === "light" ? -1 : 1;
-  const surfaces = [neutrals.bg, neutrals["bg.subtle"], neutrals["bg.panel"], neutrals["gray.contrast"]];
+  // El fons de secció entra a la llista de superfícies exigents. En una banda
+  // `wash` el degradat arriba a `accent.panel`, i el text d'accent hi pot caure
+  // a sobre a qualsevol altura: sense aquesta parada, el vermell i el fúcsia es
+  // quedaven a 4,42 i el blau, en fosc, a 4,43. Ha d'anar declarat abans que
+  // `accent.fg`, que és qui el fa servir.
+  const panel = mix(hex, neutrals.bg, mode === "dark" ? 0.2 : 0.09);
+  const surfaces = [neutrals.bg, neutrals["bg.subtle"], neutrals["bg.panel"], neutrals["gray.contrast"], panel];
 
   // Fons ple dels botons: ajustat, si cal, perquè hi càpiga text llegible.
   const solid = solidWithReadableText(hex);
@@ -334,7 +340,7 @@ export function deriveAccent(hex: string, neutrals: Record<string, string>, mode
     // farciment i no cap filet. La barreja es fa contra el fons del mode, de
     // manera que el text neutre hi conserva pràcticament tot el contrast —
     // `tests/contrast.test.ts` ho comprova.
-    "accent.panel": mix(hex, neutrals.bg, mode === "dark" ? 0.2 : 0.09), // fons de secció
+    "accent.panel": panel, // fons de secció
     "accent.surface": mix(hex, neutrals.bg, mode === "dark" ? 0.34 : 0.16), // targetes
     "accent.chip": mix(hex, neutrals.bg, mode === "dark" ? 0.48 : 0.26), // pastilles
   };

@@ -20,7 +20,7 @@ export function Experience() {
             borderBottom="1px solid"
             borderColor="border"
           >
-            <Text className="tnum" fontSize="sm" color="fg.subtle">
+            <Text className="tnum" fontSize="sm" color="accent.fg">
               {String(i + 1).padStart(2, "0")}
             </Text>
             <Text className="tnum" fontSize="sm" color="fg" letterSpacing="0.06em">
