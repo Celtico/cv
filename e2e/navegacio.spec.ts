@@ -94,4 +94,27 @@ test.describe("rutes i navegació", () => {
     await expect(page.locator("footer")).toHaveCount(1);
     await expect(page.locator("header")).toHaveCount(1);
   });
+
+  // La barra té nou apartats dins d'un contenidor de 72 rem i el castellà és la
+  // llengua llarga: «Herramientas», «Trayectoria», «Proyectos». Ha de cabre-hi
+  // en les tres o no hi cap en cap, i quan no hi cabia el que quedava tallat
+  // era el commutador de tema, a l'altra punta. Si afegeixes un apartat i això
+  // peta, la sortida és treure'n de la barra i deixar-los al calaix.
+  for (const [ruta, llengua] of [
+    ["/", "català"],
+    ["/es", "castellà"],
+    ["/en", "anglès"],
+  ] as const) {
+    test(`la barra hi cap sencera en ${llengua}`, async ({ page }) => {
+      await page.setViewportSize({ width: 1440, height: 900 });
+      await page.goto(ruta);
+      const mides = await page.locator("header nav").evaluate((nav) => ({
+        cal: [...nav.children].reduce((a, e) => a + e.getBoundingClientRect().width, 0),
+        hi: nav.clientWidth,
+      }));
+      expect(mides.cal, `la fila demana ${Math.round(mides.cal)} px i n'hi ha ${mides.hi}`).toBeLessThanOrEqual(
+        mides.hi,
+      );
+    });
+  }
 });

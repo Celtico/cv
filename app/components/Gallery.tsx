@@ -27,12 +27,12 @@ export function Gallery({ accent }: { accent: AccentName }) {
             // sense, la rajola perdia l'alçada.
             {...(g.url ? { as: Link, href: g.url, isExternal: true, display: "block" } : {})}
             // El filet és l'ÚNIC que diu si la captura es pot clicar, i per
-            // això marca doble: dos píxels i encès (`accent.dot`, el to
+            // això marca triple: tres píxels i encès (`accent.dot`, el to
             // decoratiu ja contrastat a 3:1) per a les webs que encara són
             // vives, un píxel i apagat per a les que ja no hi són. La captura
             // es veu igual de nítida a totes dues bandes —la feina és la
             // mateixa, tant si el client encara té la web dreta com si no.
-            borderWidth={g.url ? "2px" : "1px"}
+            borderWidth={g.url ? "3px" : "1px"}
             borderStyle="solid"
             borderColor={g.url ? "accent.dot" : "accent.muted"}
             _hover={g.url ? { borderColor: "accent.solid", textDecoration: "none" } : undefined}

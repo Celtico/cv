@@ -208,13 +208,17 @@ export function Nav() {
             </Text>
           </Link>
 
-          {/* Espaiat estret i FIX. Amb nou apartats i 1,5 rem entre tots, la
-              fila demanava 1223 px i el commutador de tema quedava tallat.
-              L'amplada de finestra no hi ajuda —el contenidor és de 72 rem, o
-              sigui 1120 útils—, així que l'aire de pantalla ampla tampoc: si
-              n'hi afegeixes un altre, el que toca és treure'n de la barra i
-              deixar-los al calaix, no eixamplar el contenidor. */}
-          <HStack spacing={3} display={{ base: "none", xl: "flex" }}>
+          {/* Espaiat estret i FIX, calibrat contra el CASTELLÀ, que és la
+              llengua llarga: «Herramientas», «Trayectoria», «Proyectos». El
+              contenidor és de 72 rem —1120 px útils— i l'amplada de finestra no
+              hi ajuda, així que la barra ha de cabre-hi en les tres llengües o
+              no hi cap en cap. Mesurat: amb 1,5 rem entre apartats i 0,12 em
+              d'interlletratge, el castellà demanava 1194 i el commutador de
+              tema quedava tallat.
+              Si algun dia hi entra un desè apartat, el que toca és treure'n de
+              la barra i deixar-los al calaix, no eixamplar el contenidor ni
+              seguir estrenyent. */}
+          <HStack spacing={2} display={{ base: "none", xl: "flex" }}>
             {links.map((l) => {
               const esActiu = !!l.id && l.id === actiu?.id;
               return (
@@ -231,7 +235,10 @@ export function Nav() {
                   // Mida de l'escala, no escrita a mà: la resta de la pàgina va
                   // créixer i la barra s'hi va quedar a 11,5 px.
                   fontSize="xs"
-                  letterSpacing="0.12em"
+                  // Vegeu el calibratge de l'HStack: l'interlletratge és el que
+                  // més amplada menja en una fila de majúscules, i 0,12 em
+                  // sobre les 76 lletres del castellà eren 105 px d'aire.
+                  letterSpacing="0.06em"
                   textTransform="uppercase"
                   color={esActiu ? "accent.fg" : "fg.muted"}
                   transition="color .25s ease"
@@ -248,7 +255,7 @@ export function Nav() {
               href={blog.href}
               className="tnum"
               fontSize="xs"
-              letterSpacing="0.12em"
+              letterSpacing="0.06em"
               textTransform="uppercase"
               color="fg"
               display="inline-flex"
