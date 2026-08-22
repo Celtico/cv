@@ -26,6 +26,10 @@ const theme = extendTheme({
   // 17 px). Es toca aquí i no als components perquè els creixi el text sense
   // que creixi també l'espaiat, que va en rem per la seva banda.
   fontSizes: {
+    // Un pas per sota de l'escala, per a la barra i prou: amb nou apartats en
+    // castellà, 14 px no deixaven aire entre els uns i els altres. Es declara
+    // aquí i no s'escriu a mà al component, que és la regla de la casa.
+    "2xs": "0.8125rem", // 13
     xs: "0.875rem", // 14
     sm: "1rem", // 16
     md: "1.125rem", // 18

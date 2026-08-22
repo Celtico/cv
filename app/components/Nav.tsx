@@ -218,7 +218,7 @@ export function Nav() {
               Si algun dia hi entra un desè apartat, el que toca és treure'n de
               la barra i deixar-los al calaix, no eixamplar el contenidor ni
               seguir estrenyent. */}
-          <HStack spacing={2} display={{ base: "none", xl: "flex" }}>
+          <HStack spacing={3.5} display={{ base: "none", xl: "flex" }}>
             {links.map((l) => {
               const esActiu = !!l.id && l.id === actiu?.id;
               return (
@@ -233,8 +233,10 @@ export function Nav() {
                   data-accent={esActiu ? actiu.accent : undefined}
                   aria-current={esActiu ? "true" : undefined}
                   // Mida de l'escala, no escrita a mà: la resta de la pàgina va
-                  // créixer i la barra s'hi va quedar a 11,5 px.
-                  fontSize="xs"
+                  // créixer i la barra s'hi va quedar a 11,5 px. El pas `2xs`
+                  // existeix per a això —un punt per sota d'`xs`— i el que
+                  // guanya en amplada es gasta en separació entre apartats.
+                  fontSize="2xs"
                   // Vegeu el calibratge de l'HStack: l'interlletratge és el que
                   // més amplada menja en una fila de majúscules, i 0,12 em
                   // sobre les 76 lletres del castellà eren 105 px d'aire.
@@ -254,7 +256,7 @@ export function Nav() {
             <Link
               href={blog.href}
               className="tnum"
-              fontSize="xs"
+              fontSize="2xs"
               letterSpacing="0.06em"
               textTransform="uppercase"
               color="fg"
