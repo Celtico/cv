@@ -15,9 +15,10 @@ sobretot, **el color de la secció**.
 `[data-accent="…"]` per accent i per mode. S'hereten a tot el subarbre: qualsevol fill pot
 escriure `bg="accent.surface"` o `color="accent.fg"` i li tocarà el color de la seva secció.
 
-Els vuit accents: `base` (blau, el per defecte fora de secció), `featured` (violeta),
-`about` (verd), `clients` (verd blau), `skills` (cian), `experience` (vermell),
-`gallery` (rosa), `projects` (fúcsia).
+La sèrie, en ordre: `blau` (també el to per defecte fora de secció) · `violeta` · `verd` ·
+`verdblau` · `cian` · `vermell` · `rosa` · `fucsia`. Les claus són el to que són i no el lloc
+on van: el color no és propietat de cap secció, sinó de la seva POSICIÓ. Qui el reparteix
+recorre la sèrie per ordre i, quan se li acaben els vuit, torna a començar.
 
 ## El color arriba en bombolles
 
@@ -51,7 +52,7 @@ sense recalcular res.
   kicker="Què faig"
   title="Infraestructura que no cau"
   subtitle="Vint-i-cinc anys posant **servidors** en producció."
-  accent="skills"
+  accent="cian"
 >
   <SimpleGrid columns={{ base: 1, md: 3 }} gap={6}>
     <Box bg="accent.surface" borderRadius="plate" p={6}>

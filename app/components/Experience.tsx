@@ -2,13 +2,14 @@
 
 import { Box, Grid, Heading, Text } from "@chakra-ui/react";
 import { Section } from "./Section";
+import type { AccentName } from "../color";
 import { experience } from "../data";
 import { useT } from "../i18n";
 
-export function Experience() {
+export function Experience({ accent }: { accent: AccentName }) {
   const t = useT();
   return (
-    <Section id="experiencia" accent="experience" kicker={t.experience.kicker} title={t.experience.title} subtitle={t.experience.subtitle}>
+    <Section id="experiencia" accent={accent} kicker={t.experience.kicker} title={t.experience.title} subtitle={t.experience.subtitle}>
       <Box borderTop="1px solid" borderColor="border.emphasized">
         {experience.map((e, i) => (
           <Grid

@@ -16,12 +16,20 @@ import { Reveal } from "./components/Reveal";
 import { LanguageProvider } from "./i18n";
 import type { Lang } from "./content";
 import { featured, projects } from "./data";
+import { ACCENT_SERIES } from "./color";
 import { svgMap } from "./svg";
 
 // Ordre pensat per a qui llegeix això per decidir si et contracta: la prova de
 // feina real (Featured) puja al davant, l'experiència deixa de ser la novena
 // secció, i el llibre d'hores 2011–2021 deixa de ser l'última impressió abans
 // del contacte.
+//
+// El color el reparteix AQUÍ i no cada secció. `ACCENT_SERIES` es recorre per
+// ordre i, quan s'acaba, es repeteix: així el que mana és la POSICIÓ a la
+// pàgina, no el tema de la secció. Si en reordenes una o n'afegeixes, els
+// colors la segueixen sols i no cal tocar res més.
+const to = (i: number) => ACCENT_SERIES[i % ACCENT_SERIES.length];
+
 export function HomeShell({ lang }: { lang: Lang }) {
   // Les il·lustracions es llegeixen del disc en prerenderitzar i baixen als
   // components ja com a marcatge: abans sortien per fetch després d'hidratar.
@@ -35,28 +43,28 @@ export function HomeShell({ lang }: { lang: Lang }) {
           <Hero />
           <Stats />
           <Reveal>
-            <Featured svgs={svgs} />
+            <Featured svgs={svgs} accent={to(0)} />
           </Reveal>
           <Reveal>
-            <About />
+            <About accent={to(1)} />
           </Reveal>
           <Reveal>
-            <Skills />
+            <Skills accent={to(2)} />
           </Reveal>
           <Reveal>
-            <Experience />
+            <Experience accent={to(3)} />
           </Reveal>
           <Reveal>
-            <Gallery />
+            <Gallery accent={to(4)} />
           </Reveal>
           <Reveal>
-            <Clients />
+            <Clients accent={to(5)} />
           </Reveal>
           <Reveal>
-            <ClientHours />
+            <ClientHours accent={to(6)} />
           </Reveal>
           <Reveal>
-            <Projects svgs={svgs} />
+            <Projects svgs={svgs} accent={to(7)} />
           </Reveal>
           <Contact />
         </Box>

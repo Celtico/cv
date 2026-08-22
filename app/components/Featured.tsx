@@ -21,6 +21,7 @@ import {
 import { motion, useScroll, useTransform } from "framer-motion";
 import { FiArrowUpRight, FiCornerDownRight } from "react-icons/fi";
 import { Section } from "./Section";
+import type { AccentName } from "../color";
 import { InlineSvg } from "./InlineSvg";
 import { featured } from "../data";
 import { useT } from "../i18n";
@@ -74,10 +75,10 @@ function Plate({
   );
 }
 
-export function Featured({ svgs = {} }: { svgs?: Record<string, string> }) {
+export function Featured({ svgs = {}, accent }: { svgs?: Record<string, string>; accent: AccentName }) {
   const t = useT();
   return (
-    <Section id="destacados" accent="featured" kicker={t.featured.kicker} title={t.featured.title} subtitle={t.featured.subtitle}>
+    <Section id="destacados" accent={accent} kicker={t.featured.kicker} title={t.featured.title} subtitle={t.featured.subtitle}>
       <VStack spacing={{ base: 14, md: 24 }} align="stretch">
         {featured.map((p, i) => {
           const tr = t.featured.items[i];

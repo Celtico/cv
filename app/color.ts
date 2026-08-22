@@ -15,33 +15,48 @@
 // molt més fosc que un groc a la mateixa claror.
 
 /**
- * L'accent de cada secció de la portada. La clau és el valor de `data-accent`
- * que `Section.tsx` posa a l'element; `layout.tsx` en precalcula els tokens
- * per als dos modes i els publica com a regles CSS, de manera que el color
- * arriba sense JavaScript ni flaix.
+ * La paleta d'accents, com una SÈRIE i no com un mapa de seccions.
  *
- * El blau fa de color per defecte: el duen la barra, l'entradeta, les xifres,
- * el contacte, el peu i el blog. La resta són un per secció, saturats.
+ * Fins al 2026-08-22 cada clau era el nom d'una secció («about» era el verd de
+ * Perfil). Ara el color no és propietat de cap secció: la portada recorre la
+ * sèrie per ordre i, quan se li acaben els vuit tons, torna a començar
+ * (`ACCENT_SERIES`, repartida a `home.tsx`). Per això les claus són el to que
+ * són i no el lloc on van: si es tornen a ordenar les seccions, els colors les
+ * segueixen sols i cap nom queda mentint.
+ *
+ * L'ordre NO és el de la roda cromàtica, és saltejat a consciència: cap parella
+ * consecutiva per sota de 25° de distància de to. Així dues bandes seguides no
+ * semblen mai la mateixa. Dues combinacions es van haver de desfer perquè no ho
+ * complien —el taronja quedava a 12° de la marca i l'indi a 18°—, i el símptoma
+ * és sempre el mateix: la secció deixa de tenir color propi i sembla que hi
+ * torni a sortir el de la casa. Si en canvies un, torna a mesurar.
+ *
+ * La clau és el valor de `data-accent` que `Section.tsx` posa a l'element;
+ * `layout.tsx` en precalcula els tokens per als dos modes i els publica com a
+ * regles CSS, de manera que el color arriba sense JavaScript ni flaix.
+ *
+ * El blau és, a més, el to per defecte fora de les seccions: el duen la barra,
+ * l'entradeta, les xifres, el contacte, el peu i el blog.
  *
  * La paleta és freda amb els accents càlids al vermell i el rosa: el groc i el
  * taronja en van quedar fora el 2026-08-18 per decisió del Cel.
- *
- * Els tons estan repartits a consciència: cap parella per sota de 25° de
- * distància a la roda. Dues combinacions es van haver de desfer perquè no
- * complien això —el taronja quedava a 12° de la marca i l'indi a 18°—, i el
- * símptoma és sempre el mateix: la secció deixa de tenir color propi i sembla
- * que hi torni a sortir el de la casa. Si en canvies un, torna a mesurar.
  */
 export const SECTION_ACCENTS = {
-  base: "#2563EB", // blau — barra, entradeta, xifres, contacte, peu, blog
-  featured: "#7C3AED", // violeta — Tres aplicacions vives
-  about: "#16A34A", // verd — Perfil
-  clients: "#0C9D7D", // verd blau — Clients i trajectòria
-  skills: "#0891B2", // cian — Competències
-  experience: "#DC2626", // vermell — Experiència
-  gallery: "#DB2777", // rosa — Galeria
-  projects: "#C026D3", // fúcsia — Projectes
+  blau: "#2563EB",
+  violeta: "#7C3AED",
+  verd: "#16A34A",
+  verdblau: "#0C9D7D",
+  cian: "#0891B2",
+  vermell: "#DC2626",
+  rosa: "#DB2777",
+  fucsia: "#C026D3",
 } as const;
+
+/**
+ * La sèrie, en l'ordre en què la recorre la portada. Quan s'acaba, es repeteix:
+ * `ACCENT_SERIES[i % ACCENT_SERIES.length]`.
+ */
+export const ACCENT_SERIES = Object.keys(SECTION_ACCENTS) as AccentName[];
 
 export type AccentName = keyof typeof SECTION_ACCENTS;
 
@@ -56,7 +71,7 @@ export const ACCENT_HEXES = Object.values(SECTION_ACCENTS) as readonly string[];
  * Que un color serveixi per a una banda de secció, on hi va sol, no vol dir
  * que serveixi per barrejar-lo.
  */
-export const GRADIENT_EXCLUDED: readonly AccentName[] = ["about"];
+export const GRADIENT_EXCLUDED: readonly AccentName[] = ["verd"];
 
 /** Els accents que sí que entren als degradats, en l'ordre del cicle. */
 export const GRADIENT_ACCENTS = (Object.entries(SECTION_ACCENTS) as [AccentName, string][])

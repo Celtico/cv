@@ -4,12 +4,13 @@ import { Box, Flex, Grid, Text } from "@chakra-ui/react";
 import Image from "next/image";
 import { RichText } from "./RichText";
 import { Section } from "./Section";
+import type { AccentName } from "../color";
 import { useT } from "../i18n";
 
-export function About() {
+export function About({ accent }: { accent: AccentName }) {
   const t = useT();
   return (
-    <Section id="sobre-mi" accent="about" kicker={t.about.kicker} title={t.about.title}>
+    <Section id="sobre-mi" accent={accent} kicker={t.about.kicker} title={t.about.title}>
       <Grid templateColumns={{ base: "1fr", md: "1.6fr 1fr" }} gap={{ base: 10, md: 16 }}>
         <Box>
           <Text

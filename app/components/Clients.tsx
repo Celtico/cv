@@ -2,13 +2,14 @@
 
 import { Box, Grid, Heading, List, ListItem } from "@chakra-ui/react";
 import { Section } from "./Section";
+import type { AccentName } from "../color";
 import { clients } from "../data";
 import { useT } from "../i18n";
 
-export function Clients() {
+export function Clients({ accent }: { accent: AccentName }) {
   const t = useT();
   return (
-    <Section id="clientes" accent="clients" kicker={t.clients.kicker} title={t.clients.title} subtitle={t.clients.subtitle}>
+    <Section id="clientes" accent={accent} kicker={t.clients.kicker} title={t.clients.title} subtitle={t.clients.subtitle}>
       <Grid templateColumns={{ base: "1fr", md: "repeat(3, 1fr)" }} gap={{ base: 10, md: 12 }}>
         {Object.values(clients).map((list, gi) => (
           <Box key={gi}>

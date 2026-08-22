@@ -28,7 +28,7 @@ const banc = (accent: string) => ({ "data-accent": accent, style: { padding: 24 
  */
 export function TenyidaPerLaSeccio() {
   return (
-    <div {...banc("skills")}>
+    <div {...banc("cian")}>
       <InlineSvg src="/img/esquema.svg" markup={esquema} title="Esquema de la xarxa" maxW="20rem" />
     </div>
   );
@@ -37,7 +37,7 @@ export function TenyidaPerLaSeccio() {
 /** I la mateixa, en una secció fúcsia. No canvia l'SVG: canvia la secció. */
 export function LaMateixaEnUnaAltraSeccio() {
   return (
-    <div {...banc("projects")}>
+    <div {...banc("fucsia")}>
       <InlineSvg src="/img/esquema.svg" markup={esquema} title="Esquema de la xarxa" maxW="20rem" />
     </div>
   );
@@ -50,7 +50,7 @@ export function LaMateixaEnUnaAltraSeccio() {
  */
 export function AmbNomAccessible() {
   return (
-    <div {...banc("experience")}>
+    <div {...banc("vermell")}>
       <InlineSvg
         src="/img/esquema.svg"
         markup={esquema}

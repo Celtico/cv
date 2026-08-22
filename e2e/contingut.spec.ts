@@ -80,12 +80,16 @@ test.describe("accent per secció", () => {
       page.locator(`#${id}`).evaluate((el) =>
         getComputedStyle(el).getPropertyValue("--chakra-colors-accent-solid").trim().toLowerCase(),
       );
-    // Els valors surten de SECTION_ACCENTS (app/color.ts). Si els canvies allà,
-    // canvia'ls aquí: aquesta prova és justament la que detecta que el CSS
-    // d'accents ha deixat d'arribar al marcatge.
-    expect(await solid("destacados")).toBe("#7c3aed");
-    expect(await solid("sobre-mi")).toBe("#16a34a");
-    expect(await solid("proyectos")).toBe("#c026d3");
+    // Els colors els reparteix `home.tsx` recorrent `ACCENT_SERIES` per ordre,
+    // de manera que el que es comprova aquí és la POSICIÓ a la pàgina: la
+    // primera secció duu el primer to de la sèrie, la segona el segon i la
+    // vuitena l'últim. Si reordenes les seccions o la sèrie, canvia'ls aquí:
+    // aquesta prova és la que detecta que el CSS d'accents ha deixat d'arribar
+    // al marcatge.
+    expect(await solid("destacados")).toBe("#2563eb"); // 1a — blau
+    expect(await solid("sobre-mi")).toBe("#7c3aed"); // 2a — violeta
+    expect(await solid("skills")).toBe("#16a34a"); // 3a — verd
+    expect(await solid("proyectos")).toBe("#c026d3"); // 8a — fúcsia
   });
 
   test("el text dels botons plens manté contrast amb el fons del botó", async ({ page }) => {

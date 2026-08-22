@@ -57,7 +57,7 @@ export function BandaDeColor() {
       kicker="Etiqueta de secció"
       title="Un titular de banda"
       subtitle="L'entradeta de la secció, amb una **paraula en negreta** per veure com hi entra el marcatge."
-      accent="skills"
+      accent="cian"
     >
       <div style={graella}>
         <div style={rajolaTintada}>
@@ -88,7 +88,7 @@ export function BandaNeta() {
       kicker="Etiqueta neutra"
       title="La banda següent, amb un altre accent"
       subtitle="El costat de la bombolla l'escull la secció sola, per l'accent que duu."
-      accent="experience"
+      accent="vermell"
       kickerTone="neutral"
     >
       <div style={graella}>
@@ -122,7 +122,7 @@ export function Invertida() {
       kicker="Bloc invertit"
       title="El fons gira, el color també"
       subtitle="Sobre el bloc invertit, l'accent que val és **accent.inverted**."
-      accent="gallery"
+      accent="rosa"
       inverted
     >
       <p style={{ color: "var(--chakra-colors-accent-inverted)", fontSize: "1.25rem", margin: 0 }}>

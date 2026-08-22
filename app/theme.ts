@@ -210,7 +210,7 @@ const theme = extendTheme({
   // ATENCIÓ: els neutres d'aquesta taula estan duplicats a NEUTRAL_DEFAULTS
   // (app/color.ts), que és contra qui es comprova el contrast dels accents. Si
   // en canvies un, canvia'l als dos llocs. Els accent.* d'aquí són exactament
-  // el que retorna deriveAll(SECTION_ACCENTS.base, mode) — el blau de marca.
+  // el que retorna deriveAll(SECTION_ACCENTS.blau, mode) — el blau de marca.
   semanticTokens: {
     colors: {
       bg: { default: "#FFFFFF", _dark: "#000000" },

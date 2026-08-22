@@ -10,7 +10,7 @@ són al mateix arbre i llegeixen aquest mateix tema.
 import { DsProvider, Section } from "@serverscel/ds";
 
 <DsProvider>
-  <Section id="serveis" kicker="Què fem" title="Un titular" accent="skills" tone="wash">…</Section>
+  <Section id="serveis" kicker="Què fem" title="Un titular" accent="cian">…</Section>
 </DsProvider>
 ```
 
@@ -46,10 +46,10 @@ superfícies plenes, de fons de secció a pastilla).
 **`textStyle`**: `display` · `sectionTitle` · `cardTitle` · `kicker` · `micro`.
 No escriguis `fontSize` a mà per a un titular: n'hi ha cinc papers i prou.
 
-**`layerStyle`**: `plate` (targeta de filet prim, per a banda `tone="flat"`) ·
-`plateTinted` (degradat en diagonal, per a banda `tone="wash"`) · `chip` (pastilla).
-No són intercanviables: la tintada damunt d'una banda neta perd el sentit i la neta damunt
-d'una de color s'hi fon.
+**`layerStyle`**: `plate` (targeta de fons igual que la secció i filet prim) ·
+`plateTinted` (degradat en diagonal del fons net a `accent.surface`) · `chip` (pastilla).
+Els extrems dels dos degradats són superfícies verificades, i per això s'hi pot posar text a
+sobre sense recalcular res.
 
 **`borderRadius`**: `plate` (14 px) per a targetes i imatges, `control` (999 px) per a botons,
 etiquetes i commutadors. No escriguis mai un radi en píxels.
@@ -58,12 +58,13 @@ etiquetes i commutadors. No escriguis mai un radi en píxels.
 
 ## 3. Les regles de composició que no es veuen a l'API
 
-- **Una `Section` per banda**, i el color va **per secció**, no per element: `accent="skills"`
-  i tots els fills de dins ja resolen `accent.*` al cian. Els vuit: `base` (blau, el per
-  defecte) · `featured` · `about` · `clients` · `skills` · `experience` · `gallery` ·
-  `projects`.
-- **`tone` alterna**: banda de color (`wash`), banda neta (`flat`), banda de color. La
-  separació la fa el farciment, mai un filet.
+- **Una `Section` per banda**, i el color va **per banda**, no per element: `accent="cian"`
+  i tots els fills de dins ja resolen `accent.*` al cian. La sèrie, en ordre: `blau` (també
+  el to per defecte fora de secció) · `violeta` · `verd` · `verdblau` · `cian` · `vermell` ·
+  `rosa` · `fucsia`. Recorre-la per ordre i torna a començar quan s'acabi.
+- **El fons de la banda arriba en bombolles**, dos degradats radials d'`accent.panel` que
+  `Section` pinta sola i que alternen de costat. La separació entre bandes la fa el
+  farciment, mai un filet.
 - **`==ressaltat==` és per a una frase**, dins d'un paràgraf `fg.muted`. Un paràgraf sencer
   ressaltat no ressalta res. I no el facis servir dins d'una `Section` amb `inverted`.
 - **Cap font descarregada**: pila de sistema (`system-ui`) a titulars i a cos.

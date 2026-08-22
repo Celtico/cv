@@ -2,6 +2,7 @@
 
 import { Box, Text, VisuallyHidden } from "@chakra-ui/react";
 import { Section } from "./Section";
+import type { AccentName } from "../color";
 import { clientHours, clientHoursSummary } from "../data";
 import { useT } from "../i18n";
 import { stripMarkup } from "../markup";
@@ -28,13 +29,13 @@ const rowGrid = {
 
 const hideBase = { base: "none", md: "block" };
 
-export function ClientHours() {
+export function ClientHours({ accent }: { accent: AccentName }) {
   const t = useT();
   const l = t.ledger;
   const max = Math.max(...clientHours.map((c) => c.hours));
 
   return (
-    <Section id="trayectoria" accent="clients" kicker={l.kicker} title={l.title} subtitle={l.subtitle}>
+    <Section id="trayectoria" accent={accent} kicker={l.kicker} title={l.title} subtitle={l.subtitle}>
       <Box as="table" w="full" sx={{ display: "block", borderCollapse: "collapse" }}>
         {/* La llegenda de la taula la senten els lectors de pantalla: text pla,
             sense marcadors. */}

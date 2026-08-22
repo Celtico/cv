@@ -2,13 +2,14 @@
 
 import { Box, Grid, Heading, Text, Wrap, WrapItem } from "@chakra-ui/react";
 import { Section } from "./Section";
+import type { AccentName } from "../color";
 import { skills } from "../data";
 import { useT } from "../i18n";
 
-export function Skills() {
+export function Skills({ accent }: { accent: AccentName }) {
   const t = useT();
   return (
-    <Section id="skills" accent="skills" kicker={t.skills.kicker} title={t.skills.title} subtitle={t.skills.subtitle}>
+    <Section id="skills" accent={accent} kicker={t.skills.kicker} title={t.skills.title} subtitle={t.skills.subtitle}>
       <Box borderTop="1px solid" borderColor="border">
         {skills.map((s, i) => (
           <Grid

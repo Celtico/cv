@@ -2,13 +2,14 @@
 
 import { AspectRatio, Box, Image, SimpleGrid, Text } from "@chakra-ui/react";
 import { Section } from "./Section";
+import type { AccentName } from "../color";
 import { gallery } from "../data";
 import { useT } from "../i18n";
 
-export function Gallery() {
+export function Gallery({ accent }: { accent: AccentName }) {
   const t = useT();
   return (
-    <Section id="galeria" accent="gallery" kicker={t.gallery.kicker} title={t.gallery.title} subtitle={t.gallery.subtitle}>
+    <Section id="galeria" accent={accent} kicker={t.gallery.kicker} title={t.gallery.title} subtitle={t.gallery.subtitle}>
       <SimpleGrid columns={{ base: 2, md: 3, lg: 4 }} spacing={{ base: 3, md: 4 }}>
         {gallery.map((g, i) => (
           // El color de la secció el duu el FILET, no un vel massís per damunt

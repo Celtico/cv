@@ -19,7 +19,7 @@ const titular: CSSProperties = {
 /** Pastilla d'`accent.deep` amb text blanc: el to de la majoria de seccions. */
 export function Accent() {
   return (
-    <div data-accent="featured" style={banc("featured")}>
+    <div data-accent="violeta" style={banc("violeta")}>
       <Kicker tone="accent">Projectes propis</Kicker>
       <h2 style={titular}>Tres aplicacions vives</h2>
     </div>
@@ -29,7 +29,7 @@ export function Accent() {
 /** Pastilla grisa. Va repartida perquè no hi hagi vuit pastilles de color seguides. */
 export function Neutre() {
   return (
-    <div data-accent="clients" style={banc("clients")}>
+    <div data-accent="verdblau" style={banc("verdblau")}>
       <Kicker tone="neutral">Trajectòria</Kicker>
       <h2 style={titular}>Els clients de sempre</h2>
     </div>
@@ -39,7 +39,7 @@ export function Neutre() {
 /** Sobre fons invertit, la regla ha de ser clara: `rule="whiteAlpha.300"`. */
 export function SobreFonsInvertit() {
   return (
-    <div data-accent="experience" style={banc("experience", "var(--chakra-colors-bg-inverted)")}>
+    <div data-accent="vermell" style={banc("vermell", "var(--chakra-colors-bg-inverted)")}>
       <Kicker tone="accent" rule="whiteAlpha.300">
         Bloc invertit
       </Kicker>

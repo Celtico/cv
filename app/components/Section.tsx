@@ -13,7 +13,7 @@ export function Section({
   children,
   bg = "bg",
   inverted = false,
-  accent = "base",
+  accent = "blau",
   kickerTone = "accent",
 }: {
   id: string;
@@ -23,7 +23,10 @@ export function Section({
   children: React.ReactNode;
   bg?: string;
   inverted?: boolean;
-  /** Color de la secció. Els tokens accent.* els publica `accentStylesheet()`. */
+  /**
+   * To de la sèrie. Qui el reparteix és `home.tsx`, que recorre `ACCENT_SERIES`
+   * per ordre; els tokens `accent.*` els publica `accentStylesheet()`.
+   */
   accent?: AccentName;
   /**
    * Color de la pastilla de l'etiqueta. `accent` la pinta amb `accent.deep`,
@@ -59,21 +62,25 @@ export function Section({
       // La franja marcava dues costures horitzontals amb les bandes veïnes; la
       // bombolla no té vores i el color sembla que surti de sota de la pàgina.
       //
+      // Van amples a posta: com que el to és `accent.panel`, encara que ocupessin
+      // la banda sencera tot seguiria sent superfície verificada. La mida no la
+      // limita el contrast, només el gust.
+      //
       // La duen TOTES les seccions. Mentre la banda era una franja sencera, les
       // vuit seguides haurien estat un mur de color i per això anaven
       // saltejades (`tone`, retirat el 2026-08-22); una bombolla és prou tènue
       // perquè cadascuna pugui dur la seva sense que se'n facin la competència.
       //
       // La doble parada és el que la fa: color ple fins al 14% i només després
-      // el caient. Amb una sola parada només se'n veu la cua.
+      // el caient (34% i 30%). Amb una sola parada només se'n veu la cua.
       //
       // El color és `accent.panel` i no res més saturat perquè així qualsevol
       // punt de la banda queda entre `bg` i `accent.panel`, que són superfícies
       // ja verificades a 4,5:1 contra el text neutre. Amb `accent.surface` les
       // targetes que hi van a sobre s'hi fondrien.
       backgroundImage={[
-        `radial-gradient(105% 88% at ${esquerra ? "10%" : "90%"} 0%, var(--chakra-colors-accent-panel) 0, var(--chakra-colors-accent-panel) 22%, transparent 76%)`,
-        `radial-gradient(95% 80% at ${esquerra ? "92%" : "8%"} 100%, var(--chakra-colors-accent-panel) 0, var(--chakra-colors-accent-panel) 18%, transparent 70%)`,
+        `radial-gradient(150% 120% at ${esquerra ? "6%" : "94%"} 0%, var(--chakra-colors-accent-panel) 0, var(--chakra-colors-accent-panel) 34%, transparent 88%)`,
+        `radial-gradient(135% 110% at ${esquerra ? "96%" : "4%"} 100%, var(--chakra-colors-accent-panel) 0, var(--chakra-colors-accent-panel) 30%, transparent 84%)`,
       ].join(",")}
       position="relative"
       // el bafarot vessa fora de la caixa: sense això apareix scroll horitzontal

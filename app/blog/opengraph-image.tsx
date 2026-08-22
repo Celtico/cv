@@ -14,7 +14,7 @@ const N = NEUTRAL_DEFAULTS;
 const PAPER = N.bg[1];
 const INK = N.fg[1];
 const MUTED = N["fg.muted"][1];
-const ACCENT = SECTION_ACCENTS.base;
+const ACCENT = SECTION_ACCENTS.blau;
 const RULE = N["gray.emphasized"][1];
 
 export default function BlogOpengraphImage() {

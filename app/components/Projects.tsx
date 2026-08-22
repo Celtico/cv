@@ -2,17 +2,18 @@
 
 import { AspectRatio, Box, Heading, Image, SimpleGrid, Text, VStack, Wrap, WrapItem } from "@chakra-ui/react";
 import { Section } from "./Section";
+import type { AccentName } from "../color";
 import { InlineSvg } from "./InlineSvg";
 import { projects } from "../data";
 import { useT } from "../i18n";
 
-export function Projects({ svgs = {} }: { svgs?: Record<string, string> }) {
+export function Projects({ svgs = {}, accent }: { svgs?: Record<string, string>; accent: AccentName }) {
   const t = useT();
   // Nom, subtítol, descripció i stack surten del diccionari; de `data.ts` només
   // en surt la imatge. Els noms hi eren en castellà i es veien igual en català.
   const tr = (i: number) => t.projects.items[i];
   return (
-    <Section id="proyectos" accent="projects" kicker={t.projects.kicker} title={t.projects.title} subtitle={t.projects.subtitle}>
+    <Section id="proyectos" accent={accent} kicker={t.projects.kicker} title={t.projects.title} subtitle={t.projects.subtitle}>
       <SimpleGrid columns={{ base: 1, md: 2 }} spacing={8}>
         {projects.map((p, i) => (
           <Box key={p.img} layerStyle="plate">

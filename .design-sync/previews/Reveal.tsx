@@ -28,7 +28,7 @@ const cos: CSSProperties = {
  */
 export function UnBloc() {
   return (
-    <div data-accent="projects">
+    <div data-accent="fucsia">
       <Reveal>
         <div style={targeta}>
           <h3 style={titol}>Millora progressiva</h3>
@@ -46,7 +46,7 @@ export function UnBloc() {
 export function UnaGraella() {
   return (
     <div
-      data-accent="clients"
+      data-accent="verdblau"
       style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(13rem, 1fr))", gap: 20 }}
     >
       {["Primer", "Segon", "Tercer"].map((n) => (
