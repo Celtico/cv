@@ -1,10 +1,23 @@
 "use client";
 
-import { Box, Grid, Heading, Text, Wrap, WrapItem } from "@chakra-ui/react";
+import { Box, Flex, Grid, Heading, Icon, Text, Wrap, WrapItem } from "@chakra-ui/react";
+import { FiCloud, FiCode, FiCpu, FiGitBranch, FiLayout, FiPenTool, FiServer } from "react-icons/fi";
 import { Section } from "./Section";
 import type { AccentName } from "../color";
 import { skills } from "../data";
 import { useT } from "../i18n";
+
+// La clau que ve de `data.ts` es resol aquí: així les dades no han d'importar
+// components i el joc d'icones es pot canviar sense tocar-les.
+const ICONES = {
+  code: FiCode,
+  layout: FiLayout,
+  server: FiServer,
+  cpu: FiCpu,
+  cloud: FiCloud,
+  pen: FiPenTool,
+  flow: FiGitBranch,
+} as const;
 
 export function Skills({ accent }: { accent: AccentName }) {
   const t = useT();
@@ -21,9 +34,22 @@ export function Skills({ accent }: { accent: AccentName }) {
             borderBottom="1px solid"
             borderColor="border"
           >
-            <Heading as="h3" textStyle="cardTitle" color="fg">
-              {t.skills.groups[i] ?? s.group}
-            </Heading>
+            <Flex align="center" gap={3}>
+              {/* Amb el to de la secció i prou pes per veure's al costat d'un
+                  titular de 2 rem. Decorativa: el nom del grup ja hi és al
+                  costat, i repetir-lo als lectors de pantalla només fa soroll. */}
+              <Icon
+                as={ICONES[s.icon]}
+                aria-hidden
+                boxSize={{ base: "1.15rem", md: "1.35rem" }}
+                color="accent.fg"
+                strokeWidth={2}
+                flexShrink={0}
+              />
+              <Heading as="h3" textStyle="cardTitle" color="fg">
+                {t.skills.groups[i] ?? s.group}
+              </Heading>
+            </Flex>
             <Wrap spacing={2}>
               {/* Combinació per índex, com la resta del projecte: el diccionari mana
                   i `data.ts` fa de reserva si algun idioma es queda curt. */}

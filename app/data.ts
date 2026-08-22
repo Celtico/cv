@@ -24,33 +24,47 @@ export const about = [
   "Perfil polivalente y autodidacta: aprendo a partir de proyectos reales y de la comunidad de software libre. Combino un back-end sólido (NestJS, Node, APIs REST) con front-ends modernos (React 19, Next.js, Chakra UI) e integración de IA y ERP.",
 ];
 
-export const skills = [
+/** Les icones dels grups de competències. La clau la resol `Skills.tsx`. */
+export type SkillIcon = "code" | "layout" | "server" | "cpu" | "cloud" | "pen" | "flow";
+
+// `icon` és una clau, no un component: `data.ts` es queda sense JSX i qui la
+// resol és `Skills.tsx`. El tipus és tancat a posta: si hi afegeixes un grup
+// sense icona —o amb una que no existeix—, el TypeScript t'ho dirà en comptes
+// de deixar-lo mut.
+export const skills: { group: string; icon: SkillIcon; items: string[] }[] = [
   {
     group: "Lenguajes",
+    icon: "code",
     items: ["TypeScript", "JavaScript", "PHP", "SQL", "HTML", "CSS", "Bash"],
   },
   {
     group: "Front-end",
+    icon: "layout",
     items: ["React 19", "Next.js", "Chakra UI", "Radix UI", "Vite", "Recharts", "Responsive"],
   },
   {
     group: "Back-end",
+    icon: "server",
     items: ["NestJS", "Node.js", "TypeORM", "Socket.IO", "Swagger", "API REST", "WebRTC", "SSE"],
   },
   {
     group: "IA & Datos",
+    icon: "cpu",
     items: ["LangChain", "OpenAI GPT-4o", "Redes neuronales (ML)", "Integración Odoo (ERP)"],
   },
   {
     group: "Infra / DevOps",
+    icon: "cloud",
     items: ["Docker", "Nginx", "JWT", "MySQL / SQLite", "Servidores", "SSL / dominios", "CI/CD"],
   },
   {
     group: "Diseño",
+    icon: "pen",
     items: ["UX/UI", "Identidad visual", "Photoshop", "Illustrator", "InDesign", "Print"],
   },
   {
     group: "Flujo de trabajo",
+    icon: "flow",
     items: ["Desarrollo asistido por IA (Claude Code)", "PhpStorm", "Git", "Code review", "Docker"],
   },
 ];
