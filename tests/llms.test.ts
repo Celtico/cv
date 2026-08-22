@@ -12,6 +12,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { stats } from "../app/data.ts";
 import { blogPosts } from "../app/blog/posts.ts";
+import { gallery } from "../app/data.ts";
 
 const llms = readFileSync(new URL("../public/llms.txt", import.meta.url), "utf8");
 
@@ -49,4 +50,20 @@ test("llms.txt no descriu el commutador d'idioma antic", () => {
     !/sense canviar la URL/i.test(llms),
     "llms.txt encara diu que l'idioma es tria sense canviar la URL",
   );
+});
+
+test("llms.txt llista les webs de client que es poden visitar", () => {
+  // Les mateixes vuit que enllaça la galeria. Si se n'hi afegeix una a
+  // `data.ts` i aquí no, el resum per a models es queda curt sense dir-ho.
+  const falten = gallery.filter((g) => g.url && !llms.includes(g.url));
+  assert.deepEqual(falten.map((g) => g.label), [], "webs enllaçades a la galeria que no surten a llms.txt");
+});
+
+test("llms.txt no enllaça les que ja no són aquesta feina", () => {
+  // Les quatre sense `url` són captures de webs que el client va refer amb un
+  // altre proveïdor: han de sortir anomenades, però mai amb enllaç.
+  const senseUrl = gallery.filter((g) => !g.url);
+  for (const g of senseUrl) {
+    assert.ok(llms.includes(g.label), `llms.txt no anomena «${g.label}»`);
+  }
 });

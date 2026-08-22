@@ -127,6 +127,24 @@ institucionals es van facturar sense imputar hores, així que la dedicació real
 - I més de 200 clients atesos des del 2000: institucions, empreses, pimes,
   comerços i professionals de les comarques de Lleida i de tota Catalunya.
 
+## Feina de client visitable
+
+Captures de webs entregades a client que segueixen en línia i segueixen sent
+aquesta feina. Surten a la galeria de la portada (/#galeria):
+
+- Mecamaq: https://www.mecamaq.com/
+- GLS Prefabricados: https://www.glsprefabricados.com/
+- Inglet: https://www.ingletmachinery.com/
+- Nuseu: https://museucn.com/
+- Bright Export: https://www.brightexportimport.com/
+- Lluc Queralt: https://www.llucqueralt.com/
+- Digitplan: https://www.digitplan.com/
+- Gespasa: https://www.gespasa.es/
+
+A la galeria hi ha quatre captures més —RodiBook, Pàmies Hortícoles, Rodi i
+Web Builder— que no porten enllaç: el client va refer la web amb un altre proveïdor i el que hi ha
+ara al domini ja no és aquesta feina.
+
 ## Recursos
 
 - [Currículum en PDF](https://serverscel.com/cv-celesti-tico.pdf): CV complet de
