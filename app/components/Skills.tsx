@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Flex, Grid, Heading, Icon, Text, Wrap, WrapItem } from "@chakra-ui/react";
+import { Box, Flex, Grid, Heading, Icon, Text } from "@chakra-ui/react";
 import type { IconType } from "react-icons";
 import {
   FiActivity, FiBookOpen, FiCloud, FiCode, FiCpu, FiDatabase, FiEye, FiGitBranch, FiImage,
@@ -89,9 +89,11 @@ export function Skills({ accent }: { accent: AccentName }) {
           <Grid
             key={s.group}
             templateColumns={{ base: "1fr", md: "0.9fr 2.4fr" }}
-            gap={{ base: 3, md: 8 }}
-            alignItems="baseline"
-            py={{ base: 6, md: 7 }}
+            gap={{ base: 5, md: 8 }}
+            // A dalt i no a la línia de base: amb els elements en graella, la
+            // fila pot fer dues altures i el titular quedava surant al mig.
+            alignItems="start"
+            py={{ base: 7, md: 9 }}
             borderBottom="1px solid"
             borderColor="border"
           >
@@ -110,8 +112,28 @@ export function Skills({ accent }: { accent: AccentName }) {
               <Heading as="h3" textStyle="cardTitle" color="fg">
                 {t.skills.groups[i] ?? s.group}
               </Heading>
+              {/* Quantes n'hi ha. És la dada que hi faltava: set files sense
+                  cap xifra no diuen si el domini és ample o testimonial. */}
+              <Text className="tnum" fontSize="xs" color="fg.subtle" mt="0.35em">
+                {s.items.length}
+              </Text>
             </Flex>
-            <Wrap spacing={2}>
+            {/* Graella i no embolcall lliure: amb `Wrap`, cada grup embolicava
+                com podia i els logotips quedaven desquadrats de dalt a baix.
+                Amb columnes d'amplada fixa, els set grups s'alineen i la secció
+                es llegeix com un inventari i no com set llistes soltes.
+                `auto-fill` i no `auto-fit`: amb `auto-fit` les columnes buides
+                es col·lapsen i els grups curts —IA i dades, que en té quatre—
+                s'escampaven per tota l'amplada, que és justament l'alineació
+                que es volia arreglar. */}
+            <Grid
+              templateColumns={{
+                base: "repeat(auto-fill, minmax(5rem, 1fr))",
+                md: "repeat(auto-fill, minmax(6.25rem, 1fr))",
+              }}
+              columnGap={2}
+              rowGap={5}
+            >
               {/* Combinació per índex, com la resta del projecte: el diccionari mana
                   i `data.ts` fa de reserva si algun idioma es queda curt. */}
               {(t.skills.items[i] ?? s.items).map((it, j) => {
@@ -119,7 +141,7 @@ export function Skills({ accent }: { accent: AccentName }) {
                 // el text de la pastilla canvia amb l'idioma i la icona no.
                 const id = skillIcon(s.items[j] ?? "");
                 return (
-                  <WrapItem key={it}>
+                  <Box key={it}>
                     {/* Apilada i sense fons: la icona a dalt i gran, el nom a
                         sota i petit. La pastilla plena feia que quaranta-quatre
                         rectangles de color competissin entre ells i amb la
@@ -138,8 +160,7 @@ export function Skills({ accent }: { accent: AccentName }) {
                       className="tnum"
                       py={2}
                       px={1}
-                      minW="6rem"
-                      maxW="8rem"
+                      w="full"
                       textAlign="center"
                     >
                       {/* Icona i nom amb el color de text ple, no amb l'accent
@@ -152,10 +173,10 @@ export function Skills({ accent }: { accent: AccentName }) {
                         {it}
                       </Text>
                     </Flex>
-                  </WrapItem>
+                  </Box>
                 );
               })}
-            </Wrap>
+            </Grid>
           </Grid>
         ))}
       </Box>

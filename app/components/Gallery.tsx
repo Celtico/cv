@@ -33,15 +33,19 @@ export function Gallery({ accent }: { accent: AccentName }) {
             // webs que encara són vives, apagat per a les que ja no hi són. La
             // fletxa del peu sola no es veia de lluny.
             borderColor={g.url ? "accent.dot" : "accent.muted"}
+            // I el to de la captura: les que ja no hi són queden enrere en
+            // comptes de competir amb les que es poden visitar. El filet sol
+            // les distingia; això les jerarquitza.
+            opacity={g.url ? 1 : 0.55}
+            _hover={g.url ? { borderColor: "accent.solid", textDecoration: "none" } : undefined}
             borderRadius="plate"
             overflow="hidden"
             bg="bg.panel"
-            transition="border-color .25s ease"
             // `_hover` i no `_groupHover`: el `role="group"` és d'aquest mateix
             // element, i `_groupHover` es resol com «un avantpassat amb
             // role=group està en hover», de manera que aquí no s'activava mai i
             // el filet no s'encenia.
-            _hover={{ borderColor: "accent.solid", textDecoration: "none" }}
+            transition="border-color .25s ease, opacity .25s ease"
           >
             <AspectRatio ratio={4 / 3}>
               <Box position="relative" overflow="hidden">
