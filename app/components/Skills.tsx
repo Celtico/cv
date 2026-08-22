@@ -138,7 +138,7 @@ export function Skills({ accent }: { accent: AccentName }) {
                       className="tnum"
                       py={2}
                       px={1}
-                      minW="5.5rem"
+                      minW="6rem"
                       maxW="8rem"
                       textAlign="center"
                     >
@@ -147,7 +147,7 @@ export function Skills({ accent }: { accent: AccentName }) {
                           s'ha de poder llegir d'una passada, i el verd i el gris
                           el deixaven a mitges. `fg` és blanc de nit i negre de
                           dia, o sigui el màxim contrast contra la banda. */}
-                      {id && <Icon as={ICONES_ETIQUETA[id]} aria-hidden boxSize="1.6rem" color="fg" />}
+                      {id && <Icon as={ICONES_ETIQUETA[id]} aria-hidden boxSize={{ base: "1.9rem", md: "2.25rem" }} color="fg" />}
                       <Text as="span" fontSize="0.6875rem" lineHeight="1.3" color="fg">
                         {it}
                       </Text>
