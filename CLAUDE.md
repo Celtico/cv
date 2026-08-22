@@ -199,9 +199,14 @@ on es pintarà (`contrastify`, `solidWithReadableText`, `bestTextOn`). No hi tor
 topalls d'HSL: l'HSL no és perceptual i va ser exactament la causa que 6 dels 8 accents
 incomplissin AA al botó principal.
 
-- **Un accent fix per secció**, no un de sortejat per visita. `SECTION_ACCENTS` lliga cada
-  secció al seu color; l'ambre (`base`) fa de color per defecte i el duen la barra,
-  l'entradeta, les xifres, el contacte, el peu i el blog.
+- **El color va per POSICIÓ, no per secció.** `SECTION_ACCENTS` és una sèrie de vuit tons
+  amb el nom del to que són (`blau`, `violeta`, `verd`, `verdblau`, `cian`, `vermell`,
+  `rosa`, `fucsia`), i `home.tsx` la recorre per ordre repartint-la a les seccions; quan
+  s'acaba, torna a començar (`ACCENT_SERIES[i % 8]`). Fins al 2026-08-22 cada clau era el nom
+  d'una secció («about» era el verd de Perfil): si es reordenaven les seccions, els noms
+  quedaven mentint. El blau fa de to per defecte fora de les seccions i el duen la barra,
+  l'entradeta, les xifres, el contacte, el peu i el blog. L'ordre de la sèrie NO és el de la
+  roda cromàtica: és saltejat perquè cap parella consecutiva baixi de 25° de distància de to.
 - **Arriba per CSS, no per JavaScript.** `accentStylesheet()` genera en temps de build una
   regla `[data-accent="…"]` per secció i mode, i `layout.tsx` la incrusta al `<head>`.
   `Section.tsx` només posa `data-accent`; les variables s'hereten a tot el subarbre. La regla
