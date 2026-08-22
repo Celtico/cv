@@ -175,12 +175,14 @@ const theme = extendTheme({
       bgGradient: "linear(to-br, bg, accent.surface)",
       borderRadius: "plate",
       overflow: "hidden",
-      // Sense filet: damunt d'una banda de color, la rajola ja se separa pel
-      // farciment. La vora només apareix en passar-hi el ratolí, que és quan
-      // fa falta assenyalar que allò es pot tocar.
+      // Amb filet. Va estar transparent —la vora només apareixia en passar-hi
+      // el ratolí— mentre la rajola se separava sola pel farciment damunt d'una
+      // banda de color; amb el fons en bombolles, el degradat de la rajola i el
+      // de la banda es toquen i el contorn deixava d'existir. El to és
+      // `accent.muted` perquè el filet marqui sense fer de marc.
       borderWidth: "2px",
       borderStyle: "solid",
-      borderColor: "transparent",
+      borderColor: "accent.muted",
       transition: "border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease",
       _hover: {
         borderColor: "accent.solid",
