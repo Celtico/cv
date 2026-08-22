@@ -161,19 +161,27 @@ export const experience = [
   },
 ];
 
+// El peu de cada captura anomena el PROJECTE que s'hi veu, no el client: la
+// primera és el RodiBook i la novena la web de Rodi, i «Rodi» a seques és com
+// surt el client a la llista de `cv-dades-celesti-tico.md`. Són dues coses
+// diferents a posta.
+//
+// Cap peu genèric: les quatre que deien «Proyecto web» tenien nom i ningú
+// l'havia posat. Si n'hi afegeixes una, posa-li el seu —`t.gallery.web`
+// segueix al diccionari com a reserva, però ja no el fa servir ningú.
 export const gallery = [
-  { img: "/img/23-rodibook.png.webp", label: "Rodi" },
+  { img: "/img/23-rodibook.png.webp", label: "RodiBook" },
   { img: "/img/17-pamies.png.webp", label: "Pàmies Hortícoles" },
   { img: "/img/20-mecamaq.png.webp", label: "Mecamaq" },
   { img: "/img/21-gls.png.webp", label: "GLS Prefabricados" },
   { img: "/img/24-inglet.png.webp", label: "Inglet" },
   { img: "/img/25-nuseu.png.webp", label: "Nuseu" },
-  { img: "/img/12-brightexportimport.png.webp", label: "Bright Export Import" },
+  { img: "/img/12-brightexportimport.png.webp", label: "Bright Export" },
   { img: "/img/22-lluc.png.webp", label: "Lluc Queralt" },
-  { img: "/img/13-index.png.webp", label: "Proyecto web" },
-  { img: "/img/10-index.png.webp", label: "Proyecto web" },
-  { img: "/img/11-index.png.webp", label: "Proyecto web" },
-  { img: "/img/14-index.png.webp", label: "Proyecto web" },
+  { img: "/img/13-index.png.webp", label: "Rodi" },
+  { img: "/img/10-index.png.webp", label: "Web Builder" },
+  { img: "/img/11-index.png.webp", label: "Digitplan" },
+  { img: "/img/14-index.png.webp", label: "Gespasa" },
 ];
 
 export type ClientHours = {
