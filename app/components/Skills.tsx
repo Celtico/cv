@@ -120,9 +120,34 @@ export function Skills({ accent }: { accent: AccentName }) {
                 const id = skillIcon(s.items[j] ?? "");
                 return (
                   <WrapItem key={it}>
-                    <Flex as="span" align="center" gap={2} className="tnum" layerStyle="chip">
-                      {id && <Icon as={ICONES_ETIQUETA[id]} aria-hidden boxSize="0.95em" flexShrink={0} />}
-                      <Text as="span">{it}</Text>
+                    {/* Apilada i sense fons: la icona a dalt i gran, el nom a
+                        sota i petit. La pastilla plena feia que quaranta-quatre
+                        rectangles de color competissin entre ells i amb la
+                        banda; sense fons, el que es veu són les icones i el
+                        conjunt respira.
+                        En línia, a més, la icona competia amb el text a la
+                        mateixa alçada i les etiquetes llargues quedaven
+                        desequilibrades; apilada, la icona fa d'entrada i el nom
+                        de peu. */}
+                    <Flex
+                      as="span"
+                      direction="column"
+                      align="center"
+                      justify="flex-start"
+                      gap={2}
+                      className="tnum"
+                      py={2}
+                      px={1}
+                      minW="5.5rem"
+                      maxW="8rem"
+                      textAlign="center"
+                    >
+                      {id && (
+                        <Icon as={ICONES_ETIQUETA[id]} aria-hidden boxSize="1.6rem" color="accent.fg" />
+                      )}
+                      <Text as="span" fontSize="0.6875rem" lineHeight="1.3" color="fg.muted">
+                        {it}
+                      </Text>
                     </Flex>
                   </WrapItem>
                 );

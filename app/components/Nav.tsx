@@ -13,6 +13,7 @@ import {
   DrawerOverlay,
   Flex,
   HStack,
+  Icon,
   IconButton,
   Link,
   Text,
@@ -23,7 +24,7 @@ import {
 } from "@chakra-ui/react";
 import NextLink from "next/link";
 import { usePathname } from "next/navigation";
-import { FiMenu, FiMoon, FiSun } from "react-icons/fi";
+import { FiArrowUpRight, FiMenu, FiMoon, FiSun } from "react-icons/fi";
 import { LANGS, type Lang } from "../content";
 import { anchorHref, langHref, stripLang, useLang, useT } from "../i18n";
 
@@ -125,16 +126,25 @@ export function Nav() {
 
   // Les àncores porten prefix perquè també han de funcionar des de /blog, i
   // porten l'idioma perquè si no et treuen de /es o /en i et tornen al català.
+  // En l'ORDRE EN QUÈ APAREIXEN A LA PÀGINA. Anar a la barra i haver d'endevinar
+  // on cau cada cosa és el que passava mentre «Projectes» sortia abans que
+  // «Trajectòria» i el blog quedava enmig de les àncores. Galeria i Clients no
+  // hi són: no tenen entrada al diccionari i afegir-los-hi vol dir tocar les
+  // tres llengües.
   const links = [
     { id: "destacados", href: anchorHref(lang, "destacados"), label: t.nav.destacats },
     { id: "sobre-mi", href: anchorHref(lang, "sobre-mi"), label: t.nav.perfil },
     { id: "skills", href: anchorHref(lang, "skills"), label: t.nav.eines },
-    { id: "proyectos", href: anchorHref(lang, "proyectos"), label: t.nav.projectes },
     { id: "experiencia", href: anchorHref(lang, "experiencia"), label: t.nav.trajectoria },
     { id: "trayectoria", href: anchorHref(lang, "trayectoria"), label: t.nav.registre },
-    { id: null, href: langHref(lang, "/blog"), label: t.nav.blog },
+    { id: "proyectos", href: anchorHref(lang, "proyectos"), label: t.nav.projectes },
     { id: "contacto", href: anchorHref(lang, "contacto"), label: t.nav.contacte },
   ];
+
+  // El blog va a part i al final: és l'únic que no és una àncora d'aquesta
+  // pàgina sinó una altra pàgina. Amb el mateix aspecte que la resta, el clic
+  // se sentia com un salt a mig text.
+  const blog = { href: langHref(lang, "/blog"), label: t.nav.blog };
 
   return (
     <Box
@@ -192,6 +202,24 @@ export function Nav() {
                 </Link>
               );
             })}
+
+            {/* El filet separa les àncores del que se'n va a una altra pàgina. */}
+            <Box w="1px" h="14px" bg="border" />
+            <Link
+              href={blog.href}
+              className="tnum"
+              fontSize="xs"
+              letterSpacing="0.12em"
+              textTransform="uppercase"
+              color="fg"
+              display="inline-flex"
+              alignItems="center"
+              gap={1.5}
+              _hover={{ color: "accent.fg", textDecoration: "none" }}
+            >
+              {blog.label}
+              <Icon as={FiArrowUpRight} aria-hidden boxSize="0.9em" />
+            </Link>
           </HStack>
 
           <HStack spacing={2}>
@@ -248,6 +276,31 @@ export function Nav() {
                   <Box as="span">{l.label}</Box>
                 </Link>
               ))}
+              {/* Igual que a la barra: separat i amb la fletxa, perquè es vegi
+                  que no és una àncora d'aquesta pàgina. */}
+              <Link
+                href={blog.href}
+                onClick={onClose}
+                mt={6}
+                py={4}
+                px={5}
+                borderRadius="control"
+                border="1px solid"
+                borderColor="border.emphasized"
+                className="tnum"
+                fontSize="sm"
+                letterSpacing="0.1em"
+                textTransform="uppercase"
+                color="fg"
+                display="inline-flex"
+                alignItems="center"
+                justifyContent="center"
+                gap={2}
+                _hover={{ color: "accent.fg", borderColor: "accent.fg", textDecoration: "none" }}
+              >
+                {blog.label}
+                <Icon as={FiArrowUpRight} aria-hidden boxSize="1em" />
+              </Link>
             </VStack>
           </DrawerBody>
         </DrawerContent>
