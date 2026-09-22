@@ -253,7 +253,8 @@
     .exp h3 { font-size: 1rem; }
     .projgrid { gap: 7px; }
     .pcard { padding: 8px 11px; }
-    .pcard p { margin: 4px 0; }
+    /* Amb la quarta targeta (RACK, 2026-09-22) el peu saltava sol a una 4a pàgina. */
+    .pcard p { margin: 4px 0; font-size: 12.8px; line-height: 1.42; }
     .clients { gap: 6px 22px; }
     .cli ul { gap: 1px; }
     .facts li { padding: 3px 0; font-size: 9px; }
@@ -334,7 +335,7 @@
           <p class="gl">Front-end</p>
           <div class="tags">
             <span class="tag">React 19</span><span class="tag">Next.js</span><span class="tag">Chakra UI</span>
-            <span class="tag">Radix UI</span><span class="tag">Vite</span><span class="tag">Recharts</span><span class="tag">Responsive</span>
+            <span class="tag">Radix UI</span><span class="tag">Vite</span><span class="tag">Recharts</span><span class="tag">Web Audio</span><span class="tag">Responsive</span>
           </div>
         </div>
 
@@ -529,6 +530,23 @@
             <div class="tags">
               <span class="tag">Visor 3D</span><span class="tag">CAD/CAM · STEP</span><span class="tag">QR</span>
               <span class="tag">Parsing CSV</span><span class="tag">Web app</span>
+            </div>
+          </div>
+
+          <div class="pcard">
+            <div class="ph">
+              <h4>RACK · Estudio de música en el navegador</h4>
+              <a class="purl" href="https://rack.serverscel.com" target="_blank" rel="noopener">rack.serverscel.com ↗</a>
+            </div>
+            <p>
+              Rack de audio web: <span class="hl">caja de ritmos, sintetizadores, sampler y secuenciador de pasos</span>.
+              Diez máquinas encadenables, banco de patrones, línea de tiempo y efectos, todo sonando con la
+              <span class="hl">Web Audio API</span>. Canciones con historial de versiones, importación <span class="hl">MIDI</span>
+              y <span class="hl">PWA instalable</span> en móvil y tableta.
+            </p>
+            <div class="tags">
+              <span class="tag">React</span><span class="tag">Chakra UI</span><span class="tag">Tone.js</span>
+              <span class="tag">Web Audio</span><span class="tag">MIDI</span><span class="tag">PWA</span><span class="tag">Vite</span>
             </div>
           </div>
 

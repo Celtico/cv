@@ -72,7 +72,7 @@ Rol: **desenvolupador web** (front-end / back-end).
 - **Infraestructura / DevOps:** Docker, Nginx, JWT, SQLite/MySQL, gestió de servidors, dominis, SSL, CI/CD
 - **Disseny:** UX/UI, identitat visual, Adobe (Photoshop, Illustrator, InDesign), disseny per a impremta
 - **Flux de treball:** desenvolupament assistit per IA (Claude Code), PhpStorm, Git, code review, Docker
-- **Altres:** WebAssembly (PHP-Wasm), RTL-SDR, IoT (sensors de nivell), metodologies àgils, SEO/SEM, programari lliure
+- **Altres:** Web Audio API (Tone.js), WebAssembly (PHP-Wasm), RTL-SDR, IoT (sensors de nivell), metodologies àgils, SEO/SEM, programari lliure
 
 Soft skills (del portfoli): treball en equip, creativitat, identificació de problemes,
 metodologies àgils, iniciativa, perfil polivalent i versàtil, col·laboració interdisciplinària.
@@ -104,10 +104,20 @@ metodologies àgils, iniciativa, perfil polivalent i versàtil, col·laboració 
    lligada al seu sòlid 3D). Mòduls: Etiquetar (QR), Mecanitzar (tall a la CNC segons el nesting), Laminar i Muntar,
    amb traçabilitat de cada pas.
 
-3. **Portfoli serverscel.com**
+3. **RACK** (rack.serverscel.com) — afegit el 2026-09-22
+   Rack d'àudio al navegador: caixa de ritmes, sintetitzadors, sampler i seqüenciador de passos.
+   Deu màquines encadenables (DR-4 caixa de ritmes, PERC-6 percussió, SMP-8 sampler de 8 pads,
+   MONO-1 sinte mono, BASS-2 baix àcid, POLY-4 pad, EP-1 piano, STR-6 guitarra, VID-1 bucle de
+   vídeo, MIC-1 micròfon), transport amb tempo i swing, banc de patrons, línia de temps de cançó,
+   FX-2 (mescla, eco, reverb) i desfer/refer. Les cançons es desen soles amb historial de versions;
+   s'importen de .json o .mid, o es creen a partir d'un xifrat d'acords; demos incloses.
+   PWA instal·lable a iPhone/iPad (pantalles d'arrencada per a cada mida). v64, set 2026.
+   Stack: React, Chakra UI, Tone.js (Web Audio API, AudioWorklet), Vite.
+
+4. **Portfoli serverscel.com**
    Web de portfoli construïda amb runtime propi ("instant").
 
-4. **Neural Network System**
+5. **Neural Network System**
    Detecció d'activitats humanes amb els sensors del mòbil mitjançant una xarxa neuronal (ML).
 
 Altres experiments: WebRTC (comunicació en temps real), PhpWasm (PHP a WebAssembly),
