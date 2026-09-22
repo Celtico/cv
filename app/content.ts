@@ -123,9 +123,9 @@ export const content: Record<Lang, Dict> = {
     },
     featured: {
       kicker: "Destacats — en producció",
-      title: "Tres aplicacions vives",
+      title: "Quatre aplicacions vives",
       subtitle:
-        "Producte complet que ==pots visitar ara mateix==: front-end, back-end, IA i integració d'ERP.",
+        "Producte complet que ==pots visitar ara mateix==: front-end, back-end, IA, àudio i integració d'ERP.",
       plate: "Plate",
       visitar: "Visitar",
       parlem: "Parlem d'aquest projecte",
@@ -159,6 +159,16 @@ export const content: Record<Lang, Dict> = {
             "Assistent que respon amb la telemetria real del moment: causes ordenades i si pots seguir circulant",
             "Panell de flota: viatges, alertes automàtiques i telemetria per WebSocket, amb mode sense cobertura",
             "Pont Android (Kotlin) com a únic procés amb accés a l'adaptador: la pantalla mai toca el hardware",
+          ],
+        },
+        {
+          subtitle: "Estudi de música al navegador",
+          desc: "«Un rack d'àudio a la web». Caixa de ritmes, sintetitzadors, sampler i seqüenciador de passos: encadena màquines, compon patrons i ordena'ls en una cançó. Tot sona amb la Web Audio API, sense plugins, i s'instal·la com a PWA al mòbil o la tauleta.",
+          highlights: [
+            "Deu màquines: caixa de ritmes, percussió, sampler de 8 pads, sintes mono i poli, baix àcid, piano, guitarra, bucle de vídeo i micròfon",
+            "Seqüenciador de passos amb banc de patrons, línia de temps de cançó, tempo, swing i desfer/refer",
+            "Efectes de mescla, eco i reverb; gravació de mostres des del micròfon del dispositiu",
+            "Cançons que es desen soles amb historial de versions; importació de .json i .mid o creació des d'un xifrat d'acords",
           ],
         },
       ],
@@ -289,9 +299,9 @@ export const content: Record<Lang, Dict> = {
     },
     featured: {
       kicker: "Destacados — en producción",
-      title: "Tres aplicaciones vivas",
+      title: "Cuatro aplicaciones vivas",
       subtitle:
-        "Producto completo que ==puedes visitar ahora mismo==: front-end, back-end, IA e integración de ERP.",
+        "Producto completo que ==puedes visitar ahora mismo==: front-end, back-end, IA, audio e integración de ERP.",
       plate: "Plate",
       visitar: "Visitar",
       parlem: "Hablemos de este proyecto",
@@ -325,6 +335,16 @@ export const content: Record<Lang, Dict> = {
             "Asistente que responde con la telemetría real del momento: causas ordenadas y si puedes seguir circulando",
             "Panel de flota: viajes, alertas automáticas y telemetría por WebSocket, con modo sin cobertura",
             "Puente Android (Kotlin) como único proceso con acceso al adaptador: la pantalla nunca toca el hardware",
+          ],
+        },
+        {
+          subtitle: "Estudio de música en el navegador",
+          desc: "«Un rack de audio en la web». Caja de ritmos, sintetizadores, sampler y secuenciador de pasos: encadena máquinas, compón patrones y ordénalos en una canción. Todo suena con la Web Audio API, sin plugins, y se instala como PWA en el móvil o la tableta.",
+          highlights: [
+            "Diez máquinas: caja de ritmos, percusión, sampler de 8 pads, sintes mono y poli, bajo ácido, piano, guitarra, bucle de vídeo y micrófono",
+            "Secuenciador de pasos con banco de patrones, línea de tiempo de canción, tempo, swing y deshacer/rehacer",
+            "Efectos de mezcla, eco y reverb; grabación de muestras desde el micrófono del dispositivo",
+            "Canciones que se guardan solas con historial de versiones; importación de .json y .mid o creación desde un cifrado de acordes",
           ],
         },
       ],
@@ -455,8 +475,8 @@ export const content: Record<Lang, Dict> = {
     },
     featured: {
       kicker: "Featured — in production",
-      title: "Three live applications",
-      subtitle: "Complete product ==you can visit right now==: front-end, back-end, AI and ERP integration.",
+      title: "Four live applications",
+      subtitle: "Complete product ==you can visit right now==: front-end, back-end, AI, audio and ERP integration.",
       plate: "Plate",
       visitar: "Visit",
       parlem: "Let's talk about this project",
@@ -490,6 +510,16 @@ export const content: Record<Lang, Dict> = {
             "An assistant that answers with the actual telemetry of the moment: ranked causes and whether you can keep driving",
             "Fleet panel: trips, automatic alerts and WebSocket telemetry, with an offline mode",
             "An Android bridge (Kotlin) is the only process touching the adapter: the screen never touches the hardware",
+          ],
+        },
+        {
+          subtitle: "A music studio in the browser",
+          desc: "“A web audio rack.” Drum machine, synths, sampler and step sequencer: chain machines, write patterns and arrange them into a song. Everything plays through the Web Audio API, no plugins, and it installs as a PWA on a phone or tablet.",
+          highlights: [
+            "Ten machines: drum machine, percussion, 8-pad sampler, mono and poly synths, acid bass, piano, guitar, video loop and microphone",
+            "Step sequencer with a pattern bank, song timeline, tempo, swing and undo/redo",
+            "Mix, echo and reverb effects; sample recording from the device microphone",
+            "Songs save themselves with a version history; import from .json and .mid or start from a chord chart",
           ],
         },
       ],

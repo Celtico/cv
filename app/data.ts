@@ -110,6 +110,16 @@ export const featured: Featured[] = [
     accent: "blue.400",
     badge: "OBD-II",
   },
+  {
+    title: "RACK",
+    subtitle: "Estudio de música en el navegador",
+    desc: "«Un rack de audio en la web». Caja de ritmos, sintetizadores, sampler y secuenciador de pasos: encadena máquinas, compón patrones y ordénalos en una canción. Todo suena con la Web Audio API, sin plugins, y se instala como PWA en el móvil o la tableta.",
+    stack: ["React", "Chakra UI", "Tone.js", "Web Audio · AudioWorklet", "MIDI", "PWA", "Vite"],
+    img: "/img/anim-rack.svg",
+    url: "https://rack.serverscel.com",
+    accent: "purple.400",
+    badge: "Web Audio",
+  },
 ];
 
 export type Project = {
