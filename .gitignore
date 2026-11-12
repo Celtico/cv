@@ -20,3 +20,6 @@ vida-laboral.md
 
 # Configuració local de Claude Code
 .claude/settings.local.json
+
+# Skill de tercers copiat en local (té la seva pròpia llicència): no es publica
+.claude/skills/web/
