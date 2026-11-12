@@ -47,19 +47,15 @@ El projecte es manté en **català** (dades, comentaris, tests, missatges de com
 Excepcions: `cv-celesti-tico.html` i `web/app/data.ts` estan redactats en **castellà**;
 `web/app/content.ts` conté les tres llengües (CA/ES/EN).
 
-## Dos repositoris en un directori
+## Un sol repositori
 
-| Ruta | Repo | Remot |
-| --- | --- | --- |
-| `/` | fonts del CV | `gitwins.serverscel.com/cel/cv.git` |
-| `web/` | lloc web Next.js | `gitwins.serverscel.com/cel/cv-web.git` |
+Les fonts del CV (arrel) i el lloc web (`web/`) viuen al mateix repositori:
+`github.com/Celtico/cv`. Abans eren dos repos, amb `web/` niat i ignorat; es van unir
+conservant els dos historials.
 
-`web/` està al `.gitignore` de l'arrel: **no és un submòdul**, és un repo independent.
-Un canvi que toqui les dues bandes necessita dos commits, un a cada repo. Comprova sempre
-des d'on estàs fent `git`.
-
-També s'ignoren `vida_laboral` / `vida_laboral.pdf` (informe oficial de la Seguretat Social
-amb dades personals): es queden al disc i no es versionen mai.
+S'ignoren `vida_laboral` / `vida_laboral.pdf` (informe oficial de la Seguretat Social amb
+dades personals) i les notes de treball `cenics.md`, `linkedin-celesti.md` i `vida-laboral.md`
+(hores i facturació per client): es queden al disc i no es versionen mai, perquè el repo és públic.
 
 ## Regla d'or del contingut
 

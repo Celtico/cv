@@ -1,7 +1,6 @@
 # CV — Celestí Ticó Petit
 
-Fonts del currículum. El lloc web viu en un repositori a part
-([cv-web](https://gitwins.serverscel.com/cel/cv-web)) i no s'inclou aquí.
+Fonts del currículum i, a `web/`, el lloc web (Next.js) que el publica.
 
 ## Fitxers
 
@@ -10,7 +9,7 @@ Fonts del currículum. El lloc web viu en un repositori a part
 | `cv-dades-celesti-tico.md` | **Font de la veritat.** Totes les dades: contacte, experiència, competències, projectes, clients, idiomes i formació. |
 | `cv-celesti-tico.html` | CV final. Una sola pàgina, autònoma: CSS inline, cap dependència externa, tema clar/fosc i estils d'impressió. |
 | `cv-celesti-tico.pdf` | Export del CV a A4, tres pàgines. |
-| `cenics.md`, `linkedin-celesti.md`, `vida-laboral.md` | Material de suport recollit per redactar el CV. |
+| `web/` | Lloc web del CV (Next.js). Té el seu propi `README.md`. |
 | `img/` | Captures dels projectes de client. |
 | `.claude/skills/cv/` | Instruccions per mantenir i regenerar el CV. |
 

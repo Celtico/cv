@@ -11,3 +11,12 @@ vida_laboral.pdf
 # Captures i imatges soltes de treball
 Captura de pantalla*.png
 img.png
+
+# Notes de treball privades (hores i facturació per client, apunts de LinkedIn).
+# El repositori és públic: es queden al disc.
+cenics.md
+linkedin-celesti.md
+vida-laboral.md
+
+# Configuració local de Claude Code
+.claude/settings.local.json
