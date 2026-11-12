@@ -1,5 +1,7 @@
 # CV — Celestí Ticó Petit
 
+![Celestí Ticó Petit: 25 anys fent producte digital, de principi a fi](cover.png)
+
 Fonts del currículum i, a `web/`, el lloc web (Next.js) que el publica.
 
 ## Fitxers
