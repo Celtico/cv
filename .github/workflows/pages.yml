@@ -1,0 +1,59 @@
+# Publica el lloc web (web/) a GitHub Pages com a fitxers estàtics.
+# STATIC_EXPORT=1 fa que Next generi `web/out/` en lloc del servidor standalone.
+name: Web a GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: web-pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: web
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+      - uses: actions/configure-pages@v5
+      - run: npm ci --ignore-scripts
+      - run: npm test
+      - name: Build estàtic
+        env:
+          STATIC_EXPORT: "1"
+          NEXT_TELEMETRY_DISABLED: "1"
+        run: npm run build
+      - name: Imatges socials amb extensió
+        # Next les exporta com a `opengraph-image`, sense extensió, i Pages les
+        # serviria com a binari genèric: les xarxes socials no les mostrarien.
+        run: |
+          for f in out/opengraph-image out/blog/opengraph-image; do cp "$f" "$f.png"; done
+          grep -rl 'opengraph-image?' out --include='*.html' \
+            | xargs sed -i -E 's#/opengraph-image\?#/opengraph-image.png?#g'
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: web/out
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

@@ -44,3 +44,10 @@ CV i web comparteixen piles del sistema; no es descarrega cap font.
 L'informe de **vida laboral** de la Seguretat Social (`vida_laboral`,
 `vida_laboral.pdf`) està al `.gitignore`: és un document oficial amb dades
 personals i es queda només al disc.
+
+## Publicació del web
+
+Cada push a `main` publica `web/` a GitHub Pages (`.github/workflows/pages.yml`) com a lloc
+estàtic: `STATIC_EXPORT=1 npm run build` genera `web/out/`. El domini (`serverscel.com`) es
+configura a Settings → Pages del repositori. Sense `STATIC_EXPORT`, el build és el servidor
+standalone de sempre, per a Docker.

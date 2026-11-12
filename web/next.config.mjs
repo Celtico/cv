@@ -4,8 +4,16 @@ import { buildCsp } from "./csp.mjs";
 
 const csp = buildCsp(process.env.NODE_ENV !== "production");
 
+// STATIC_EXPORT=1 genera el lloc com a fitxers estàtics a `out/` per a GitHub
+// Pages (vegeu .github/workflows/pages.yml). Sense, el build és el de sempre:
+// servidor standalone per a Docker.
+const staticExport = process.env.STATIC_EXPORT === "1";
+
 const nextConfig = {
-  output: "standalone",
+  output: staticExport ? "export" : "standalone",
+  // A Pages no hi ha servidor que reescrigui /blog → /blog.html: cada ruta
+  // surt com a carpeta amb el seu index.html.
+  trailingSlash: staticExport,
   reactStrictMode: true,
   poweredByHeader: false,
   // Els tests e2e compilen a un directori propi (NEXT_DIST_DIR=.next-e2e) per
@@ -24,23 +32,26 @@ const nextConfig = {
     // de barril purs.
     optimizePackageImports: ["@chakra-ui/react", "react-icons"],
   },
-  async headers() {
-    return [
-      {
-        source: "/:path*",
-        headers: [
-          { key: "Content-Security-Policy", value: csp },
-          { key: "X-Content-Type-Options", value: "nosniff" },
-          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
-          {
-            key: "Permissions-Policy",
-            value: "camera=(), microphone=(), geolocation=(), payment=(), usb=(), browsing-topics=()",
-          },
-          { key: "X-Frame-Options", value: "DENY" },
-        ],
-      },
-    ];
-  },
+  // Un host estàtic no pot enviar capçaleres pròpies: a l'export no s'emeten.
+  ...(staticExport ? {} : { headers: securityHeaders }),
 };
+
+async function securityHeaders() {
+  return [
+    {
+      source: "/:path*",
+      headers: [
+        { key: "Content-Security-Policy", value: csp },
+        { key: "X-Content-Type-Options", value: "nosniff" },
+        { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+        {
+          key: "Permissions-Policy",
+          value: "camera=(), microphone=(), geolocation=(), payment=(), usb=(), browsing-topics=()",
+        },
+        { key: "X-Frame-Options", value: "DENY" },
+      ],
+    },
+  ];
+}
 
 export default nextConfig;
