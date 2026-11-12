@@ -13,6 +13,7 @@ Data de recollida: 2026-07-18.
 - **Email:** celticopetit@gmail.com
 - **Portfoli:** https://serverscel.com
 - **Gestor / empresa:** https://cenics.net
+- **GitHub:** https://github.com/Celtico
 
 ## Idiomes
 - Català — natiu

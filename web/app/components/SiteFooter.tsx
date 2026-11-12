@@ -6,7 +6,7 @@
 // landmark.
 
 import { Box, Container, Flex, HStack, Icon, Link, Text } from "@chakra-ui/react";
-import { FiGlobe, FiLinkedin } from "react-icons/fi";
+import { FiGithub, FiGlobe, FiLinkedin } from "react-icons/fi";
 import { profile } from "../data";
 
 export function SiteFooter() {
@@ -45,6 +45,13 @@ export function SiteFooter() {
               <HStack spacing={1.5}>
                 <Icon as={FiLinkedin} />
                 <Text>LinkedIn</Text>
+              </HStack>
+            </Link>
+            {/* El codi dels projectes propis (i el d'aquest mateix web) és públic. */}
+            <Link href={profile.github} isExternal _hover={{ color: "accent.fg" }}>
+              <HStack spacing={1.5}>
+                <Icon as={FiGithub} />
+                <Text>GitHub</Text>
               </HStack>
             </Link>
             <Link href={profile.company} isExternal _hover={{ color: "accent.fg" }}>

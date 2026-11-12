@@ -81,7 +81,7 @@ const jsonLd = {
   image: `${siteUrl}/img/cel-tico-petit.webp`,
   // El telèfon es queda fora de les dades estructurades a posta: al bloc de
   // contacte el veu una persona, aquí se l'emportaria qualsevol recol·lector.
-  sameAs: [profile.linkedin, profile.company],
+  sameAs: [profile.linkedin, profile.github, profile.company],
   address: {
     "@type": "PostalAddress",
     addressLocality: "Balaguer",

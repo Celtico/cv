@@ -11,6 +11,7 @@ export const profile = {
   portfolio: "https://serverscel.com",
   company: "https://cenics.net",
   linkedin: "https://www.linkedin.com/in/celesti-tico-petit/",
+  github: "https://github.com/Celtico",
 };
 
 export const stats = [
