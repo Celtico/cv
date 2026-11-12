@@ -1,0 +1,31 @@
+services:
+  cv:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: cv-celesti-tico
+    container_name: cv-celesti-tico
+    restart: unless-stopped
+    ports:
+      - "3592:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+    logging:
+      # sense rotació, els logs JSON acaben omplint el disc del host
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    mem_limit: 512m
+    cpus: 1.0
+    security_opt:
+      - "no-new-privileges:true"
+    cap_drop:
+      - ALL
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3000"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 15s

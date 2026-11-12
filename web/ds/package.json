@@ -1,0 +1,19 @@
+{
+  "name": "@serverscel/ds",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Les primitives i el tema del lloc serverscel.com, empaquetats com a llibreria per a claude.ai/design.",
+  "module": "./dist/ds/index.js",
+  "main": "./dist/ds/index.js",
+  "types": "./dist/ds/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/ds/index.d.ts",
+      "default": "./dist/ds/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json && node gen-css.mjs"
+  }
+}

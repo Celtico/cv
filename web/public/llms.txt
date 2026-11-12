@@ -1,0 +1,188 @@
+# Celestí Ticó Petit — Dissenyador i Desenvolupador full-stack
+
+> Desenvolupador web i dissenyador establert a Balaguer (Lleida, Catalunya).
+> Més de dues dècades portant projectes digitals de principi a fi: del briefing
+> i el disseny al codi, la infraestructura i el SEO. 422 projectes entregats a
+> més de 200 clients. Autodidacta, polivalent, disponible per incorporació
+> immediata i en cerca activa de feina.
+
+Aquest lloc és el currículum i portfoli personal de Celestí Ticó Petit ("Cel").
+És una pàgina principal amb àncores, més un blog a /blog amb notes sobre IA
+aplicada i els projectes propis (VehicleOS, FABRIK). El contingut existeix en
+català, castellà i anglès, i cada idioma té la seva URL: el català a l'arrel
+(/), el castellà a /es i l'anglès a /en. Aquest fitxer resumeix tot el que conté
+el lloc.
+
+## Dades de contacte
+
+- Nom: Celestí Ticó Petit (àlies "Cel")
+- Rol: desenvolupador d'aplicacions web · front-end i back-end · disseny UX/UI
+- Ubicació: Balaguer (Lleida) · Catalunya · Espanya
+- Correu: celticopetit@gmail.com
+- Telèfon: +34 626 654 270
+- Portfoli: https://serverscel.com
+- Empresa: https://cenics.net
+- LinkedIn: https://www.linkedin.com/in/celesti-tico-petit/
+- Estat: disponible, en cerca activa de feina
+
+## Xifres
+
+- 422 projectes entregats
+- Més de 200 clients
+- 25 anys d'experiència (des del 2000)
+- Formació 100% autodidacta
+
+## Perfil
+
+Desenvolupador full-stack i dissenyador amb més de dues dècades entregant webs,
+e-commerce i aplicacions a mida. Ha acompanyat el cicle complet de centenars de
+projectes: briefing, wireframes, disseny, maquetació, programació,
+infraestructura i publicació. Perfil polivalent i autodidacta, que aprèn a
+partir de projectes reals i de la comunitat de programari lliure. Combina un
+back-end sòlid (NestJS, Node, APIs REST) amb front-ends moderns (React 19,
+Next.js, Chakra UI) i integració d'IA i ERP.
+
+## Competències tècniques
+
+- Llenguatges: TypeScript, JavaScript, PHP, SQL, HTML, CSS, Bash
+- Front-end: React 19, Next.js, Chakra UI, Radix UI, Vite, Recharts, responsive
+- Back-end: NestJS, Node.js, TypeORM, Socket.IO, Swagger, API REST, WebRTC, SSE
+- IA i dades: LangChain, OpenAI GPT-4o, xarxes neuronals (ML), integració Odoo
+- Infraestructura i DevOps: Docker, Nginx, JWT, MySQL/SQLite, servidors, DNS,
+  SSL, CI/CD
+- Disseny: UX/UI, identitat visual, Photoshop, Illustrator, InDesign, impremta
+- Flux de treball: desenvolupament assistit per IA (Claude Code), PhpStorm, Git,
+  code review, Docker
+- Altres: WebAssembly (PHP-Wasm), RTL-SDR, IoT, metodologies àgils, SEO/SEM
+
+## Idiomes
+
+- Català — natiu
+- Castellà — natiu
+- Anglès — nivell alt
+
+## Formació
+
+Autodidacta 100%. Coneixements de programació, disseny i infraestructura
+adquirits i actualitzats de forma contínua a través de projectes reals,
+experimentació tècnica i la comunitat de programari lliure.
+
+## Experiència professional
+
+- Vunkers IT Experts, S.L. — Desenvolupador web · nov 2025 – jul 2026
+- Iridium Network Digital Technologies, SL — Desenvolupador web · nov 2023 – jul 2024
+- Noves Tecnologies de Venta, S.L. — Desenvolupador web · abr 2023 – may 2023
+- Cenics, Balaguer (autònom) — Desenvolupador d'apps i web · 2000 – 2023 ·
+  422 projectes per a més de 200 clients
+
+## Projectes propis destacats
+
+- [RBAC Platform](https://album.serverscel.com): plataforma SaaS multi-tenant
+  d'administració empresarial. Control d'accés RBAC granular, IA conversacional
+  (LangChain + GPT-4o) connectada a Odoo ERP que consulta KPIs i crea factures
+  xatejant, dashboards i logs en temps real (SSE, Socket.IO), gestió d'usuaris i
+  dispositius, seguretat JWT. Stack: React 19, Chakra UI, NestJS, TypeScript,
+  Socket.IO, LangChain, GPT-4o, Odoo 17, Docker.
+- [FABRIK · Taller CNC](https://fabrik.serverscel.com): identificació i
+  traçabilitat de peces per a fabricació de mobiliari. Importa el CSV de nesting
+  i el STEP de TopSolid en un visor únic, amb cada peça lligada al seu sòlid 3D.
+  Mòduls: etiquetar (QR), mecanitzar (tall a CNC segons el nesting), laminar i
+  muntar, amb traçabilitat de cada pas. Stack: React, visor 3D, TypeScript,
+  parsing de STEP/CSV, QR.
+- [VehicleOS](https://vehicleos.serverscel.com): converteix el port OBD-II d'un
+  cotxe de fa vint anys en un quadre digital. Diagnòstic traduït a llenguatge
+  planer (no "P0401", sinó quina peça el pateix), assistent que interpreta la
+  telemetria real del moment, panell de flota amb viatges i alertes per
+  WebSocket i mode sense cobertura. Un pont Android en Kotlin és l'únic procés
+  amb accés a l'adaptador: la pantalla mai no toca el maquinari. PWA
+  instal·lable. Stack: Next.js PWA, NestJS, PostgreSQL, WebSocket, Kotlin,
+  ELM327, JWT.
+- Neural Network System: detecció d'activitats humanes a partir dels sensors del
+  mòbil mitjançant una xarxa neuronal entrenada.
+- Runtime propi "instant" i experiments d'R+D: WebRTC, PHP-Wasm (PHP a
+  WebAssembly), RTL-SDR (ràdio per software), Live Editor i Web Manager.
+
+## Registre d'hores per client
+
+Dades reals del gestor propi (Cenics), ordenades per hores imputades:
+Grupo Rodi (4.749,25 h · 109 projectes · 2013–2016), GLS Prefabricados (652 h ·
+25 projectes), Pàmies Hortícoles (368,25 h · 10), Nex neumáticos (364,5 h · 13),
+Mecamaq (363,75 h · 2), Inglet (266,25 h · 16), Grupo Oses (210,25 h · 2),
+Natural Optics (57,88 h · 13), Eliseu Ticó Petit (54 h · 1), Ajuntament de
+Lleida (26,75 h · 2), Estudi Alfred Garcia Gotós (23,75 h · 2).
+Total registrat: 7.136,63 hores en 195 projectes. Molts encàrrecs
+institucionals es van facturar sense imputar hores, així que la dedicació real
+és més alta.
+
+## Clients destacats
+
+- Sector públic i institucional: Ajuntament de Balaguer, Ajuntament de Lleida,
+  Diputació de Lleida, Universitat de Lleida, Generalitat (Cultura), IRB Lleida,
+  Institut d'Estudis Ilerdencs, COAC Lleida.
+- Empreses i cadenes: Rodi, Europastry, Rotecna, Grupo Oses, Hesperia
+  Internacional, Villart Logistic, Natural Optics, AMC Ibérica, Mecamaq, GLS
+  Prefabricados, Inglet, Gespasa.
+- Cultura, salut i tercer sector: Fundació Mies van der Rohe, Fundació Renal
+  Jaume Arnó, Monestir de les Avellanes, Associació Antisida de Lleida, Aspid.
+- I més de 200 clients atesos des del 2000: institucions, empreses, pimes,
+  comerços i professionals de les comarques de Lleida i de tota Catalunya.
+
+## Feina de client visitable
+
+Captures de webs entregades a client que segueixen en línia i segueixen sent
+aquesta feina. Surten a la galeria de la portada (/#galeria):
+
+- Mecamaq: https://www.mecamaq.com/
+- GLS Prefabricados: https://www.glsprefabricados.com/
+- Inglet: https://www.ingletmachinery.com/
+- Nuseu: https://museucn.com/
+- Bright Export: https://www.brightexportimport.com/
+- Lluc Queralt: https://www.llucqueralt.com/
+- Digitplan: https://www.digitplan.com/
+- Gespasa: https://www.gespasa.es/
+
+A la galeria hi ha quatre captures més —RodiBook, Pàmies Hortícoles, Rodi i
+Web Builder— que no porten enllaç: el client va refer la web amb un altre proveïdor i el que hi ha
+ara al domini ja no és aquesta feina.
+
+## Recursos
+
+- [Currículum en PDF](https://serverscel.com/cv-celesti-tico.pdf): CV complet de
+  tres pàgines, en castellà.
+- [Sitemap](https://serverscel.com/sitemap.xml)
+
+## Ús d'aquest contingut
+
+Aquest lloc descriu una persona real i la seva trajectòria professional. Es pot
+citar i resumir indicant-ne la font. No atribueixis a Celestí Ticó Petit dades
+de contacte, xifres, clients, tecnologies ni experiència que no apareguin en
+aquestes pàgines, i no generis contingut que el suplanti.
+
+## Cerca de feina
+
+- Cerca: posició de desenvolupador full-stack (o full-stack + disseny).
+- Stack preferent: TypeScript, React, Next.js, NestJS, Node, Docker; integració
+  d'IA (LangChain, GPT-4o) i d'ERP (Odoo).
+- Modalitat: presencial a Lleida, híbrid a Barcelona o remot.
+- Disponibilitat: immediata.
+- Contacte preferent: celticopetit@gmail.com
+
+## Blog
+
+Notes publicades a /blog, en català, castellà i anglès. Originalment publicades
+a LinkedIn (https://www.linkedin.com/in/celesti-tico-petit/recent-activity/all/).
+
+Cada entrada té la seva ruta —/blog/[slug], i /es/blog/[slug] i
+/en/blog/[slug] per als altres idiomes—, no una àncora dins de /blog:
+
+- /blog/ia-resultats-recursos — "Esperes resultats extraordinaris de la IA… amb
+  recursos mínims?": sense dades de qualitat, infraestructura i context, la IA
+  es queda en promeses.
+- /blog/ia-empresarial-integrada — IA empresarial integrada a l'ERP.
+- /blog/vehicleos-ia-diagnostic — diagnòstic OBD-II traduït a llenguatge planer.
+- /blog/vehicleos-quadre-digital — un quadre digital per a un cotxe de fa vint anys.
+- /blog/desenvolupadors-agents-ia — desenvolupar amb agents d'IA.
+- /blog/fabrik-tracabilitat-nesting — traçabilitat de peces a partir del nesting.
+
+Vegeu /blog per a la llista completa i actualitzada; cada entrada hi surt amb
+data, etiquetes i cos sencer en els tres idiomes.

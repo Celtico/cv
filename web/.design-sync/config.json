@@ -1,0 +1,26 @@
+{
+  "projectId": "86839a0a-dd15-46d2-a371-d06a5fcf3b86",
+  "shape": "package",
+  "pkg": "@serverscel/ds",
+  "globalName": "ServerscelDs",
+  "buildCmd": "cd ds && npx tsc -p tsconfig.json && node gen-css.mjs",
+  "srcDir": "../app/components",
+  "cssEntry": "./dist/accent.css",
+  "docsDir": "./docs",
+  "guidelinesGlob": [],
+  "componentSrcMap": {
+    "DsProvider": null
+  },
+  "provider": {
+    "component": "DsProvider"
+  },
+  "dtsPropsFor": {
+    "InlineSvg": "  /** URL de l'SVG. Nomes es la reserva: el cami normal es passar-li `markup`. */\n  src: string;\n  /** Text alternatiu. Obligatori. */\n  title: string;\n  /** L'SVG ja llegit. Al lloc el llegeix un Server Component en temps de build. */\n  markup?: string;\n  /** Per defecte true: l'SVG queda amagat als lectors de pantalla. */\n  decorative?: boolean;\n  /** La resta de props son les de `Box` de Chakra: mides, marges, color, sx… */\n  [boxProp: string]: unknown;"
+  },
+  "overrides": {
+    "Section": {
+      "cardMode": "column"
+    }
+  },
+  "readmeHeader": ".design-sync/conventions.md"
+}
